@@ -12,13 +12,26 @@ public class MoveableFurniture : MonoBehaviour, IInteractable
 
     public string GetInteractionPrompt()
     {
-        // Optional: You could update this text based on holdTimer to show progress
-        // e.g. return holdTimer > 0 ? "Holding..." : "Hold Left Click to Move";
+        /*
+        if (holdTimer > 0)
+        {
+            int bars = (int)((holdTimer / HOLD_THRESHOLD) * 10);
+            string progress = new string('|', bars);
+            return $"Release to Cancel [{progress}]";
+        }
+        */
+        
         return "Hold Left Click to Move";
     }
 
     public void OnInteract(PlayerInteraction player)
     {
+        /*
+        // Inside OnInteract, before the threshold check:
+        float scaleFactor = 1.0f - (holdTimer / HOLD_THRESHOLD) * 0.1f; // Shrinks to 90% size
+        transform.localScale = Vector3.one * scaleFactor;
+        */
+        
         // Check if player is holding button
         if (player.IsPrimaryPressed())
         {
