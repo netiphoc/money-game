@@ -89,6 +89,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7250186245692157526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5368467270845860648}
+  m_Layer: 6
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5368467270845860648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7250186245692157526}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.84}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8164563376980701718}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6295327701670358165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156,13 +187,48 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2743576261982281347, guid: 92e813de34452e64aac82482859e9665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5368467270845860648}
     - targetCorrespondingSourceObject: {fileID: 6514920603451646448, guid: 92e813de34452e64aac82482859e9665, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2940770316645090316}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5300754137737274434, guid: 92e813de34452e64aac82482859e9665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1371057716432208095}
   m_SourcePrefab: {fileID: 100100000, guid: 92e813de34452e64aac82482859e9665, type: 3}
 --- !u!4 &951626170274090341 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6514920603451646448, guid: 92e813de34452e64aac82482859e9665, type: 3}
+  m_PrefabInstance: {fileID: 6295327701670358165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2219554425293228247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5300754137737274434, guid: 92e813de34452e64aac82482859e9665, type: 3}
+  m_PrefabInstance: {fileID: 6295327701670358165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1371057716432208095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219554425293228247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7599e0cc83f441a877a558cfe780a21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrainingEquipment
+  equipmentName: Heavy Bag
+  trainingDuration: 5
+  strGain: 5
+  agiGain: 0
+  staGain: 0
+  animationTrigger: Punch
+  interactionPoint: {fileID: 5368467270845860648}
+--- !u!4 &8164563376980701718 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2743576261982281347, guid: 92e813de34452e64aac82482859e9665, type: 3}
   m_PrefabInstance: {fileID: 6295327701670358165}
   m_PrefabAsset: {fileID: 0}
