@@ -1,18 +1,14 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem; // REQUIRED namespace
+using UnityEngine.InputSystem; 
 using TMPro;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [Header("Input Actions")]
-    [Tooltip("Drag the 'Interact' action from your Input Asset here")]
-    public InputActionProperty interactInput;      // Key: E
-    [Tooltip("Drag the 'PrimaryAction' (Left Click) here")]
+    [Header("Input Actions (New Input System)")]
+    public InputActionProperty interactInput;      // Keyboard: E
     public InputActionProperty primaryInput;       // Mouse: Left Click
-    [Tooltip("Drag the 'SecondaryAction' (Right Click) here")]
     public InputActionProperty secondaryInput;     // Mouse: Right Click
-    [Tooltip("Drag the 'Throw' action here")]
-    public InputActionProperty throwInput;         // Key: G
+    public InputActionProperty throwInput;         // Keyboard: G
 
     [Header("Settings")]
     public float interactDistance = 3f;
@@ -26,7 +22,6 @@ public class PlayerInteraction : MonoBehaviour
     [Header("State")]
     public GameObject currentHeldObject;
 
-    // We need to enable inputs when this script turns on
     private void OnEnable()
     {
         interactInput.action.Enable();
@@ -63,6 +58,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void UpdateUI(IInteractable lookTarget)
     {
+        // 1. Priority: Look Target (e.g. Shelf, Trash, Door)
         if (lookTarget != null)
         {
             promptText.text = lookTarget.GetInteractionPrompt();
@@ -70,6 +66,7 @@ public class PlayerInteraction : MonoBehaviour
             return;
         }
 
+        // 2. Priority: Held Object (e.g. "Press G to Throw")
         if (currentHeldObject != null)
         {
             IInteractable heldLogic = currentHeldObject.GetComponent<IInteractable>();
@@ -80,51 +77,67 @@ public class PlayerInteraction : MonoBehaviour
                 return;
             }
         }
+
+        // 3. Default: Hide
         promptText.gameObject.SetActive(false);
     }
 
     private void HandleInput(IInteractable lookTarget)
     {
-        // --- SCENARIO A: HOLDING AN OBJECT ---
+        // --- HANDS FULL ---
         if (currentHeldObject != null)
         {
-            // 1. Stocking / Context Interaction (Passthrough)
+            // 1. Throw Logic (G Key)
+            if (throwInput.action.WasPerformedThisFrame())
+            {
+                // We assume the held object has an ItemBox script or similar
+                ItemBox box = currentHeldObject.GetComponent<ItemBox>();
+                if (box != null) box.Throw(this);
+                return;
+            }
+
+            // 2. Passthrough Logic (Stocking/Retrieving while holding box)
             if (lookTarget != null)
             {
-                // IsPressed() returns true every frame the button is held
+                // Primary (Hold allowed) -> Stock Shelf
                 if (primaryInput.action.IsPressed()) 
                 {
                     lookTarget.OnInteract(this);
                 }
+                // Secondary (Hold allowed) -> Retrieve from Shelf
                 else if (secondaryInput.action.IsPressed())
                 {
                     lookTarget.OnAltInteract(this);
                 }
             }
-
-            // 2. Throwing Logic
-            if (throwInput.action.WasPerformedThisFrame())
-            {
-                IInteractable heldLogic = currentHeldObject.GetComponent<IInteractable>();
-                heldLogic?.OnAltInteract(this);
-            }
         }
-        // --- SCENARIO B: HANDS EMPTY ---
+        // --- HANDS EMPTY ---
         else 
         {
-            // Standard Pickup (Triggered on press, not hold)
+            // Standard Interaction
             if (lookTarget != null)
             {
-                // We check both E (Interact) and Left Click (Primary) for pickup convenience
+                // E Key (Single Press) OR Left Click (Single Press)
+                // We use WasPerformedThisFrame so we don't spam clicks on doors/walls
                 if (interactInput.action.WasPerformedThisFrame() || primaryInput.action.WasPerformedThisFrame())
                 {
+                    lookTarget.OnInteract(this);
+                }
+                // Renovation Case: If looking at a dirty wall, we might need HOLD logic
+                // The TrashObject/RenovationObject checks "IsPressed" internally inside their OnInteract
+                // so simply calling OnInteract here for "IsPressed" covers that too if needed.
+                else if (primaryInput.action.IsPressed())
+                {
+                    // Only pass the continuous signal if the target specifically needs holding (like Trash)
+                    // We let the target handle the logic.
                     lookTarget.OnInteract(this);
                 }
             }
         }
     }
 
-    // Helpers
+    // --- HELPER METHODS ---
+
     public void AttachToHand(GameObject obj)
     {
         currentHeldObject = obj;
@@ -141,6 +154,10 @@ public class PlayerInteraction : MonoBehaviour
             currentHeldObject = null;
         }
     }
-    
+
     public GameObject GetHeldObject() => currentHeldObject;
+    
+    // Helper to let external scripts know if the button was JUST pressed vs HELD
+    public bool IsPrimaryPressed() => primaryInput.action.IsPressed();
+    public bool WasPrimaryPressed() => primaryInput.action.WasPerformedThisFrame();
 }

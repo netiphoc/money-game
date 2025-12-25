@@ -5,9 +5,8 @@ public class ItemBox : MonoBehaviour, IInteractable
     [Header("Box Data")]
     public ItemDataSO itemData;
     public int currentQuantity = 10;
-    public int maxCapacity = 20; // Maximum items this box can hold
-    
-    // Physics references
+    public int maxCapacity = 20;
+
     private Rigidbody rb;
     private Collider col;
     private bool isHeld = false;
@@ -20,37 +19,43 @@ public class ItemBox : MonoBehaviour, IInteractable
 
     public string GetInteractionPrompt()
     {
-        if (isHeld) return $"Hold Click to Stock / Right Click to Retrieve ({currentQuantity}/{maxCapacity})";
+        if (isHeld) return $"Hold LMB Stock / RMB Retrieve / G Throw";
         return $"Press E to pick up {itemData.itemName} Box";
     }
 
-    // ... OnInteract and OnAltInteract stay the same ...
     public void OnInteract(PlayerInteraction player)
     {
         if (!isHeld)
         {
             isHeld = true;
-            rb.isKinematic = true; 
-            col.enabled = false; 
+            rb.isKinematic = true;
+            col.enabled = false;
             player.AttachToHand(this.gameObject);
         }
     }
 
-    public void OnAltInteract(PlayerInteraction player)
+    // Used for logic when looking at OTHER things? No, this is empty now.
+    public void OnAltInteract(PlayerInteraction player) { }
+
+    // --- NEW SPECIFIC THROW METHOD ---
+    public void Throw(PlayerInteraction player)
     {
         if (isHeld)
         {
             isHeld = false;
             player.ReleaseFromHand();
+            
             col.enabled = true;
             rb.isKinematic = false;
-            rb.AddForce(player.playerCamera.transform.forward * 400f);
+            
+            // Add force forward
+            rb.AddForce(player.playerCamera.transform.forward * 600f); 
+            // Optional: Add some torque spin
+            rb.AddTorque(Random.insideUnitSphere * 100f);
         }
     }
 
-    // --- LOGIC FOR SHELF ---
-
-    // Taking item OUT of box (Stocking Shelf)
+    // --- SHELF LOGIC HELPER METHODS ---
     public bool TryTakeItem()
     {
         if (currentQuantity > 0)
@@ -61,7 +66,6 @@ public class ItemBox : MonoBehaviour, IInteractable
         return false;
     }
 
-    // NEW: Putting item INTO box (Retrieving from Shelf)
     public bool TryAddItem()
     {
         if (currentQuantity < maxCapacity)
@@ -69,7 +73,6 @@ public class ItemBox : MonoBehaviour, IInteractable
             currentQuantity++;
             return true;
         }
-        // Box is full
         return false;
     }
 }
