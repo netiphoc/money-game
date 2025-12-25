@@ -6,6 +6,7 @@ public class StorageShelf : MonoBehaviour, IInteractable
     [Header("Settings")]
     public ItemDataSO allowedItem; 
     public Transform[] spawnPoints;
+    public GameObject itemBoxPrefab; // REFERENCE TO THE CARDBOARD BOX PREFAB
     
     [SerializeField] private float stockSpeed = 0.15f;
     private float lastStockTime; 
@@ -14,12 +15,12 @@ public class StorageShelf : MonoBehaviour, IInteractable
 
     public string GetInteractionPrompt()
     {
-        return "Hold Left Click to Stock / Right Click to Retrieve";
+        return "Hold LMB to Stock / RMB to Retrieve";
     }
 
     public void OnInteract(PlayerInteraction player)
     {
-        // ... (Same logic as before for Left Click) ...
+        // ... (Existing Stocking Logic - unchanged) ...
         if (Time.time < lastStockTime + stockSpeed) return;
         if (player.GetHeldObject() == null) return;
 
@@ -37,42 +38,65 @@ public class StorageShelf : MonoBehaviour, IInteractable
 
     public void OnAltInteract(PlayerInteraction player)
     {
-        // --- RETRIEVE LOGIC (Right Click Hold) ---
+        // --- RETRIEVE LOGIC (Right Click) ---
 
-        // 1. Check Cooldown
+        // 1. Check Cooldown & Availability
         if (Time.time < lastStockTime + stockSpeed) return;
+        
+        if (stockedItems.Count == 0)
+        {
+            Debug.Log("stockedItems.Count == 0");
+            return; // Nothing to take
+        }
 
-        // 2. Check if Shelf has items to give
-        if (stockedItems.Count == 0) return;
-
-        // 3. Check what the player is holding
         GameObject heldObject = player.GetHeldObject();
+
+        // SCENARIO A: Player is holding a Box
         if (heldObject != null)
         {
+            Debug.Log("Player is holding a Box");
             ItemBox box = heldObject.GetComponent<ItemBox>();
 
-            // 4. Does the player have a Valid Box?
+            // Check if box matches item
             if (box != null && box.itemData == allowedItem)
             {
-                // 5. Try to Add item to Box
                 if (box.TryAddItem())
                 {
-                    RemoveVisualItem(); // Visual logic
+                    RemoveVisualItem();
                     lastStockTime = Time.time;
-                }
-                else
-                {
-                    Debug.Log("Box is Full!");
                 }
             }
         }
+        // SCENARIO B: Player hands are EMPTY (Auto-Spawn Box)
         else
         {
-            // Optional: If hands are empty, maybe pick up the single item directly?
-            // (You can implement this later if you want single-item carrying)
+            Debug.Log("Player hands are EMPTY (Auto-Spawn Box)");
+            // 1. Spawn a new Box at the player's hand position (temp)
+            GameObject newBoxObj = Instantiate(itemBoxPrefab, player.holdPoint.position, Quaternion.identity);
+            ItemBox newBox = newBoxObj.GetComponent<ItemBox>();
+
+            // 2. Configure the Box
+            if (newBox != null)
+            {
+                newBox.itemData = allowedItem;
+                newBox.currentQuantity = 1; // Start with the 1 item we just took
+            }
+            else
+            {
+                Debug.Log("Item Box NULL");
+            }
+
+            // 3. Attach to Player Hand
+            // We call OnInteract directly to trigger the pickup logic (physics disable, parenting)
+            newBox.OnInteract(player);
+
+            // 4. Remove the item from the shelf
+            RemoveVisualItem();
+            lastStockTime = Time.time;
         }
     }
 
+    // ... (AddVisualItem and RemoveVisualItem methods remain the same) ...
     private void AddVisualItem()
     {
         int index = stockedItems.Count;

@@ -5,10 +5,11 @@ using TMPro;
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("Input Actions (New Input System)")]
-    public InputActionProperty interactInput;      // Keyboard: E
-    public InputActionProperty primaryInput;       // Mouse: Left Click
-    public InputActionProperty secondaryInput;     // Mouse: Right Click
-    public InputActionProperty throwInput;         // Keyboard: G
+    // Drag these from your Input Action Asset in Inspector
+    public InputActionProperty interactInput;      // Key: E
+    public InputActionProperty primaryInput;       // Mouse: Left Click (Used for Stocking/Placing)
+    public InputActionProperty secondaryInput;     // Mouse: Right Click (Used for Retrieving/Boxing)
+    public InputActionProperty throwInput;         // Key: G
 
     [Header("Settings")]
     public float interactDistance = 3f;
@@ -19,7 +20,7 @@ public class PlayerInteraction : MonoBehaviour
     public Transform holdPoint;
     public TextMeshProUGUI promptText;
 
-    [Header("State")]
+    [Header("State (Read Only)")]
     public GameObject currentHeldObject;
 
     private void OnEnable()
@@ -40,10 +41,23 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
+        // 1. BLOCKER: If Placement System is active, do nothing.
+        // This prevents the player from throwing/grabbing while trying to place furniture.
+        if (PlacementManager.Instance.IsPlacing) 
+        {
+            promptText.gameObject.SetActive(false); // Hide prompt while placing
+            return;
+        }
+
+        // 2. Standard Logic
         IInteractable lookTarget = GetLookTarget();
         UpdateUI(lookTarget);
         HandleInput(lookTarget);
     }
+
+    // ==================================================================================
+    // 1. RAYCAST & UI
+    // ==================================================================================
 
     private IInteractable GetLookTarget()
     {
@@ -58,7 +72,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void UpdateUI(IInteractable lookTarget)
     {
-        // 1. Priority: Look Target (e.g. Shelf, Trash, Door)
+        // Priority 1: Look Target (e.g., Shelf, Trash, Door)
         if (lookTarget != null)
         {
             promptText.text = lookTarget.GetInteractionPrompt();
@@ -66,7 +80,7 @@ public class PlayerInteraction : MonoBehaviour
             return;
         }
 
-        // 2. Priority: Held Object (e.g. "Press G to Throw")
+        // Priority 2: Held Object (e.g., "Press G to Throw")
         if (currentHeldObject != null)
         {
             IInteractable heldLogic = currentHeldObject.GetComponent<IInteractable>();
@@ -78,65 +92,77 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
-        // 3. Default: Hide
+        // Default: Hide
         promptText.gameObject.SetActive(false);
     }
 
+    // ==================================================================================
+    // 2. INPUT HANDLING
+    // ==================================================================================
+
     private void HandleInput(IInteractable lookTarget)
     {
-        // --- HANDS FULL ---
+        // --- SCENARIO A: HANDS FULL ---
         if (currentHeldObject != null)
         {
             // 1. Throw Logic (G Key)
             if (throwInput.action.WasPerformedThisFrame())
             {
-                // We assume the held object has an ItemBox script or similar
                 ItemBox box = currentHeldObject.GetComponent<ItemBox>();
                 if (box != null) box.Throw(this);
                 return;
             }
 
-            // 2. Passthrough Logic (Stocking/Retrieving while holding box)
+            // 2. Pass-through Logic (Context Sensitive)
+            // Allows using the held item on something else (e.g. Stocking Shelf)
+            // Or using the held item itself (e.g. Unboxing Furniture)
+            
+            // Check Interactable Target First (Shelf)
             if (lookTarget != null)
             {
-                // Primary (Hold allowed) -> Stock Shelf
-                if (primaryInput.action.IsPressed()) 
+                if (primaryInput.action.IsPressed()) lookTarget.OnInteract(this);
+                else if (secondaryInput.action.IsPressed()) lookTarget.OnAltInteract(this);
+            }
+            // If looking at nothing, talk to the Held Object (Unboxing)
+            else
+            {
+                IInteractable heldLogic = currentHeldObject.GetComponent<IInteractable>();
+                if (heldLogic != null)
+                {
+                    if (primaryInput.action.WasPerformedThisFrame()) heldLogic.OnInteract(this);
+                }
+            }
+        }
+        // --- SCENARIO B: HANDS EMPTY ---
+        else 
+        {
+            if (lookTarget != null)
+            {
+                // Primary Interaction (Pick Up / Open Door)
+                // We allow both E and Click for convenience, but prevent "Hold" spam unless needed
+                if (interactInput.action.WasPerformedThisFrame() || primaryInput.action.WasPerformedThisFrame())
                 {
                     lookTarget.OnInteract(this);
                 }
-                // Secondary (Hold allowed) -> Retrieve from Shelf
-                else if (secondaryInput.action.IsPressed())
+                // Continuous Interaction (Scraping Walls / Moving Furniture)
+                // These scripts check 'IsPrimaryPressed()' internally, so we just pass the signal
+                else if (primaryInput.action.IsPressed())
+                {
+                    lookTarget.OnInteract(this);
+                }
+
+                // Secondary Interaction (Auto-Retrieve Box from Shelf)
+                if (secondaryInput.action.IsPressed())
                 {
                     lookTarget.OnAltInteract(this);
                 }
             }
         }
-        // --- HANDS EMPTY ---
-        else 
-        {
-            // Standard Interaction
-            if (lookTarget != null)
-            {
-                // E Key (Single Press) OR Left Click (Single Press)
-                // We use WasPerformedThisFrame so we don't spam clicks on doors/walls
-                if (interactInput.action.WasPerformedThisFrame() || primaryInput.action.WasPerformedThisFrame())
-                {
-                    lookTarget.OnInteract(this);
-                }
-                // Renovation Case: If looking at a dirty wall, we might need HOLD logic
-                // The TrashObject/RenovationObject checks "IsPressed" internally inside their OnInteract
-                // so simply calling OnInteract here for "IsPressed" covers that too if needed.
-                else if (primaryInput.action.IsPressed())
-                {
-                    // Only pass the continuous signal if the target specifically needs holding (like Trash)
-                    // We let the target handle the logic.
-                    lookTarget.OnInteract(this);
-                }
-            }
-        }
     }
 
-    // --- HELPER METHODS ---
+    // ==================================================================================
+    // 3. PUBLIC HELPERS
+    // ==================================================================================
 
     public void AttachToHand(GameObject obj)
     {
@@ -156,8 +182,8 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     public GameObject GetHeldObject() => currentHeldObject;
-    
-    // Helper to let external scripts know if the button was JUST pressed vs HELD
+
+    // Helper for external scripts (like MoveableFurniture) to check input state
     public bool IsPrimaryPressed() => primaryInput.action.IsPressed();
     public bool WasPrimaryPressed() => primaryInput.action.WasPerformedThisFrame();
 }

@@ -177,8 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670e56f48ce547b3a1ab9d629e969368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemBox
-  itemData: {fileID: 11400000, guid: 23659edb9f688e14c978f878c5220f83, type: 2}
+  itemData: {fileID: 0}
   currentQuantity: 5
+  maxCapacity: 20
 --- !u!65 &2431935770501617304
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -378,7 +378,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8456209334162122635, guid: 4b5c0be599ede4549b28a65f1dc83470, type: 3}
       propertyPath: m_Name
-      value: Item_Shelf Variant
+      value: Item_StorageShelf
       objectReference: {fileID: 0}
     - target: {fileID: 8602812074526371536, guid: 4b5c0be599ede4549b28a65f1dc83470, type: 3}
       propertyPath: m_LocalPosition.x
@@ -494,6 +494,8 @@ MonoBehaviour:
   - {fileID: 904838139721081049}
   - {fileID: 3048518554364863681}
   - {fileID: 1719372932062622276}
+  itemBoxPrefab: {fileID: 1097794022331946082, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
+  stockSpeed: 0.15
 --- !u!65 &8337314441945849327
 BoxCollider:
   m_ObjectHideFlags: 0
