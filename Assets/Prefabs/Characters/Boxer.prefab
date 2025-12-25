@@ -101,10 +101,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoxerController
   stats:
-    boxerName: 
-    strength: 0
-    agility: 0
-    stamina: 0
+    boxerName: Asd
+    strength: 5
+    agility: 5
+    stamina: 5
     totalTrainingPoints: 0
     energy: 100
     hunger: 0
