@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &314203839398727229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1151445268225789635}
+  - component: {fileID: 642022653988292149}
+  m_Layer: 0
+  m_Name: PlacementManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1151445268225789635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314203839398727229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &642022653988292149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314203839398727229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 570bc456d62d461a8796e7fcd13d1892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlacementManager
+  itemToBuy: {fileID: 11400000, guid: 5352be301fe4bbc4da43686e50a1da4a, type: 2}
+  rotateInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Rotate Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c5713c59-492d-4979-a46d-1b94da345338
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -4034873928251175563, guid: e6cb4b8348152a44e87d2453f14ee1bd, type: 3}
+  confirmInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Confirm Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 440c2344-7e5c-4dc9-8f01-ce0d87afec5f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 3579304318589246899, guid: e6cb4b8348152a44e87d2453f14ee1bd, type: 3}
+  cancelInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Cancel Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 07a9d5e2-740e-4fe0-96ef-cc34e4b25408
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 5580737503241134166, guid: e6cb4b8348152a44e87d2453f14ee1bd, type: 3}
+  boxUpInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Box Up Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 0fe12a11-6ef6-4ec3-92eb-e910d9f5e7df
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 5609994334817430091, guid: e6cb4b8348152a44e87d2453f14ee1bd, type: 3}
+  placementLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 320
+  validMat: {fileID: 2100000, guid: 47726c1dfa8cfdf458bb1c9e6341c03b, type: 2}
+  invalidMat: {fileID: 2100000, guid: 65eb479f4b6d80a4e838103df0383850, type: 2}
+  itemBoxPrefab: {fileID: 1097794022331946082, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
+  rotationSpeed: 10
+  IsPlacing: 0
