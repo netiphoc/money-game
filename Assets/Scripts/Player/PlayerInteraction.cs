@@ -1,106 +1,146 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem; // REQUIRED namespace
 using TMPro;
-using UnityEngine.InputSystem; // Make sure to import TextMeshPro for the UI
 
 public class PlayerInteraction : MonoBehaviour
 {
+    [Header("Input Actions")]
+    [Tooltip("Drag the 'Interact' action from your Input Asset here")]
+    public InputActionProperty interactInput;      // Key: E
+    [Tooltip("Drag the 'PrimaryAction' (Left Click) here")]
+    public InputActionProperty primaryInput;       // Mouse: Left Click
+    [Tooltip("Drag the 'SecondaryAction' (Right Click) here")]
+    public InputActionProperty secondaryInput;     // Mouse: Right Click
+    [Tooltip("Drag the 'Throw' action here")]
+    public InputActionProperty throwInput;         // Key: G
+
     [Header("Settings")]
     public float interactDistance = 3f;
-    public LayerMask interactLayer; // Set this to "Default" or a custom "Interactable" layer
+    public LayerMask interactLayer;
 
     [Header("References")]
     public Camera playerCamera;
-    public Transform holdPoint; // An empty GameObject child of Camera where items sit when held
-    public TextMeshProUGUI promptText; // UI Text on screen
+    public Transform holdPoint;
+    public TextMeshProUGUI promptText;
 
     [Header("State")]
-    public GameObject currentHeldObject; // What are we holding right now?
+    public GameObject currentHeldObject;
+
+    // We need to enable inputs when this script turns on
+    private void OnEnable()
+    {
+        interactInput.action.Enable();
+        primaryInput.action.Enable();
+        secondaryInput.action.Enable();
+        throwInput.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        interactInput.action.Disable();
+        primaryInput.action.Disable();
+        secondaryInput.action.Disable();
+        throwInput.action.Disable();
+    }
 
     private void Update()
     {
-        HandleRaycast();
-        HandleInput();
+        IInteractable lookTarget = GetLookTarget();
+        UpdateUI(lookTarget);
+        HandleInput(lookTarget);
     }
 
-    private void HandleRaycast()
+    private IInteractable GetLookTarget()
     {
-        // 1. Create a ray from center of camera
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         RaycastHit hit;
-
-        // 2. Shoot the ray
         if (Physics.Raycast(ray, out hit, interactDistance, interactLayer))
         {
-            // 3. Try to get the Interface component from the object we hit
-            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+            return hit.collider.GetComponent<IInteractable>();
+        }
+        return null;
+    }
 
-            if (interactable != null)
+    private void UpdateUI(IInteractable lookTarget)
+    {
+        if (lookTarget != null)
+        {
+            promptText.text = lookTarget.GetInteractionPrompt();
+            promptText.gameObject.SetActive(true);
+            return;
+        }
+
+        if (currentHeldObject != null)
+        {
+            IInteractable heldLogic = currentHeldObject.GetComponent<IInteractable>();
+            if (heldLogic != null)
             {
-                // We hit something interactive! Show the prompt.
-                promptText.text = interactable.GetInteractionPrompt();
+                promptText.text = heldLogic.GetInteractionPrompt();
                 promptText.gameObject.SetActive(true);
-                
-                // (Optional) Highlight effect logic would go here
                 return;
             }
         }
-
-        // If we hit nothing, hide the text
         promptText.gameObject.SetActive(false);
     }
 
-    private void HandleInput()
+    private void HandleInput(IInteractable lookTarget)
     {
-        // If we are holding an object, we bypass the raycast and talk directly to the held object
+        // --- SCENARIO A: HOLDING AN OBJECT ---
         if (currentHeldObject != null)
         {
-             // Get the interactable logic from the thing we are holding
-             IInteractable heldLogic = currentHeldObject.GetComponent<IInteractable>();
-             
-             // Example: Throw logic using 'G'
-             if (Keyboard.current.gKey.wasPressedThisFrame)
-             {
-                 // You could add a specific "OnThrow" method to interface, 
-                 // or handle it in the object's update.
-                 // For now, we use AltInteract for throwing/dropping mechanics
-                 heldLogic.OnAltInteract(this);
-             }
-             return;
-        }
-
-        // Standard Interaction (When not holding anything)
-        if (Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, interactDistance, interactLayer))
+            // 1. Stocking / Context Interaction (Passthrough)
+            if (lookTarget != null)
             {
-                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-                if (interactable != null)
+                // IsPressed() returns true every frame the button is held
+                if (primaryInput.action.IsPressed()) 
                 {
-                    interactable.OnInteract(this);
+                    lookTarget.OnInteract(this);
+                }
+                else if (secondaryInput.action.IsPressed())
+                {
+                    lookTarget.OnAltInteract(this);
+                }
+            }
+
+            // 2. Throwing Logic
+            if (throwInput.action.WasPerformedThisFrame())
+            {
+                IInteractable heldLogic = currentHeldObject.GetComponent<IInteractable>();
+                heldLogic?.OnAltInteract(this);
+            }
+        }
+        // --- SCENARIO B: HANDS EMPTY ---
+        else 
+        {
+            // Standard Pickup (Triggered on press, not hold)
+            if (lookTarget != null)
+            {
+                // We check both E (Interact) and Left Click (Primary) for pickup convenience
+                if (interactInput.action.WasPerformedThisFrame() || primaryInput.action.WasPerformedThisFrame())
+                {
+                    lookTarget.OnInteract(this);
                 }
             }
         }
     }
 
-    // Helper method to attach objects to the hand
+    // Helpers
     public void AttachToHand(GameObject obj)
     {
         currentHeldObject = obj;
         obj.transform.SetParent(holdPoint);
-        obj.transform.localPosition = Vector3.zero; // Snap to hand
+        obj.transform.localPosition = Vector3.zero;
         obj.transform.localRotation = Quaternion.identity;
     }
 
-    // Helper method to release objects
     public void ReleaseFromHand()
     {
-        if(currentHeldObject != null)
+        if (currentHeldObject != null)
         {
             currentHeldObject.transform.SetParent(null);
             currentHeldObject = null;
         }
     }
+    
+    public GameObject GetHeldObject() => currentHeldObject;
 }
