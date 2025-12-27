@@ -1,10 +1,10 @@
 ﻿namespace UIs.Tablet
 {
-    public class UITabletProduct : BaseUITabletItemShop<UITabletButtonSlotItem>
+    public class UITabletDecoration : BaseUITabletItemShop<UITabletButtonSlotItem>
     {
         public ItemDataSO[] ItemDataSO { get; private set; }
         
-        public void SetProducts(ItemDataSO[] itemData)
+        public void SetDecorations(ItemDataSO[] itemData)
         {
             ItemDataSO = itemData;
             RenderItems();

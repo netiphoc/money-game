@@ -21,3 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 58665993140d8124889961292c2c6b6d, type: 2}
   - {fileID: 11400000, guid: b5418fb2546a89c4a82df509d1b16aea, type: 2}
   - {fileID: 11400000, guid: 1f6e0c12df39faf4ea326fc69049c5b9, type: 2}
+  furnitures:
+  - {fileID: 11400000, guid: 23659edb9f688e14c978f878c5220f83, type: 2}
+  - {fileID: 11400000, guid: 23659edb9f688e14c978f878c5220f83, type: 2}
+  - {fileID: 11400000, guid: 23c59b7d49d355c49b5245ec31948264, type: 2}

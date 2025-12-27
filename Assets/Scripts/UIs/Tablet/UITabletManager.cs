@@ -9,6 +9,7 @@ namespace UIs.Tablet
     {
         [Header("Data")]
         [SerializeField] private RoomDataSO[] tabletData;
+        [SerializeField] private ItemDataSO[] decorations;
         
         [Header("Room")]
         [SerializeField] private UITabletButtonRoom uiTabletButtonRoomPrefab;
@@ -17,9 +18,16 @@ namespace UIs.Tablet
         [Header("Button")]
         [SerializeField] private Button buttonLicense;
         [SerializeField] private Button buttonProduct;
+        [SerializeField] private Button buttonFurniture;
+        [SerializeField] private Button buttonDecoration;
+        [SerializeField] private Button buttonWorkers;
+        [SerializeField] private Button buttonExpand;
+        [SerializeField] private Button buttonFight;
 
         [field: SerializeField, Header("UI")] public UITabletLicense UITabletLicense { get; private set; }
         [field: SerializeField] public UITabletProduct UITabletProduct { get; private set; }
+        [field: SerializeField] public UITabletFurniture UITabletFurniture { get; private set; }
+        [field: SerializeField] public UITabletDecoration UITabletDecoration { get; private set; }
 
         private BaseUI _activeTab;
         
@@ -34,6 +42,11 @@ namespace UIs.Tablet
             base.OnEnable();
             buttonLicense.onClick.AddListener(OnButtonClickedLicense);
             buttonProduct.onClick.AddListener(OnButtonClickedProduct);
+            buttonFurniture.onClick.AddListener(OnButtonClickedFurniture);
+            buttonDecoration.onClick.AddListener(OnButtonClickedDecoration);
+            buttonWorkers.onClick.AddListener(OnButtonClickedWorkers);
+            buttonExpand.onClick.AddListener(OnButtonClickedExpand);
+            buttonFight.onClick.AddListener(OnButtonClickedFight);
             UITabletLicense.OnOwnedLicense += OnOwnedLicense;
         }
 
@@ -42,6 +55,11 @@ namespace UIs.Tablet
             base.OnDisable();
             buttonLicense.onClick.RemoveListener(OnButtonClickedLicense);
             buttonProduct.onClick.RemoveListener(OnButtonClickedProduct);
+            buttonFurniture.onClick.RemoveListener(OnButtonClickedFurniture);
+            buttonDecoration.onClick.RemoveListener(OnButtonClickedDecoration);
+            buttonWorkers.onClick.RemoveListener(OnButtonClickedWorkers);
+            buttonExpand.onClick.RemoveListener(OnButtonClickedExpand);
+            buttonFight.onClick.RemoveListener(OnButtonClickedFight);
             UITabletLicense.OnOwnedLicense -= OnOwnedLicense;
         }
 
@@ -62,15 +80,26 @@ namespace UIs.Tablet
             }
             
             SetActiveTab(UITabletLicense);
+            UITabletDecoration.SetDecorations(decorations);
         }
 
-        public void OnRoomDataChanged(RoomDataSO roomDataSo)
+        private void SetActiveTab(BaseUI ui)
+        {
+            if (_activeTab != null)
+            {
+                _activeTab.SetVisible(false);
+            }
+            
+            _activeTab = ui;
+            _activeTab.SetVisible(true);
+        }
+
+        private void OnRoomDataChanged(RoomDataSO roomDataSo)
         {
             Debug.Log($"OnRoomDataChanged -> {roomDataSo.roomName}");
             UITabletLicense.SetLicenses(roomDataSo.licenses);
-            UITabletProduct.SetProducts(roomDataSo.licenses
-                .SelectMany(licenseDataSo => licenseDataSo.items)
-                .ToArray());
+            UITabletProduct.SetProducts(roomDataSo.licenses.SelectMany(licenseDataSo => licenseDataSo.items).ToArray());
+            UITabletFurniture.SetFurnitures(roomDataSo.furnitures);
         }
         
         private void OnButtonClickedLicense()
@@ -83,20 +112,30 @@ namespace UIs.Tablet
             SetActiveTab(UITabletProduct);
         }
 
-        public void SetActiveTab(BaseUI ui)
+        private void OnButtonClickedFurniture()
         {
-            if (_activeTab != null)
-            {
-                _activeTab.SetVisible(false);
-            }
-            
-            _activeTab = ui;
-            _activeTab.SetVisible(true);
+            SetActiveTab(UITabletFurniture);
         }
 
+        private void OnButtonClickedDecoration()
+        {
+            SetActiveTab(UITabletDecoration);
+        }
+
+        private void OnButtonClickedWorkers()
+        {
+        }
+
+        private void OnButtonClickedExpand()
+        {
+        }
+
+        private void OnButtonClickedFight()
+        {
+        }
+        
         private void OnOwnedLicense(LicenseDataSO licenseDataSo)
         {
-            //UITabletProduct.SetProducts(licenseDataSo.items);
             Debug.Log($"You owned new license: {licenseDataSo.licenseName}");
         }
     }

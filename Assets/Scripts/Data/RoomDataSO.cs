@@ -7,5 +7,6 @@ namespace Data
     {
         public string roomName;
         public LicenseDataSO[] licenses;
+        public ItemDataSO[] furnitures;
     }
 }

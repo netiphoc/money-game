@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ItemDataSO ProteinShake
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: ProteinShake
-  cost: 0
-  stackAmount: 0
+  cost: 5
+  stackAmount: 10
   itemPrefab: {fileID: 6267390391847188007, guid: 7ec741bb68ecde6458e10ff92b16378e, type: 3}
   icon: {fileID: 21300000, guid: b74c31d447d2f5d41a61081bdf5e7126, type: 3}
   licenseDataSo: {fileID: 11400000, guid: 68b582ac30358e7448a191d0bb4616ad, type: 2}
