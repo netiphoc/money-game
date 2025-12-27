@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb06aa1d7db14a73874ce9078b39905d, type: 3}
-  m_Name: License 1
+  m_Name: License 5
   m_EditorClassIdentifier: Assembly-CSharp::LicenseDataSO
-  licenseName: License 1
+  licenseName: License 3
   icon: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
-  cost: 100
+  cost: 300
   items:
-  - {fileID: 11400000, guid: 23659edb9f688e14c978f878c5220f83, type: 2}
+  - {fileID: 11400000, guid: 23c59b7d49d355c49b5245ec31948264, type: 2}

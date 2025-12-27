@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 using UI;
-using UnityEngine.UI;
 
 public class TabletUIManager : MonoBehaviour
 {

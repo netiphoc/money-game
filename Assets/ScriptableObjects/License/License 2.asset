@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9be9f6cde8ab4e6f8c848b48376be160, type: 3}
+  m_Script: {fileID: 11500000, guid: bb06aa1d7db14a73874ce9078b39905d, type: 3}
   m_Name: License 2
-  m_EditorClassIdentifier: Assembly-CSharp::LicenseData
-  licenseName: 
-  description: 
-  icon: {fileID: 0}
-  unlockCost: 0
-  incomeMultiplier: 1.25
-  requiredLicense: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::LicenseDataSO
+  licenseName: License 2
+  icon: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
+  cost: 200
+  items:
+  - {fileID: 11400000, guid: 23c59b7d49d355c49b5245ec31948264, type: 2}

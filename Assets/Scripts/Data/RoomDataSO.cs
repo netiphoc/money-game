@@ -1,0 +1,11 @@
+﻿using UnityEngine;
+
+namespace Data
+{
+    [CreateAssetMenu(fileName = "New Room Data", menuName = "GymTycoon/Room Data")]
+    public class RoomDataSO : ScriptableObject
+    {
+        public string roomName;
+        public LicenseDataSO[] licenses;
+    }
+}
