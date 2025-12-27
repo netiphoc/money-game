@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Data;
+using UnityEngine;
 
 namespace UIs.Tablet
 {
@@ -6,12 +8,19 @@ namespace UIs.Tablet
     {
         [SerializeField] private TButtonType uiTabletButtonSlotItemPrefab;
         [SerializeField] private Transform containerItem;
-        
+        [SerializeField] private Sprite iconCart;
+        public event Action<CartItemData> OnAddItemToCart;
+
         private PoolingUI<TButtonType> _poolingUI;
 
         private PoolingUI<TButtonType> GetPool()
         {
             return _poolingUI ??= new PoolingUI<TButtonType>(uiTabletButtonSlotItemPrefab);
+        }
+
+        protected void OnAddItemToCartEvent(CartItemData cartItemData)
+        {
+            OnAddItemToCart?.Invoke(cartItemData);
         }
         
         protected void RenderItems()
@@ -23,6 +32,14 @@ namespace UIs.Tablet
             OnRenderItem();
         }
 
+        protected TButtonType GetSlotItem()
+        {
+            return GetPool().Request(containerItem);
+        }
+
+        protected abstract void OnRenderItem();
+        
+
         public override void SetVisible(bool visible)
         {
             base.SetVisible(visible);
@@ -33,11 +50,9 @@ namespace UIs.Tablet
             }
         }
 
-        protected TButtonType GetSlotItem()
+        public Sprite GetIconCart()
         {
-            return GetPool().Request(containerItem);
+            return iconCart;
         }
-
-        protected abstract void OnRenderItem();
     }
 }

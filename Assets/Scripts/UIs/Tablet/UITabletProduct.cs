@@ -16,6 +16,7 @@
             {
                 UITabletButtonSlotItem uiTabletButtonSlotItem = GetSlotItem();
                 uiTabletButtonSlotItem.SetItem(item);
+                uiTabletButtonSlotItem.OnAddItemToCart = OnAddItemToCartEvent;
             }  
         }
     }

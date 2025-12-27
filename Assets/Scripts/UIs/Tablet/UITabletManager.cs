@@ -16,6 +16,7 @@ namespace UIs.Tablet
         [SerializeField] private Transform containerRoom;
         
         [Header("Button")]
+        [SerializeField] private Button buttonCart;
         [SerializeField] private Button buttonLicense;
         [SerializeField] private Button buttonProduct;
         [SerializeField] private Button buttonFurniture;
@@ -24,7 +25,8 @@ namespace UIs.Tablet
         [SerializeField] private Button buttonExpand;
         [SerializeField] private Button buttonFight;
 
-        [field: SerializeField, Header("UI")] public UITabletLicense UITabletLicense { get; private set; }
+        [field: SerializeField, Header("UI")] public UITabletCart UITabletCart { get; private set; }
+        [field: SerializeField] public UITabletLicense UITabletLicense { get; private set; }
         [field: SerializeField] public UITabletProduct UITabletProduct { get; private set; }
         [field: SerializeField] public UITabletFurniture UITabletFurniture { get; private set; }
         [field: SerializeField] public UITabletDecoration UITabletDecoration { get; private set; }
@@ -40,6 +42,7 @@ namespace UIs.Tablet
         protected override void OnEnable()
         {
             base.OnEnable();
+            buttonCart.onClick.AddListener(OnButtonClickedCart);
             buttonLicense.onClick.AddListener(OnButtonClickedLicense);
             buttonProduct.onClick.AddListener(OnButtonClickedProduct);
             buttonFurniture.onClick.AddListener(OnButtonClickedFurniture);
@@ -48,11 +51,14 @@ namespace UIs.Tablet
             buttonExpand.onClick.AddListener(OnButtonClickedExpand);
             buttonFight.onClick.AddListener(OnButtonClickedFight);
             UITabletLicense.OnOwnedLicense += OnOwnedLicense;
+            UITabletProduct.OnAddItemToCart += OnAddItemToCart;
+            UITabletFurniture.OnAddItemToCart += OnAddItemToCart;
+            UITabletDecoration.OnAddItemToCart += OnAddItemToCart;
         }
-
         protected override void OnDisable()
         {
             base.OnDisable();
+            buttonCart.onClick.RemoveListener(OnButtonClickedCart);
             buttonLicense.onClick.RemoveListener(OnButtonClickedLicense);
             buttonProduct.onClick.RemoveListener(OnButtonClickedProduct);
             buttonFurniture.onClick.RemoveListener(OnButtonClickedFurniture);
@@ -61,6 +67,9 @@ namespace UIs.Tablet
             buttonExpand.onClick.RemoveListener(OnButtonClickedExpand);
             buttonFight.onClick.RemoveListener(OnButtonClickedFight);
             UITabletLicense.OnOwnedLicense -= OnOwnedLicense;
+            UITabletProduct.OnAddItemToCart -= OnAddItemToCart;
+            UITabletFurniture.OnAddItemToCart -= OnAddItemToCart;
+            UITabletDecoration.OnAddItemToCart -= OnAddItemToCart;
         }
 
         private void InitData()
@@ -102,6 +111,11 @@ namespace UIs.Tablet
             UITabletFurniture.SetFurnitures(roomDataSo.furnitures);
         }
         
+        private void OnButtonClickedCart()
+        {
+            UITabletCart.SetVisible(true);
+        }
+
         private void OnButtonClickedLicense()
         {
             SetActiveTab(UITabletLicense);
@@ -137,6 +151,11 @@ namespace UIs.Tablet
         private void OnOwnedLicense(LicenseDataSO licenseDataSo)
         {
             Debug.Log($"You owned new license: {licenseDataSo.licenseName}");
+        }
+        
+        private void OnAddItemToCart(CartItemData cartItemData)
+        {
+            UITabletCart.AddItemCart(cartItemData);
         }
     }
 }

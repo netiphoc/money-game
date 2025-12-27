@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e318027f034d3a8ca7d50d554dd7d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIs.Tablet.UITabletButtonBalance
-  textBalance: {fileID: 0}
+  textBalance: {fileID: 3926559551357558000}
 --- !u!1001 &7859660947719762824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -236,6 +236,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b189ece6f3a14b84881bebf8d70f9709, type: 3}
+--- !u!114 &3926559551357558000 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6588465980455595896, guid: b189ece6f3a14b84881bebf8d70f9709, type: 3}
+  m_PrefabInstance: {fileID: 7859660947719762824}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &5366425920184986804 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2840152936465276732, guid: b189ece6f3a14b84881bebf8d70f9709, type: 3}

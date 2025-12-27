@@ -17,3 +17,4 @@ MonoBehaviour:
   cost: 100
   items:
   - {fileID: 11400000, guid: 23659edb9f688e14c978f878c5220f83, type: 2}
+  isOwned: 1

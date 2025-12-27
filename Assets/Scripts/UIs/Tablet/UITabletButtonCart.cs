@@ -11,7 +11,7 @@ namespace UIs.Tablet
 
         public void SetCartItemCount(int count)
         {
-            textTotalCost.SetText($"{textCartItemCount}");
+            textCartItemCount.SetText($"{count}");
         }
         
         public void SetTotalCost(double balance)

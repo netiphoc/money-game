@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using System;
+using Data;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
@@ -24,9 +26,12 @@ namespace UIs.Tablet
         [SerializeField] private Transform lockTransform;
         [SerializeField] private TMP_Text textRequiredLicense;
 
+        public Action<CartItemData> OnAddItemToCart;
+        
         private int _itemAmount;
         private int _cartCount;
         private double _unitCost;
+        private ItemDataSO _itemDataSO;
 
         protected override void Awake()
         {
@@ -54,6 +59,8 @@ namespace UIs.Tablet
 
         public void SetItem(ItemDataSO item)
         {
+            _itemDataSO = item;
+            
            SetItemName(item.itemName);
            SetItemIcon(item.icon);
            SetItemAmount(item.stackAmount);
@@ -107,6 +114,8 @@ namespace UIs.Tablet
 
         private void OnButtonClickAddToCart()
         {
+            OnAddItemToCart?.Invoke(new CartItemData(_itemDataSO, _cartCount));
+            
             SetCartCount(1);
         }
 
@@ -128,7 +137,7 @@ namespace UIs.Tablet
         
         private double GetTotalCost()
         {
-            return _unitCost * _itemAmount;
+            return _unitCost * _itemAmount * _cartCount;
         }
         
         private void UpdateTotalCost()
