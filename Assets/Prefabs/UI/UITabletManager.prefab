@@ -559,19 +559,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 23c59b7d49d355c49b5245ec31948264, type: 2}
   uiTabletButtonRoomPrefab: {fileID: 5511004799400169087, guid: 464515e1926561d4585e3b87f929d15d, type: 3}
   containerRoom: {fileID: 6137323777127435697}
+  buttonCart: {fileID: 4748394761433731136}
   textSectionName: {fileID: 1943294810505004270}
   iconSection: {fileID: 6395284568246512931}
   buttonSectionRoom: {fileID: 5763425106592967347}
   buttonSectionFood: {fileID: 5255136013735351746}
   buttonSectionService: {fileID: 2406552082364957757}
-  buttonCart: {fileID: 4748394761433731136}
-  buttonLicense: {fileID: 6560971631902104382}
-  buttonProduct: {fileID: 8872772954997977322}
-  buttonFurniture: {fileID: 419314429018103785}
-  buttonDecoration: {fileID: 2411317678285580933}
-  buttonWorkers: {fileID: 3539163390460703809}
-  buttonExpand: {fileID: 679916929506338548}
-  buttonFight: {fileID: 2314318397707703658}
+  buttonCatalogLicense: {fileID: 159969850629691498}
+  buttonCatalogProduct: {fileID: 2456564842117886910}
+  buttonCatalogFurniture: {fileID: 6693658612464573629}
+  buttonCatalogDecoration: {fileID: 8665959139495274961}
+  buttonCatalogWorkers: {fileID: 7505443467582289685}
+  buttonCatalogExpand: {fileID: 5790115725024781728}
+  buttonCatalogFight: {fileID: 8731088904481560126}
   <UITabletCart>k__BackingField: {fileID: 3223357683005535861}
   <UITabletLicense>k__BackingField: {fileID: 294896184271755579}
   <UITabletProduct>k__BackingField: {fileID: 2860878231777833612}
@@ -1938,6 +1938,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3534192701855583078}
     m_Modifications:
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: visibleSections.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: 'visibleSections.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a0d47185cdd40745a93068d3dcafe60, type: 2}
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: 'visibleSections.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 12f6c859820e05a47a34cbd7d3ca3e1d, type: 2}
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: 'visibleSections.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9d512221b7aa31743a1ee82bf8c3229c, type: 2}
     - target: {fileID: 1770751388452137079, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
       propertyPath: m_Name
       value: UI_Tablet_Button_Catalog_Licencse
@@ -2031,17 +2047,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
---- !u!114 &6560971631902104382 stripped
+--- !u!114 &159969850629691498 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5026732797557329629, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+  m_CorrespondingSourceObject: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
   m_PrefabInstance: {fileID: 2220215417547609571}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 944cb6fa91674997a588cbdc4178c181, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_EditorClassIdentifier: Assembly-CSharp::UIs.Tablet.UITabletButtonCatalog
 --- !u!224 &6982183703120871926 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9091212100747908117, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
@@ -2750,6 +2766,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3534192701855583078}
     m_Modifications:
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: visibleSections.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: 'visibleSections.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a0d47185cdd40745a93068d3dcafe60, type: 2}
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: 'visibleSections.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 12f6c859820e05a47a34cbd7d3ca3e1d, type: 2}
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: 'visibleSections.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9d512221b7aa31743a1ee82bf8c3229c, type: 2}
     - target: {fileID: 1770751388452137079, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
       propertyPath: m_Name
       value: UI_Tablet_Button_Catalog_Products
@@ -2843,22 +2875,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
---- !u!224 &4668711208183065122 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9091212100747908117, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
-  m_PrefabInstance: {fileID: 4530868781151239735}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8872772954997977322 stripped
+--- !u!114 &2456564842117886910 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5026732797557329629, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+  m_CorrespondingSourceObject: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
   m_PrefabInstance: {fileID: 4530868781151239735}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 944cb6fa91674997a588cbdc4178c181, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_EditorClassIdentifier: Assembly-CSharp::UIs.Tablet.UITabletButtonCatalog
+--- !u!224 &4668711208183065122 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9091212100747908117, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+  m_PrefabInstance: {fileID: 4530868781151239735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4617102869263552820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2867,6 +2899,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3534192701855583078}
     m_Modifications:
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: visibleSections.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: 'visibleSections.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a0d47185cdd40745a93068d3dcafe60, type: 2}
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: 'visibleSections.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 12f6c859820e05a47a34cbd7d3ca3e1d, type: 2}
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: 'visibleSections.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9d512221b7aa31743a1ee82bf8c3229c, type: 2}
     - target: {fileID: 1770751388452137079, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
       propertyPath: m_Name
       value: UI_Tablet_Button_Catalog_Furnitures
@@ -2960,22 +3008,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
---- !u!114 &419314429018103785 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5026732797557329629, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
-  m_PrefabInstance: {fileID: 4617102869263552820}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &4483693681763403041 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9091212100747908117, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
   m_PrefabInstance: {fileID: 4617102869263552820}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6693658612464573629 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+  m_PrefabInstance: {fileID: 4617102869263552820}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 944cb6fa91674997a588cbdc4178c181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIs.Tablet.UITabletButtonCatalog
 --- !u!1001 &4726834243598019478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3234,6 +3282,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3534192701855583078}
     m_Modifications:
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: visibleSections.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: 'visibleSections.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a0d47185cdd40745a93068d3dcafe60, type: 2}
     - target: {fileID: 1770751388452137079, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
       propertyPath: m_Name
       value: UI_Tablet_Button_Catalog_Expand
@@ -3327,22 +3383,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
---- !u!114 &679916929506338548 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5026732797557329629, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
-  m_PrefabInstance: {fileID: 5525078918828795945}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &3641018727648328764 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9091212100747908117, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
   m_PrefabInstance: {fileID: 5525078918828795945}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5790115725024781728 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+  m_PrefabInstance: {fileID: 5525078918828795945}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 944cb6fa91674997a588cbdc4178c181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIs.Tablet.UITabletButtonCatalog
 --- !u!1001 &7084488579043530461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3453,6 +3509,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3534192701855583078}
     m_Modifications:
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: visibleSections.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: 'visibleSections.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a0d47185cdd40745a93068d3dcafe60, type: 2}
     - target: {fileID: 1770751388452137079, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
       propertyPath: m_Name
       value: UI_Tablet_Button_Catalog_Decorations
@@ -3551,17 +3615,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9091212100747908117, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
   m_PrefabInstance: {fileID: 7256480423560160344}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2411317678285580933 stripped
+--- !u!114 &8665959139495274961 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5026732797557329629, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+  m_CorrespondingSourceObject: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
   m_PrefabInstance: {fileID: 7256480423560160344}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 944cb6fa91674997a588cbdc4178c181, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_EditorClassIdentifier: Assembly-CSharp::UIs.Tablet.UITabletButtonCatalog
 --- !u!1001 &7339907014634576823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3570,6 +3634,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3534192701855583078}
     m_Modifications:
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: visibleSections.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: 'visibleSections.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a0d47185cdd40745a93068d3dcafe60, type: 2}
     - target: {fileID: 1770751388452137079, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
       propertyPath: m_Name
       value: UI_Tablet_Button_Catalog_FIght
@@ -3668,17 +3740,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9091212100747908117, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
   m_PrefabInstance: {fileID: 7339907014634576823}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2314318397707703658 stripped
+--- !u!114 &8731088904481560126 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5026732797557329629, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+  m_CorrespondingSourceObject: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
   m_PrefabInstance: {fileID: 7339907014634576823}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 944cb6fa91674997a588cbdc4178c181, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_EditorClassIdentifier: Assembly-CSharp::UIs.Tablet.UITabletButtonCatalog
 --- !u!1001 &7478571275679785586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3800,6 +3872,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3534192701855583078}
     m_Modifications:
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: visibleSections.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+      propertyPath: 'visibleSections.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a0d47185cdd40745a93068d3dcafe60, type: 2}
     - target: {fileID: 1770751388452137079, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
       propertyPath: m_Name
       value: UI_Tablet_Button_Catalog_Workers
@@ -3898,14 +3978,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9091212100747908117, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
   m_PrefabInstance: {fileID: 8421494369320696476}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3539163390460703809 stripped
+--- !u!114 &7505443467582289685 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5026732797557329629, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
+  m_CorrespondingSourceObject: {fileID: -7136066223639671415, guid: 736702d91466c9643bfd6f552b0ace9c, type: 3}
   m_PrefabInstance: {fileID: 8421494369320696476}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 944cb6fa91674997a588cbdc4178c181, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_EditorClassIdentifier: Assembly-CSharp::UIs.Tablet.UITabletButtonCatalog

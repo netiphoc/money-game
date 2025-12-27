@@ -17,7 +17,10 @@ namespace UIs.Tablet
         [SerializeField] private UITabletButtonRoom uiTabletButtonRoomPrefab;
         [SerializeField] private Transform containerRoom;
         
-        [Header("Section Button")]
+        [Header("Button")]
+        [SerializeField] private Button buttonCart;
+        
+        [Header("Button Section")]
         [SerializeField] private TMP_Text textSectionName;
         [SerializeField] private Image iconSection;
         [Space]
@@ -25,16 +28,14 @@ namespace UIs.Tablet
         [SerializeField] private UITabletButtonSection buttonSectionFood;
         [SerializeField] private UITabletButtonSection buttonSectionService;
         
-        
-        [Header("Button")]
-        [SerializeField] private Button buttonCart;
-        [SerializeField] private Button buttonLicense;
-        [SerializeField] private Button buttonProduct;
-        [SerializeField] private Button buttonFurniture;
-        [SerializeField] private Button buttonDecoration;
-        [SerializeField] private Button buttonWorkers;
-        [SerializeField] private Button buttonExpand;
-        [SerializeField] private Button buttonFight;
+        [Header("Button Catalog")]
+        [SerializeField] private UITabletButtonCatalog buttonCatalogLicense;
+        [SerializeField] private UITabletButtonCatalog buttonCatalogProduct;
+        [SerializeField] private UITabletButtonCatalog buttonCatalogFurniture;
+        [SerializeField] private UITabletButtonCatalog buttonCatalogDecoration;
+        [SerializeField] private UITabletButtonCatalog buttonCatalogWorkers;
+        [SerializeField] private UITabletButtonCatalog buttonCatalogExpand;
+        [SerializeField] private UITabletButtonCatalog buttonCatalogFight;
 
         [field: SerializeField, Header("UI")] public UITabletCart UITabletCart { get; private set; }
         [field: SerializeField] public UITabletLicense UITabletLicense { get; private set; }
@@ -56,18 +57,22 @@ namespace UIs.Tablet
         {
             base.OnEnable();
             
-            buttonCart.onClick.AddListener(OnButtonClickedCart);
-            buttonLicense.onClick.AddListener(OnButtonClickedLicense);
-            buttonProduct.onClick.AddListener(OnButtonClickedProduct);
-            buttonFurniture.onClick.AddListener(OnButtonClickedFurniture);
-            buttonDecoration.onClick.AddListener(OnButtonClickedDecoration);
-            buttonWorkers.onClick.AddListener(OnButtonClickedWorkers);
-            buttonExpand.onClick.AddListener(OnButtonClickedExpand);
-            buttonFight.onClick.AddListener(OnButtonClickedFight);
+            // Sections
             buttonSectionRoom.OnClickedSection = OnClickedSection;
             buttonSectionFood.OnClickedSection = OnClickedSection;
             buttonSectionService.OnClickedSection = OnClickedSection;
             
+            // Catalogs
+            buttonCatalogLicense.OnClickedCatalog = OnButtonClickedLicense;
+            buttonCatalogProduct.OnClickedCatalog = OnButtonClickedProduct;
+            buttonCatalogFurniture.OnClickedCatalog = OnButtonClickedFurniture;
+            buttonCatalogDecoration.OnClickedCatalog = OnButtonClickedDecoration;
+            buttonCatalogWorkers.OnClickedCatalog = OnButtonClickedWorkers;
+            buttonCatalogExpand.OnClickedCatalog = OnButtonClickedExpand;
+            buttonCatalogFight.OnClickedCatalog = OnButtonClickedFight;
+
+            buttonCart.onClick.AddListener(OnButtonClickedCart);
+
             UITabletLicense.OnOwnedLicense += OnOwnedLicense;
             UITabletProduct.OnAddItemToCart += OnAddItemToCart;
             UITabletFurniture.OnAddItemToCart += OnAddItemToCart;
@@ -79,13 +84,7 @@ namespace UIs.Tablet
             base.OnDisable();
             
             buttonCart.onClick.RemoveListener(OnButtonClickedCart);
-            buttonLicense.onClick.RemoveListener(OnButtonClickedLicense);
-            buttonProduct.onClick.RemoveListener(OnButtonClickedProduct);
-            buttonFurniture.onClick.RemoveListener(OnButtonClickedFurniture);
-            buttonDecoration.onClick.RemoveListener(OnButtonClickedDecoration);
-            buttonWorkers.onClick.RemoveListener(OnButtonClickedWorkers);
-            buttonExpand.onClick.RemoveListener(OnButtonClickedExpand);
-            buttonFight.onClick.RemoveListener(OnButtonClickedFight);
+            
             UITabletLicense.OnOwnedLicense -= OnOwnedLicense;
             UITabletProduct.OnAddItemToCart -= OnAddItemToCart;
             UITabletFurniture.OnAddItemToCart -= OnAddItemToCart;
@@ -147,6 +146,14 @@ namespace UIs.Tablet
             
             textSectionName.SetText(sectionDataSo.sectionName);
             iconSection.sprite = sectionDataSo.icon;
+            
+            buttonCatalogLicense.CheckSection(sectionDataSo);   
+            buttonCatalogProduct.CheckSection(sectionDataSo);   
+            buttonCatalogFurniture.CheckSection(sectionDataSo);   
+            buttonCatalogDecoration.CheckSection(sectionDataSo);   
+            buttonCatalogWorkers.CheckSection(sectionDataSo);   
+            buttonCatalogExpand.CheckSection(sectionDataSo);   
+            buttonCatalogFight.CheckSection(sectionDataSo);   
         }
 
         private void OnRoomDataChanged(RoomDataSO roomDataSo)
