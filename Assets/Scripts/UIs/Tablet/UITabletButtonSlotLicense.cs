@@ -60,7 +60,7 @@ namespace UIs.Tablet
             iconLicense.sprite = licenseIcon;
         }
 
-        private void SetLicenseCost(double licenseCost)
+        private void SetLicenseCost(int licenseCost)
         {
             textLicenseCost.SetText(licenseCost.ToMoneyFormat());
         }

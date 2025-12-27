@@ -4,7 +4,7 @@
 public class ItemDataSO : ScriptableObject
 {
     public string itemName;
-    public double cost;
+    public int cost;
     public int stackAmount;
     public GameObject itemPrefab; // The visual model inside the box
     public Sprite icon; 

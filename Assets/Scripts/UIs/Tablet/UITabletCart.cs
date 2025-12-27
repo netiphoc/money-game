@@ -21,7 +21,7 @@ namespace UIs.Tablet
         private readonly Dictionary<ItemDataSO, UITabletCartSlot> _cart = new Dictionary<ItemDataSO, UITabletCartSlot>();
         private PoolingUI<UITabletCartSlot> _poolingUI;
         
-        private double _totalCost;
+        private int _totalCost;
         private int _itemAmount;
         
         protected override void OnEnable()
@@ -47,6 +47,8 @@ namespace UIs.Tablet
         {
             foreach (var cart in _cart)
             {
+                if(cart.Value.ItemAmount == 0) continue;
+                DeliveryManager.Instance.OrderItem(cart.Key);
                 Debug.Log($"- {cart.Key.itemName} x{cart.Value.ItemAmount} | {cart.Value.CalculateCost().ToMoneyFormat()}");
             }
             

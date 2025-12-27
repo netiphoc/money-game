@@ -19,6 +19,7 @@ namespace UIs.Tablet
         
         [Header("Button")]
         [SerializeField] private Button buttonCart;
+        [SerializeField] private UITabletButtonBalance uiTabletButtonBalance;
         
         [Header("Button Section")]
         [SerializeField] private TMP_Text textSectionName;
@@ -53,6 +54,13 @@ namespace UIs.Tablet
             InitDataRoom();
         }
 
+        protected override void Start()
+        {
+            base.Start();
+            OnMoneyChanged(GameManager.Instance.currentMoney);
+            GameManager.Instance.OnMoneyChanged += OnMoneyChanged;
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -77,8 +85,8 @@ namespace UIs.Tablet
             UITabletProduct.OnAddItemToCart += OnAddItemToCart;
             UITabletFurniture.OnAddItemToCart += OnAddItemToCart;
             UITabletDecoration.OnAddItemToCart += OnAddItemToCart;
-        }
 
+        }
         protected override void OnDisable()
         {
             base.OnDisable();
@@ -89,6 +97,13 @@ namespace UIs.Tablet
             UITabletProduct.OnAddItemToCart -= OnAddItemToCart;
             UITabletFurniture.OnAddItemToCart -= OnAddItemToCart;
             UITabletDecoration.OnAddItemToCart -= OnAddItemToCart;
+            
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            GameManager.Instance.OnMoneyChanged -= OnMoneyChanged;
         }
 
         private void InitDataRoom()
@@ -209,6 +224,11 @@ namespace UIs.Tablet
         private void OnAddItemToCart(CartItemData cartItemData)
         {
             UITabletCart.AddItemCart(cartItemData);
+        }
+        
+        private void OnMoneyChanged(int balance)
+        {
+            uiTabletButtonBalance.SetBalance(balance);
         }
     }
 }

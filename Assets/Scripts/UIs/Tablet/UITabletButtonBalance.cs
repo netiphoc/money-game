@@ -8,7 +8,7 @@ namespace UIs.Tablet
     {
         [SerializeField] private TMP_Text textBalance;
         
-        public void SetBalance(double balance)
+        public void SetBalance(int balance)
         {
             textBalance.SetText(balance.ToMoneyFormat());
         }

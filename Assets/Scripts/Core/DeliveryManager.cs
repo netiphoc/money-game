@@ -15,12 +15,12 @@ public class DeliveryManager : MonoBehaviour
     }
 
     // Call this from your UI Button
-    public void OrderItem(PlaceableDataSO furnitureData)
+    public void OrderItem(ItemDataSO itemDataSo)
     {
         // 1. Check Money FIRST
-        if (GameManager.Instance.TrySpendMoney(furnitureData.cost))
+        if (GameManager.Instance.TrySpendMoney(itemDataSo.cost))
         {
-            SpawnDeliveryBox(furnitureData);
+            SpawnDeliveryBox(itemDataSo);
         }
         else
         {
@@ -29,15 +29,8 @@ public class DeliveryManager : MonoBehaviour
         }
     }
 
-    private void SpawnDeliveryBox(PlaceableDataSO data)
+    private void SpawnDeliveryBox(ItemDataSO itemDataSo)
     {
-        // 2. Validate Link
-        if (data.linkedItemData == null)
-        {
-            Debug.LogError($"Furniture {data.objectName} has no Linked Item Data! Cannot box it.");
-            return;
-        }
-
         // 3. Determine Spawn Position (Simple Stack logic)
         // In a real game, you might want to find a free spot.
         // For now, we spawn with a random small offset so they don't stack perfectly.
@@ -50,8 +43,8 @@ public class DeliveryManager : MonoBehaviour
         // 5. Setup Box Contents
         if (boxScript != null)
         {
-            boxScript.itemData = data.linkedItemData;
-            boxScript.currentQuantity = 1; // Furniture usually comes 1 per box
+            boxScript.itemData = itemDataSo;
+            boxScript.currentQuantity = itemDataSo.stackAmount;
         }
         
         // Play "Thump" sound

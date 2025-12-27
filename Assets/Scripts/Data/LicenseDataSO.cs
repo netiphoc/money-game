@@ -5,7 +5,7 @@ public class LicenseDataSO : ScriptableObject
 {
     public string licenseName;
     public Sprite icon;
-    public double cost;
+    public int cost;
     public ItemDataSO[] items;
     public bool isOwned;
 }

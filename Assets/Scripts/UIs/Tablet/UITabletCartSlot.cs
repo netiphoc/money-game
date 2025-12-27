@@ -85,7 +85,7 @@ namespace UIs.Tablet
             SetItemAmount(ItemAmount + count);
         }
 
-        public double CalculateCost()
+        public int CalculateCost()
         {
             return ItemAmount * _itemDataSo.cost * _itemDataSo.stackAmount;
         }

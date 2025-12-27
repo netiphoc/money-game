@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Heavy Bag
   cost: 100
-  stackAmount: 5
+  stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: f34927cfa4ebfb34a8e2227189fe475a, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   licenseDataSo: {fileID: 11400000, guid: 16ec5fd7b4dccb640b5536ccca1cf730, type: 2}

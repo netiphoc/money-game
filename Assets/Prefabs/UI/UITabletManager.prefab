@@ -560,6 +560,7 @@ MonoBehaviour:
   uiTabletButtonRoomPrefab: {fileID: 5511004799400169087, guid: 464515e1926561d4585e3b87f929d15d, type: 3}
   containerRoom: {fileID: 6137323777127435697}
   buttonCart: {fileID: 4748394761433731136}
+  uiTabletButtonBalance: {fileID: 7457352004183373216}
   textSectionName: {fileID: 1943294810505004270}
   iconSection: {fileID: 6395284568246512931}
   buttonSectionRoom: {fileID: 5763425106592967347}
@@ -1930,6 +1931,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5867342084897030963, guid: 40ef4d139f34f9a40a5795af789678e7, type: 3}
   m_PrefabInstance: {fileID: 1918541940214610693}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7457352004183373216 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9069635682997866149, guid: 40ef4d139f34f9a40a5795af789678e7, type: 3}
+  m_PrefabInstance: {fileID: 1918541940214610693}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e318027f034d3a8ca7d50d554dd7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIs.Tablet.UITabletButtonBalance
 --- !u!1001 &2220215417547609571
 PrefabInstance:
   m_ObjectHideFlags: 0

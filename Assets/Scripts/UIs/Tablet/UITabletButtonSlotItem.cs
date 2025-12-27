@@ -30,7 +30,7 @@ namespace UIs.Tablet
         
         private int _itemAmount;
         private int _cartCount;
-        private double _unitCost;
+        private int _unitCost;
         private ItemDataSO _itemDataSO;
 
         protected override void Awake()
@@ -96,7 +96,7 @@ namespace UIs.Tablet
             iconItem.sprite = itemIcon;
         }
 
-        private void SetUnitCost(double unitCost)
+        private void SetUnitCost(int unitCost)
         {
             _unitCost = unitCost;
             textUnitCost.SetText(unitCost.ToMoneyFormat());
@@ -135,7 +135,7 @@ namespace UIs.Tablet
             textAddToCartCount.SetText($"{_cartCount}");
         }
         
-        private double GetTotalCost()
+        private int GetTotalCost()
         {
             return _unitCost * _itemAmount * _cartCount;
         }
