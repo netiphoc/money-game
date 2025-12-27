@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Data;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,12 +10,21 @@ namespace UIs.Tablet
     public class UITabletManager : BaseUI
     {
         [Header("Data")]
-        [SerializeField] private RoomDataSO[] tabletData;
+        [SerializeField] private RoomDataSO[] tabletRoomData;
         [SerializeField] private ItemDataSO[] decorations;
         
         [Header("Room")]
         [SerializeField] private UITabletButtonRoom uiTabletButtonRoomPrefab;
         [SerializeField] private Transform containerRoom;
+        
+        [Header("Section Button")]
+        [SerializeField] private TMP_Text textSectionName;
+        [SerializeField] private Image iconSection;
+        [Space]
+        [SerializeField] private UITabletButtonSection buttonSectionRoom;
+        [SerializeField] private UITabletButtonSection buttonSectionFood;
+        [SerializeField] private UITabletButtonSection buttonSectionService;
+        
         
         [Header("Button")]
         [SerializeField] private Button buttonCart;
@@ -33,15 +44,18 @@ namespace UIs.Tablet
 
         private BaseUI _activeTab;
         
+        private readonly List<UITabletButtonRoom> _slotRoom = new List<UITabletButtonRoom>();
+
         protected override void Awake()
         {
             base.Awake();
-            InitData();
+            InitDataRoom();
         }
 
         protected override void OnEnable()
         {
             base.OnEnable();
+            
             buttonCart.onClick.AddListener(OnButtonClickedCart);
             buttonLicense.onClick.AddListener(OnButtonClickedLicense);
             buttonProduct.onClick.AddListener(OnButtonClickedProduct);
@@ -50,14 +64,20 @@ namespace UIs.Tablet
             buttonWorkers.onClick.AddListener(OnButtonClickedWorkers);
             buttonExpand.onClick.AddListener(OnButtonClickedExpand);
             buttonFight.onClick.AddListener(OnButtonClickedFight);
+            buttonSectionRoom.OnClickedSection = OnClickedSection;
+            buttonSectionFood.OnClickedSection = OnClickedSection;
+            buttonSectionService.OnClickedSection = OnClickedSection;
+            
             UITabletLicense.OnOwnedLicense += OnOwnedLicense;
             UITabletProduct.OnAddItemToCart += OnAddItemToCart;
             UITabletFurniture.OnAddItemToCart += OnAddItemToCart;
             UITabletDecoration.OnAddItemToCart += OnAddItemToCart;
         }
+
         protected override void OnDisable()
         {
             base.OnDisable();
+            
             buttonCart.onClick.RemoveListener(OnButtonClickedCart);
             buttonLicense.onClick.RemoveListener(OnButtonClickedLicense);
             buttonProduct.onClick.RemoveListener(OnButtonClickedProduct);
@@ -72,26 +92,28 @@ namespace UIs.Tablet
             UITabletDecoration.OnAddItemToCart -= OnAddItemToCart;
         }
 
-        private void InitData()
+        private void InitDataRoom()
         {
-            bool isFirstRoom = true;
-            foreach (var data in tabletData)
+            SectionDataSO loadSection = null;
+            
+            foreach (var data in tabletRoomData)
             {
                 UITabletButtonRoom uiTabletButtonRoom = Instantiate(uiTabletButtonRoomPrefab, containerRoom);
                 uiTabletButtonRoom.SetRoomData(data);
                 uiTabletButtonRoom.OnClickRoomData = OnRoomDataChanged;
-
-                if (isFirstRoom)
+                _slotRoom.Add(uiTabletButtonRoom);
+                
+                if (loadSection == null)
                 {
-                    isFirstRoom = false;
-                    uiTabletButtonRoom.OnRoomDataLoaded();
+                    loadSection = data.sectionData;
                 }
             }
             
+            ShowSection(loadSection);
             SetActiveTab(UITabletLicense);
             UITabletDecoration.SetDecorations(decorations);
         }
-
+        
         private void SetActiveTab(BaseUI ui)
         {
             if (_activeTab != null)
@@ -101,6 +123,30 @@ namespace UIs.Tablet
             
             _activeTab = ui;
             _activeTab.SetVisible(true);
+        }
+
+        private void OnClickedSection(SectionDataSO sectionDataSo)
+        {
+            ShowSection(sectionDataSo);
+        }
+        
+        private void ShowSection(SectionDataSO sectionDataSo)
+        {
+            bool isFirst = false;
+            foreach (var slot in _slotRoom)
+            {
+                bool active = slot.RoomDataSo.sectionData.Equals(sectionDataSo);
+                slot.SetVisible(active);
+
+                if (!isFirst && active)
+                {
+                    isFirst = true;
+                    slot.OnRoomDataLoaded();
+                }
+            }
+            
+            textSectionName.SetText(sectionDataSo.sectionName);
+            iconSection.sprite = sectionDataSo.icon;
         }
 
         private void OnRoomDataChanged(RoomDataSO roomDataSo)

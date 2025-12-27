@@ -27,7 +27,7 @@ public class TabletUIManager : MonoBehaviour
     {
         if (toggleTabletInput.action.WasPerformedThisFrame())
         {
-            ToggleTablet();
+            //ToggleTablet();
         }
     }
 

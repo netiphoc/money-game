@@ -10,7 +10,7 @@ namespace UIs.Tablet
         [SerializeField] private TMP_Text textRoomName;
         
         public Action<RoomDataSO> OnClickRoomData;
-        private RoomDataSO _roomDataSo;
+        public RoomDataSO RoomDataSo { get; private set; }
 
         protected override void OnEnable()
         {
@@ -26,7 +26,7 @@ namespace UIs.Tablet
 
         public void SetRoomData(RoomDataSO roomDataSo)
         {
-            _roomDataSo = roomDataSo;
+            RoomDataSo = roomDataSo;
             SetRoomName(roomDataSo.roomName);
         }
         
@@ -37,7 +37,7 @@ namespace UIs.Tablet
         
         public void OnRoomDataLoaded()
         {
-            OnClickRoomData?.Invoke(_roomDataSo);
+            OnClickRoomData?.Invoke(RoomDataSo);
         }
     }
 }
