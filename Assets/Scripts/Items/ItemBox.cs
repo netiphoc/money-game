@@ -32,34 +32,32 @@ public class ItemBox : MonoBehaviour, IInteractable
 
     public void OnInteract(PlayerInteraction player)
     {
-        // 1. PICK UP LOGIC (If not already holding it)
+        // 1. PICK UP LOGIC (If box is on the floor/shelf)
         if (!isHeld)
         {
-            isHeld = true;
-            rb.isKinematic = true;
-            col.enabled = false;
-            player.AttachToHand(this.gameObject);
+            // FIX: Only pick up if the player's hands are EMPTY
+            if (player.GetHeldObject() == null)
+            {
+                isHeld = true;
+                rb.isKinematic = true;
+                col.enabled = false;
+                player.AttachToHand(this.gameObject);
+            }
             return;
         }
 
-        // 2. WHILE HELD LOGIC
+        // 2. WHILE HELD LOGIC (Interact with the box itself while holding it)
         if (isHeld)
         {
-            // A. FURNITURE (Placement Mode) -> INSTANT CLICK
+            // A. FURNITURE -> INSTANT CLICK TO START PLACEMENT
             if (itemData.placementData != null && currentQuantity > 0)
             {
-                // We check for a single click frame, not a hold
                 if (player.WasPrimaryPressed()) 
                 {
                     PlacementManager.Instance.StartPlacementFromBox(itemData.placementData, this);
                 }
             }
-            // B. SHELF ITEMS (Soda/Food) -> HOLD TO STOCK
-            else
-            {
-                // This logic is handled by the Shelf script looking at the player, 
-                // so we don't need to do anything here.
-            }
+            // B. SHELF ITEMS -> (Logic handled by Shelf script, do nothing here)
         }
     }
 
