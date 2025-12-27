@@ -48,7 +48,12 @@ namespace UIs.Tablet
             foreach (var cart in _cart)
             {
                 if(cart.Value.ItemAmount == 0) continue;
-                DeliveryManager.Instance.OrderItem(cart.Key);
+                
+                for (int i = 0; i < cart.Value.ItemAmount; i++)
+                {
+                    DeliveryManager.Instance.OrderItem(cart.Key);
+                }
+                
                 Debug.Log($"- {cart.Key.itemName} x{cart.Value.ItemAmount} | {cart.Value.CalculateCost().ToMoneyFormat()}");
             }
             
