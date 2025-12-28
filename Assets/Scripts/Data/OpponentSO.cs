@@ -7,6 +7,7 @@ public class OpponentSO : ScriptableObject
     public string opponentName;
     public Sprite avatar; // Face icon for UI
     public string description;
+    public int level;
 
     [Header("Stats")]
     public int strength;

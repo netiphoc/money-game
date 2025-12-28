@@ -15,6 +15,7 @@ MonoBehaviour:
   opponentName: Amateur Ali
   avatar: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
   description: 
+  level: 10
   strength: 10
   agility: 10
   stamina: 10

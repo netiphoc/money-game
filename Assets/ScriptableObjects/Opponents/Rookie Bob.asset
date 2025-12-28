@@ -15,6 +15,7 @@ MonoBehaviour:
   opponentName: Rookie Bob
   avatar: {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
   description: This is Rookie Bob
+  level: 5
   strength: 3
   agility: 3
   stamina: 4

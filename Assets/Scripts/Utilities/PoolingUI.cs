@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using UIs;
+using UI;
 using UnityEngine;
 
 public class PoolingUI<TType> where TType : BaseUI

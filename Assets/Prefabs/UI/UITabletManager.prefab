@@ -545,6 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b43614111184e8cbb07ca89fe1f9831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIs.Tablet.UITabletManager
+  uiTablet: {fileID: 0}
   tabletRoomData:
   - {fileID: 11400000, guid: 9cba47485599a3a43ac772fa02570a3a, type: 2}
   - {fileID: 11400000, guid: a3dc7fbb35a94ea49aa93a6b1ad111c5, type: 2}
@@ -560,6 +561,7 @@ MonoBehaviour:
   uiTabletButtonRoomPrefab: {fileID: 5511004799400169087, guid: 464515e1926561d4585e3b87f929d15d, type: 3}
   containerRoom: {fileID: 6137323777127435697}
   buttonCart: {fileID: 4748394761433731136}
+  buttonHome: {fileID: 5158491643704579150}
   uiTabletButtonBalance: {fileID: 7457352004183373216}
   textSectionName: {fileID: 1943294810505004270}
   iconSection: {fileID: 6395284568246512931}
@@ -3499,15 +3501,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5461453536113591188, guid: 2d88b8aaa4128334db9d52120f0f9a99, type: 3}
+      propertyPath: m_text
+      value: Home
+      objectReference: {fileID: 0}
     - target: {fileID: 7721687352767375614, guid: 2d88b8aaa4128334db9d52120f0f9a99, type: 3}
       propertyPath: m_Name
-      value: UI_Tablet_Button_Header_Back
+      value: UI_Tablet_Button_Header_Home
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d88b8aaa4128334db9d52120f0f9a99, type: 3}
+--- !u!114 &5158491643704579150 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2722298442115613331, guid: 2d88b8aaa4128334db9d52120f0f9a99, type: 3}
+  m_PrefabInstance: {fileID: 7084488579043530461}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &7415996489706308558 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 341078779848725779, guid: 2d88b8aaa4128334db9d52120f0f9a99, type: 3}

@@ -9,6 +9,7 @@ public class BoxerData
     public float strength;
     public float agility;
     public float stamina;
+    public int level;
     
     [Header("Progression")]
     public int totalTrainingPoints; // Sum of stats (used for matchmaking)
