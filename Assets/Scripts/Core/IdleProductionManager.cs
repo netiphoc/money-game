@@ -1,14 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 
 public class IdleProductionManager : MonoBehaviour
 {
     public static IdleProductionManager Instance;
 
-    [Header("Settings")]
-    public float tickRate = 1.0f; // Update every 1 second (Cookie Clicker style)
-    
-    private float timer;
     [SerializeField] private GymRoom[] allRooms; // Cache for performance
 
     private void Awake()
@@ -16,15 +11,19 @@ public class IdleProductionManager : MonoBehaviour
         if (Instance == null) Instance = this;
     }
 
-    private void Update()
+    private void Start()
     {
-        timer += Time.deltaTime;
+        GameManager.Instance.GameTimeManager.OnGameMinuteTick += OnGameMinuteTick;
+    }
 
-        if (timer >= tickRate)
-        {
-            ProduceStats();
-            timer = 0f;
-        }
+    private void OnDestroy()
+    {
+        GameManager.Instance.GameTimeManager.OnGameMinuteTick -= OnGameMinuteTick;
+    }
+
+    private void OnGameMinuteTick(string format)
+    {
+        ProduceStats();
     }
 
     private void ProduceStats()
@@ -38,10 +37,9 @@ public class IdleProductionManager : MonoBehaviour
                 BoxerData stats = room.assignedBoxer.stats;
 
                 // 2. Apply the Room's Calculated Rates
-                // (We add the rate * tickRate in case you change tick to 0.1s later)
-                float strGain = room.totalStrRate * tickRate;
-                float agiGain = room.totalAgiRate * tickRate;
-                float staGain = room.totalStaRate * tickRate;
+                float strGain = room.totalStrRate;
+                float agiGain = room.totalAgiRate;
+                float staGain = room.totalStaRate;
 
                 // 3. Apply Boxer's Personal Multiplier (Pro vs Rookie)
                 float mult = stats.statMultiplier;

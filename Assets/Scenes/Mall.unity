@@ -3478,7 +3478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9231f11026140b1a77ef8cd959f6aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IdleProductionManager
-  tickRate: 1
   allRooms:
   - {fileID: 9221388899250546237}
   - {fileID: 2049005667}
@@ -3581,7 +3580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a345bf5d574bd1b176df42d63ff1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTimeManager
-  realTimeDurationMinutes: 0.5
+  realTimeDurationMinutes: 15
   startHour: 10
   endHour: 22
   isRunning: 0
