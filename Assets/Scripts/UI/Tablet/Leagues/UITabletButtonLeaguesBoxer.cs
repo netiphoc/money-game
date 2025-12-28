@@ -18,6 +18,26 @@ namespace UI.Tablet.Leagues
 
         private BoxerController _boxerController;
         
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            GameManager.Instance.GameTimeManager.OnGameMinuteTick += OnGameMinuteTick;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            GameManager.Instance.GameTimeManager.OnGameMinuteTick += OnGameMinuteTick;
+        }
+
+        private void OnGameMinuteTick(string obj)
+        {
+            if(!_boxerController) return;
+            SetStrength(Mathf.FloorToInt(_boxerController.stats.strength));
+            SetAgility(Mathf.FloorToInt(_boxerController.stats.agility));
+            SetStamina(Mathf.FloorToInt(_boxerController.stats.stamina));
+        }
+        
         public void SetBoxer(BoxerController boxerData)
         {
             _boxerController = boxerData;
