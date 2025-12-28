@@ -348,7 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   <GameTimeManager>k__BackingField: {fileID: 1725407892}
   <GameController>k__BackingField: {fileID: 2027215256}
-  currentMoney: 10000000
+  currentMoney: 1000
   currentExp: 0
   playerLevel: 0
   playerXP: 0

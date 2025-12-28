@@ -32,14 +32,30 @@ namespace UI.Tablet.Leagues
         {
             base.OnEnable();
             buttonFight.onClick.AddListener(OnButtonClickedFight);
+            GameManager.Instance.GameTimeManager.OnGameMinuteTick += OnGameMinuteTick;
         }
 
         protected override void OnDisable()
         {
             base.OnDisable();
             buttonFight.onClick.RemoveListener(OnButtonClickedFight);
+            GameManager.Instance.GameTimeManager.OnGameMinuteTick += OnGameMinuteTick;
         }
 
+        private void OnGameMinuteTick(string obj)
+        {
+            /*
+            if(!_boxerController) return;
+            if(!_opponentSo) return;
+            int boxerPower = _boxerController.stats.totalPower;
+            int opponentPower = _opponentSo.TotalPower;
+            SettPowerLeft(boxerPower - opponentPower);
+            */
+            
+            if(!_boxerController) return;
+            SettPowerLeft(_boxerController.stats.totalPower);
+        }
+        
         public void SetOpponent(BoxerController boxerController, OpponentSO opponentSo)
         {
             _boxerController = boxerController;
@@ -55,7 +71,8 @@ namespace UI.Tablet.Leagues
             SetOpponentStrength(opponentSo.strength);
             SetOpponentAgility(opponentSo.agility);
             SetOpponentStamina(opponentSo.stamina);
-            SettPowerLeft(boxerPower - opponentPower);
+            SettPowerLeft(boxerPower);
+            //SettPowerLeft(boxerPower - opponentPower);
             SetRequiredLevel(opponentSo.requiredBoxerLevel);
 
             bool canFight = boxerController.stats.level >= opponentSo.requiredBoxerLevel;
@@ -136,7 +153,7 @@ namespace UI.Tablet.Leagues
             };
             
             FightManager.Instance.StartFight(_boxerController, _opponentSo);
-            OnFightResult?.Invoke(fightResultData);
+            //OnFightResult?.Invoke(fightResultData);
         }
     }
 }

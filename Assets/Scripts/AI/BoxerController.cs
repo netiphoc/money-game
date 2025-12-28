@@ -13,7 +13,6 @@ public class BoxerController : MonoBehaviour
 
     [Header("Assignment")]
     public GymRoom assignedRoom; // The room this boxer belongs to
-    [SerializeField] private Animator animator;
 
     [Header("Visual Settings")]
     public float minTrainTime = 5f;
@@ -22,6 +21,7 @@ public class BoxerController : MonoBehaviour
 
     // Internal References
     private NavMeshAgent agent;
+    [SerializeField] private Animator animator;
     private TrainingEquipment targetEquipment;
     private Coroutine currentRoutine;
 

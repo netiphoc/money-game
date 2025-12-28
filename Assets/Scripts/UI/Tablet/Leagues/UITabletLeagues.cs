@@ -62,7 +62,7 @@ namespace UI.Tablet.Leagues
         public void OnFlightResult(FightResultData fightResultData)
         {
             uiTabletLeaguesFightLive.SetVisible(true);
-            uiTabletLeaguesFightLive.ShowLiveResult(fightResultData);
+            //uiTabletLeaguesFightLive.ShowLiveResult(fightResultData);
         }
     }
 }
