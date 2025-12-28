@@ -323,6 +323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8352334693745885857}
   - component: {fileID: 5457808901176701717}
+  - component: {fileID: 7458741674551200742}
   m_Layer: 0
   m_Name: TrainingRoom
   m_TagString: Untagged
@@ -367,6 +368,27 @@ MonoBehaviour:
   totalStrRate: 0
   totalAgiRate: 0
   totalStaRate: 0
+--- !u!65 &7458741674551200742
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3247469252454323003}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 17.424807, y: 5.892473, z: 10.193649}
+  m_Center: {x: -8.647885, y: 2.7957, z: 5}
 --- !u!1 &4663747892038363150
 GameObject:
   m_ObjectHideFlags: 0
