@@ -241,4 +241,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFace
   lockYAxis: 0
-  invertFace: 0
+  invertFace: 1
