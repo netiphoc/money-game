@@ -432,6 +432,7 @@ MonoBehaviour:
   textPowerLeft: {fileID: 1907050101285874785}
   lockLevelGroup: {fileID: 1298206057623416486}
   textRequiredLevel: {fileID: 4233262721440558746}
+  buttonFight: {fileID: 1762498996887098942}
 --- !u!1 &6027657948744128712
 GameObject:
   m_ObjectHideFlags: 0

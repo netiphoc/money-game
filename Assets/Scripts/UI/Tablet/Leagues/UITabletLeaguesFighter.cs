@@ -5,6 +5,9 @@ namespace UI.Tablet.Leagues
 {
     public class UITabletLeaguesFighter : BaseUI
     {
+        [Header("UI")] 
+        [SerializeField] private UITabletLeagues uiTabletLeagues;
+
         [Header("Fight Slot")]
         [SerializeField] private UITabletLeaguesSlot uiTabletLeaguesSlot;
         [SerializeField] private Transform containerLeagueSlot;
@@ -35,6 +38,7 @@ namespace UI.Tablet.Leagues
                 UITabletLeaguesSlot slot = GetSlot();
                 slot.SetOpponentRank(rank++);
                 slot.SetOpponent(boxerData, opponent);
+                slot.OnFightResult = uiTabletLeagues.OnFlightResult;
                 _fightSlots.Add(slot);
             }
         }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Data;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.Tablet.Leagues
@@ -13,6 +14,7 @@ namespace UI.Tablet.Leagues
         [SerializeField] private UITablet uiTablet;
         [SerializeField] private UITabletLeaguesBoxer uiTabletLeaguesBoxer;
         [SerializeField] private UITabletLeaguesFighter uiTabletLeaguesFighter;
+        [SerializeField] private UITabletLeaguesFightLive uiTabletLeaguesFightLive;
         
         [Header("Boxer")]
         
@@ -47,6 +49,12 @@ namespace UI.Tablet.Leagues
         public void OnClickedBoxer(BoxerData boxerData)
         {
             uiTabletLeaguesFighter.RefreshFightLeaguesSlot(boxerData, opponents);
+        }
+
+        public void OnFlightResult(FightResultData fightResultData)
+        {
+            uiTabletLeaguesFightLive.SetVisible(true);
+            uiTabletLeaguesFightLive.ShowLiveResult(fightResultData);
         }
     }
 }

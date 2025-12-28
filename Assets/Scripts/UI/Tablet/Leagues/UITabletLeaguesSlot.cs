@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using System;
+using Data;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,11 +20,31 @@ namespace UI.Tablet.Leagues
         [SerializeField] private TMP_Text textPowerLeft;
         [SerializeField] private Transform lockLevelGroup;
         [SerializeField] private TMP_Text textRequiredLevel;
+        [SerializeField] private Button buttonFight;
 
+        public Action<FightResultData> OnFightResult;
         public int Power { get; private set; }
+
+        private BoxerData _boxerData;
+        private OpponentSO _opponentSo;
+        
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            buttonFight.onClick.AddListener(OnButtonClickedFight);
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            buttonFight.onClick.RemoveListener(OnButtonClickedFight);
+        }
 
         public void SetOpponent(BoxerData boxerData, OpponentSO opponentSo)
         {
+            _boxerData = boxerData;
+            _opponentSo = opponentSo;
+                
             int boxerPower = boxerData.totalTrainingPoints;
             int opponentPower = opponentSo.TotalPower;
             Power = opponentPower;
@@ -103,6 +125,16 @@ namespace UI.Tablet.Leagues
                     iconRank.color = rankColors[3];
                     break;
             }
+        }
+        
+        private void OnButtonClickedFight()
+        {
+            FightResultData fightResultData = new FightResultData
+            {
+                BoxerData = _boxerData,
+                Opponent = _opponentSo
+            };
+            OnFightResult?.Invoke(fightResultData);
         }
     }
 }
