@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 using System;
+using Core;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    [Header("System")]
+    [field: SerializeField] public GameTimeManager GameTimeManager { get; private set; }
+    [field: SerializeField] public GameController GameController { get; private set; }
 
     [Header("Economy")]
     public int currentMoney = 1000; // Starting cash
