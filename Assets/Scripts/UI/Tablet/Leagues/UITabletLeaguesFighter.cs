@@ -26,9 +26,9 @@ namespace UI.Tablet.Leagues
             return GetPool().Request(containerLeagueSlot);
         }
 
-        public void RefreshFightLeaguesSlot(BoxerData boxerData, OpponentSO[] opponentSo)
+        public void RefreshFightLeaguesSlot(BoxerController boxerController, OpponentSO[] opponentSo)
         {
-            Debug.Log($"RefreshFightLeaguesSlot: {boxerData.boxerName} Lvl.{boxerData.level}");
+            Debug.Log($"RefreshFightLeaguesSlot: {boxerController.stats.boxerName} Lvl.{boxerController.stats.level}");
             GetPool().ClearPool();
 
             int rank = 1;
@@ -37,7 +37,7 @@ namespace UI.Tablet.Leagues
             {
                 UITabletLeaguesSlot slot = GetSlot();
                 slot.SetOpponentRank(rank++);
-                slot.SetOpponent(boxerData, opponent);
+                slot.SetOpponent(boxerController, opponent);
                 slot.OnFightResult = uiTabletLeagues.OnFlightResult;
                 _fightSlots.Add(slot);
             }

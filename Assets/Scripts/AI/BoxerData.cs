@@ -3,32 +3,24 @@
 [System.Serializable]
 public class BoxerData
 {
+    [Header("Identity")]
     public string boxerName;
-    
-    [Header("Core Stats")]
+    public Sprite avatar;
+
+    [Header("Resource (The Battery)")]
     public float strength;
     public float agility;
     public float stamina;
-    public int level;
-    
-    [Header("Progression")]
-    public int totalTrainingPoints; // Sum of stats (used for matchmaking)
-    
-    [Header("Status")]
-    public float energy = 100f; // 0 = Too tired to train
-    public float hunger = 0f;   // 100 = Too hungry to train
+    public int totalPower; // Helper for UI
 
-    public void AddStats(float str, float agi, float sta)
-    {
-        strength += str;
-        agility += agi;
-        stamina += sta;
-        
-        UpdateTotal();
-    }
+    [Header("Job Info")]
+    public int level = 1;
+    public int hiringCost;
+    public int dailySalary;
+    public float statMultiplier = 1.0f; // Multiplier for Idle Production
 
     public void UpdateTotal()
     {
-        totalTrainingPoints = Mathf.RoundToInt(strength + agility + stamina);
+        totalPower = Mathf.RoundToInt(strength + agility + stamina);
     }
 }

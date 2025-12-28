@@ -2,26 +2,27 @@
 
 public class TrainingEquipment : MonoBehaviour
 {
-    [Header("Stats")]
+    [Header("Identity")]
     public string equipmentName;
-    public float trainingDuration = 5.0f; // Seconds per cycle
     
-    [Header("Gains")]
-    public float strGain;
-    public float agiGain;
-    public float staGain;
+    [Header("Status")]
+    public bool isInstalled = false; // NEW FLAG: Only true when fully placed
 
-    [Header("Animation")]
-    public string animationTrigger; // e.g., "Run", "Punch"
-    public Transform interactionPoint; // Where the boxer stands (Green Arrow logic)
+    [Header("Idle Production (Per Second)")]
+    public float strPerSecond;
+    public float agiPerSecond;
+    public float staPerSecond;
 
-    private void OnDrawGizmos()
+    [Header("Visuals")]
+    public string animationTrigger; 
+    public Transform interactionPoint;
+
+    // Safety: If this object is destroyed (Boxed up), ensure it leaves the room list
+    private void OnDestroy()
     {
-        if (interactionPoint != null)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(interactionPoint.position, 0.3f);
-            Gizmos.DrawLine(interactionPoint.position, interactionPoint.position + interactionPoint.forward * 0.5f);
-        }
+        // We can't rely on OnTriggerExit for destroyed objects, 
+        // so we could manually notify the room here if we had a reference.
+        // However, GymRoom.RecalculateRates() handles nulls usually.
+        // For a robust system, the PlacementManager handles the removal logic.
     }
 }

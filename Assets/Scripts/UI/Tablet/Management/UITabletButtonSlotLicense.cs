@@ -13,9 +13,9 @@ namespace UI.Tablet.Management
         [SerializeField] private Image iconLicense;
         [SerializeField] private Button buttonBuy;
 
-        public Action<LicenseDataSO> OnOwnedLicense;
+        public Action<LicenseSO> OnOwnedLicense;
         
-        private LicenseDataSO _licenseDataSo;
+        private LicenseSO _licenseSo;
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -30,21 +30,24 @@ namespace UI.Tablet.Management
 
         private void OnButtonClickBuyLicense()
         {
-            _licenseDataSo.isOwned = true;
+            if(!LicenseManager.Instance.CanBuyLicense(_licenseSo)) return;
+            LicenseManager.Instance.BuyLicense(_licenseSo);
+            
             SetOwned();
-            OnOwnedLicense?.Invoke(_licenseDataSo);
+            OnOwnedLicense?.Invoke(_licenseSo);
         }
 
-        public void SetLicense(LicenseDataSO licenseDataSo)
+        public void SetLicense(LicenseSO licenseSo)
         {
-            _licenseDataSo = licenseDataSo;
+            _licenseSo = licenseSo;
             //_licenseDataSo.isOwn = false; // Test
             
-            SetLicenseName(licenseDataSo.licenseName);
-            SetLicenseIcon(licenseDataSo.icon);
-            SetLicenseCost(licenseDataSo.cost);
-            
-            if (licenseDataSo.isOwned)
+            SetLicenseName(licenseSo.licenseName);
+            SetLicenseIcon(licenseSo.icon);
+            SetLicenseCost(licenseSo.cost);
+
+            bool isUnlocked = LicenseManager.Instance.IsLicenseUnlocked(licenseSo);
+            if (isUnlocked)
             {
                 SetOwned();
             }

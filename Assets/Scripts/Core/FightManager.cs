@@ -16,7 +16,7 @@ public class FightManager : MonoBehaviour
     public void StartFight(BoxerController playerBoxer, OpponentSO opponent)
     {
         // 1. Calculate Power
-        int playerPower = playerBoxer.stats.totalTrainingPoints;
+        int playerPower = 99;
         int enemyPower = opponent.TotalPower;
 
         Debug.Log($"Fight Started! Player: {playerPower} vs Enemy: {enemyPower}");
@@ -45,7 +45,6 @@ public class FightManager : MonoBehaviour
         playerBoxer.stats.strength = 5;
         playerBoxer.stats.agility = 5;
         playerBoxer.stats.stamina = 5;
-        playerBoxer.stats.UpdateTotal();
 
         // 5. Notify Listeners (UI)
         OnFightComplete?.Invoke(playerWon, opponent);

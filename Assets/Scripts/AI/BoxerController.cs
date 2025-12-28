@@ -1,118 +1,121 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class BoxerController : MonoBehaviour
 {
-    public enum BoxerState { Idle, Moving, Training, NeedsBreak }
+    public enum AIState { Idle, MovingToMachine, TrainingVisual }
 
     [Header("Data")]
     public BoxerData stats;
-    public BoxerState currentState = BoxerState.Idle;
+    public AIState currentState = AIState.Idle;
 
-    [Header("References")]
-    public NavMeshAgent agent;
-    public Animator animator; // For "Punching", "Running" animations
+    [Header("Assignment")]
+    public GymRoom assignedRoom; // The room this boxer belongs to
+    [SerializeField] private Animator animator;
 
-    // Training State
-    private TrainingEquipment currentEquipment;
-    private float trainingTimer;
+    [Header("Visual Settings")]
+    public float minTrainTime = 5f;
+    public float maxTrainTime = 15f;
+    public float restTime = 2f;
+
+    // Internal References
+    private NavMeshAgent agent;
+    private TrainingEquipment targetEquipment;
+    private Coroutine currentRoutine;
+
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
 
     private void Start()
     {
-        if (agent == null) agent = GetComponent<NavMeshAgent>();
-        stats.UpdateTotal();
-    }
-
-    private void Update()
-    {
-        switch (currentState)
+        // If spawned by Recruitment Manager, we might not have a room yet.
+        // Wait for assignment.
+        if (assignedRoom != null)
         {
-            case BoxerState.Moving:
-                CheckArrival();
-                break;
-            case BoxerState.Training:
-                HandleTraining();
-                break;
+            StartVisualCycle();
         }
     }
 
-    // --- COMMANDS ---
-
-    public void GoTrain(TrainingEquipment equipment)
+    public void AssignToRoom(GymRoom room)
     {
-        if (equipment == null) return;
-        
-        currentEquipment = equipment;
-        
-        // 1. Move to the machine's interaction point
-        agent.SetDestination(equipment.interactionPoint.position);
-        
-        // 2. Set animation to "Walk"
-        animator.SetBool("IsWalking", true);
-        
-        currentState = BoxerState.Moving;
+        assignedRoom = room;
+        // Move to room center logic could go here
+        StartVisualCycle();
     }
 
-    // --- LOGIC ---
-
-    private void CheckArrival()
+    private void StartVisualCycle()
     {
-        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        if (currentRoutine != null) StopCoroutine(currentRoutine);
+        currentRoutine = StartCoroutine(AI_Routine());
+    }
+
+    private IEnumerator AI_Routine()
+    {
+        while (true)
         {
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            // 1. CHECK: Is there equipment in the room?
+            if (assignedRoom == null || assignedRoom.equipmentInRoom.Count == 0)
             {
-                StartTraining();
+                currentState = AIState.Idle;
+                animator.SetBool("IsWalking", false);
+                // Wander randomly or stand still
+                yield return new WaitForSeconds(2f);
+                continue; 
             }
+
+            // 2. DECIDE: Pick a random machine
+            // (In a detailed game, you might prioritize machines matching their lowest stat)
+            int randomIndex = Random.Range(0, assignedRoom.equipmentInRoom.Count);
+            targetEquipment = assignedRoom.equipmentInRoom[randomIndex];
+
+            // 3. MOVE
+            currentState = AIState.MovingToMachine;
+            agent.SetDestination(targetEquipment.interactionPoint.position);
+            animator.SetBool("IsWalking", true);
+
+            // Wait until arrived
+            while (agent.pathPending || agent.remainingDistance > agent.stoppingDistance)
+            {
+                yield return null;
+            }
+
+            // 4. ARRIVED -> SETUP
+            agent.velocity = Vector3.zero; // Stop sliding
+            animator.SetBool("IsWalking", false);
+            currentState = AIState.TrainingVisual;
+
+            // Snap rotation to face the machine correctly
+            transform.rotation = targetEquipment.interactionPoint.rotation;
+
+            // 5. TRAIN (Play Animation)
+            if (!string.IsNullOrEmpty(targetEquipment.animationTrigger))
+            {
+                animator.SetTrigger(targetEquipment.animationTrigger);
+            }
+
+            // Determine how long to "fake train" for visual variety
+            float duration = Random.Range(minTrainTime, maxTrainTime);
+            yield return new WaitForSeconds(duration);
+
+            // 6. FINISH -> RESET ANIMATION
+            animator.SetTrigger("StopTraining"); // Ensure your Animator has a generic 'Exit' or 'Idle' trigger
+            
+            // 7. REST (Brief pause between machines)
+            currentState = AIState.Idle;
+            yield return new WaitForSeconds(restTime);
         }
     }
-
-    private void StartTraining()
+    
+    // Helper used by Fight Manager to reset stats after spending them
+    public void ResetFuel()
     {
-        currentState = BoxerState.Training;
-        animator.SetBool("IsWalking", false);
-        
-        // Face the machine properly
-        transform.rotation = currentEquipment.interactionPoint.rotation;
-        
-        // Play specific animation (e.g. "Box_Jab" or "Run")
-        animator.SetTrigger(currentEquipment.animationTrigger);
-    }
-
-    private void HandleTraining()
-    {
-        trainingTimer += Time.deltaTime;
-
-        // Visual Progress (Optional: floating text or UI bar)
-        
-        // Check if cycle is done
-        if (trainingTimer >= currentEquipment.trainingDuration)
-        {
-            CompleteTrainingCycle();
-        }
-    }
-
-    private void CompleteTrainingCycle()
-    {
-        // 1. Gain Stats
-        stats.AddStats(currentEquipment.strGain, currentEquipment.agiGain, currentEquipment.staGain);
-        Debug.Log($"{stats.boxerName} gained stats! Total: {stats.totalTrainingPoints}");
-
-        // 2. Reset Timer
-        trainingTimer = 0;
-
-        // 3. Check Energy/Hunger (Simple logic for now)
-        stats.energy -= 5f;
-        if (stats.energy <= 0)
-        {
-            currentState = BoxerState.NeedsBreak;
-            animator.SetTrigger("Tired");
-            Debug.Log("Boxer is tired!");
-        }
-        else
-        {
-            // Loop training or stop?
-            // For an Idle game, they usually loop until stopped by player.
-            // We just let the timer run again in the next frame.
-        }
+        stats.strength = 0;
+        stats.agility = 0;
+        stats.stamina = 0;
+        stats.UpdateTotal();
     }
 }

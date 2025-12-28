@@ -14,20 +14,20 @@ namespace UI.Tablet.Leagues
         [SerializeField] private TMP_Text textAgility;
         [SerializeField] private TMP_Text textStamina;
 
-        public Action<BoxerData> OnClickedBoxer;
+        public Action<BoxerController> OnClickedBoxer;
 
-        private BoxerData _boxerData;
+        private BoxerController _boxerController;
         
-        public void SetBoxer(BoxerData boxerData)
+        public void SetBoxer(BoxerController boxerData)
         {
-            _boxerData = boxerData;
+            _boxerController = boxerData;
             
             //SetOpponentAvatar();
-            SetName(boxerData.boxerName);
-            SetLevel(boxerData.level);
-            SetStrength(Mathf.FloorToInt(boxerData.strength));
-            SetAgility(Mathf.FloorToInt(boxerData.agility));
-            SetStamina(Mathf.FloorToInt(boxerData.stamina));
+            SetName(boxerData.stats.boxerName);
+            SetLevel(boxerData.stats.level);
+            SetStrength(Mathf.FloorToInt(boxerData.stats.strength));
+            SetAgility(Mathf.FloorToInt(boxerData.stats.agility));
+            SetStamina(Mathf.FloorToInt(boxerData.stats.stamina));
         }
         
         private void SetOpponentAvatar(Sprite sprite)
@@ -63,7 +63,7 @@ namespace UI.Tablet.Leagues
         protected override void OnButtonClicked()
         {
             base.OnButtonClicked();
-            OnClickedBoxer?.Invoke(_boxerData);
+            OnClickedBoxer?.Invoke(_boxerController);
         }
     }
 }

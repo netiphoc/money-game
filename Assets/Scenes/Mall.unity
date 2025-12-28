@@ -299,10 +299,24 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9061627246682059133, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 2783501188959290380, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+--- !u!114 &192521135 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 192521134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GymRoom
 --- !u!1 &193331234
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,8 +348,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   <GameTimeManager>k__BackingField: {fileID: 1725407892}
   <GameController>k__BackingField: {fileID: 2027215256}
-  currentMoney: 1000
+  currentMoney: 10000000
   currentExp: 0
+  playerLevel: 0
+  playerXP: 0
+  xpToNextLevel: 1000
 --- !u!4 &193331236
 Transform:
   m_ObjectHideFlags: 0
@@ -784,7 +801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestTraining
   boxer: {fileID: 1892928077}
-  bag: {fileID: 520750397}
+  bag: {fileID: 0}
 --- !u!4 &438403352
 Transform:
   m_ObjectHideFlags: 0
@@ -877,17 +894,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1176076211}
   m_SourcePrefab: {fileID: 100100000, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
---- !u!114 &520750397 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8999672316491926038, guid: cceba1852f2046a458c7f343178e308d, type: 3}
-  m_PrefabInstance: {fileID: 9221388899250546236}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7599e0cc83f441a877a558cfe780a21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrainingEquipment
 --- !u!1001 &651879728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1019,10 +1025,24 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9061627246682059133, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 2783501188959290380, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+--- !u!114 &787230199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 787230198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GymRoom
 --- !u!1001 &937424378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1079,10 +1099,24 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9061627246682059133, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 2783501188959290380, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+--- !u!114 &937424379 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 937424378}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GymRoom
 --- !u!4 &939828163 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1968770147546370190, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
@@ -1588,6 +1622,46 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: gymRooms.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: 'gymRooms.Array.data[0]'
+      value: 
+      objectReference: {fileID: 9221388899250546237}
+    - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: 'gymRooms.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2049005667}
+    - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: 'gymRooms.Array.data[2]'
+      value: 
+      objectReference: {fileID: 787230199}
+    - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: 'gymRooms.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1128392479}
+    - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: 'gymRooms.Array.data[4]'
+      value: 
+      objectReference: {fileID: 192521135}
+    - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: 'gymRooms.Array.data[5]'
+      value: 
+      objectReference: {fileID: 1943333281}
+    - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: 'gymRooms.Array.data[6]'
+      value: 
+      objectReference: {fileID: 1833959955}
+    - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: 'gymRooms.Array.data[7]'
+      value: 
+      objectReference: {fileID: 937424379}
     - target: {fileID: 4445785060549265252, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2077,10 +2151,24 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9061627246682059133, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 2783501188959290380, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+--- !u!114 &1128392479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 1128392478}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GymRoom
 --- !u!1 &1128804277
 GameObject:
   m_ObjectHideFlags: 0
@@ -2424,7 +2512,10 @@ MonoBehaviour:
   roomName: Training Room 1
   assignedBoxer: {fileID: 1892928077}
   equipmentInRoom:
-  - {fileID: 520750397}
+  - {fileID: 0}
+  totalStrRate: 0
+  totalAgiRate: 0
+  totalStaRate: 0
 --- !u!65 &1217596973
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3296,11 +3387,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1930826253}
   - {fileID: 193331236}
   - {fileID: 2027215257}
   - {fileID: 1725407891}
   - {fileID: 939828163}
   - {fileID: 2127515830}
+  - {fileID: 1666970321}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1600803553
@@ -3409,6 +3502,62 @@ Transform:
   - {fileID: 1231069295}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1666970320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1666970321}
+  - component: {fileID: 1666970322}
+  m_Layer: 0
+  m_Name: IdleProductionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1666970321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666970320}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1536680564}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1666970322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666970320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9231f11026140b1a77ef8cd959f6aee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IdleProductionManager
+  tickRate: 1
+  allRooms:
+  - {fileID: 9221388899250546237}
+  - {fileID: 2049005667}
+  - {fileID: 787230199}
+  - {fileID: 1128392479}
+  - {fileID: 192521135}
+  - {fileID: 1943333281}
+  - {fileID: 1833959955}
+  - {fileID: 937424379}
+  floatingTextPrefab: {fileID: 4523076732937604656, guid: 4d6d49fe52fd809428032c73724abbe4, type: 3}
+  showFloatingText: 1
 --- !u!1 &1668577548
 GameObject:
   m_ObjectHideFlags: 0
@@ -3620,6 +3769,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 398447003281498009, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: requiredGymLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 398447003281498009, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: requiredBoxerLevel
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3247469252454323003, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_Name
       value: TrainingRoom (3)
@@ -3668,10 +3825,24 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9061627246682059133, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 2783501188959290380, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+--- !u!114 &1833959955 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 1833959954}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GymRoom
 --- !u!1001 &1859495645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3810,6 +3981,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3870289442595050149, guid: 77bfb84390a8a5f43bf1540b3f045193, type: 3}
   m_PrefabInstance: {fileID: 1904548324}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1930826252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1930826253}
+  - component: {fileID: 1930826254}
+  m_Layer: 0
+  m_Name: LicenseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1930826253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930826252}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1536680564}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1930826254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930826252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2f98e74ddb4aaa9961a8033e122fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LicenseManager
+  allLicenses:
+  - {fileID: 11400000, guid: 68b582ac30358e7448a191d0bb4616ad, type: 2}
+  - {fileID: 11400000, guid: 16ec5fd7b4dccb640b5536ccca1cf730, type: 2}
+  - {fileID: 11400000, guid: 53f8f497a0ff8c847a0abe8f560de095, type: 2}
+  ownedLicenses:
+  - {fileID: 11400000, guid: 68b582ac30358e7448a191d0bb4616ad, type: 2}
 --- !u!1 &1932071543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3999,10 +4220,24 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9061627246682059133, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 2783501188959290380, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+--- !u!114 &1943333281 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 1943333280}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GymRoom
 --- !u!1001 &1961113469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4064,6 +4299,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4965e98fe489aa44ebf8ba0213932ae1, type: 3}
+--- !u!1 &1997764441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1997764442}
+  - component: {fileID: 1997764443}
+  m_Layer: 0
+  m_Name: RecruitmentManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1997764442
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997764441}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -7.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2127515830}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1997764443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997764441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f777cd4d4ab419cb0d0690fc3a3d994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RecruitmentManager
+  boxerPrefab: {fileID: 2313048066194407460, guid: 286a7bd55548cf745acc8b1dc923a11a, type: 3}
+  spawnPoint: {fileID: 1997764442}
 --- !u!1 &2027215255
 GameObject:
   m_ObjectHideFlags: 0
@@ -4164,10 +4445,24 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9061627246682059133, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 2783501188959290380, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+--- !u!114 &2049005667 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 2049005666}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GymRoom
 --- !u!1 &2127515829
 GameObject:
   m_ObjectHideFlags: 0
@@ -4197,6 +4492,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1997764442}
   - {fileID: 442996611}
   m_Father: {fileID: 1536680564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4749,6 +5045,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainingRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 3247469252454323003, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8352334693745885857, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -4793,10 +5093,24 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9061627246682059133, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 2783501188959290380, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+--- !u!114 &9221388899250546237 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 9221388899250546236}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GymRoom
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

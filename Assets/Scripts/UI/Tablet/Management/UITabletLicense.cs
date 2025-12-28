@@ -4,10 +4,10 @@ namespace UI.Tablet.Management
 {
     public class UITabletLicense : BaseUITabletItemShop<UITabletButtonSlotLicense>
     {
-        public event Action<LicenseDataSO> OnOwnedLicense;
-        public LicenseDataSO[] LicenseDataSO { get; private set; } 
+        public event Action<LicenseSO> OnOwnedLicense;
+        public LicenseSO[] LicenseDataSO { get; private set; } 
 
-        public void SetLicenses(LicenseDataSO[] licenseData)
+        public void SetLicenses(LicenseSO[] licenseData)
         {
             LicenseDataSO = licenseData;
             RenderItems();

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6927feb28b8c4d5fa9bd7d8b90c5700e, type: 3}
+  m_Name: Equipment Cheap Bag
+  m_EditorClassIdentifier: Assembly-CSharp::PlaceableDataSO
+  objectName: Cheap Bag
+  prefab: {fileID: 2219554425293228247, guid: f34927cfa4ebfb34a8e2227189fe475a, type: 3}
+  cost: 10
+  boxSize: {x: 2, y: 1, z: 1}
+  linkedItemData: {fileID: 11400000, guid: 72470ec0ab702804386bd9b190c82f04, type: 2}

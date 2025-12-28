@@ -25,7 +25,7 @@ namespace UI.Tablet.Leagues
         public Action<FightResultData> OnFightResult;
         public int Power { get; private set; }
 
-        private BoxerData _boxerData;
+        private BoxerController _boxerController;
         private OpponentSO _opponentSo;
         
         protected override void OnEnable()
@@ -40,12 +40,12 @@ namespace UI.Tablet.Leagues
             buttonFight.onClick.RemoveListener(OnButtonClickedFight);
         }
 
-        public void SetOpponent(BoxerData boxerData, OpponentSO opponentSo)
+        public void SetOpponent(BoxerController boxerController, OpponentSO opponentSo)
         {
-            _boxerData = boxerData;
+            _boxerController = boxerController;
             _opponentSo = opponentSo;
-                
-            int boxerPower = boxerData.totalTrainingPoints;
+
+            int boxerPower = boxerController.stats.totalPower;
             int opponentPower = opponentSo.TotalPower;
             Power = opponentPower;
             
@@ -56,9 +56,9 @@ namespace UI.Tablet.Leagues
             SetOpponentAgility(opponentSo.agility);
             SetOpponentStamina(opponentSo.stamina);
             SettPowerLeft(boxerPower - opponentPower);
-            SetRequiredLevel(opponentSo.level);
+            SetRequiredLevel(opponentSo.requiredBoxerLevel);
 
-            bool canFight = boxerData.level >= opponentSo.level;
+            bool canFight = boxerController.stats.level >= opponentSo.requiredBoxerLevel;
             lockLevelGroup.gameObject.SetActive(!canFight);
         }
         
@@ -131,9 +131,11 @@ namespace UI.Tablet.Leagues
         {
             FightResultData fightResultData = new FightResultData
             {
-                BoxerData = _boxerData,
+                BoxerController = _boxerController,
                 Opponent = _opponentSo
             };
+            
+            FightManager.Instance.StartFight(_boxerController, _opponentSo);
             OnFightResult?.Invoke(fightResultData);
         }
     }

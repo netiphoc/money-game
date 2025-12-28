@@ -65,14 +65,15 @@ namespace UI.Tablet.Management
            SetItemIcon(item.icon);
            SetItemAmount(item.stackAmount);
            SetUnitCost(item.cost);
-
-           if (item.licenseDataSo.isOwned)
+           
+           bool isUnlocked = LicenseManager.Instance.IsLicenseUnlocked(item.licenseSo);
+           if (isUnlocked)
            {
                SetOwned();
            } 
            else
            {
-               SetRequiredLicense(item.licenseDataSo.licenseName);
+               SetRequiredLicense(item.licenseSo.licenseName);
            }
         }
 

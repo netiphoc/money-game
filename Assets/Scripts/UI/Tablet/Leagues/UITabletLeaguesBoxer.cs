@@ -23,7 +23,7 @@ namespace UI.Tablet.Leagues
             return GetPool().Request(containerLeagueSlot);
         }
 
-        public void RefreshBoxerLeaguesSlot(BoxerData[] boxerData)
+        public void RefreshBoxerLeaguesSlot(BoxerController[] boxerData)
         {
             GetPool().ClearPool();
 

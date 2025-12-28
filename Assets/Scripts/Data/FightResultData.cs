@@ -2,7 +2,7 @@
 {
     public struct FightResultData
     {
-        public BoxerData BoxerData;
+        public BoxerController BoxerController;
         public OpponentSO Opponent;
     }
 }

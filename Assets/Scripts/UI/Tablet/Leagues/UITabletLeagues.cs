@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using System.Collections.Generic;
+using Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ namespace UI.Tablet.Leagues
     public class UITabletLeagues : BaseUI
     {
         [Header("Data")] 
-        [SerializeField] private BoxerData[] testBoxers;
+        [SerializeField] private GymRoom[] gymRooms;
         [SerializeField] private OpponentSO[] opponents;
         
         [Header("UI")]
@@ -24,9 +25,16 @@ namespace UI.Tablet.Leagues
         protected override void Awake()
         {
             base.Awake();
+
+            List<BoxerController> boxerControllers = new List<BoxerController>();
+            foreach (var gymRoom in gymRooms)
+            {
+               if(!gymRoom.assignedBoxer) continue; 
+               boxerControllers.Add(gymRoom.assignedBoxer);
+            }
             
-            uiTabletLeaguesBoxer.RefreshBoxerLeaguesSlot(testBoxers);
-            uiTabletLeaguesFighter.RefreshFightLeaguesSlot(testBoxers[0], opponents);
+            uiTabletLeaguesBoxer.RefreshBoxerLeaguesSlot(boxerControllers.ToArray());
+            uiTabletLeaguesFighter.RefreshFightLeaguesSlot(boxerControllers[0], opponents);
         }
 
         protected override void OnEnable()
@@ -46,9 +54,9 @@ namespace UI.Tablet.Leagues
             uiTablet.ShowHome();
         }
         
-        public void OnClickedBoxer(BoxerData boxerData)
+        public void OnClickedBoxer(BoxerController boxerController)
         {
-            uiTabletLeaguesFighter.RefreshFightLeaguesSlot(boxerData, opponents);
+            uiTabletLeaguesFighter.RefreshFightLeaguesSlot(boxerController, opponents);
         }
 
         public void OnFlightResult(FightResultData fightResultData)

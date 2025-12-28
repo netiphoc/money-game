@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: -4898632931587297038, guid: 92e813de34452e64aac82482859e9665, type: 3}
       propertyPath: data
       value: 
-      objectReference: {fileID: 11400000, guid: 5352be301fe4bbc4da43686e50a1da4a, type: 2}
+      objectReference: {fileID: 11400000, guid: b6370d0bfb9155f47a390fe84fdc0483, type: 2}
     - target: {fileID: 2743576261982281347, guid: 92e813de34452e64aac82482859e9665, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.63
@@ -220,11 +220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7599e0cc83f441a877a558cfe780a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrainingEquipment
-  equipmentName: Heavy Bag
-  trainingDuration: 5
-  strGain: 5
-  agiGain: 0
-  staGain: 0
+  equipmentName: Cheap Bag
+  strPerSecond: 3
+  agiPerSecond: 5
+  staPerSecond: 15
   animationTrigger: Punch
   interactionPoint: {fileID: 5368467270845860648}
 --- !u!4 &8164563376980701718 stripped

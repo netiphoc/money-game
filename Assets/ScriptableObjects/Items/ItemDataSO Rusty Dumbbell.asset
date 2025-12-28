@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9685aedd65544b72b009a646d6b35978, type: 3}
-  m_Name: ItemDataSO Heavy Bag
+  m_Name: ItemDataSO Rusty Dumbbell
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  itemName: Heavy Bag
+  itemName: Rusty Dumbbell
   cost: 100
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: f34927cfa4ebfb34a8e2227189fe475a, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  licenseDataSo: {fileID: 11400000, guid: 16ec5fd7b4dccb640b5536ccca1cf730, type: 2}
-  placementData: {fileID: 11400000, guid: 5352be301fe4bbc4da43686e50a1da4a, type: 2}
+  licenseSo: {fileID: 11400000, guid: 68b582ac30358e7448a191d0bb4616ad, type: 2}
+  placementData: {fileID: 11400000, guid: 2594b72042c3aa34581e0f35cab6f322, type: 2}

@@ -195,7 +195,18 @@ namespace UI.Tablet
         {
             Debug.Log($"OnRoomDataChanged -> {roomDataSo.roomName}");
             UITabletLicense.SetLicenses(roomDataSo.licenses);
-            UITabletProduct.SetProducts(roomDataSo.licenses.SelectMany(licenseDataSo => licenseDataSo.items).ToArray());
+
+            List<ItemDataSO> itemDataSo = new List<ItemDataSO>();
+            foreach (var license in roomDataSo.licenses)
+            {
+                foreach (var placeableDataSo in license.unlockedEquipment)
+                {
+                    if(!placeableDataSo.linkedItemData) continue;
+                    itemDataSo.Add(placeableDataSo.linkedItemData);
+                }
+            }
+            
+            UITabletProduct.SetProducts(itemDataSo.ToArray());
             UITabletFurniture.SetFurnitures(roomDataSo.furnitures);
         }
         
@@ -236,9 +247,9 @@ namespace UI.Tablet
         {
         }
         
-        private void OnOwnedLicense(LicenseDataSO licenseDataSo)
+        private void OnOwnedLicense(LicenseSO licenseSo)
         {
-            Debug.Log($"You owned new license: {licenseDataSo.licenseName}");
+            Debug.Log($"You owned new license: {licenseSo.licenseName}");
         }
         
         private void OnAddItemToCart(CartItemData cartItemData)

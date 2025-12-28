@@ -3,22 +3,19 @@
 [CreateAssetMenu(fileName = "New Opponent", menuName = "GymTycoon/Opponent Data")]
 public class OpponentSO : ScriptableObject
 {
-    [Header("Identity")]
     public string opponentName;
-    public Sprite avatar; // Face icon for UI
-    public string description;
-    public int level;
-
-    [Header("Stats")]
+    public Sprite avatar;
     public int strength;
     public int agility;
     public int stamina;
 
+    [Header("Requirements")]
+    public int requiredBoxerLevel; // The BOXER must be this level to fight
+
     [Header("Rewards")]
     public int moneyReward;
-    public int xpReward;
-    public int trophyReward = 1; // Only given on Win
+    public int boxerXPReward; // XP for the Boxer
+    public int playerXPReward; // XP for the Gym (You)
     
-    // Helper to get total power
     public int TotalPower => strength + agility + stamina;
 }

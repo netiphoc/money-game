@@ -8,7 +8,7 @@ public class ItemDataSO : ScriptableObject
     public int stackAmount;
     public GameObject itemPrefab; // The visual model inside the box
     public Sprite icon; 
-    public LicenseDataSO licenseDataSo; 
+    public LicenseSO licenseSo; 
     
     [Header("Deployment")]
     // If this is set, this item can be taken out and placed as furniture!
