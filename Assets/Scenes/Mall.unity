@@ -3500,7 +3500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a345bf5d574bd1b176df42d63ff1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTimeManager
-  realTimeDurationMinutes: 15
+  realTimeDurationMinutes: 0.5
   startHour: 10
   endHour: 22
   isRunning: 0
