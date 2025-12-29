@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 040441f2b34e41559ea2e0dea69a9e70, type: 3}
-  m_Name: 30 The Machine
+  m_Name: 20 The Champion
   m_EditorClassIdentifier: Assembly-CSharp::OpponentSO
-  opponentName: The Machine
+  opponentName: The Champion
   avatar: {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
-  strength: 1000000
-  agility: 1000000
-  stamina: 1000000
-  requiredBoxerLevel: 30
-  moneyReward: 45000000
-  boxerXPReward: 25000
-  playerXPReward: 5000
+  strength: 150
+  agility: 130
+  stamina: 140
+  requiredBoxerLevel: 20
+  moneyReward: 2500
+  boxerXPReward: 500
+  playerXPReward: 100

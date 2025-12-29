@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 1 Cinder Block (Sta)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Cinder Block (Sta)
-  cost: 300
+  cost: 60
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: 652766bc980477d4299e7ef5d62a1327, type: 3}
   icon: {fileID: 21300000, guid: b74c31d447d2f5d41a61081bdf5e7126, type: 3}

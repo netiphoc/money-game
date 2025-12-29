@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 2 Speed Bag (Agi)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Rusty Dumbbell
-  cost: 3750
+  cost: 350
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: b11051c8a65eb66479b250122d732d1c, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

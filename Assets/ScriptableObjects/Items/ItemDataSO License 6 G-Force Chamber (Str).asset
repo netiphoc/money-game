@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 6 G-Force Chamber (Str)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: G-Force Chamber (Str)
-  cost: 500000000
+  cost: 75000
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: 4e1e39e759404e1418201cafe31b51e1, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

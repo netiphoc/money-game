@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 5 Smith Machine (Str)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Smith Machine (Str)
-  cost: 15000000
+  cost: 22000
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: daeee41befee5cd439be1169a3f640aa, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

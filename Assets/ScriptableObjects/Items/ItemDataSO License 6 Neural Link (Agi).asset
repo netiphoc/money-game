@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 6 Neural Link (Agi)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Neural Link (Agi)
-  cost: 850000000
+  cost: 85000
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: c06fe5632ad6e004e84774ca46e2acb6, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

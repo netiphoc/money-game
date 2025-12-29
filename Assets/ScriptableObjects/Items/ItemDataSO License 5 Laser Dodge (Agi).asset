@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 5 Laser Dodge (Agi)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Laser Dodge (Agi)
-  cost: 25000000
+  cost: 25000
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: 24d0561837ff02043adb8fb9f442ea69, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

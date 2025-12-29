@@ -15,7 +15,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
   licenseName: World Class
   description: 
-  cost: 250000000
+  cost: 450000
   requiredBoxerLevel: 25
   unlockedEquipment:
   - {fileID: 11400000, guid: 6b2963ed4d1ef964ba0e2603c8999264, type: 2}

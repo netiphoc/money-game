@@ -841,7 +841,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIs.Tablet.UITabletLeagues
   gymRooms: []
   opponents:
-  - {fileID: 11400000, guid: 4123d1ba9848f8a4d8a338bccb67d6c1, type: 2}
+  - {fileID: 11400000, guid: d0b8743127047924685cced949380b2f, type: 2}
+  - {fileID: 11400000, guid: d84a09967ff6ca043b9a91b5b17c0e14, type: 2}
   - {fileID: 11400000, guid: 1a16d16c8145df54cab135e142dff9cf, type: 2}
   - {fileID: 11400000, guid: f039fb181609ba944ac41c4ab6883c40, type: 2}
   - {fileID: 11400000, guid: 2191f1e313c6f154e8057121a7db32fb, type: 2}

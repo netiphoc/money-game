@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 040441f2b34e41559ea2e0dea69a9e70, type: 3}
-  m_Name: 20 Title Holder
+  m_Name: 2 Quick Nick
   m_EditorClassIdentifier: Assembly-CSharp::OpponentSO
-  opponentName: Title Holder
-  avatar: {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
-  strength: 100000
-  agility: 50000
-  stamina: 100000
-  requiredBoxerLevel: 20
-  moneyReward: 350000
-  boxerXPReward: 5000
-  playerXPReward: 1000
+  opponentName: '"Quick" Nick'
+  avatar: {fileID: 21300000, guid: 751aa1b6637101946b2fdbb7aa27d6ad, type: 3}
+  strength: 15
+  agility: 40
+  stamina: 20
+  requiredBoxerLevel: 2
+  moneyReward: 75
+  boxerXPReward: 15
+  playerXPReward: 8

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 2 Yoga Mat (Sta)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Yoga Mat (Sta)
-  cost: 5000
+  cost: 300
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: ebbe3aa59ca412c40a7185dc17513367, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

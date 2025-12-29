@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 4 Reflex Ball (Agi)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Reflex Ball (Agi)
-  cost: 750000
+  cost: 5500
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: aaf540ea447c2d2498199bbd87b948d0, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

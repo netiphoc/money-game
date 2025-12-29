@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 6 Iso-Kinetic (Sta)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Iso-Kinetic (Sta)
-  cost: 1500000000
+  cost: 80000
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: 516f9f285f515414bb22dad8475e8875, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 1 Jump Rope (Agi)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Jump Rope (Agi)
-  cost: 150
+  cost: 80
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: 5896f9f36b7037849abd3367a306c430, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

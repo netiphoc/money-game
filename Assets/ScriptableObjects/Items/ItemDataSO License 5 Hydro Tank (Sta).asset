@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 5 Hydro Tank (Sta)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Hydro Tank (Sta)
-  cost: 40000000
+  cost: 20000
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: e16e20449b1b45544bc374b2006a6287, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

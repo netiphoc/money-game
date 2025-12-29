@@ -223,9 +223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7599e0cc83f441a877a558cfe780a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrainingEquipment
-  strPerSecond: 500
-  agiPerSecond: 500
-  staPerSecond: 500
+  strPerSecond: 0
+  agiPerSecond: 0
+  staPerSecond: 180
   animationTrigger: Punch
   interactionPoint: {fileID: 5368467270845860648}
 --- !u!54 &-2893847670931544446

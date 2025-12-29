@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 7 Time Dilation (Agi)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Time Dilation (Agi)
-  cost: 2147483647
+  cost: 125000
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: 09e3012054a928347a5083ee4d93e9e1, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

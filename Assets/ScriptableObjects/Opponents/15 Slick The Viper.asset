@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 040441f2b34e41559ea2e0dea69a9e70, type: 3}
-  m_Name: 2 Rookie Ray
+  m_Name: 15 Slick The Viper
   m_EditorClassIdentifier: Assembly-CSharp::OpponentSO
-  opponentName: Rookie Ray
-  avatar: {fileID: 21300000, guid: 751aa1b6637101946b2fdbb7aa27d6ad, type: 3}
-  strength: 100
-  agility: 50
-  stamina: 50
-  requiredBoxerLevel: 2
-  moneyReward: 350
-  boxerXPReward: 25
-  playerXPReward: 10
+  opponentName: Slick "The Viper"
+  avatar: {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
+  strength: 50
+  agility: 100
+  stamina: 80
+  requiredBoxerLevel: 15
+  moneyReward: 1200
+  boxerXPReward: 200
+  playerXPReward: 60

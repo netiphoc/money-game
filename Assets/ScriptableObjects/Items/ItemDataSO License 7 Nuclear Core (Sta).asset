@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 7 Nuclear Core (Sta)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Nuclear Core (Sta)
-  cost: 2147483647
+  cost: 120000
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: 24c91bf95bfb76e46b84593bc89cf2e0, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

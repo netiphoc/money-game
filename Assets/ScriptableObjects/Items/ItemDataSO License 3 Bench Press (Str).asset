@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 3 Bench Press (Str)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Bench Press (Str)
-  cost: 30000
+  cost: 1500
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: 53422c5fe00fec7459f48b144c37e084, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

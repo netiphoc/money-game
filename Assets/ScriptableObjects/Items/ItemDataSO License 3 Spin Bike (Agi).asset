@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDataSO License 3 Spin Bike (Agi)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Bench Press (Str)
-  cost: 45000
+  cost: 1800
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: bcda62a3d1b9f6f4bb6d5099c502852e, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

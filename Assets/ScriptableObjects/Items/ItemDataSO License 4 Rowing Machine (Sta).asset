@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9685aedd65544b72b009a646d6b35978, type: 3}
   m_Name: ItemDataSO License 4 Rowing Machine (Sta)
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  itemName: Bench Press (Str)
-  cost: 1200000
+  itemName: Rowing Machine (Sta)
+  cost: 7000
   stackAmount: 1
   itemPrefab: {fileID: 2219554425293228247, guid: b8fe417ebdc484a4b811a33c83f06d69, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

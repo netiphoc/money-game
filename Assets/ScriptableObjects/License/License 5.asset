@@ -15,7 +15,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
   licenseName: Olympic
   description: 
-  cost: 5000000
+  cost: 125000
   requiredBoxerLevel: 18
   unlockedEquipment:
   - {fileID: 11400000, guid: 0ff099df3c2ec3245bf96c16e87d12d4, type: 2}
