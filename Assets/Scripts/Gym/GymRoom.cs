@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class GymRoom : MonoBehaviour
 {
+    [SerializeField] private GymRoomEquipmentDetector gymRoomEquipmentDetector;
+        
     [Header("Room Info")]
     public string roomName;
     public BoxerController assignedBoxer;
@@ -16,8 +19,26 @@ public class GymRoom : MonoBehaviour
     public float totalStrRate;
     public float totalAgiRate;
     public float totalStaRate;
-    
-// --- NEW: CAPACITY CHECK ---
+
+    private void Awake()
+    {
+        if (gymRoomEquipmentDetector)
+        {
+            gymRoomEquipmentDetector.onRoomTriggerEnter.AddListener(OnTriggerEnter);
+            gymRoomEquipmentDetector.onRoomTriggerExit.AddListener(OnTriggerExit);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (gymRoomEquipmentDetector)
+        {
+            gymRoomEquipmentDetector.onRoomTriggerEnter.RemoveListener(OnTriggerEnter);
+            gymRoomEquipmentDetector.onRoomTriggerExit.RemoveListener(OnTriggerExit);
+        }
+    }
+
+    // --- NEW: CAPACITY CHECK ---
     public bool CanFitMore()
     {
         return equipmentInRoom.Count < maxCapacity;
@@ -38,7 +59,6 @@ public class GymRoom : MonoBehaviour
     }
     
     // Called whenever equipment is placed/removed
-    [ContextMenu("RecalculateRates")]
     public void RecalculateRates()
     {
         totalStrRate = 0;
@@ -62,10 +82,6 @@ public class GymRoom : MonoBehaviour
         if (equipmentInRoom.Contains(equip))
         {
             equipmentInRoom.Remove(equip);
-            
-            // Clear the reference on the equipment so it doesn't try to call us again
-            if(equip.currentRoom == this) equip.currentRoom = null;
-
             RecalculateRates();
         }
     }
@@ -76,7 +92,7 @@ public class GymRoom : MonoBehaviour
         if (equip != null && !equipmentInRoom.Contains(equip))
         {
             equipmentInRoom.Add(equip);
-            equip.currentRoom = this;
+            equip.currentRooms.Add(this);
             RecalculateRates(); // Update math immediately
         }
         
@@ -85,7 +101,6 @@ public class GymRoom : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log($"OnTriggerExit: {other.name}");
         TrainingEquipment equip = other.GetComponent<TrainingEquipment>();
         if (equip != null && equipmentInRoom.Contains(equip))
         {

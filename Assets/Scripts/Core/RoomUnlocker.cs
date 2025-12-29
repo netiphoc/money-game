@@ -15,13 +15,13 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
     public TMP_Text priceText;
     public TMP_Text levelText;
     public GameObject lockIcon;
+    public GameObject unlockGroup;
 
     private bool isUnlocked = false;
 
     private void Start()
     {
         UpdateVisuals();
-        
         GameManager.Instance.OnLevelChanged += OnLevelChanged;
         GameManager.Instance.OnMoneyChanged += OnMoneyChanged;
     }
@@ -76,10 +76,13 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
         isUnlocked = true;
         doorBarrier.SetActive(false);
         forSaleSign.SetActive(false);
+        unlockGroup.gameObject.SetActive(true);
     }
 
     private void UpdateVisuals()
     {
+        unlockGroup.gameObject.SetActive(false);
+        
         levelText.SetText($"Requires Level: {roomDataSo.requiredGymLevel}");
         if (priceText) priceText.text = roomDataSo.unlockCost.ToMoneyFormat();
         

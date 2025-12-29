@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class TrainingEquipment : MonoBehaviour
 {
@@ -12,15 +14,14 @@ public class TrainingEquipment : MonoBehaviour
     public Transform interactionPoint;
     
     // NEW: Track which room owns this equipment
-    public GymRoom currentRoom;
+    public List<GymRoom> currentRooms = new List<GymRoom>();
     
     // --- CLEANUP LOGIC ---
     private void OnDestroy()
     {
-        // If this object is destroyed (Boxed Up), tell the room immediately!
-        if (currentRoom != null)
+        foreach (var t in currentRooms)
         {
-            currentRoom.RemoveEquipment(this);
+            t.RemoveEquipment(this);
         }
     }
 }
