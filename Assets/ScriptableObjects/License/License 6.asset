@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: License 6
   m_EditorClassIdentifier: Assembly-CSharp::LicenseDataSO
   icon: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
-  licenseName: License 3
+  licenseName: World Class
   description: 
-  cost: 300
-  requiredBoxerLevel: 0
+  cost: 250000000
+  requiredBoxerLevel: 25
   unlockedEquipment:
-  - {fileID: 11400000, guid: 533768c7a91d08f49b23d799490fc23c, type: 2}
+  - {fileID: 11400000, guid: 6b2963ed4d1ef964ba0e2603c8999264, type: 2}
+  - {fileID: 11400000, guid: 17bce356a7676aa4ca0c616ce9927bbd, type: 2}
+  - {fileID: 11400000, guid: 5a6c29b17d77d8f48979f5df449f3ab1, type: 2}

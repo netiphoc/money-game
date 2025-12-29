@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: License 1
   m_EditorClassIdentifier: Assembly-CSharp::LicenseDataSO
   icon: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
-  licenseName: Tier 1 (Starter)
+  licenseName: Backyard
   description: 
   cost: 0
-  requiredBoxerLevel: 0
+  requiredBoxerLevel: 1
   unlockedEquipment:
-  - {fileID: 11400000, guid: 2594b72042c3aa34581e0f35cab6f322, type: 2}
-  - {fileID: 11400000, guid: b6370d0bfb9155f47a390fe84fdc0483, type: 2}
+  - {fileID: 11400000, guid: 31f5d64a12204b64b9dff14a8f3b4354, type: 2}
+  - {fileID: 11400000, guid: 5c47a341aa0223940ac91e6f14fd961e, type: 2}
+  - {fileID: 11400000, guid: 7fa626d7778bb9142863c141845031c2, type: 2}

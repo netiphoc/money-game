@@ -87,7 +87,7 @@ public class PlacementManager : MonoBehaviour
         sourceBox = null;
         currentData = data;
 
-        SpawnGhost(data.prefab);
+        SpawnGhost(data.linkedItemData.itemPrefab);
         IsPlacing = true;
     }
 
@@ -100,7 +100,7 @@ public class PlacementManager : MonoBehaviour
         sourceBox = box;
         currentData = data;
 
-        SpawnGhost(data.prefab);
+        SpawnGhost(data.linkedItemData.itemPrefab);
         IsPlacing = true;
     }
 
@@ -238,7 +238,7 @@ public class PlacementManager : MonoBehaviour
         if (!isEditingExisting)
         {
             // Spawn the real object at the ghost's location
-            Instantiate(currentData.prefab, currentGhost.transform.position, currentGhost.transform.rotation);
+            Instantiate(currentData.linkedItemData.itemPrefab, currentGhost.transform.position, currentGhost.transform.rotation);
             Destroy(currentGhost); // Destroy the ghost
         }
 

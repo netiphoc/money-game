@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: License 5
   m_EditorClassIdentifier: Assembly-CSharp::LicenseDataSO
   icon: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
-  licenseName: License 3
+  licenseName: Olympic
   description: 
-  cost: 300
-  requiredBoxerLevel: 0
+  cost: 5000000
+  requiredBoxerLevel: 18
   unlockedEquipment:
-  - {fileID: 11400000, guid: 533768c7a91d08f49b23d799490fc23c, type: 2}
+  - {fileID: 11400000, guid: 0ff099df3c2ec3245bf96c16e87d12d4, type: 2}
+  - {fileID: 11400000, guid: c126c2a5ff964384684236d6841191e7, type: 2}
+  - {fileID: 11400000, guid: 3a8f4d2b735754f4f95e29fec3fa60c9, type: 2}

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [System.Serializable]
 public class BoxerData
@@ -25,6 +26,8 @@ public class BoxerData
     public int hiringCost;         // Cost to Recruit
     public int dailySalary;        // Passive maintenance cost (optional)
     public float statMultiplier = 1.0f; // Rarity Factor (e.g. 1.0 = Rookie, 1.5 = Pro)
+    public event Action<float> OnExpChanged;
+    public event Action<int> OnLevelChanged;
 
     // =========================================================
     // HELPER METHODS
@@ -40,6 +43,7 @@ public class BoxerData
     public void AddXP(float amount)
     {
         currentXP += amount;
+        OnExpChanged?.Invoke(currentXP);
         
         // Level Up Loop (in case we get massive XP at once)
         while (currentXP >= xpToNextLevel)
@@ -53,7 +57,7 @@ public class BoxerData
         currentXP -= xpToNextLevel;
         level++;
         xpToNextLevel *= 1.5f; // 50% harder each level
-        
+        OnLevelChanged?.Invoke(level);
         Debug.Log($"{boxerName} leveled up to Lvl {level}!");
     }
 

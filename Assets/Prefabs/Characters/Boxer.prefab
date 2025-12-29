@@ -101,22 +101,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoxerController
   stats:
-    boxerName: Asd
-    avatar: {fileID: 0}
-    strength: 5
-    agility: 5
-    stamina: 5
+    boxerName: Rookie
+    avatar: {fileID: 21300000, guid: 751aa1b6637101946b2fdbb7aa27d6ad, type: 3}
+    strength: 0
+    agility: 0
+    stamina: 0
     totalPower: 0
     level: 1
+    currentXP: 0
+    xpToNextLevel: 100
     hiringCost: 0
     dailySalary: 0
     statMultiplier: 1
   currentState: 0
   assignedRoom: {fileID: 0}
-  animator: {fileID: 8577906320043368157}
   minTrainTime: 5
   maxTrainTime: 15
   restTime: 2
+  animator: {fileID: 8577906320043368157}
 --- !u!1001 &2765295865617965900
 PrefabInstance:
   m_ObjectHideFlags: 0

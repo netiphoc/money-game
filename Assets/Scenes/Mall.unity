@@ -251,9 +251,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 398447003281498009, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: roomDataSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 27a3df37763e8a44d99876571831614e, type: 2}
     - target: {fileID: 3247469252454323003, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_Name
-      value: TrainingRoom (1)
+      value: TrainingRoom 3
       objectReference: {fileID: 0}
     - target: {fileID: 8352334693745885857, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -349,8 +353,7 @@ MonoBehaviour:
   <GameTimeManager>k__BackingField: {fileID: 1725407892}
   <GameController>k__BackingField: {fileID: 2027215256}
   currentMoney: 1000
-  currentExp: 0
-  playerLevel: 0
+  playerLevel: 1
   playerXP: 0
   xpToNextLevel: 1000
 --- !u!4 &193331236
@@ -974,9 +977,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 398447003281498009, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: roomDataSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 5febeec26a09d0544bf08ae430f28e6b, type: 2}
     - target: {fileID: 3247469252454323003, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_Name
-      value: TrainingRoom (2)
+      value: TrainingRoom 2
       objectReference: {fileID: 0}
     - target: {fileID: 8352334693745885857, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1048,9 +1055,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 398447003281498009, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: roomDataSo
+      value: 
+      objectReference: {fileID: 11400000, guid: b5af7e1d9d89b5145a7255be8a6ce5bc, type: 2}
     - target: {fileID: 3247469252454323003, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_Name
-      value: TrainingRoom (7)
+      value: TrainingRoom 8
       objectReference: {fileID: 0}
     - target: {fileID: 8352334693745885857, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1327,6 +1338,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 488617595971138480, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 851805300569522748, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1423,6 +1438,54 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1180063757771570188, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00016978975
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398397748660532533, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398397748660532533, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398397748660532533, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398397748660532533, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398397748660532533, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846333441411963431, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846333441411963431, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846333441411963431, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846333441411963431, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846333441411963431, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846333441411963431, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1910297797194775480, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: m_Value
       value: 1
@@ -1496,6 +1559,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2249908472252872354, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252529619161177735, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252529619161177735, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252529619161177735, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252529619161177735, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252529619161177735, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252529619161177735, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -1630,23 +1717,23 @@ PrefabInstance:
     - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: 'gymRooms.Array.data[0]'
       value: 
-      objectReference: {fileID: 9221388899250546237}
+      objectReference: {fileID: 1833959955}
     - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: 'gymRooms.Array.data[1]'
       value: 
-      objectReference: {fileID: 2049005667}
+      objectReference: {fileID: 787230199}
     - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: 'gymRooms.Array.data[2]'
       value: 
-      objectReference: {fileID: 787230199}
+      objectReference: {fileID: 192521135}
     - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: 'gymRooms.Array.data[3]'
       value: 
-      objectReference: {fileID: 1128392479}
+      objectReference: {fileID: 9221388899250546237}
     - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: 'gymRooms.Array.data[4]'
       value: 
-      objectReference: {fileID: 192521135}
+      objectReference: {fileID: 2049005667}
     - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: 'gymRooms.Array.data[5]'
       value: 
@@ -1654,7 +1741,7 @@ PrefabInstance:
     - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: 'gymRooms.Array.data[6]'
       value: 
-      objectReference: {fileID: 1833959955}
+      objectReference: {fileID: 1128392479}
     - target: {fileID: 3775387590285061806, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: 'gymRooms.Array.data[7]'
       value: 
@@ -1771,6 +1858,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5780054412752394728, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6185520249396832509, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1828,6 +1919,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6348371889807489024, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538268920744801765, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538268920744801765, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538268920744801765, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538268920744801765, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538268920744801765, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538268920744801765, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -2043,6 +2158,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8792598133216468548, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 13.399902
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792598133216468548, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -14.800049
+      objectReference: {fileID: 0}
+    - target: {fileID: 9112947771195509289, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9112947771195509289, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00017192366
+      objectReference: {fileID: 0}
     - target: {fileID: 9118528298114212504, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2100,9 +2231,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 398447003281498009, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: roomDataSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 035fd21eb9004ff428ec2a312a79bbf4, type: 2}
     - target: {fileID: 3247469252454323003, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_Name
-      value: TrainingRoom (5)
+      value: TrainingRoom 7
       objectReference: {fileID: 0}
     - target: {fileID: 8352334693745885857, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3479,13 +3614,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IdleProductionManager
   allRooms:
+  - {fileID: 1833959955}
+  - {fileID: 787230199}
+  - {fileID: 192521135}
   - {fileID: 9221388899250546237}
   - {fileID: 2049005667}
-  - {fileID: 787230199}
-  - {fileID: 1128392479}
-  - {fileID: 192521135}
   - {fileID: 1943333281}
-  - {fileID: 1833959955}
+  - {fileID: 1128392479}
   - {fileID: 937424379}
   floatingTextPrefab: {fileID: 4523076732937604656, guid: 4d6d49fe52fd809428032c73724abbe4, type: 3}
   showFloatingText: 1
@@ -3580,7 +3715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a345bf5d574bd1b176df42d63ff1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTimeManager
-  realTimeDurationMinutes: 15
+  realTimeDurationMinutes: 1
   startHour: 10
   endHour: 22
   isRunning: 0
@@ -3710,7 +3845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3247469252454323003, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_Name
-      value: TrainingRoom (3)
+      value: TrainingRoom 1
       objectReference: {fileID: 0}
     - target: {fileID: 8352334693745885857, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4103,9 +4238,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 398447003281498009, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: roomDataSo
+      value: 
+      objectReference: {fileID: 11400000, guid: f046484fba41cee478210ce85898226c, type: 2}
     - target: {fileID: 3247469252454323003, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_Name
-      value: TrainingRoom (6)
+      value: TrainingRoom 6
       objectReference: {fileID: 0}
     - target: {fileID: 8352334693745885857, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4328,9 +4467,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 398447003281498009, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: roomDataSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 46b7b20cfc65e7143af71e67ea16d9d5, type: 2}
     - target: {fileID: 3247469252454323003, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_Name
-      value: TrainingRoom (4)
+      value: TrainingRoom 5
       objectReference: {fileID: 0}
     - target: {fileID: 8352334693745885857, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4744,7 +4887,7 @@ PrefabInstance:
     - target: {fileID: 862605124054249854, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
       propertyPath: itemData
       value: 
-      objectReference: {fileID: 11400000, guid: 72470ec0ab702804386bd9b190c82f04, type: 2}
+      objectReference: {fileID: 11400000, guid: 7d6f0bc9dadec7d4f8fa6653074b23b5, type: 2}
     - target: {fileID: 862605124054249854, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
       propertyPath: currentQuantity
       value: 1
@@ -4976,9 +5119,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 398447003281498009, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: roomDataSo
+      value: 
+      objectReference: {fileID: 11400000, guid: eba0e9125ef103744afc2124f1ff556b, type: 2}
     - target: {fileID: 3247469252454323003, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_Name
-      value: TrainingRoom
+      value: TrainingRoom 4
       objectReference: {fileID: 0}
     - target: {fileID: 3247469252454323003, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_IsActive
@@ -5068,13 +5215,13 @@ SceneRoots:
   - {fileID: 2094208793320065978}
   - {fileID: 1859495645}
   - {fileID: 1961113469}
+  - {fileID: 1833959954}
+  - {fileID: 787230198}
+  - {fileID: 192521134}
   - {fileID: 9221388899250546236}
   - {fileID: 2049005666}
-  - {fileID: 787230198}
-  - {fileID: 1128392478}
-  - {fileID: 192521134}
   - {fileID: 1943333280}
-  - {fileID: 1833959954}
+  - {fileID: 1128392478}
   - {fileID: 937424378}
   - {fileID: 1668577550}
   - {fileID: 1536680564}

@@ -13,12 +13,14 @@ public class FightManager : MonoBehaviour
         if (Instance == null) Instance = this;
     }
     
-    public void StartFight(BoxerController playerBoxer, OpponentSO opponent)
+    public bool StartFight(BoxerController playerBoxer, OpponentSO opponent)
     {
         // ... (Calculate Power logic) ...
         
-        bool playerWon = playerBoxer.stats.totalPower >= opponent.TotalPower;
-
+        bool playerWon = playerBoxer.stats.strength >= opponent.strength && 
+                         playerBoxer.stats.agility >= opponent.agility &&
+                         playerBoxer.stats.stamina >= opponent.stamina;
+        
         if (playerWon)
         {
             // 1. Give Money
@@ -40,6 +42,12 @@ public class FightManager : MonoBehaviour
         }
 
         // Reset Boxer Energy/Stats...
+        playerBoxer.stats.strength -= opponent.strength;
+        playerBoxer.stats.agility -= opponent.agility;
+        playerBoxer.stats.stamina -= opponent.stamina;
+        
         OnFightComplete?.Invoke(playerWon, opponent);
+
+        return playerWon;
     }
 }

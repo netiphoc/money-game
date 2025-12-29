@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Economy")]
     public int currentMoney = 1000; // Starting cash
-    public int currentExp = 0;
     
     [Header("Global Progression (Gym Level)")]
     public int playerLevel = 1;      // Used for unlocking Rooms
@@ -21,6 +20,7 @@ public class GameManager : MonoBehaviour
     
     // Events allow the UI to update automatically when money changes
     public event Action<int> OnMoneyChanged;
+    public event Action<float> OnExpChanged;
     public event Action<int> OnLevelChanged;
 
     private void Awake()
@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     public void AddPlayerXP(float amount)
     {
         playerXP += amount;
+        OnExpChanged?.Invoke(playerXP);
         if (playerXP >= xpToNextLevel)
         {
             LevelUp();

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 040441f2b34e41559ea2e0dea69a9e70, type: 3}
+  m_Name: 1 Glass Joe
+  m_EditorClassIdentifier: Assembly-CSharp::OpponentSO
+  opponentName: Glass Joe
+  avatar: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
+  strength: 50
+  agility: 0
+  stamina: 0
+  requiredBoxerLevel: 1
+  moneyReward: 100
+  boxerXPReward: 10
+  playerXPReward: 5

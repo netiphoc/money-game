@@ -3,6 +3,7 @@ using Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
 
 namespace UI.Tablet.Leagues
 {
@@ -42,25 +43,55 @@ namespace UI.Tablet.Leagues
             GameManager.Instance.GameTimeManager.OnGameMinuteTick += OnGameMinuteTick;
         }
 
+        private void InitBoxer(BoxerController boxerController)
+        {
+            if (_boxerController != null)
+            {
+                _boxerController.stats.OnLevelChanged -= OnLevelChanged;
+            }
+            
+            _boxerController = boxerController;
+            _boxerController.stats.OnLevelChanged += OnLevelChanged;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            _boxerController.stats.OnLevelChanged -= OnLevelChanged;
+        }
+        
         private void OnGameMinuteTick(string obj)
         {
-            /*
+            UpdateStats();
+        }
+
+        private void OnLevelChanged(int level)
+        {
+            if(!_opponentSo) return;
+            SetRequiredLevel(_opponentSo.requiredBoxerLevel);
+            lockLevelGroup.gameObject.SetActive(!IsLevelUnlock());
+        }
+        
+        private void UpdateStats()
+        {
             if(!_boxerController) return;
             if(!_opponentSo) return;
             int boxerPower = _boxerController.stats.totalPower;
             int opponentPower = _opponentSo.TotalPower;
             SettPowerLeft(boxerPower - opponentPower);
-            */
-            
-            if(!_boxerController) return;
-            SettPowerLeft(_boxerController.stats.totalPower);
+            SetOpponentPower(_opponentSo.TotalPower);
+
+            //if(!_boxerController) return;
+            //SettPowerLeft(_boxerController.stats.totalPower);
         }
         
         public void SetOpponent(BoxerController boxerController, OpponentSO opponentSo)
         {
+            InitBoxer(boxerController);
+            
             _boxerController = boxerController;
             _opponentSo = opponentSo;
-
+            
             int boxerPower = boxerController.stats.totalPower;
             int opponentPower = opponentSo.TotalPower;
             Power = opponentPower;
@@ -71,12 +102,16 @@ namespace UI.Tablet.Leagues
             SetOpponentStrength(opponentSo.strength);
             SetOpponentAgility(opponentSo.agility);
             SetOpponentStamina(opponentSo.stamina);
-            SettPowerLeft(boxerPower);
-            //SettPowerLeft(boxerPower - opponentPower);
+            //SettPowerLeft(boxerPower);
+            SettPowerLeft(boxerPower - opponentPower);
+            
             SetRequiredLevel(opponentSo.requiredBoxerLevel);
+            lockLevelGroup.gameObject.SetActive(!IsLevelUnlock());
+        }
 
-            bool canFight = boxerController.stats.level >= opponentSo.requiredBoxerLevel;
-            lockLevelGroup.gameObject.SetActive(!canFight);
+        private bool IsLevelUnlock()
+        {
+           return _boxerController.stats.level >= _opponentSo.requiredBoxerLevel;
         }
         
         public void SetOpponentRank(int rank)
@@ -97,27 +132,35 @@ namespace UI.Tablet.Leagues
         
         private void SetOpponentPower(int power)
         {
-            textPower.SetText($"{power}");
+            bool canBeat = _boxerController && _boxerController.stats.totalPower >= power;
+            textPower.color = canBeat ? Color.white : Color.red;
+            textPower.SetText($"{power.ToPowerFormat()}");
+            //textPower.SetText(IsLevelUnlock() && IsLevelUnlock() ? $"{power.ToPowerFormat()}" : "???");
         }
         
         private void SetOpponentStrength(int strength)
         {
-            textStrength.SetText($"{strength}");
+            textStrength.SetText($"{strength.ToPowerFormat()}");
+            //textStrength.SetText(IsLevelUnlock() && IsLevelUnlock() ? $"{strength.ToPowerFormat()}" : "-");
         }
         
         private void SetOpponentAgility(int agility)
         {
-            textAgility.SetText($"{agility}");
+            textAgility.SetText($"{agility.ToPowerFormat()}");
+            //textAgility.SetText(IsLevelUnlock() && IsLevelUnlock() ? $"{agility.ToPowerFormat()}" : "-");
         }
         
         private void SetOpponentStamina(int stamina)
         {
-            textStamina.SetText($"{stamina}");
+            textStamina.SetText($"{stamina.ToPowerFormat()}");
+            //textStamina.SetText(IsLevelUnlock() && IsLevelUnlock() ? $"{stamina.ToPowerFormat()}" : "-");
         }
         
         private void SettPowerLeft(int powerLeft)
         {
-            textPowerLeft.SetText($"{powerLeft}");
+            textPower.color = powerLeft >= 0 ? Color.white : Color.red;
+            textPowerLeft.SetText($"{powerLeft.ToPowerFormat()}");
+            //textPowerLeft.SetText(IsLevelUnlock() && IsLevelUnlock() ? $"{powerLeft.ToPowerFormat()}" : "-");
         }
         
         private void SetRequiredLevel(int level)
@@ -146,14 +189,24 @@ namespace UI.Tablet.Leagues
         
         private void OnButtonClickedFight()
         {
+            bool hasEnoughPower = _boxerController.stats.totalPower >= _opponentSo.TotalPower;
+            if(!hasEnoughPower) return;
+            
+            bool playerWon = FightManager.Instance.StartFight(_boxerController, _opponentSo);
+
             FightResultData fightResultData = new FightResultData
             {
                 BoxerController = _boxerController,
-                Opponent = _opponentSo
+                Opponent = _opponentSo,
+                Win = playerWon,
             };
             
-            FightManager.Instance.StartFight(_boxerController, _opponentSo);
-            //OnFightResult?.Invoke(fightResultData);
+            UpdateStats();
+
+            if (!playerWon)
+            {
+                OnFightResult?.Invoke(fightResultData);
+            }
         }
     }
 }

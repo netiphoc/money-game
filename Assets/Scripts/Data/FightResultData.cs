@@ -4,5 +4,6 @@
     {
         public BoxerController BoxerController;
         public OpponentSO Opponent;
+        public bool Win;
     }
 }

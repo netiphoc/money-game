@@ -7,6 +7,8 @@ namespace Data
     {
         public SectionDataSO sectionData;
         public string roomName;
+        public int requiredGymLevel;
+        public int unlockCost;
         public LicenseSO[] licenses;
         public ItemDataSO[] furnitures;
     }

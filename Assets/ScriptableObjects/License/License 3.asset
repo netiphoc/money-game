@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: License 3
   m_EditorClassIdentifier: Assembly-CSharp::LicenseDataSO
   icon: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
-  licenseName: Tier 3 (Champ)
+  licenseName: Semi-Pro
   description: 
-  cost: 50000
-  requiredBoxerLevel: 10
+  cost: 15000
+  requiredBoxerLevel: 7
   unlockedEquipment:
-  - {fileID: 11400000, guid: 533768c7a91d08f49b23d799490fc23c, type: 2}
+  - {fileID: 11400000, guid: 73b612c7b89c08043ad8bef05d1e118f, type: 2}
+  - {fileID: 11400000, guid: b86b82197fdb3754b9260c8827faa26b, type: 2}
+  - {fileID: 11400000, guid: cfed4f5da0869304a8b89d377e31e906, type: 2}

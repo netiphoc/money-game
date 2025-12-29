@@ -3,9 +3,6 @@
 [CreateAssetMenu(fileName = "New Equipment", menuName = "GymTycoon/Equipment Data")]
 public class PlaceableDataSO : ScriptableObject
 {
-    public string objectName;
-    public GameObject prefab; 
-    public int cost;
     public Vector3 boxSize;
     
     [Header("Boxing Logic")]

@@ -1,22 +1,43 @@
-﻿using UnityEngine;
+﻿using System;
+using Data;
+using UnityEngine;
 using TMPro;
 using Utilities;
 
 public class RoomUnlocker : MonoBehaviour, IInteractable
 {
-    [Header("Settings")]
-    public int unlockCost;
-    public int requiredGymLevel; // Changed from 'requiredBoxerLevel' to 'GymLevel'
+    [Header("Settings")] 
+    [SerializeField] private RoomDataSO roomDataSo;
 
     [Header("References")]
     public GameObject doorBarrier;
     public GameObject forSaleSign;
     public TMP_Text priceText;
+    public TMP_Text levelText;
     public GameObject lockIcon;
 
     private bool isUnlocked = false;
 
     private void Start()
+    {
+        UpdateVisuals();
+        
+        GameManager.Instance.OnLevelChanged += OnLevelChanged;
+        GameManager.Instance.OnMoneyChanged += OnMoneyChanged;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnLevelChanged -= OnLevelChanged;
+        GameManager.Instance.OnMoneyChanged -= OnMoneyChanged;
+    }
+
+    private void OnLevelChanged(int obj)
+    {
+        UpdateVisuals();
+    }
+
+    private void OnMoneyChanged(int obj)
     {
         UpdateVisuals();
     }
@@ -26,12 +47,12 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
         if (isUnlocked) return "";
 
         // Check GLOBAL Player Level
-        if (GameManager.Instance.playerLevel < requiredGymLevel)
+        if (GameManager.Instance.playerLevel < roomDataSo.requiredGymLevel)
         {
-            return $"Requires Gym Level {requiredGymLevel}";
+            return $"Requires Gym Level {roomDataSo.requiredGymLevel}";
         }
 
-        return $"Press E to Buy Room ({unlockCost.ToMoneyFormat()})";
+        return $"Press E to Buy Room ({roomDataSo.unlockCost.ToMoneyFormat()})";
     }
 
     public void OnInteract(PlayerInteraction player)
@@ -39,10 +60,10 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
         if (isUnlocked) return;
 
         // 1. Check Player Level
-        if (GameManager.Instance.playerLevel < requiredGymLevel) return;
+        if (GameManager.Instance.playerLevel < roomDataSo.requiredGymLevel) return;
 
         // 2. Check Money
-        if (GameManager.Instance.TrySpendMoney(unlockCost))
+        if (GameManager.Instance.TrySpendMoney(roomDataSo.unlockCost))
         {
             Unlock();
         }
@@ -59,12 +80,13 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
 
     private void UpdateVisuals()
     {
-        if (priceText) priceText.text = unlockCost.ToMoneyFormat();
+        levelText.SetText($"Requires Level: {roomDataSo.requiredGymLevel}");
+        if (priceText) priceText.text = roomDataSo.unlockCost.ToMoneyFormat();
         
         // Show Lock Icon if Player Level is too low
         if (lockIcon)
         {
-            lockIcon.SetActive(GameManager.Instance.playerLevel < requiredGymLevel);
+            lockIcon.SetActive(GameManager.Instance.playerLevel < roomDataSo.requiredGymLevel);
         }
     }
 }

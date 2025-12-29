@@ -1,7 +1,9 @@
 ﻿using System;
 using TMPro;
+using UI.Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
 
 namespace UI.Tablet.Leagues
 {
@@ -13,6 +15,7 @@ namespace UI.Tablet.Leagues
         [SerializeField] private TMP_Text textStrength;
         [SerializeField] private TMP_Text textAgility;
         [SerializeField] private TMP_Text textStamina;
+        [SerializeField] private UILevelBoxer uiLevelBoxer;
 
         public Action<BoxerController> OnClickedBoxer;
 
@@ -38,16 +41,18 @@ namespace UI.Tablet.Leagues
             SetStamina(Mathf.FloorToInt(_boxerController.stats.stamina));
         }
         
-        public void SetBoxer(BoxerController boxerData)
+        public void SetBoxer(BoxerController boxerController)
         {
-            _boxerController = boxerData;
+            uiLevelBoxer.InitBoxer(boxerController);
+            
+            _boxerController = boxerController;
             
             //SetOpponentAvatar();
-            SetName(boxerData.stats.boxerName);
-            SetLevel(boxerData.stats.level);
-            SetStrength(Mathf.FloorToInt(boxerData.stats.strength));
-            SetAgility(Mathf.FloorToInt(boxerData.stats.agility));
-            SetStamina(Mathf.FloorToInt(boxerData.stats.stamina));
+            SetName(boxerController.stats.boxerName);
+            SetLevel(boxerController.stats.level);
+            SetStrength(Mathf.FloorToInt(boxerController.stats.strength));
+            SetAgility(Mathf.FloorToInt(boxerController.stats.agility));
+            SetStamina(Mathf.FloorToInt(boxerController.stats.stamina));
         }
         
         private void SetOpponentAvatar(Sprite sprite)
@@ -67,17 +72,17 @@ namespace UI.Tablet.Leagues
         
         private void SetStrength(int value)
         {
-            textStrength.SetText($"{value}");
+            textStrength.SetText($"{value.ToPowerFormat()}");
         }
         
         private void SetAgility(int value)
         {
-            textAgility.SetText($"{value}");
+            textAgility.SetText($"{value.ToPowerFormat()}");
         }
         
         private void SetStamina(int value)
         {
-            textStamina.SetText($"{value}");
+            textStamina.SetText($"{value.ToPowerFormat()}");
         }
 
         protected override void OnButtonClicked()

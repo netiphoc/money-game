@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: License 2
   m_EditorClassIdentifier: Assembly-CSharp::LicenseDataSO
   icon: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
-  licenseName: Tier 2 (Pro)
+  licenseName: Amateur
   description: 
   cost: 5000
   requiredBoxerLevel: 3
   unlockedEquipment:
-  - {fileID: 11400000, guid: e7345f634690d56428c633a703761fcf, type: 2}
-  - {fileID: 11400000, guid: cfed4f5da0869304a8b89d377e31e906, type: 2}
+  - {fileID: 11400000, guid: 14cd545811557c74ba01bf3a1117bbeb, type: 2}
+  - {fileID: 11400000, guid: 102821aa7758630448413fbdb72c77a2, type: 2}
+  - {fileID: 11400000, guid: 9a14f832be92f3345bb52e2567968b21, type: 2}

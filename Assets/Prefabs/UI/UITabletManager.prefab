@@ -548,16 +548,14 @@ MonoBehaviour:
   uiTablet: {fileID: 0}
   tabletRoomData:
   - {fileID: 11400000, guid: 9cba47485599a3a43ac772fa02570a3a, type: 2}
-  - {fileID: 11400000, guid: a3dc7fbb35a94ea49aa93a6b1ad111c5, type: 2}
-  - {fileID: 11400000, guid: 0656086566331fa42855f31125973480, type: 2}
-  - {fileID: 11400000, guid: 83fc9ce725741414498643685ad28684, type: 2}
-  - {fileID: 11400000, guid: 67a9a39a3b1378946bec2d6307077d7f, type: 2}
-  - {fileID: 11400000, guid: d200cc134446dff4ca3e86f5e492b433, type: 2}
-  - {fileID: 11400000, guid: 4f10acf0c98a2b144bebc26190002b0c, type: 2}
-  decorations:
-  - {fileID: 11400000, guid: 23c59b7d49d355c49b5245ec31948264, type: 2}
-  - {fileID: 11400000, guid: 23c59b7d49d355c49b5245ec31948264, type: 2}
-  - {fileID: 11400000, guid: 23c59b7d49d355c49b5245ec31948264, type: 2}
+  - {fileID: 11400000, guid: 5febeec26a09d0544bf08ae430f28e6b, type: 2}
+  - {fileID: 11400000, guid: 27a3df37763e8a44d99876571831614e, type: 2}
+  - {fileID: 11400000, guid: eba0e9125ef103744afc2124f1ff556b, type: 2}
+  - {fileID: 11400000, guid: 46b7b20cfc65e7143af71e67ea16d9d5, type: 2}
+  - {fileID: 11400000, guid: f046484fba41cee478210ce85898226c, type: 2}
+  - {fileID: 11400000, guid: 035fd21eb9004ff428ec2a312a79bbf4, type: 2}
+  - {fileID: 11400000, guid: b5af7e1d9d89b5145a7255be8a6ce5bc, type: 2}
+  decorations: []
   uiTabletButtonRoomPrefab: {fileID: 5511004799400169087, guid: 464515e1926561d4585e3b87f929d15d, type: 3}
   containerRoom: {fileID: 6137323777127435697}
   buttonCart: {fileID: 4748394761433731136}
