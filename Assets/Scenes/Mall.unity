@@ -3201,7 +3201,6 @@ GameObject:
   - component: {fileID: 1820105298}
   - component: {fileID: 1820105297}
   - component: {fileID: 1820105296}
-  - component: {fileID: 1820105295}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3209,23 +3208,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1820105295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820105294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &1820105296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3992,63 +3974,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3055aff3f50187843a5554c0678188d5, type: 3}
---- !u!1001 &3809429955723440186
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7129211113293537129, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: m_Name
-      value: Item_StorageShelf
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
 --- !u!1001 &6619996065539197479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4114,63 +4039,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
---- !u!1001 &7094788281537873892
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.9875493
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00000023841858
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 9.072078
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972687187673756515, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
-      propertyPath: m_Name
-      value: Equipment License 1 Beverage Shelf
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
 --- !u!1001 &7808259942307752091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4439,7 +4307,6 @@ SceneRoots:
   - {fileID: 6619996065539197479}
   - {fileID: 107420022}
   - {fileID: 184183171}
-  - {fileID: 3809429955723440186}
   - {fileID: 1859495645}
   - {fileID: 1961113469}
   - {fileID: 1019185862}
@@ -4457,4 +4324,3 @@ SceneRoots:
   - {fileID: 286502986}
   - {fileID: 475252616}
   - {fileID: 1982361990}
-  - {fileID: 7094788281537873892}
