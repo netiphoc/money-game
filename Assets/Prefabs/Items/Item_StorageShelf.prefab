@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f833dd5c2a644be0905892fb89b5349d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StorageShelf
-  allowedItem: {fileID: 11400000, guid: 23659edb9f688e14c978f878c5220f83, type: 2}
+  allowedItem: {fileID: 11400000, guid: fbc1634050d5411498bf4d4f1e89ad82, type: 2}
   spawnPoints:
   - {fileID: 5353604323792810277}
   - {fileID: 977536516374102918}
