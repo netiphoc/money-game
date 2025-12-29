@@ -104,3 +104,6 @@ MonoBehaviour:
   itemBoxPrefab: {fileID: 1097794022331946082, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
   rotationSpeed: 45
   IsPlacing: 0
+  roomTriggerLayer:
+    serializedVersion: 2
+    m_Bits: 512

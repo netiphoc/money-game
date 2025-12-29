@@ -5,8 +5,6 @@ public class PlacementManager : MonoBehaviour
 {
     public static PlacementManager Instance;
 
-    [Header("Test")] [SerializeField] private PlaceableDataSO itemToBuy;
-    
     [Header("Input Actions (New Input System)")]
     public InputActionProperty rotateInput;  // Value: Mouse Scroll or Q/E
     public InputActionProperty confirmInput; // Button: Left Click
@@ -23,7 +21,11 @@ public class PlacementManager : MonoBehaviour
 
     [Header("State (Read Only)")]
     public bool IsPlacing;
-
+    
+    [Header("Settings")]
+    // ... existing settings
+    public LayerMask roomTriggerLayer; // Create a Layer "RoomTrigger" for this!
+    
     // Internal State
     private GameObject currentGhost;     // The visual object we are currently moving
     private PlaceableDataSO currentData; // Data for the current object
@@ -61,12 +63,6 @@ public class PlacementManager : MonoBehaviour
 
     private void Update()
     {
-#if  UNITY_EDITOR
-        if (Keyboard.current.xKey.wasPressedThisFrame)
-        {
-            StartPlacement(itemToBuy);
-        }
-#endif
         if (!IsPlacing || currentGhost == null) return;
 
         HandlePositioning();
@@ -359,18 +355,32 @@ public class PlacementManager : MonoBehaviour
         if (currentData == null || currentGhost == null) return false;
 
         Vector3 center = currentGhost.transform.position + new Vector3(0, currentData.boxSize.y / 2, 0);
-        
-        // Check for overlaps with Obstacle Layer
-        Collider[] hits = Physics.OverlapBox(center, currentData.boxSize / 2, currentGhost.transform.rotation, obstacleLayer);
-        
-        foreach (var hit in hits)
+        Vector3 halfExtents = currentData.boxSize / 2;
+
+        // 1. COLLISION CHECK (Existing)
+        if (Physics.OverlapBox(center, halfExtents, currentGhost.transform.rotation, obstacleLayer).Length > 0)
         {
-            // If moving existing, ignore self
-            if (isEditingExisting && hit.gameObject == originalObjectRef) continue;
-            // Ignore child colliders
-            if (hit.transform.IsChildOf(currentGhost.transform)) continue;
-            
-            return false; // Collision detected
+            return false; // Hit a wall or object
+        }
+
+        // 2. NEW: ROOM CAPACITY CHECK
+        // Detect which room we are inside
+        Collider[] roomHits = Physics.OverlapBox(center, halfExtents, Quaternion.identity, roomTriggerLayer);
+        
+        foreach (var hit in roomHits)
+        {
+            GymRoom room = hit.GetComponent<GymRoom>();
+            if (room != null)
+            {
+                // If we are moving existing object, ignore capacity check (it's already counted)
+                if (isEditingExisting) return true;
+
+                if (!room.CanFitMore())
+                {
+                    // Optional: Show "Room Full" warning UI here
+                    return false; // INVALID: Room is full!
+                }
+            }
         }
 
         return true;

@@ -365,6 +365,8 @@ MonoBehaviour:
   roomName: 
   assignedBoxer: {fileID: 6593531761734842321}
   equipmentInRoom: []
+  maxCapacity: 2
+  capacityLevel: 1
   totalStrRate: 0
   totalAgiRate: 0
   totalStaRate: 0
