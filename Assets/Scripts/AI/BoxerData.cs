@@ -14,14 +14,15 @@ public class BoxerData
     public float agility;
     public float stamina;
     
+    
+    // The integer sum used to determine if you can win a fight
+    public int totalPower; 
+    
     [Header("Unrealized Resource Battery (The Fuel)")]
     // These float up continuously based on room production
     public float unrealizedStrength;
     public float unrealizedAgility;
     public float unrealizedStamina;
-    
-    // The integer sum used to determine if you can win a fight
-    public int totalPower; 
 
     [Header("Progression")]
     public int level = 1;          // Gates which Opponents can be fought

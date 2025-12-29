@@ -10,6 +10,15 @@ public class ItemDataSO : ScriptableObject
     public Sprite icon; 
     public LicenseSO licenseSo; 
     
+    [Header("Consumable Buffs")]
+    public bool isConsumable;
+    public float consumeTimeTick;
+    
+    // Flat bonus to production rates
+    public float strBonus; 
+    public float agiBonus;
+    public float staBonus;
+    
     [Header("Deployment")]
     // If this is set, this item can be taken out and placed as furniture!
     public PlaceableDataSO placementData; 

@@ -704,7 +704,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fbc1634050d5411498bf4d4f1e89ad82, type: 2}
     - target: {fileID: 938169628656540985, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.5348153
+      value: -3.28
       objectReference: {fileID: 0}
     - target: {fileID: 938169628656540985, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
       propertyPath: m_LocalPosition.y
@@ -712,7 +712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 938169628656540985, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.803656
+      value: -8.46
       objectReference: {fileID: 0}
     - target: {fileID: 938169628656540985, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3180,7 +3180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a345bf5d574bd1b176df42d63ff1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTimeManager
-  realTimeDurationMinutes: 4
+  realTimeDurationMinutes: 15
   startHour: 10
   endHour: 22
   isRunning: 0
@@ -3364,6 +3364,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GymRoom
+--- !u!1001 &1838655453
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.2993038
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.952506
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370863033539676578, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972687187673756515, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
+      propertyPath: m_Name
+      value: Equipment License 1 Beverage Shelf
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f24e6a571ebd7f4fbe151e399c30679, type: 3}
 --- !u!1001 &1859495645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4324,3 +4381,4 @@ SceneRoots:
   - {fileID: 286502986}
   - {fileID: 475252616}
   - {fileID: 1982361990}
+  - {fileID: 1838655453}

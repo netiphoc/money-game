@@ -242,6 +242,8 @@ MonoBehaviour:
   strPerSecond: 0
   agiPerSecond: 0
   staPerSecond: 0
+  <StorageShelfShelves>k__BackingField:
+  - {fileID: 2336129967182488192}
   animationTrigger: Consume
   interactionPoint: {fileID: 6969537729000174802}
   currentRooms: []
@@ -322,13 +324,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7129211113293537129, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
       propertyPath: m_Name
-      value: Item_StorageShelf (1)
+      value: Item_StorageShelf
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+--- !u!114 &2336129967182488192 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+  m_PrefabInstance: {fileID: 5761228813786941645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f833dd5c2a644be0905892fb89b5349d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StorageShelf
 --- !u!4 &3403275727286722303 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}

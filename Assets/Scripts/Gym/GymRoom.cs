@@ -70,6 +70,23 @@ public class GymRoom : MonoBehaviour
             totalStrRate += equip.strPerSecond;
             totalAgiRate += equip.agiPerSecond;
             totalStaRate += equip.staPerSecond;
+            
+            // Check consume able
+            if (equip.TryGetConsumableShelf(out StorageShelf[] shelves))
+            {
+                foreach (var shelf in shelves)
+                {
+                    ItemDataSO itemDataSo = shelf.GetItem();
+
+                    for (int i = 0; i < shelf.GetItemCount(); i++)
+                    {
+                        // Apply stat
+                        totalStrRate += itemDataSo.strBonus;
+                        totalAgiRate += itemDataSo.agiBonus;
+                        totalStaRate += itemDataSo.staBonus;
+                    }
+                }
+            }
         }
 
         // Optional: Apply License Multipliers here
@@ -81,6 +98,7 @@ public class GymRoom : MonoBehaviour
     {
         if (equipmentInRoom.Contains(equip))
         {
+            equip.OnStorageShelfUpdated -= OnStorageShelfUpdated;
             equipmentInRoom.Remove(equip);
             RecalculateRates();
         }
@@ -91,6 +109,7 @@ public class GymRoom : MonoBehaviour
         TrainingEquipment equip = other.GetComponent<TrainingEquipment>();
         if (equip != null && !equipmentInRoom.Contains(equip))
         {
+            equip.OnStorageShelfUpdated += OnStorageShelfUpdated;
             equipmentInRoom.Add(equip);
             equip.currentRooms.Add(this);
             RecalculateRates(); // Update math immediately
@@ -104,9 +123,16 @@ public class GymRoom : MonoBehaviour
         TrainingEquipment equip = other.GetComponent<TrainingEquipment>();
         if (equip != null && equipmentInRoom.Contains(equip))
         {
+            equip.OnStorageShelfUpdated -= OnStorageShelfUpdated;
             equipmentInRoom.Remove(equip);
             RecalculateRates();
         }
+    }
+
+    private void OnStorageShelfUpdated(StorageShelf storageShelf)
+    {
+        Debug.Log("OnStorageShelfUpdated");
+        RecalculateRates();
     }
 
     public void UnlockRoom(GymRoom gymRoom)

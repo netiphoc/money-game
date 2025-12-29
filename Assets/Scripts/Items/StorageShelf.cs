@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class StorageShelf : MonoBehaviour, IInteractable
@@ -11,7 +12,31 @@ public class StorageShelf : MonoBehaviour, IInteractable
     [SerializeField] private float stockSpeed = 0.15f;
     private float lastStockTime; 
 
-    private List<GameObject> stockedItems = new List<GameObject>(); 
+    private List<GameObject> stockedItems = new List<GameObject>();
+
+    public event Action<StorageShelf> OnShelfItemAdd;
+    public event Action<StorageShelf> OnShelfItemRemove;
+
+    private float _consumeTime;
+
+    private void Start()
+    {
+        GameManager.Instance.GameTimeManager.OnGameMinuteTick += OnGameMinuteTick;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.GameTimeManager.OnGameMinuteTick -= OnGameMinuteTick;
+    }
+
+    private void OnGameMinuteTick(string obj)
+    {        
+        if(stockedItems.Count <= 0) return;
+        _consumeTime += 1f;
+        if(_consumeTime < allowedItem.consumeTimeTick) return;
+        _consumeTime = 0f;
+        RemoveVisualItem();
+    }
 
     public string GetInteractionPrompt()
     {
@@ -104,6 +129,7 @@ public class StorageShelf : MonoBehaviour, IInteractable
         GameObject newItem = Instantiate(allowedItem.itemPrefab, spot.position, spot.rotation);
         newItem.transform.SetParent(this.transform); 
         stockedItems.Add(newItem);
+        OnShelfItemAdd?.Invoke(this);
     }
 
     private void RemoveVisualItem()
@@ -112,5 +138,30 @@ public class StorageShelf : MonoBehaviour, IInteractable
         GameObject itemToRemove = stockedItems[lastIndex];
         Destroy(itemToRemove);
         stockedItems.RemoveAt(lastIndex);
+
+        if (stockedItems.Count == 0)
+        {
+            _consumeTime = 0;
+        }
+        
+        OnShelfItemRemove?.Invoke(this);
+    }
+    
+    // --- NEW: AI API ---
+    
+    public bool HasConsumable()
+    {
+        if (allowedItem == null || !allowedItem.isConsumable) return false;
+        return stockedItems.Count > 0;
+    }
+
+    public ItemDataSO GetItem()
+    {
+        return allowedItem;
+    }
+    
+    public int GetItemCount()
+    {
+        return stockedItems.Count;
     }
 }

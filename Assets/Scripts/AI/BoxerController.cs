@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System.Linq;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class BoxerController : MonoBehaviour
@@ -118,7 +119,7 @@ public class BoxerController : MonoBehaviour
 
             // 6. FINISH NORMALLY
             StopVisualTraining();
-            
+
             // Optional: Spawn "+1" floating text here?
             // Inside ProduceStats loop, after updating stats:
             if (stats.unrealizedStrength > 0 || stats.unrealizedAgility > 0)
