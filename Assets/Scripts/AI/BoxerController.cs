@@ -5,7 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(NavMeshAgent))]
 public class BoxerController : MonoBehaviour
 {
-    public enum AIState { Idle, MovingToMachine, TrainingVisual }
+    public enum AIState { Sleep, Idle, MovingToMachine, TrainingVisual }
 
     [Header("Data")]
     public BoxerData stats;
@@ -38,7 +38,7 @@ public class BoxerController : MonoBehaviour
     {
         if (assignedRoom != null)
         {
-            StartVisualCycle();
+            EnterSleepState();
         }
     }
 
@@ -48,7 +48,7 @@ public class BoxerController : MonoBehaviour
         StartVisualCycle();
     }
 
-    private void StartVisualCycle()
+    public void StartVisualCycle()
     {
         if (currentRoutine != null) StopCoroutine(currentRoutine);
         currentRoutine = StartCoroutine(AI_Routine());
@@ -81,7 +81,7 @@ public class BoxerController : MonoBehaviour
                 if (!IsTargetValid())
                 {
                     Debug.Log("Equipment destroyed while walking! Rethinking...");
-                    EnterIdleState(); 
+                    StartVisualCycle();
                     yield break; 
                 }
                 yield return null;
@@ -143,6 +143,13 @@ public class BoxerController : MonoBehaviour
         return true;
     }
 
+    private void EnterSleepState()
+    {
+        currentState = AIState.Sleep;
+        if(agent.isOnNavMesh) agent.ResetPath();
+        if(animator) animator.SetTrigger("IsSleeping"); 
+    }
+    
     private void EnterIdleState()
     {
         currentState = AIState.Idle;

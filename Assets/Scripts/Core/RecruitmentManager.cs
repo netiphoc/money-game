@@ -55,8 +55,6 @@ public class RecruitmentManager : MonoBehaviour
 
             // 3. Assign to Room
             targetRoom.assignedBoxer = controller;
-            
-            Debug.Log($"Hired {data.boxerName} for {targetRoom.roomName}");
         }
     }
 }

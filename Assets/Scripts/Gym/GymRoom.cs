@@ -7,10 +7,9 @@ public class GymRoom : MonoBehaviour
     [SerializeField] private GymRoomEquipmentDetector gymRoomEquipmentDetector;
         
     [Header("Room Info")]
-    public string roomName;
     public BoxerController assignedBoxer;
     public List<TrainingEquipment> equipmentInRoom = new List<TrainingEquipment>();
-    
+
     [Header("Capacity Limit")]
     public int maxCapacity = 10; // Default limit
     public int capacityLevel = 1;
@@ -19,6 +18,8 @@ public class GymRoom : MonoBehaviour
     public float totalStrRate;
     public float totalAgiRate;
     public float totalStaRate;
+    public event Action<GymRoom> OnRoomUnlocked;
+    public bool IsUnlocked { get; private set; }
 
     private void Awake()
     {
@@ -49,7 +50,6 @@ public class GymRoom : MonoBehaviour
     {
         capacityLevel++;
         maxCapacity += 5; // Add 5 slots per upgrade
-        Debug.Log($"{roomName} capacity increased to {maxCapacity}!");
     }
 
     // Get the cost to upgrade (Exponential cost logic)
@@ -107,5 +107,11 @@ public class GymRoom : MonoBehaviour
             equipmentInRoom.Remove(equip);
             RecalculateRates();
         }
+    }
+
+    public void UnlockRoom(GymRoom gymRoom)
+    {
+        IsUnlocked = true;
+        OnRoomUnlocked?.Invoke(gymRoom);
     }
 }

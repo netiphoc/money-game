@@ -2,15 +2,6 @@
 
 public class IdleProductionManager : MonoBehaviour
 {
-    public static IdleProductionManager Instance;
-
-    [SerializeField] private GymRoom[] allRooms; // Cache for performance
-
-    private void Awake()
-    {
-        if (Instance == null) Instance = this;
-    }
-
     private void Start()
     {
         GameManager.Instance.GameTimeManager.OnGameMinuteTick += OnGameMinuteTick;
@@ -29,7 +20,7 @@ public class IdleProductionManager : MonoBehaviour
     private void ProduceStats()
     {
         // Loop through every room in the gym
-        foreach (var room in allRooms)
+        foreach (var room in GameManager.Instance.GymRooms)
         {
             // 1. Check if room has a worker
             if (room.assignedBoxer != null)
@@ -50,11 +41,4 @@ public class IdleProductionManager : MonoBehaviour
             }
         }
     }
-
-    // Call this if you unlock a new room so it gets added to the loop
-    public void RefreshRoomList()
-    {
-        allRooms = FindObjectsOfType<GymRoom>();
-    }
-    
 }

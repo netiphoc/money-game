@@ -362,6 +362,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   <GameTimeManager>k__BackingField: {fileID: 1725407892}
   <GameController>k__BackingField: {fileID: 2027215256}
+  <GymRooms>k__BackingField:
+  - {fileID: 1833959955}
+  - {fileID: 787230199}
+  - {fileID: 192521135}
+  - {fileID: 9221388899250546237}
+  - {fileID: 2049005667}
+  - {fileID: 1943333281}
+  - {fileID: 1128392479}
+  - {fileID: 937424379}
   currentMoney: 1000
   playerLevel: 1
   playerXP: 0
@@ -2834,11 +2843,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 193331236}
   - {fileID: 1666970321}
   - {fileID: 1653929021}
   - {fileID: 1668577550}
   - {fileID: 1930826253}
-  - {fileID: 193331236}
   - {fileID: 2027215257}
   - {fileID: 1725407891}
   - {fileID: 939828163}
@@ -3016,15 +3025,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9231f11026140b1a77ef8cd959f6aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IdleProductionManager
-  allRooms:
-  - {fileID: 1833959955}
-  - {fileID: 787230199}
-  - {fileID: 192521135}
-  - {fileID: 9221388899250546237}
-  - {fileID: 2049005667}
-  - {fileID: 1943333281}
-  - {fileID: 1128392479}
-  - {fileID: 937424379}
 --- !u!1 &1668577548
 GameObject:
   m_ObjectHideFlags: 0

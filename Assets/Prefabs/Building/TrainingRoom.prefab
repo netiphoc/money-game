@@ -127,12 +127,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomUnlocker
   roomDataSo: {fileID: 11400000, guid: 9cba47485599a3a43ac772fa02570a3a, type: 2}
+  gymRoom: {fileID: 5457808901176701717}
   doorBarrier: {fileID: 2213576523912197114}
   forSaleSign: {fileID: 6762575071959314256}
   priceText: {fileID: 6221030627568647445}
   levelText: {fileID: 4366704017595701606}
   lockIcon: {fileID: 9061627246682059133}
-  unlockGroup: {fileID: 418663563207706797}
 --- !u!1 &2783501188959290380
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,7 +893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2313048066194407460, guid: 286a7bd55548cf745acc8b1dc923a11a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5790971508738998221, guid: 286a7bd55548cf745acc8b1dc923a11a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -944,17 +944,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 286a7bd55548cf745acc8b1dc923a11a, type: 3}
---- !u!1 &418663563207706797 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2313048066194407460, guid: 286a7bd55548cf745acc8b1dc923a11a, type: 3}
-  m_PrefabInstance: {fileID: 2726644512704759945}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6593531761734842321 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9103484075892342616, guid: 286a7bd55548cf745acc8b1dc923a11a, type: 3}
   m_PrefabInstance: {fileID: 2726644512704759945}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 418663563207706797}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02f7638238394369a1de659a2f100d6c, type: 3}

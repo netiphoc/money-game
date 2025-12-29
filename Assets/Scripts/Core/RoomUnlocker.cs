@@ -8,6 +8,7 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
 {
     [Header("Settings")] 
     [SerializeField] private RoomDataSO roomDataSo;
+    [SerializeField] private GymRoom gymRoom;
 
     [Header("References")]
     public GameObject doorBarrier;
@@ -15,9 +16,6 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
     public TMP_Text priceText;
     public TMP_Text levelText;
     public GameObject lockIcon;
-    public GameObject unlockGroup;
-
-    private bool isUnlocked = false;
 
     private void Start()
     {
@@ -44,7 +42,7 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
 
     public string GetInteractionPrompt()
     {
-        if (isUnlocked) return "";
+        if (gymRoom.IsUnlocked) return "";
 
         // Check GLOBAL Player Level
         if (GameManager.Instance.playerLevel < roomDataSo.requiredGymLevel)
@@ -57,7 +55,7 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
 
     public void OnInteract(PlayerInteraction player)
     {
-        if (isUnlocked) return;
+        if (gymRoom.IsUnlocked) return;
 
         // 1. Check Player Level
         if (GameManager.Instance.playerLevel < roomDataSo.requiredGymLevel) return;
@@ -73,16 +71,13 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
 
     private void Unlock()
     {
-        isUnlocked = true;
         doorBarrier.SetActive(false);
         forSaleSign.SetActive(false);
-        unlockGroup.gameObject.SetActive(true);
+        gymRoom.UnlockRoom(gymRoom);
     }
 
     private void UpdateVisuals()
     {
-        unlockGroup.gameObject.SetActive(false);
-        
         levelText.SetText($"Requires Level: {roomDataSo.requiredGymLevel}");
         if (priceText) priceText.text = roomDataSo.unlockCost.ToMoneyFormat();
         
