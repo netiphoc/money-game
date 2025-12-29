@@ -4,6 +4,8 @@ namespace Core
 {
     public class GameController : BaseMonoBehaviour
     {
+        public bool IsTheDayStarted { get; private set; }
+
         protected override void Start()
         {
             base.Start();
@@ -34,10 +36,13 @@ namespace Core
                 if(!room.IsUnlocked) continue;
                 room.assignedBoxer.StartVisualCycle();
             }
+
+            IsTheDayStarted = true;
         }
 
         private void OnRoomUnlocked(GymRoom room)
         {
+            if(!IsTheDayStarted) return;
             room.assignedBoxer.StartVisualCycle();
         }
 

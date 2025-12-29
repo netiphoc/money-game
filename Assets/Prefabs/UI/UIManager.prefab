@@ -146,11 +146,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b045ee62f4804097879585d806ffa26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FloatingTextManager
-  textPrefab: {fileID: 3737288616791664101, guid: 164a34c49fefbbd4180f60fb09d25ca9, type: 3}
+  textPrefab: {fileID: 7163454626771064027, guid: 164a34c49fefbbd4180f60fb09d25ca9, type: 3}
   parentCanvas: {fileID: 5302244345169820717}
   fixedSpawnPoint: {fileID: 671403030737556488}
   randomSpread: 50
   mainCamera: {fileID: 0}
+  floatingTextPrefab: {fileID: 4523076732937604656, guid: 4d6d49fe52fd809428032c73724abbe4, type: 3}
 --- !u!1 &1124354221086490810
 GameObject:
   m_ObjectHideFlags: 0

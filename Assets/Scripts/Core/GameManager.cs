@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System;
 using Core;
+using StarterAssets;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     [Header("System")]
+    [field: SerializeField] public FirstPersonController FirstPersonController{ get; private set; }
+    [field: SerializeField] public PlayerInteraction PlayerInteraction { get; private set; }
     [field: SerializeField] public GameTimeManager GameTimeManager { get; private set; }
     [field: SerializeField] public GameController GameController { get; private set; }
     [field: SerializeField] public GymRoom[] GymRooms { get; private set; }
@@ -75,7 +78,12 @@ public class GameManager : MonoBehaviour
         
         // Optional: Play Level Up Sound / Confetti
     }
-    
+
+    public void SetAllowPlayerInteraction(bool canInteract)
+    {
+        FirstPersonController.SetAllowedMovement(canInteract);
+        PlayerInteraction.enabled = canInteract;
+    }
 
     #endregion
 }

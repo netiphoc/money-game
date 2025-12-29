@@ -37,12 +37,13 @@ namespace UI
             _isTabletOpen = !_isTabletOpen;
             UITablet.SetVisible(_isTabletOpen);
 
+           GameManager.Instance.SetAllowPlayerInteraction(!_isTabletOpen);
+
             if (_isTabletOpen)
             {
                 // Unlock Cursor so we can click
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-            
                 // Pause Player Interaction? (Optional, but good practice)
                 // FindObjectOfType<PlayerInteraction>().enabled = false; 
             }
