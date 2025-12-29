@@ -33,7 +33,7 @@ public class StorageShelf : MonoBehaviour, IInteractable
     {        
         if(stockedItems.Count <= 0) return;
         _consumeTime += 1f;
-        if(_consumeTime < allowedItem.consumeTimeTick) return;
+        if(_consumeTime <= allowedItem.consumeTimeTick) return;
         _consumeTime = 0f;
         RemoveVisualItem();
     }

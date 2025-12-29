@@ -12,7 +12,7 @@ public class ItemDataSO : ScriptableObject
     
     [Header("Consumable Buffs")]
     public bool isConsumable;
-    public float consumeTimeTick;
+    public int consumeTimeTick;
     
     // Flat bonus to production rates
     public float strBonus; 
