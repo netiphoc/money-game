@@ -46,7 +46,6 @@ namespace UI.Tablet.Leagues
         {
             if (_boxerController != null)
             {
-                buttonFight.SetFightAvailable(false);
                 _boxerController.stats.OnLevelChanged -= OnLevelChanged;
             }
             
@@ -90,6 +89,7 @@ namespace UI.Tablet.Leagues
             if (!IsLevelUnlock())
             {
                 buttonFight.SetLock(_opponentSo.requiredBoxerLevel);
+                buttonFight.SetFightAvailable(true);
                 return;
             }
             
