@@ -16,13 +16,19 @@ public class FightManager : MonoBehaviour
     public bool StartFight(BoxerController playerBoxer, OpponentSO opponent)
     {
         // ... (Calculate Power logic) ...
-        
-        bool playerWon = playerBoxer.stats.strength >= opponent.strength && 
-                         playerBoxer.stats.agility >= opponent.agility &&
-                         playerBoxer.stats.stamina >= opponent.stamina;
-        
-        if (playerWon)
+
+        bool IsPlayerWon()
         {
+            return playerBoxer.stats.strength >= opponent.strength &&
+                   playerBoxer.stats.agility >= opponent.agility &&
+                   playerBoxer.stats.stamina >= opponent.stamina;
+        }
+
+        int wonCount = 0;
+        
+        while (IsPlayerWon())
+        {
+            wonCount++;
             // 1. Give Money
             GameManager.Instance.AddMoney(opponent.moneyReward);
             
@@ -33,18 +39,24 @@ public class FightManager : MonoBehaviour
             // 3. Level Up the PLAYER (Gym Progression)
             GameManager.Instance.AddPlayerXP(opponent.playerXPReward);
             
-            Debug.Log("YOU WON!");
+            Debug.Log($"YOU WON! x{wonCount}");
+            
+            // Reset Boxer Energy/Stats...
+            playerBoxer.stats.strength -= opponent.strength;
+            playerBoxer.stats.agility -= opponent.agility;
+            playerBoxer.stats.stamina -= opponent.stamina;
         }
-        else
+
+        bool playerWon = wonCount > 0;
+        
+        if (!playerWon)
         {
             // Consolation (maybe small XP)
             GameManager.Instance.AddMoney(opponent.moneyReward / 4);
+            playerBoxer.stats.strength -= opponent.strength;
+            playerBoxer.stats.agility -= opponent.agility;
+            playerBoxer.stats.stamina -= opponent.stamina;
         }
-
-        // Reset Boxer Energy/Stats...
-        playerBoxer.stats.strength -= opponent.strength;
-        playerBoxer.stats.agility -= opponent.agility;
-        playerBoxer.stats.stamina -= opponent.stamina;
         
         OnFightComplete?.Invoke(playerWon, opponent);
 
