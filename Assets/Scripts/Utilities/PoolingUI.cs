@@ -31,6 +31,18 @@ public class PoolingUI<TType> where TType : BaseUI
         return _pools[_index];
     }
 
+    public TType RequestRecycle(Transform container)
+    {
+        foreach (var item in _pools)
+        {
+            if(item.Visible) continue;
+            item.SetVisible(true);
+            return item;
+        }
+
+        return Request(container);
+    }
+    
     public void ClearPool()
     {
         _index = 0;

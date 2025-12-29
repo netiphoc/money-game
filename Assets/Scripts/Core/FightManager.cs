@@ -54,8 +54,9 @@ public class FightManager : MonoBehaviour
             
             // 3. Level Up the PLAYER (Gym Progression)
             GameManager.Instance.AddPlayerXP(totalPlayerExp);
-            FloatingTextManager.Instance.ShowFixedText($"Win fight +{totalPlayerExp} exp", Color.green);
-
+            FloatingTextManager.Instance.ShowFixedText($"Training Camp +{totalPlayerExp} exp", Color.green);
+            //FloatingTextManager.Instance.ShowWorldText(playerBoxer.transform.position, $"+{totalBoxerExp} exp", Color.green);
+            
             Debug.Log($"YOU WON! x{wonCount}");
         }
         else

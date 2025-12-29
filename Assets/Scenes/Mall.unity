@@ -1988,7 +1988,11 @@ PrefabInstance:
     - target: {fileID: 7183978378806143076, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: textPrefab
       value: 
-      objectReference: {fileID: 7659114762298104425, guid: 4d6d49fe52fd809428032c73724abbe4, type: 3}
+      objectReference: {fileID: 7163454626771064027, guid: 164a34c49fefbbd4180f60fb09d25ca9, type: 3}
+    - target: {fileID: 7183978378806143076, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: floatingTextPrefab
+      value: 
+      objectReference: {fileID: 4523076732937604656, guid: 4d6d49fe52fd809428032c73724abbe4, type: 3}
     - target: {fileID: 7507640795520640990, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2879,8 +2883,6 @@ MonoBehaviour:
   - {fileID: 1943333281}
   - {fileID: 1128392479}
   - {fileID: 937424379}
-  floatingTextPrefab: {fileID: 4523076732937604656, guid: 4d6d49fe52fd809428032c73724abbe4, type: 3}
-  showFloatingText: 1
 --- !u!1 &1668577548
 GameObject:
   m_ObjectHideFlags: 0

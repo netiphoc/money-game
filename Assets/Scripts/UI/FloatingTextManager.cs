@@ -1,24 +1,32 @@
-﻿using UnityEngine;
+﻿using UI;
+using UnityEngine;
 
 public class FloatingTextManager : MonoBehaviour
 {
     public static FloatingTextManager Instance;
 
-    [Header("References")]
-    public GameObject textPrefab; 
+    [Header("Floating Text 2D")]
+    public UIFloatingText textPrefab; 
     public Canvas parentCanvas;
-    
-    [Header("Fixed Position Settings")]
+    [Space]
     public RectTransform fixedSpawnPoint; // Drag an empty UI object here (e.g. Top Center)
     public float randomSpread = 50f;      // Jitter so texts don't stack perfectly
-
-    [Header("World Settings")]
+    [Space]
     public Camera mainCamera;
+    
+    [Header("Floating Text 3D")]
+    public FloatingText floatingTextPrefab;
+
+    private PoolingUI<FloatingText> _poolingWorldText;
+    private PoolingUI<UIFloatingText> _poolingUIText;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         if (mainCamera == null) mainCamera = Camera.main;
+        
+        _poolingWorldText = new PoolingUI<FloatingText>(floatingTextPrefab);
+        _poolingUIText = new PoolingUI<UIFloatingText>(textPrefab);
     }
 
     // --- OPTION A: Show at fixed screen location (Top of Screen) ---
@@ -31,7 +39,7 @@ public class FloatingTextManager : MonoBehaviour
         }
 
         // 1. Create Text
-        GameObject newTextObj = Instantiate(textPrefab, parentCanvas.transform);
+        UIFloatingText newTextObj = _poolingUIText.RequestRecycle(parentCanvas.transform);
         
         // 2. Set Position to the Fixed Point + Random Offset
         RectTransform rt = newTextObj.GetComponent<RectTransform>();
@@ -46,22 +54,29 @@ public class FloatingTextManager : MonoBehaviour
         rt.position = fixedSpawnPoint.position + (Vector3)jitter;
 
         // 3. Initialize
-        UIFloatingText floatScript = newTextObj.GetComponent<UIFloatingText>();
-        if (floatScript != null)
+        if (newTextObj != null)
         {
-            floatScript.Setup(text, color);
+            newTextObj.Setup(text, color);
         }
     }
 
     // --- OPTION B: Show above a 3D Object (Original) ---
-    public void ShowWorldText(Vector3 worldPosition, string text, Color color)
+    public void ShowWorldTextOnScreen(Vector3 worldPosition, string text, Color color)
     {
         Vector2 screenPos = mainCamera.WorldToScreenPoint(worldPosition + Vector3.up * 2f);
-        
-        GameObject newTextObj = Instantiate(textPrefab, parentCanvas.transform);
+
+        UIFloatingText newTextObj = _poolingUIText.RequestRecycle(parentCanvas.transform);
         newTextObj.transform.position = screenPos;
 
-        UIFloatingText floatScript = newTextObj.GetComponent<UIFloatingText>();
-        if (floatScript != null) floatScript.Setup(text, color);
+        if (newTextObj != null) newTextObj.Setup(text, color);
+    }
+    
+    public void ShowWorldText(Vector3 position, string text, Color color)
+    {
+        Vector3 spawnPos = position + Vector3.up * 2f;
+        FloatingText popup = _poolingWorldText.RequestRecycle(transform);
+        popup.transform.position = spawnPos;
+        popup.transform.rotation = Quaternion.identity;
+        popup.Setup(text, color);
     }
 }

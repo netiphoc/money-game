@@ -53,11 +53,11 @@ public class IdleProductionManager : MonoBehaviour
 
                 // Optional: Spawn "+1" floating text here?
                 // Inside ProduceStats loop, after updating stats:
-                if (showFloatingText && (strGain > 0 || agiGain > 0))
+                if ((strGain > 0 || agiGain > 0))
                 {
                     // Only spawn text if looking at the room? (Optimization for 16 rooms)
                     // For now, spawn above boxer head
-                    SpawnPopup(room.assignedBoxer.transform.position, $"+{strGain+agiGain+staGain}", Color.green);
+                    FloatingTextManager.Instance.ShowWorldText(room.assignedBoxer.transform.position, $"+{strGain+agiGain+staGain}", Color.green);
                 }
 
             }
@@ -70,14 +70,4 @@ public class IdleProductionManager : MonoBehaviour
         allRooms = FindObjectsOfType<GymRoom>();
     }
     
-    [Header("Visuals")]
-    public FloatingText floatingTextPrefab;
-    public bool showFloatingText = true;
-    
-    private void SpawnPopup(Vector3 position, string text, Color color)
-    {
-        Vector3 spawnPos = position + Vector3.up * 2f;
-        FloatingText popup = Instantiate(floatingTextPrefab, spawnPos, Quaternion.identity);
-        popup.Setup(text, color);
-    }
 }
