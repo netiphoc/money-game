@@ -14,6 +14,12 @@ public class BoxerData
     public float agility;
     public float stamina;
     
+    [Header("Unrealized Resource Battery (The Fuel)")]
+    // These float up continuously based on room production
+    public float unrealizedStrength;
+    public float unrealizedAgility;
+    public float unrealizedStamina;
+    
     // The integer sum used to determine if you can win a fight
     public int totalPower; 
 
@@ -73,6 +79,19 @@ public class BoxerData
         strength = Mathf.Max(0, strength - strCost);
         agility = Mathf.Max(0, agility - agiCost);
         stamina = Mathf.Max(0, stamina - staCost);
+        
+        UpdateTotal();
+    }
+
+    public void ApplyUnrealizeStats()
+    {
+        strength += unrealizedStrength;
+        agility += unrealizedAgility;
+        stamina += unrealizedStamina;
+        
+        unrealizedStrength = 0;
+        unrealizedAgility = 0;
+        unrealizedStamina = 0;
         
         UpdateTotal();
     }

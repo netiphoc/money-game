@@ -44,22 +44,9 @@ public class IdleProductionManager : MonoBehaviour
                 // 3. Apply Boxer's Personal Multiplier (Pro vs Rookie)
                 float mult = stats.statMultiplier;
                 
-                stats.strength += strGain * mult;
-                stats.agility += agiGain * mult;
-                stats.stamina += staGain * mult;
-
-                // 4. Update Total Power
-                stats.UpdateTotal();
-
-                // Optional: Spawn "+1" floating text here?
-                // Inside ProduceStats loop, after updating stats:
-                if ((strGain > 0 || agiGain > 0))
-                {
-                    // Only spawn text if looking at the room? (Optimization for 16 rooms)
-                    // For now, spawn above boxer head
-                    FloatingTextManager.Instance.ShowWorldText(room.assignedBoxer.transform.position, $"+{strGain+agiGain+staGain}", Color.green);
-                }
-
+                stats.unrealizedStrength += strGain * mult;
+                stats.unrealizedAgility += agiGain * mult;
+                stats.unrealizedStamina += staGain * mult;
             }
         }
     }

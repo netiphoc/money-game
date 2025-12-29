@@ -12,28 +12,30 @@ public class BoxerController : MonoBehaviour
     public AIState currentState = AIState.Idle;
 
     [Header("Assignment")]
-    public GymRoom assignedRoom; // The room this boxer belongs to
+    public GymRoom assignedRoom;
 
     [Header("Visual Settings")]
     public float minTrainTime = 5f;
     public float maxTrainTime = 15f;
     public float restTime = 2f;
 
-    // Internal References
-    private NavMeshAgent agent;
-    [SerializeField] private Animator animator;
+    [Header("References")]
+    public NavMeshAgent agent;
+    public Animator animator; // CHANGED TO PUBLIC for manual assignment
+
+    // Internal
     private TrainingEquipment targetEquipment;
     private Coroutine currentRoutine;
 
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        // Fallback: If you forgot to assign them, try to find them automatically
+        if (agent == null) agent = GetComponent<NavMeshAgent>();
+        if (animator == null) animator = GetComponent<Animator>();
     }
 
     private void Start()
     {
-        // If spawned by Recruitment Manager, we might not have a room yet.
-        // Wait for assignment.
         if (assignedRoom != null)
         {
             StartVisualCycle();
@@ -43,7 +45,6 @@ public class BoxerController : MonoBehaviour
     public void AssignToRoom(GymRoom room)
     {
         assignedRoom = room;
-        // Move to room center logic could go here
         StartVisualCycle();
     }
 
@@ -57,60 +58,104 @@ public class BoxerController : MonoBehaviour
     {
         while (true)
         {
-            // 1. CHECK: Is there equipment in the room?
+            // 1. CHECK: Is there ANY equipment?
             if (assignedRoom == null || assignedRoom.equipmentInRoom.Count == 0)
             {
-                currentState = AIState.Idle;
-                animator.SetBool("IsWalking", false);
-                // Wander randomly or stand still
+                EnterIdleState();
                 yield return new WaitForSeconds(2f);
                 continue; 
             }
 
-            // 2. DECIDE: Pick a random machine
-            // (In a detailed game, you might prioritize machines matching their lowest stat)
+            // 2. DECIDE
             int randomIndex = Random.Range(0, assignedRoom.equipmentInRoom.Count);
             targetEquipment = assignedRoom.equipmentInRoom[randomIndex];
 
             // 3. MOVE
             currentState = AIState.MovingToMachine;
             agent.SetDestination(targetEquipment.interactionPoint.position);
-            animator.SetBool("IsWalking", true);
+            if(animator) animator.SetBool("IsWalking", true);
 
             // Wait until arrived
             while (agent.pathPending || agent.remainingDistance > agent.stoppingDistance)
             {
+                if (!IsTargetValid())
+                {
+                    Debug.Log("Equipment destroyed while walking! Rethinking...");
+                    EnterIdleState(); 
+                    yield break; 
+                }
                 yield return null;
             }
 
             // 4. ARRIVED -> SETUP
-            agent.velocity = Vector3.zero; // Stop sliding
-            animator.SetBool("IsWalking", false);
+            agent.velocity = Vector3.zero; 
+            if(animator) animator.SetBool("IsWalking", false);
             currentState = AIState.TrainingVisual;
 
-            // Snap rotation to face the machine correctly
             transform.rotation = targetEquipment.interactionPoint.rotation;
 
-            // 5. TRAIN (Play Animation)
-            if (!string.IsNullOrEmpty(targetEquipment.animationTrigger))
+            if (animator && !string.IsNullOrEmpty(targetEquipment.animationTrigger))
             {
                 animator.SetTrigger(targetEquipment.animationTrigger);
             }
 
-            // Determine how long to "fake train" for visual variety
-            float duration = Random.Range(minTrainTime, maxTrainTime);
-            yield return new WaitForSeconds(duration);
+            // 5. TRAIN LOOP
+            float trainDuration = Random.Range(minTrainTime, maxTrainTime);
+            float trainTimer = 0f;
 
-            // 6. FINISH -> RESET ANIMATION
-            animator.SetTrigger("StopTraining"); // Ensure your Animator has a generic 'Exit' or 'Idle' trigger
+            while (trainTimer < trainDuration)
+            {
+                trainTimer += Time.deltaTime;
+
+                if (!IsTargetValid())
+                {
+                    StopVisualTraining();
+                    yield break; 
+                }
+                
+                yield return null;
+            }
+
+            // 6. FINISH NORMALLY
+            StopVisualTraining();
             
-            // 7. REST (Brief pause between machines)
+            // Optional: Spawn "+1" floating text here?
+            // Inside ProduceStats loop, after updating stats:
+            if (stats.unrealizedStrength > 0 || stats.unrealizedAgility > 0)
+            {
+                // Only spawn text if looking at the room? (Optimization for 16 rooms)
+                // For now, spawn above boxer head
+                FloatingTextManager.Instance.ShowWorldText(transform.position, $"+{stats.unrealizedStrength+stats.unrealizedAgility+stats.unrealizedStamina}", Color.green);
+                stats.ApplyUnrealizeStats();
+            }
+            
+            // 7. REST
             currentState = AIState.Idle;
             yield return new WaitForSeconds(restTime);
         }
     }
     
-    // Helper used by Fight Manager to reset stats after spending them
+    // --- HELPER METHODS ---
+
+    private bool IsTargetValid()
+    {
+        if (targetEquipment == null) return false;
+        return true;
+    }
+
+    private void EnterIdleState()
+    {
+        currentState = AIState.Idle;
+        if(agent.isOnNavMesh) agent.ResetPath();
+        if(animator) animator.SetBool("IsWalking", false);
+    }
+
+    private void StopVisualTraining()
+    {
+        if(animator) animator.SetTrigger("StopTraining"); 
+        currentState = AIState.Idle;
+    }
+
     public void ResetFuel()
     {
         stats.strength = 0;
