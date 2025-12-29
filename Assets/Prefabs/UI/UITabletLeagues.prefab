@@ -1406,7 +1406,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6588465980455595896, guid: b189ece6f3a14b84881bebf8d70f9709, type: 3}
       propertyPath: m_text
-      value: Power Left
+      value: 'Needed
+
+        Stats'
       objectReference: {fileID: 0}
     - target: {fileID: 6588465980455595896, guid: b189ece6f3a14b84881bebf8d70f9709, type: 3}
       propertyPath: m_fontSize
@@ -1650,7 +1652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5742029669981430180, guid: 2101b2df1b899ba459336152ad89702b, type: 3}
       propertyPath: m_Value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6045780539761251372, guid: 2101b2df1b899ba459336152ad89702b, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1849,7 +1851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2050132927716237430, guid: fc3b553ed2eae6b419d7f172c8b417c8, type: 3}
       propertyPath: m_Value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6824624411555966376, guid: fc3b553ed2eae6b419d7f172c8b417c8, type: 3}
       propertyPath: m_Value

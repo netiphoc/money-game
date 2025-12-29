@@ -13,33 +13,27 @@ public class FightManager : MonoBehaviour
         if (Instance == null) Instance = this;
     }
     
+    public bool CanBeatOpponent(BoxerController playerBoxer, OpponentSO opponent)
+    {
+        return playerBoxer.stats.strength >= opponent.strength &&
+               playerBoxer.stats.agility >= opponent.agility &&
+               playerBoxer.stats.stamina >= opponent.stamina;
+    }
+    
     public bool StartFight(BoxerController playerBoxer, OpponentSO opponent)
     {
-        // ... (Calculate Power logic) ...
-
-        bool IsPlayerWon()
-        {
-            return playerBoxer.stats.strength >= opponent.strength &&
-                   playerBoxer.stats.agility >= opponent.agility &&
-                   playerBoxer.stats.stamina >= opponent.stamina;
-        }
-
         int wonCount = 0;
+        int totalBoxerExp = 0;
+        int totalPlayerExp = 0;
+        int totalMoney = 0;
         
-        while (IsPlayerWon())
+        while (CanBeatOpponent(playerBoxer, opponent))
         {
             wonCount++;
-            // 1. Give Money
-            GameManager.Instance.AddMoney(opponent.moneyReward);
-            
-            // 2. Level Up the BOXER (Unit Progression)
-            // (Assuming BoxerStats has an AddXP method)
-            playerBoxer.stats.AddXP(opponent.boxerXPReward); 
-            
-            // 3. Level Up the PLAYER (Gym Progression)
-            GameManager.Instance.AddPlayerXP(opponent.playerXPReward);
-            
-            Debug.Log($"YOU WON! x{wonCount}");
+
+            totalBoxerExp += opponent.boxerXPReward;
+            totalPlayerExp += opponent.playerXPReward;
+            totalMoney += opponent.moneyReward;
             
             // Reset Boxer Energy/Stats...
             playerBoxer.stats.strength -= opponent.strength;
@@ -49,7 +43,22 @@ public class FightManager : MonoBehaviour
 
         bool playerWon = wonCount > 0;
         
-        if (!playerWon)
+        if (playerWon)
+        {
+            // 1. Give Money
+            GameManager.Instance.AddMoney(totalMoney);
+            
+            // 2. Level Up the BOXER (Unit Progression)
+            // (Assuming BoxerStats has an AddXP method)
+            playerBoxer.stats.AddXP(totalBoxerExp); 
+            
+            // 3. Level Up the PLAYER (Gym Progression)
+            GameManager.Instance.AddPlayerXP(totalPlayerExp);
+            FloatingTextManager.Instance.ShowFixedText($"Win fight +{totalPlayerExp} exp", Color.green);
+
+            Debug.Log($"YOU WON! x{wonCount}");
+        }
+        else
         {
             // Consolation (maybe small XP)
             GameManager.Instance.AddMoney(opponent.moneyReward / 4);
