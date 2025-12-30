@@ -484,7 +484,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f833dd5c2a644be0905892fb89b5349d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StorageShelf
-  allowedItem: {fileID: 11400000, guid: fbc1634050d5411498bf4d4f1e89ad82, type: 2}
+  allowedItems:
+  - {fileID: 11400000, guid: b9088c8144878de4c88b83335b86edb5, type: 2}
+  - {fileID: 11400000, guid: d50fb051066e74c489cab7e4c97fc7a4, type: 2}
+  - {fileID: 11400000, guid: 8739a9ddd974d9342ac805a9c238103a, type: 2}
+  - {fileID: 11400000, guid: 883a55d5abbc90c4cb1e592c9a7560f5, type: 2}
+  - {fileID: 11400000, guid: d3de39af2518c1e4aafa13d21a5435a1, type: 2}
+  - {fileID: 11400000, guid: fbc1634050d5411498bf4d4f1e89ad82, type: 2}
+  - {fileID: 11400000, guid: 477a0f9293411b44ba29719179d24be6, type: 2}
+  - {fileID: 11400000, guid: d7605010966d56a4498713d22e69b4f4, type: 2}
+  - {fileID: 11400000, guid: 40c1fc9ce0b83934f88942b90d12b5b6, type: 2}
+  - {fileID: 11400000, guid: 0c33a694fb98e254e82ab48d1d22f4de, type: 2}
   spawnPoints:
   - {fileID: 5353604323792810277}
   - {fileID: 977536516374102918}

@@ -200,7 +200,10 @@ PrefabInstance:
       addedObject: {fileID: 6969537729000174802}
     - targetCorrespondingSourceObject: {fileID: 2743576261982281347, guid: 92e813de34452e64aac82482859e9665, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3403275727286722303}
+      addedObject: {fileID: 946855997684079128}
+    - targetCorrespondingSourceObject: {fileID: 2743576261982281347, guid: 92e813de34452e64aac82482859e9665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4457556353357096693}
     - targetCorrespondingSourceObject: {fileID: 6514920603451646448, guid: 92e813de34452e64aac82482859e9665, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5310612799128675439}
@@ -245,7 +248,8 @@ MonoBehaviour:
   sleepPerSecond: 0
   hungerPerSecond: 0
   <StorageShelfShelves>k__BackingField:
-  - {fileID: 2336129967182488192}
+  - {fileID: 176392926379943527}
+  - {fileID: 3642619415462042250}
   animationTrigger: Consume
   interactionPoint: {fileID: 6969537729000174802}
   currentRooms: []
@@ -276,7 +280,80 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1001 &5761228813786941645
+--- !u!1001 &6707348343615713479
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1370863033539676578}
+    m_Modifications:
+    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.306
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7129211113293537129, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: m_Name
+      value: Item_StorageShelf (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+--- !u!114 &3642619415462042250 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+  m_PrefabInstance: {fileID: 6707348343615713479}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f833dd5c2a644be0905892fb89b5349d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StorageShelf
+--- !u!4 &4457556353357096693 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+  m_PrefabInstance: {fileID: 6707348343615713479}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7920365724253424682
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -326,61 +403,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7129211113293537129, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
       propertyPath: m_Name
-      value: Item_StorageShelf
+      value: Item_StorageShelf (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: allowedItems.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: 'allowedItems.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: b9088c8144878de4c88b83335b86edb5, type: 2}
-    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: 'allowedItems.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: d50fb051066e74c489cab7e4c97fc7a4, type: 2}
-    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: 'allowedItems.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 8739a9ddd974d9342ac805a9c238103a, type: 2}
-    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: 'allowedItems.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 883a55d5abbc90c4cb1e592c9a7560f5, type: 2}
-    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: 'allowedItems.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: d3de39af2518c1e4aafa13d21a5435a1, type: 2}
-    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: 'allowedItems.Array.data[5]'
-      value: 
-      objectReference: {fileID: 11400000, guid: fbc1634050d5411498bf4d4f1e89ad82, type: 2}
-    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: 'allowedItems.Array.data[6]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 477a0f9293411b44ba29719179d24be6, type: 2}
-    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: 'allowedItems.Array.data[7]'
-      value: 
-      objectReference: {fileID: 11400000, guid: d7605010966d56a4498713d22e69b4f4, type: 2}
-    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: 'allowedItems.Array.data[8]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 40c1fc9ce0b83934f88942b90d12b5b6, type: 2}
-    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-      propertyPath: 'allowedItems.Array.data[9]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 0c33a694fb98e254e82ab48d1d22f4de, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
---- !u!114 &2336129967182488192 stripped
+--- !u!114 &176392926379943527 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-  m_PrefabInstance: {fileID: 5761228813786941645}
+  m_PrefabInstance: {fileID: 7920365724253424682}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -388,8 +421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f833dd5c2a644be0905892fb89b5349d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StorageShelf
---- !u!4 &3403275727286722303 stripped
+--- !u!4 &946855997684079128 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6974143065739384370, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
-  m_PrefabInstance: {fileID: 5761228813786941645}
+  m_PrefabInstance: {fileID: 7920365724253424682}
   m_PrefabAsset: {fileID: 0}
