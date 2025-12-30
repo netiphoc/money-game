@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
+using SaveLoadSystem;
 
-public class LicenseManager : MonoBehaviour
+public class LicenseManager : MonoBehaviour, ISaveLoadSystem
 {
     public static LicenseManager Instance;
 
@@ -19,6 +21,16 @@ public class LicenseManager : MonoBehaviour
         {
             ownedLicenses.Add(allLicenses[0]);
         }
+    }
+
+    private void Start()
+    {
+        LoadGame();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveGame();
     }
 
     public bool IsEquipmentUnlocked(PlaceableDataSO equipment)
@@ -58,6 +70,46 @@ public class LicenseManager : MonoBehaviour
                 ownedLicenses.Add(license);
                 Debug.Log($"Unlocked: {license.licenseName}");
                 // Update Shop UI event
+            }
+        }
+    }
+    
+    [Serializable]
+    public class LicenseSaveData
+    {
+        public string[] licenseIds;
+    }
+
+    public void SaveGame()
+    {
+        List<string> licenses = new List<string>();
+        foreach (var license in ownedLicenses)
+        {
+            licenses.Add(license.licenseName);
+        }
+
+        string jsonLicense = JsonUtility.ToJson(new LicenseSaveData
+        {
+            licenseIds = licenses.ToArray(),
+        });
+        
+        PlayerPrefs.SetString($"{name}_license", jsonLicense);
+    }
+
+    public void LoadGame()
+    {
+        if (PlayerPrefs.HasKey($"{name}_license"))
+        {
+            int skip = ownedLicenses.Count;
+            LicenseSaveData data = JsonUtility.FromJson<LicenseSaveData>(PlayerPrefs.GetString($"{name}_license"));
+            foreach (var licenseId in data.licenseIds)
+            {
+                if(skip-- > 0) continue;
+                foreach (var license in allLicenses)
+                {
+                    if(!license.licenseName.Equals(licenseId)) continue;
+                    ownedLicenses.Add(license);
+                }
             }
         }
     }
