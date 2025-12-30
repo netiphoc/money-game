@@ -51,6 +51,10 @@ namespace UI.Tablet.Management
             {
                 SetOwned();
             }
+            else
+            {
+                buttonBuy.gameObject.SetActive(true);
+            }
         }
 
         private void SetLicenseName(string licenseName)
