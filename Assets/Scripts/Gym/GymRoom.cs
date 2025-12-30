@@ -184,6 +184,10 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
         public string itemId;
         public Vector3 position;
         public Quaternion rotation;
+        
+        // Storage
+        public string[] storageIds;
+        public int[] storageAmount;
     }
     
     [Serializable]
@@ -214,11 +218,29 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
         foreach (var trainingEquipment in equipmentInRoom)
         {
             ItemDataSO itemDataSo = trainingEquipment.LinkedData.linkedItemData;
+            List<string> storageIds = new List<string>(); 
+            List<int> storageAmount = new List<int>();
+
+            foreach (var storageShelf in trainingEquipment.StorageShelfShelves)
+            {
+                if (storageShelf.activeItem == null || storageShelf.GetItemCount() == 0)
+                {
+                    storageIds.Add("null");
+                    storageAmount.Add(0);
+                    continue;
+                }
+                
+                storageIds.Add(storageShelf.activeItem.itemName);
+                storageAmount.Add(storageShelf.GetItemCount());
+            }
+            
             equipmentData.Add(new TrainingEquipmentData
             {
                 itemId = itemDataSo.itemName,
                 position = trainingEquipment.transform.position,
                 rotation = trainingEquipment.transform.rotation,
+                storageIds = storageIds.ToArray(),
+                storageAmount = storageAmount.ToArray(),
             });
         }
 
@@ -265,7 +287,22 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
           {
               ItemDataSO item = SaveSystem.Instance.GetItemDataFromItemName(trainingEquipment.itemId);
               if(item == default) continue;
-              Instantiate(item.itemPrefab, trainingEquipment.position, trainingEquipment.rotation);
+              GameObject obj = Instantiate(item.itemPrefab, trainingEquipment.position, trainingEquipment.rotation);
+              
+              // Save storage items
+              TrainingEquipment equipment = obj.GetComponent<TrainingEquipment>();
+              if (equipment == null) continue;
+              if(equipment.StorageShelfShelves.Length != trainingEquipment.storageIds.Length) continue;
+              if(equipment.StorageShelfShelves.Length != trainingEquipment.storageAmount.Length) continue;
+
+              for (int i = 0; i < equipment.StorageShelfShelves.Length; i++)
+              {
+                  if(trainingEquipment.storageIds.Equals("null")) continue;
+                  ItemDataSO itemDataSo = SaveSystem.Instance.GetItemDataFromItemName(trainingEquipment.storageIds[i]);
+                  if(itemDataSo == default) continue;
+                  StorageShelf storageShelf = equipment.StorageShelfShelves[i];
+                  storageShelf.SetItemStorage(itemDataSo, trainingEquipment.storageAmount[i]);
+              }
           }
         }
     }

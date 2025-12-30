@@ -15,7 +15,7 @@ public class StorageShelf : BaseInteractable
     private float lastStockTime; 
 
     private List<GameObject> stockedItems = new List<GameObject>();
-    private ItemDataSO _activeItem;
+    public ItemDataSO activeItem;
     public event Action<StorageShelf> OnShelfItemAdd;
     public event Action<StorageShelf> OnShelfItemRemove;
 
@@ -36,10 +36,10 @@ public class StorageShelf : BaseInteractable
 
     private void OnGameMinuteTick(string obj)
     {        
-        if(!_activeItem) return;
+        if(!activeItem) return;
         if(stockedItems.Count <= 0) return;
         _consumeTime += 1f;
-        if(_consumeTime <= _activeItem.consumeTimeTick) return;
+        if(_consumeTime <= activeItem.consumeTimeTick) return;
         _consumeTime = 0f;
         RemoveVisualItem();
     }
@@ -57,7 +57,7 @@ public class StorageShelf : BaseInteractable
 
         ItemBox box = player.GetHeldObject().GetComponent<ItemBox>();
 
-        if (_activeItem && _activeItem != box.itemData)
+        if (activeItem && activeItem != box.itemData)
         {
             return;
         }
@@ -66,10 +66,19 @@ public class StorageShelf : BaseInteractable
         {
             if (box.TryTakeItem())
             {
-                _activeItem = box.itemData;
+                activeItem = box.itemData;
                 AddVisualItem();
                 lastStockTime = Time.time;
             }
+        }
+    }
+
+    public void SetItemStorage(ItemDataSO itemDataSo, int amount)
+    {
+        activeItem = itemDataSo;
+        for (int i = 0; i < amount; i++)
+        {
+            AddVisualItem();
         }
     }
 
@@ -95,7 +104,7 @@ public class StorageShelf : BaseInteractable
             ItemBox box = heldObject.GetComponent<ItemBox>();
 
             // Check if box matches item
-            if (box != null && box.itemData == _activeItem)
+            if (box != null && box.itemData == activeItem)
             {
                 if (box.TryAddItem())
                 {
@@ -115,7 +124,7 @@ public class StorageShelf : BaseInteractable
             // 2. Configure the Box
             if (newBox != null)
             {
-                newBox.itemData = _activeItem;
+                newBox.itemData = activeItem;
                 newBox.currentQuantity = 1; // Start with the 1 item we just took
             }
             else
@@ -138,7 +147,7 @@ public class StorageShelf : BaseInteractable
     {
         int index = stockedItems.Count;
         Transform spot = spawnPoints[index];
-        GameObject newItem = Instantiate(_activeItem.itemPrefab, spot.position, spot.rotation);
+        GameObject newItem = Instantiate(activeItem.itemPrefab, spot.position, spot.rotation);
         newItem.transform.SetParent(this.transform); 
         stockedItems.Add(newItem);
         OnShelfItemAdd?.Invoke(this);
@@ -153,7 +162,7 @@ public class StorageShelf : BaseInteractable
 
         if (stockedItems.Count == 0)
         {
-            _activeItem = null;
+            activeItem = null;
             _consumeTime = 0;
         }
         
@@ -164,13 +173,13 @@ public class StorageShelf : BaseInteractable
     
     public bool HasConsumable()
     {
-        if (_activeItem == null || !_activeItem.isConsumable) return false;
+        if (activeItem == null || !activeItem.isConsumable) return false;
         return stockedItems.Count > 0;
     }
 
     public ItemDataSO GetItem()
     {
-        return _activeItem;
+        return activeItem;
     }
     
     public int GetItemCount()
