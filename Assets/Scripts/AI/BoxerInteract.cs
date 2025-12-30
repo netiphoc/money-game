@@ -36,14 +36,12 @@ namespace AI
 
         public override void OnInteract(PlayerInteraction player)
         {
-            Debug.Log($"OnInteract: {_boxerController.stats.boxerName}");
         }
 
         public override void OnAltInteract(PlayerInteraction player)
         {
             if(UIManager.Instance.UITablet.Visible) return;
             UIManager.Instance.UITablet.ShowQuickLeagueBoxer(_boxerController);
-            Debug.Log($"OnAltInteract: {_boxerController.stats.boxerName}");
         }
     }
 }
