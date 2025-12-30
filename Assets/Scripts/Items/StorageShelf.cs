@@ -1,11 +1,12 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class StorageShelf : MonoBehaviour, IInteractable
 {
     [Header("Settings")]
-    public ItemDataSO allowedItem; 
+    public ItemDataSO[] allowedItems; 
     public Transform[] spawnPoints;
     public GameObject itemBoxPrefab; // REFERENCE TO THE CARDBOARD BOX PREFAB
     
@@ -13,7 +14,7 @@ public class StorageShelf : MonoBehaviour, IInteractable
     private float lastStockTime; 
 
     private List<GameObject> stockedItems = new List<GameObject>();
-
+    private ItemDataSO _activeItem;
     public event Action<StorageShelf> OnShelfItemAdd;
     public event Action<StorageShelf> OnShelfItemRemove;
 
@@ -31,9 +32,10 @@ public class StorageShelf : MonoBehaviour, IInteractable
 
     private void OnGameMinuteTick(string obj)
     {        
+        if(!_activeItem) return;
         if(stockedItems.Count <= 0) return;
         _consumeTime += 1f;
-        if(_consumeTime <= allowedItem.consumeTimeTick) return;
+        if(_consumeTime <= _activeItem.consumeTimeTick) return;
         _consumeTime = 0f;
         RemoveVisualItem();
     }
@@ -51,10 +53,16 @@ public class StorageShelf : MonoBehaviour, IInteractable
 
         ItemBox box = player.GetHeldObject().GetComponent<ItemBox>();
 
-        if (box != null && box.itemData == allowedItem && stockedItems.Count < spawnPoints.Length)
+        if (_activeItem && _activeItem != box.itemData)
+        {
+            return;
+        }
+        
+        if (box != null &&  allowedItems.Contains(box.itemData) && stockedItems.Count < spawnPoints.Length)
         {
             if (box.TryTakeItem())
             {
+                _activeItem = box.itemData;
                 AddVisualItem();
                 lastStockTime = Time.time;
             }
@@ -83,7 +91,7 @@ public class StorageShelf : MonoBehaviour, IInteractable
             ItemBox box = heldObject.GetComponent<ItemBox>();
 
             // Check if box matches item
-            if (box != null && box.itemData == allowedItem)
+            if (box != null && box.itemData == _activeItem)
             {
                 if (box.TryAddItem())
                 {
@@ -103,7 +111,7 @@ public class StorageShelf : MonoBehaviour, IInteractable
             // 2. Configure the Box
             if (newBox != null)
             {
-                newBox.itemData = allowedItem;
+                newBox.itemData = _activeItem;
                 newBox.currentQuantity = 1; // Start with the 1 item we just took
             }
             else
@@ -126,7 +134,7 @@ public class StorageShelf : MonoBehaviour, IInteractable
     {
         int index = stockedItems.Count;
         Transform spot = spawnPoints[index];
-        GameObject newItem = Instantiate(allowedItem.itemPrefab, spot.position, spot.rotation);
+        GameObject newItem = Instantiate(_activeItem.itemPrefab, spot.position, spot.rotation);
         newItem.transform.SetParent(this.transform); 
         stockedItems.Add(newItem);
         OnShelfItemAdd?.Invoke(this);
@@ -141,6 +149,7 @@ public class StorageShelf : MonoBehaviour, IInteractable
 
         if (stockedItems.Count == 0)
         {
+            _activeItem = null;
             _consumeTime = 0;
         }
         
@@ -151,13 +160,13 @@ public class StorageShelf : MonoBehaviour, IInteractable
     
     public bool HasConsumable()
     {
-        if (allowedItem == null || !allowedItem.isConsumable) return false;
+        if (_activeItem == null || !_activeItem.isConsumable) return false;
         return stockedItems.Count > 0;
     }
 
     public ItemDataSO GetItem()
     {
-        return allowedItem;
+        return _activeItem;
     }
     
     public int GetItemCount()

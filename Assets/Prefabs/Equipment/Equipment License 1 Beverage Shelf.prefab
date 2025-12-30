@@ -242,6 +242,8 @@ MonoBehaviour:
   strPerSecond: 0
   agiPerSecond: 0
   staPerSecond: 0
+  sleepPerSecond: 0
+  hungerPerSecond: 0
   <StorageShelfShelves>k__BackingField:
   - {fileID: 2336129967182488192}
   animationTrigger: Consume
@@ -326,6 +328,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item_StorageShelf
       objectReference: {fileID: 0}
+    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: allowedItems.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: 'allowedItems.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b9088c8144878de4c88b83335b86edb5, type: 2}
+    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: 'allowedItems.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d50fb051066e74c489cab7e4c97fc7a4, type: 2}
+    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: 'allowedItems.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8739a9ddd974d9342ac805a9c238103a, type: 2}
+    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: 'allowedItems.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 883a55d5abbc90c4cb1e592c9a7560f5, type: 2}
+    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: 'allowedItems.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d3de39af2518c1e4aafa13d21a5435a1, type: 2}
+    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: 'allowedItems.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: fbc1634050d5411498bf4d4f1e89ad82, type: 2}
+    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: 'allowedItems.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 477a0f9293411b44ba29719179d24be6, type: 2}
+    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: 'allowedItems.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d7605010966d56a4498713d22e69b4f4, type: 2}
+    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: 'allowedItems.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 40c1fc9ce0b83934f88942b90d12b5b6, type: 2}
+    - target: {fileID: 8041290139966286413, guid: 57cc78459cf9516429e715aafa8ec6d5, type: 3}
+      propertyPath: 'allowedItems.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c33a694fb98e254e82ab48d1d22f4de, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
