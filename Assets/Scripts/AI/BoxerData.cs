@@ -25,16 +25,6 @@ public class BoxerData
     public float unrealizedSleep;
     public float unrealizedHunger;
 
-    [Header("Progression")]
-    public int level = 1;          // Gates which Opponents can be fought
-    public float currentXP = 0;
-    public float xpToNextLevel = 100;
-
-    [Header("Job Details")]
-    public int hiringCost;         // Cost to Recruit
-    public int dailySalary;        // Passive maintenance cost (optional)
-    public float statMultiplier = 1.0f; // Rarity Factor (e.g. 1.0 = Rookie, 1.5 = Pro)
-    
     [Header("Survival Stats (0-100)")]
     public float hunger = 100f;
     public float sleep = 100f;
@@ -43,6 +33,11 @@ public class BoxerData
     public float hungerDecayRate = 0.5f; // Lose 1 hunger every 2 seconds
     public float sleepDecayRate = 0.2f;  // Lose 1 sleep every 5 seconds
     
+    [Header("Progression")]
+    public int level = 1;          // Gates which Opponents can be fought
+    public float currentXP = 0;
+    public float xpToNextLevel = 100;
+
     public event Action<float> OnExpChanged;
     public event Action<int> OnLevelChanged;
 

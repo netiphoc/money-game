@@ -42,7 +42,7 @@ public class IdleProductionManager : MonoBehaviour
                 float hungerGain = room.totalHungerRate;
 
                 // 3. Apply Boxer's Personal Multiplier (Pro vs Rookie)
-                float mult = stats.statMultiplier * survivalMult;
+                float mult = survivalMult;
                 
                 stats.unrealizedStrength += strGain * mult;
                 stats.unrealizedAgility += agiGain * mult;
