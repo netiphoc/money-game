@@ -30,9 +30,9 @@ namespace UI.Gameplay
             if (visible && _boxerController)
             {
                 textName.SetText($"{_boxerController.stats.boxerName}");
-                textStr.SetText($"STR: {_boxerController.stats.strength}");
-                textAgil.SetText($"AGIL: {_boxerController.stats.agility}");
-                textSta.SetText($"STA: {_boxerController.stats.stamina}");
+                textStr.SetText($"STR: {_boxerController.stats.strength:F0}");
+                textAgil.SetText($"AGIL: {_boxerController.stats.agility:F0}");
+                textSta.SetText($"STA: {_boxerController.stats.stamina:F0}");
                 textLevel.SetText($"LEVEL: {_boxerController.stats.level}");
                 expBar.SetBar(Mathf.Min(_boxerController.stats.currentXP, _boxerController.stats.xpToNextLevel), _boxerController.stats.xpToNextLevel);
                 hungerBar.SetBar(Mathf.Min(_boxerController.stats.hunger, MaxValue), MaxValue);

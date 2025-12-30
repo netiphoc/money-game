@@ -69,16 +69,13 @@ public class GymRoom : MonoBehaviour
         totalSleepRate = 0;
         totalHungerRate = 0;
 
+        List<PlaceableDataSO> addedItems = new List<PlaceableDataSO>();
         foreach (var equip in equipmentInRoom)
         {
-            totalStrRate += equip.strPerSecond;
-            totalAgiRate += equip.agiPerSecond;
-            totalStaRate += equip.staPerSecond;
-            totalSleepRate += equip.sleepPerSecond;
-            totalHungerRate += equip.hungerPerSecond;
+            bool hasShelf = equip.TryGetConsumableShelf(out StorageShelf[] shelves);
             
             // Check consume able
-            if (equip.TryGetConsumableShelf(out StorageShelf[] shelves))
+            if (hasShelf)
             {
                 foreach (var shelf in shelves)
                 {
@@ -98,6 +95,20 @@ public class GymRoom : MonoBehaviour
                     totalHungerRate += itemDataSo.GetHungerBonus();
                 }
             }
+            
+            // Check if not shelf will no duplicate placement
+            if (!hasShelf && equip.LinkedData != null)
+            {
+                // No place duplicated item
+                if(addedItems.Contains(equip.LinkedData)) continue;
+                addedItems.Add(equip.LinkedData);
+            }
+            
+            totalStrRate += equip.strPerSecond;
+            totalAgiRate += equip.agiPerSecond;
+            totalStaRate += equip.staPerSecond;
+            totalSleepRate += equip.sleepPerSecond;
+            totalHungerRate += equip.hungerPerSecond;
         }
 
         // Optional: Apply License Multipliers here

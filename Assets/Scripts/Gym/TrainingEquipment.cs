@@ -20,7 +20,13 @@ public class TrainingEquipment : MonoBehaviour
     public List<GymRoom> currentRooms = new List<GymRoom>();
 
     public event Action<StorageShelf> OnStorageShelfUpdated;
-    
+    public PlaceableDataSO LinkedData;
+
+    private void Awake()
+    {
+        LinkedData = GetComponent<MoveableFurniture>().data;
+    }
+
     private void OnEnable()
     {
         foreach (var storageShelf in StorageShelfShelves)
@@ -39,6 +45,15 @@ public class TrainingEquipment : MonoBehaviour
         }
     }
 
+    // --- CLEANUP LOGIC ---
+    private void OnDestroy()
+    {
+        foreach (var t in currentRooms)
+        {
+            t.RemoveEquipment(this);
+        }
+    }
+    
     private void OnShelfItemAdd(StorageShelf storageShelf)
     {
         OnStorageShelfUpdated?.Invoke(storageShelf);
@@ -47,15 +62,6 @@ public class TrainingEquipment : MonoBehaviour
     private void OnShelfItemRemove(StorageShelf storageShelf)
     {
         OnStorageShelfUpdated?.Invoke(storageShelf);
-    }
-
-    // --- CLEANUP LOGIC ---
-    private void OnDestroy()
-    {
-        foreach (var t in currentRooms)
-        {
-            t.RemoveEquipment(this);
-        }
     }
 
     public bool TryGetConsumableShelf(out StorageShelf[] storageShelfShelves)
