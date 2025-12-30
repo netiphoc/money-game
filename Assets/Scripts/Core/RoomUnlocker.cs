@@ -1,23 +1,17 @@
-﻿using System;
-using Data;
-using Systems;
+﻿using Systems;
 using UnityEngine;
-using TMPro;
 using UI;
+using UI.RecruitBoxer;
 using Utilities;
 
 public class RoomUnlocker : BaseInteractable
 {
     [Header("Settings")] 
     [SerializeField] private GymRoom gymRoom;
+    [SerializeField] private UIRecruitBoxerUnlocker uiRecruitBoxerUnlocker;
 
     [Header("References")]
     public GameObject doorBarrier;
-    public GameObject forSaleSign;
-    public TMP_Text priceText;
-    public TMP_Text levelText;
-    public GameObject lockIcon;
-
 
     protected override void Start()
     {
@@ -63,6 +57,8 @@ public class RoomUnlocker : BaseInteractable
 
     public override void OnInteract(PlayerInteraction player)
     {
+        // Check GLOBAL Player Level
+        if (GameManager.Instance.playerLevel < gymRoom.RoomDataSo.requiredGymLevel) return;
         if(UIManager.Instance.UIRecruitBoxer.Visible) return;
         UIManager.Instance.ShowGymUnlock(gymRoom, true);
     }
@@ -72,19 +68,21 @@ public class RoomUnlocker : BaseInteractable
     private void OnRoomUnlocked(GymRoom obj)
     {
         doorBarrier.SetActive(false);
-        forSaleSign.SetActive(false);
+        uiRecruitBoxerUnlocker.SetVisible(false);
         UIManager.Instance.ShowGymUnlock(default, false);
     }
 
     private void UpdateVisuals()
     {
-        levelText.SetText($"Requires Level: {gymRoom.RoomDataSo.requiredGymLevel}");
-        if (priceText) priceText.text = gymRoom.RoomDataSo.unlockCost.ToMoneyFormat();
-        
-        // Show Lock Icon if Player Level is too low
-        if (lockIcon)
+        bool isCanUnlock = GameManager.Instance.playerLevel >= gymRoom.RoomDataSo.requiredGymLevel;
+        if (isCanUnlock)
         {
-            lockIcon.SetActive(GameManager.Instance.playerLevel < gymRoom.RoomDataSo.requiredGymLevel);
+            uiRecruitBoxerUnlocker.SetUnlock();
+            uiRecruitBoxerUnlocker.SetPrice(gymRoom.RoomDataSo.unlockCost);
+        }
+        else
+        {
+            uiRecruitBoxerUnlocker.SetLockLevel(gymRoom.RoomDataSo.requiredGymLevel);
         }
     }
 }

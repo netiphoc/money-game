@@ -13,13 +13,22 @@ namespace UI.RecruitBoxer
         [Header("Boxer")] 
         [SerializeField] private BoxerController boxerPrefab;
         [SerializeField] private BoxerData[] boxers;
-        
+
         private GymRoom _gymRoom;
-        
+
         protected override void Awake()
         {
             base.Awake();
-            InitRecruit();
+            
+            foreach (var boxer in boxers)
+            {
+                UIRecruitBoxerSlot slot = Instantiate(uiRecruitBoxerSlot, containerSlot);
+                boxer.hunger = 100;
+                boxer.sleep = 100;
+                boxer.level = 1;
+                slot.SetBoxer(boxer);
+                slot.OnClickUnlock = OnClickUnlock;
+            }
         }
 
         protected override void OnEnable()
@@ -34,19 +43,14 @@ namespace UI.RecruitBoxer
             closeButton.onClick.AddListener(OnButtonClickedClose);
         }
         
+        public void SetRecruitBoxer(GymRoom gymRoom)
+        {
+            _gymRoom = gymRoom;
+        }
+        
         private void OnButtonClickedClose()
         {
             UIManager.Instance.ShowGymUnlock(_gymRoom,false);
-        }
-
-        private void InitRecruit()
-        {
-            foreach (var boxer in boxers)
-            {
-                UIRecruitBoxerSlot slot = Instantiate(uiRecruitBoxerSlot, containerSlot);
-                slot.SetBoxer(boxer);
-                slot.OnClickUnlock = OnClickUnlock;
-            }
         }
 
         private void OnClickUnlock(BoxerData boxer)
@@ -74,11 +78,6 @@ namespace UI.RecruitBoxer
                 _gymRoom.assignedBoxer = controller;
                 controller.AssignToRoom(_gymRoom);
             }
-        }
-
-        public void SetRecruitBoxer(GymRoom gymRoom)
-        {
-            _gymRoom = gymRoom;
         }
     }
 }

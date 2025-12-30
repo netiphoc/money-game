@@ -34,6 +34,7 @@ namespace UI.RecruitBoxer
         public void SetBoxer(BoxerData boxerData)
         {
             _boxer = boxerData;
+
             icoAvatar.sprite = boxerData.avatar;
             textName.SetText($"{boxerData.boxerName}");
         }
