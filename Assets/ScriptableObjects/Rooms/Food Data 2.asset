@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Data.RoomDataSO
   sectionData: {fileID: 11400000, guid: 12f6c859820e05a47a34cbd7d3ca3e1d, type: 2}
   roomName: Food 2
+  requiredGymLevel: 0
+  unlockCost: 0
   licenses:
   - {fileID: 11400000, guid: 68b582ac30358e7448a191d0bb4616ad, type: 2}
   - {fileID: 11400000, guid: 16ec5fd7b4dccb640b5536ccca1cf730, type: 2}
@@ -21,8 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6eb39de3a0bbc074cabe663505a5c7cf, type: 2}
   - {fileID: 11400000, guid: 58665993140d8124889961292c2c6b6d, type: 2}
   - {fileID: 11400000, guid: b5418fb2546a89c4a82df509d1b16aea, type: 2}
-  - {fileID: 11400000, guid: 1f6e0c12df39faf4ea326fc69049c5b9, type: 2}
-  furnitures:
-  - {fileID: 11400000, guid: 23659edb9f688e14c978f878c5220f83, type: 2}
-  - {fileID: 11400000, guid: 23659edb9f688e14c978f878c5220f83, type: 2}
-  - {fileID: 11400000, guid: 23c59b7d49d355c49b5245ec31948264, type: 2}
+  furnitures: []

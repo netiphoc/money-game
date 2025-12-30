@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb06aa1d7db14a73874ce9078b39905d, type: 3}
+  m_Name: License 1 Vending Machine
+  m_EditorClassIdentifier: Assembly-CSharp::LicenseDataSO
+  icon: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
+  licenseName: License 1 Vending Machine
+  description: 
+  cost: 50
+  requiredBoxerLevel: 1
+  unlockedEquipment:
+  - {fileID: 11400000, guid: 583ef79ee6edc744a8c3bbf162f83490, type: 2}
+  - {fileID: 11400000, guid: 00f3b2c62fec99546a9122455b1bf411, type: 2}
+  - {fileID: 11400000, guid: 836078d7abb348d418b128a702978890, type: 2}

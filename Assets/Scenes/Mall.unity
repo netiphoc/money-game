@@ -3529,8 +3529,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 68b582ac30358e7448a191d0bb4616ad, type: 2}
   - {fileID: 11400000, guid: 16ec5fd7b4dccb640b5536ccca1cf730, type: 2}
   - {fileID: 11400000, guid: 53f8f497a0ff8c847a0abe8f560de095, type: 2}
+  - {fileID: 11400000, guid: 1fa86901d6ea7ae41b6c728de927ad3c, type: 2}
+  - {fileID: 11400000, guid: 6d9f66034cfb8134e80e0fa57ecdca9a, type: 2}
+  - {fileID: 11400000, guid: a9749e77460385e43a19e6652cf4f107, type: 2}
+  - {fileID: 11400000, guid: 5b227061ad4914f4085c65930441af47, type: 2}
   ownedLicenses:
   - {fileID: 11400000, guid: 68b582ac30358e7448a191d0bb4616ad, type: 2}
+  - {fileID: 11400000, guid: 1fa86901d6ea7ae41b6c728de927ad3c, type: 2}
 --- !u!1001 &1943333280
 PrefabInstance:
   m_ObjectHideFlags: 0

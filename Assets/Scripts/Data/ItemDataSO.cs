@@ -18,6 +18,8 @@ public class ItemDataSO : ScriptableObject
     public float strBonus; 
     public float agiBonus;
     public float staBonus;
+    public float hungerBonus;
+    public float sleepBonus; 
     
     [Header("Deployment")]
     // If this is set, this item can be taken out and placed as furniture!

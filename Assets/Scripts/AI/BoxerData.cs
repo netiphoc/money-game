@@ -14,7 +14,6 @@ public class BoxerData
     public float agility;
     public float stamina;
     
-    
     // The integer sum used to determine if you can win a fight
     public int totalPower; 
     
@@ -23,6 +22,8 @@ public class BoxerData
     public float unrealizedStrength;
     public float unrealizedAgility;
     public float unrealizedStamina;
+    public float unrealizedSleep;
+    public float unrealizedHunger;
 
     [Header("Progression")]
     public int level = 1;          // Gates which Opponents can be fought
@@ -33,6 +34,15 @@ public class BoxerData
     public int hiringCost;         // Cost to Recruit
     public int dailySalary;        // Passive maintenance cost (optional)
     public float statMultiplier = 1.0f; // Rarity Factor (e.g. 1.0 = Rookie, 1.5 = Pro)
+    
+    [Header("Survival Stats (0-100)")]
+    public float hunger = 100f;
+    public float sleep = 100f;
+    
+    // Decay Rates (How fast they get hungry)
+    public float hungerDecayRate = 0.5f; // Lose 1 hunger every 2 seconds
+    public float sleepDecayRate = 0.2f;  // Lose 1 sleep every 5 seconds
+    
     public event Action<float> OnExpChanged;
     public event Action<int> OnLevelChanged;
 
@@ -90,10 +100,41 @@ public class BoxerData
         agility += unrealizedAgility;
         stamina += unrealizedStamina;
         
+        sleep += unrealizedSleep;
+        hunger += unrealizedHunger;
+        
         unrealizedStrength = 0;
         unrealizedAgility = 0;
         unrealizedStamina = 0;
+        unrealizedSleep = 0;
+        unrealizedHunger = 0;
         
         UpdateTotal();
     }
+
+    #region Food
+    public void TickSurvival()
+    {
+        // 1. Natural Decay
+        hunger = Mathf.Max(0, hunger - hungerDecayRate);
+        sleep = Mathf.Max(0, sleep - sleepDecayRate);
+    }
+
+    // Call this in IdleProductionManager to get the penalty multiplier
+    public float GetEfficiencyMultiplier()
+    {
+        float mult = 1.0f;
+
+        // Hunger Penalty
+        if (hunger <= 0) mult *= 0.1f;       // Starving: 10% speed
+        else if (hunger < 20) mult *= 0.5f;  // Hungry: 50% speed
+
+        // Sleep Penalty
+        if (sleep <= 0) mult *= 0.0f;        // Asleep: 0% speed (Stops working)
+        else if (sleep < 15) mult *= 0.25f;  // Exhausted: 25% speed
+
+        return mult;
+    }
+    
+    #endregion
 }

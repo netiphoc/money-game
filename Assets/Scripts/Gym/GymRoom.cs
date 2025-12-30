@@ -18,6 +18,8 @@ public class GymRoom : MonoBehaviour
     public float totalStrRate;
     public float totalAgiRate;
     public float totalStaRate;
+    public float totalSleepRate;
+    public float totalHungerRate;
     public event Action<GymRoom> OnRoomUnlocked;
     public bool IsUnlocked { get; private set; }
 
@@ -64,12 +66,16 @@ public class GymRoom : MonoBehaviour
         totalStrRate = 0;
         totalAgiRate = 0;
         totalStaRate = 0;
+        totalSleepRate = 0;
+        totalHungerRate = 0;
 
         foreach (var equip in equipmentInRoom)
         {
             totalStrRate += equip.strPerSecond;
             totalAgiRate += equip.agiPerSecond;
             totalStaRate += equip.staPerSecond;
+            totalSleepRate += equip.sleepPerSecond;
+            totalHungerRate += equip.hungerPerSecond;
             
             // Check consume able
             if (equip.TryGetConsumableShelf(out StorageShelf[] shelves))
@@ -84,6 +90,8 @@ public class GymRoom : MonoBehaviour
                         totalStrRate += itemDataSo.strBonus;
                         totalAgiRate += itemDataSo.agiBonus;
                         totalStaRate += itemDataSo.staBonus;
+                        totalSleepRate += itemDataSo.sleepBonus;
+                        totalHungerRate += itemDataSo.hungerBonus;
                     }
                 }
             }
