@@ -1,4 +1,5 @@
 ﻿using UI.Gameplay;
+using UI.RecruitBoxer;
 using UI.Tablet;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,8 +17,10 @@ namespace UI
         public UITablet UITablet { get; private set; }
         [field: SerializeField] public UIBoxerStat UIBoxerStat { get; private set; }
         [field: SerializeField] public UIHoverKey UIHoverKey { get; private set; }
+        [field: SerializeField] public UIRecruitBoxer UIRecruitBoxer { get; private set; }
         
         private bool _isTabletOpen;
+        private bool _isRecruitOpen;
 
         private void Awake()
         {
@@ -38,6 +41,12 @@ namespace UI
         {
             if (toggleTabletInput.action.WasPerformedThisFrame())
             {
+                if (_isRecruitOpen)
+                {
+                    ShowGymUnlock(default, false);
+                    return;
+                }
+
                 ToggleTablet();
             }
         }
@@ -55,24 +64,37 @@ namespace UI
             _isTabletOpen = isTabletOpen;
             UITablet.SetVisible(isTabletOpen);
 
-            GameManager.Instance.SetAllowPlayerInteraction(!isTabletOpen);
+            SetUIInteractMode(isTabletOpen);
+        }
 
-            if (isTabletOpen)
+        public void ShowGymUnlock(GymRoom gymRoom, bool show)
+        {
+            _isRecruitOpen = show;
+            SetUIInteractMode(show);
+
+            if (show)
+            {            
+                UIRecruitBoxer.SetRecruitBoxer(gymRoom);
+                UIRecruitBoxer.SetVisible(true);
+                return;
+            }
+            
+            UIRecruitBoxer.SetVisible(false);
+        }
+
+        private void SetUIInteractMode(bool uiInteractMode)
+        {
+            GameManager.Instance.SetAllowPlayerInteraction(!uiInteractMode);
+            
+            if (uiInteractMode)
             {
-                // Unlock Cursor so we can click
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                // Pause Player Interaction? (Optional, but good practice)
-                // FindObjectOfType<PlayerInteraction>().enabled = false; 
+                return;
             }
-            else
-            {
-                // Lock Cursor back
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
             
-                // FindObjectOfType<PlayerInteraction>().enabled = true;
-            }
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }

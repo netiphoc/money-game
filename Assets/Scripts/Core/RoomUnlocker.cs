@@ -3,12 +3,12 @@ using Data;
 using Systems;
 using UnityEngine;
 using TMPro;
+using UI;
 using Utilities;
 
 public class RoomUnlocker : BaseInteractable
 {
     [Header("Settings")] 
-    [SerializeField] private RoomDataSO roomDataSo;
     [SerializeField] private GymRoom gymRoom;
 
     [Header("References")]
@@ -26,6 +26,7 @@ public class RoomUnlocker : BaseInteractable
         UpdateVisuals();
         GameManager.Instance.OnLevelChanged += OnLevelChanged;
         GameManager.Instance.OnMoneyChanged += OnMoneyChanged;
+        gymRoom.OnRoomUnlocked += OnRoomUnlocked;
     }
 
     protected override void OnDestroy()
@@ -34,6 +35,7 @@ public class RoomUnlocker : BaseInteractable
         
         GameManager.Instance.OnLevelChanged -= OnLevelChanged;
         GameManager.Instance.OnMoneyChanged -= OnMoneyChanged;
+        gymRoom.OnRoomUnlocked -= OnRoomUnlocked;
     }
 
     private void OnLevelChanged(int obj)
@@ -51,46 +53,38 @@ public class RoomUnlocker : BaseInteractable
         if (gymRoom.IsUnlocked) return "";
 
         // Check GLOBAL Player Level
-        if (GameManager.Instance.playerLevel < roomDataSo.requiredGymLevel)
+        if (GameManager.Instance.playerLevel < gymRoom.RoomDataSo.requiredGymLevel)
         {
-            return $"Requires Gym Level {roomDataSo.requiredGymLevel}";
+            return $"Requires Gym Level {gymRoom.RoomDataSo.requiredGymLevel}";
         }
 
-        return $"Press E to Buy Room ({roomDataSo.unlockCost.ToMoneyFormat()})";
+        return $"Press E to Buy Room ({gymRoom.RoomDataSo.unlockCost.ToMoneyFormat()})";
     }
 
     public override void OnInteract(PlayerInteraction player)
     {
-        if (gymRoom.IsUnlocked) return;
-
-        // 1. Check Player Level
-        if (GameManager.Instance.playerLevel < roomDataSo.requiredGymLevel) return;
-
-        // 2. Check Money
-        if (GameManager.Instance.TrySpendMoney(roomDataSo.unlockCost))
-        {
-            Unlock();
-        }
+        if(UIManager.Instance.UIRecruitBoxer.Visible) return;
+        UIManager.Instance.ShowGymUnlock(gymRoom, true);
     }
 
     public override void OnAltInteract(PlayerInteraction player) { }
 
-    private void Unlock()
+    private void OnRoomUnlocked(GymRoom obj)
     {
         doorBarrier.SetActive(false);
         forSaleSign.SetActive(false);
-        gymRoom.UnlockRoom(gymRoom);
+        UIManager.Instance.ShowGymUnlock(default, false);
     }
 
     private void UpdateVisuals()
     {
-        levelText.SetText($"Requires Level: {roomDataSo.requiredGymLevel}");
-        if (priceText) priceText.text = roomDataSo.unlockCost.ToMoneyFormat();
+        levelText.SetText($"Requires Level: {gymRoom.RoomDataSo.requiredGymLevel}");
+        if (priceText) priceText.text = gymRoom.RoomDataSo.unlockCost.ToMoneyFormat();
         
         // Show Lock Icon if Player Level is too low
         if (lockIcon)
         {
-            lockIcon.SetActive(GameManager.Instance.playerLevel < roomDataSo.requiredGymLevel);
+            lockIcon.SetActive(GameManager.Instance.playerLevel < gymRoom.RoomDataSo.requiredGymLevel);
         }
     }
 }

@@ -1,11 +1,15 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Data;
 
 public class GymRoom : MonoBehaviour
 {
     [SerializeField] private GymRoomEquipmentDetector gymRoomEquipmentDetector;
-        
+
+    [field: SerializeField] public Transform SpawnPoint { get; private set; } 
+    [field: SerializeField] public RoomDataSO RoomDataSo { get; private set; } 
+
     [Header("Room Info")]
     public BoxerController assignedBoxer;
     public List<TrainingEquipment> equipmentInRoom = new List<TrainingEquipment>();
@@ -156,9 +160,9 @@ public class GymRoom : MonoBehaviour
         RecalculateRates();
     }
 
-    public void UnlockRoom(GymRoom gymRoom)
+    public void UnlockRoom()
     {
         IsUnlocked = true;
-        OnRoomUnlocked?.Invoke(gymRoom);
+        OnRoomUnlocked?.Invoke(this);
     }
 }
