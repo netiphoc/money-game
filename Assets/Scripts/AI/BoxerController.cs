@@ -111,6 +111,7 @@ public class BoxerController : MonoBehaviour
                 if (!IsTargetValid())
                 {
                     StopVisualTraining();
+                    StartVisualCycle();
                     yield break; 
                 }
                 
