@@ -1,7 +1,4 @@
-﻿using Player;
-using UnityEngine;
-
-// This interface defines what any interactive object MUST have
+﻿// This interface defines what any interactive object MUST have
 public interface IInteractable
 {
     // The text that appears on UI (e.g., "Press E to Open", "Hold Click to Carry")
