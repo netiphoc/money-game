@@ -3,6 +3,7 @@ using System;
 using Core;
 using SaveLoadSystem;
 using StarterAssets;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour, ISaveLoadSystem
 {
@@ -39,11 +40,11 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
         LoadGame();
     }
 
-    private void OnDestroy()
+    private void OnApplicationQuit()
     {
         SaveGame();
     }
-
+    
     #region ECONOMY
 
     public bool TrySpendMoney(int amount)

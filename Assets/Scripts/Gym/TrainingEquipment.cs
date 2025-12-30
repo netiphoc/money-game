@@ -44,8 +44,7 @@ public class TrainingEquipment : MonoBehaviour
             storageShelf.OnShelfItemRemove -= OnShelfItemRemove;
         }
     }
-
-    // --- CLEANUP LOGIC ---
+    
     private void OnDestroy()
     {
         foreach (var t in currentRooms)

@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Data;
 using SaveLoadSystem;
+using UnityEngine.InputSystem;
 
 public class GymRoom : MonoBehaviour, ISaveLoadSystem
 {
@@ -42,6 +43,11 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
         LoadGame();
     }
 
+    private void OnApplicationQuit()
+    {
+        SaveGame();
+    }
+
     private void OnDestroy()
     {
         if (gymRoomEquipmentDetector)
@@ -49,8 +55,6 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
             gymRoomEquipmentDetector.onRoomTriggerEnter.RemoveListener(OnTriggerEnter);
             gymRoomEquipmentDetector.onRoomTriggerExit.RemoveListener(OnTriggerExit);
         }
-        
-        SaveGame();
     }
 
     // --- NEW: CAPACITY CHECK ---
@@ -173,6 +177,20 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
         IsUnlocked = true;
         OnRoomUnlocked?.Invoke(this);
     }
+    
+    [Serializable]
+    public class TrainingEquipmentData
+    {
+        public string itemId;
+        public Vector3 position;
+        public Quaternion rotation;
+    }
+    
+    [Serializable]
+    public class TrainingEquipmentGroupData
+    {
+        public TrainingEquipmentData[] data;
+    }
 
     public void SaveGame()
     {
@@ -189,6 +207,27 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
             PlayerPrefs.SetFloat($"{name}_currentXP", assignedBoxer.stats.currentXP);
             PlayerPrefs.SetFloat($"{name}_xpToNextLevel", assignedBoxer.stats.xpToNextLevel);
         }
+        
+        // Equipment
+        List<TrainingEquipmentData> equipmentData = new List<TrainingEquipmentData>();
+            
+        foreach (var trainingEquipment in equipmentInRoom)
+        {
+            ItemDataSO itemDataSo = trainingEquipment.LinkedData.linkedItemData;
+            equipmentData.Add(new TrainingEquipmentData
+            {
+                itemId = itemDataSo.itemName,
+                position = trainingEquipment.transform.position,
+                rotation = trainingEquipment.transform.rotation,
+            });
+        }
+
+        string equipmentJson = JsonUtility.ToJson(new TrainingEquipmentGroupData
+        {
+            data = equipmentData.ToArray(),
+        });
+
+        PlayerPrefs.SetString($"{name}_equipmentInRoom", equipmentJson);
     }
 
     public void LoadGame()
@@ -216,5 +255,18 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
             boxerController.assignedRoom = this;
         }
         
+        // Equipment
+        if (PlayerPrefs.HasKey($"{name}_equipmentInRoom"))
+        {
+          string json = PlayerPrefs.GetString($"{name}_equipmentInRoom");
+          TrainingEquipmentGroupData data = JsonUtility.FromJson<TrainingEquipmentGroupData>(json);
+
+          foreach (var trainingEquipment in data.data)
+          {
+              ItemDataSO item = SaveSystem.Instance.GetItemDataFromItemName(trainingEquipment.itemId);
+              if(item == default) continue;
+              Instantiate(item.itemPrefab, trainingEquipment.position, trainingEquipment.rotation);
+          }
+        }
     }
 }

@@ -531,7 +531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8164563376980701718, guid: 652766bc980477d4299e7ef5d62a1327, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.66
+      value: 0.3199997
       objectReference: {fileID: 0}
     - target: {fileID: 8164563376980701718, guid: 652766bc980477d4299e7ef5d62a1327, type: 3}
       propertyPath: m_LocalPosition.y
@@ -646,6 +646,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveLoadSystem.SaveSystem
   boxerControllerPrefab: {fileID: 9103484075892342616, guid: 286a7bd55548cf745acc8b1dc923a11a, type: 3}
+  allItems:
+  - {fileID: 11400000, guid: 8164d4e89247152489ca9f541a39554a, type: 2}
+  - {fileID: 11400000, guid: d3ff3a933ea2aa14eaa7fcd80f32248f, type: 2}
+  - {fileID: 11400000, guid: 8139508756c296f4fbdd9be7cc1f7f33, type: 2}
+  - {fileID: 11400000, guid: 7d6f0bc9dadec7d4f8fa6653074b23b5, type: 2}
+  - {fileID: 11400000, guid: 6db465c9c98c4884698a50257f355fda, type: 2}
+  - {fileID: 11400000, guid: 55159b886ba7b8c45bcd0e4062bea42b, type: 2}
+  - {fileID: 11400000, guid: 9b9ed9b2ad3bd1648a94dba369b2391b, type: 2}
+  - {fileID: 11400000, guid: 2bf8b9463f5c66c40b9dc18e915a1b1c, type: 2}
+  - {fileID: 11400000, guid: f6beae3122d161a4ea25d53cfe6234ec, type: 2}
+  - {fileID: 11400000, guid: 404c8b6bdeb9f6748b00ee763c628eb0, type: 2}
+  - {fileID: 11400000, guid: 7d0665018962c9f47a6c12879cd9496b, type: 2}
+  - {fileID: 11400000, guid: bd0d9d5fdbef3064dbabdda62070ce28, type: 2}
+  - {fileID: 11400000, guid: 5fb717ff4a89b9f42be65734a99c7837, type: 2}
+  - {fileID: 11400000, guid: 1571a92191700524cb7b389f7b092c55, type: 2}
+  - {fileID: 11400000, guid: 9d6239fcfb33c004d8eade5cca20dc7d, type: 2}
+  - {fileID: 11400000, guid: 1318ffa3ed32a0e4b8e6e7cbc7259225, type: 2}
+  - {fileID: 11400000, guid: a36bf80d93c966f488b8df921d3251e2, type: 2}
+  - {fileID: 11400000, guid: 5116ff3d24fbf8d4487e49958fbee991, type: 2}
+  - {fileID: 11400000, guid: b156864dd95d2b448ad0851c3b841297, type: 2}
+  - {fileID: 11400000, guid: bcb5813ed8333d34fa0dfdaf292cd42f, type: 2}
+  - {fileID: 11400000, guid: 8e2d59e888934784b87a1fb4cdd0f8c2, type: 2}
+  - {fileID: 11400000, guid: 00743bc95a556a949809c0e26b7f2746, type: 2}
+  - {fileID: 11400000, guid: b9088c8144878de4c88b83335b86edb5, type: 2}
+  - {fileID: 11400000, guid: d50fb051066e74c489cab7e4c97fc7a4, type: 2}
+  - {fileID: 11400000, guid: 8739a9ddd974d9342ac805a9c238103a, type: 2}
+  - {fileID: 11400000, guid: 883a55d5abbc90c4cb1e592c9a7560f5, type: 2}
+  - {fileID: 11400000, guid: d3de39af2518c1e4aafa13d21a5435a1, type: 2}
+  - {fileID: 11400000, guid: fbc1634050d5411498bf4d4f1e89ad82, type: 2}
+  - {fileID: 11400000, guid: 477a0f9293411b44ba29719179d24be6, type: 2}
+  - {fileID: 11400000, guid: d7605010966d56a4498713d22e69b4f4, type: 2}
+  - {fileID: 11400000, guid: 40c1fc9ce0b83934f88942b90d12b5b6, type: 2}
+  - {fileID: 11400000, guid: 0c33a694fb98e254e82ab48d1d22f4de, type: 2}
 --- !u!1 &355522990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8762286023885395077, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
@@ -3263,7 +3296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8164563376980701718, guid: 5896f9f36b7037849abd3367a306c430, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.6
+      value: 3.3799992
       objectReference: {fileID: 0}
     - target: {fileID: 8164563376980701718, guid: 5896f9f36b7037849abd3367a306c430, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4110,7 +4143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8164563376980701718, guid: f34927cfa4ebfb34a8e2227189fe475a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.6
+      value: 3.38
       objectReference: {fileID: 0}
     - target: {fileID: 8164563376980701718, guid: f34927cfa4ebfb34a8e2227189fe475a, type: 3}
       propertyPath: m_LocalPosition.y
