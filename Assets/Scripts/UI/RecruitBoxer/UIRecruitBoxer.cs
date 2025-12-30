@@ -23,9 +23,7 @@ namespace UI.RecruitBoxer
             foreach (var boxer in boxers)
             {
                 UIRecruitBoxerSlot slot = Instantiate(uiRecruitBoxerSlot, containerSlot);
-                boxer.hunger = 100;
-                boxer.sleep = 100;
-                boxer.level = 1;
+                boxer.InitStats();
                 slot.SetBoxer(boxer);
                 slot.OnClickUnlock = OnClickUnlock;
             }
@@ -50,34 +48,34 @@ namespace UI.RecruitBoxer
         
         private void OnButtonClickedClose()
         {
-            UIManager.Instance.ShowGymUnlock(_gymRoom,false);
+            UIManager.Instance.ShowGymUnlock(default,false);
         }
 
         private void OnClickUnlock(BoxerData boxer)
         {
-            if (_gymRoom.IsUnlocked) return;
-
-            // 1. Check Player Level
-            if (GameManager.Instance.playerLevel < _gymRoom.RoomDataSo.requiredGymLevel) return;
-
-            // 2. Check Money
-            if (GameManager.Instance.TrySpendMoney(_gymRoom.RoomDataSo.unlockCost))
+            if (_gymRoom.IsUnlocked ||
+                // 1. Check Player Level
+                GameManager.Instance.playerLevel < _gymRoom.RoomDataSo.requiredGymLevel ||
+                // 2. Check Money
+                !GameManager.Instance.TrySpendMoney(_gymRoom.RoomDataSo.unlockCost))
             {
-                _gymRoom.UnlockRoom();
+                Debug.Log("No Money");
+                FloatingTextManager.Instance.ShowFixedText("Not enough money!", Color.red);
+                OnButtonClickedClose();
+                return;
             }
-            
-            if (GameManager.Instance.TrySpendMoney(_gymRoom.GetUpgradeCost()))
-            {
-                // 1. Spawn the Visual NPC
-                BoxerController controller = Instantiate(boxerPrefab, _gymRoom.SpawnPoint);
-            
-                // 2. Initialize Controller
-                controller.stats = boxer; // Apply the stats we just generated
 
-                // 3. Assign to Room
-                _gymRoom.assignedBoxer = controller;
-                controller.AssignToRoom(_gymRoom);
-            }
+            _gymRoom.UnlockRoom();
+                
+            // 1. Spawn the Visual NPC
+            BoxerController controller = Instantiate(boxerPrefab, _gymRoom.SpawnPoint);
+            
+            // 2. Initialize Controller
+            controller.stats = boxer; // Apply the stats we just generated
+
+            // 3. Assign to Room
+            _gymRoom.assignedBoxer = controller;
+            controller.AssignToRoom(_gymRoom);
         }
     }
 }

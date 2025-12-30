@@ -21,26 +21,12 @@ namespace UI.Tablet.Leagues
         
         [Header("Button")]
         [SerializeField] private Button buttonHome;
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            List<BoxerController> boxerControllers = new List<BoxerController>();
-            foreach (var gymRoom in gymRooms)
-            {
-               if(!gymRoom.assignedBoxer) continue; 
-               boxerControllers.Add(gymRoom.assignedBoxer);
-            }
-            
-            uiTabletLeaguesBoxer.RefreshBoxerLeaguesSlot(boxerControllers.ToArray());
-            uiTabletLeaguesFighter.RefreshFightLeaguesSlot(boxerControllers[0], opponents);
-        }
-
+        
         protected override void OnEnable()
         {
             base.OnEnable();
             buttonHome.onClick.AddListener(OnButtonClickedHome);
+            RefreshBoxers();
         }
 
         protected override void OnDisable()
@@ -59,6 +45,22 @@ namespace UI.Tablet.Leagues
             uiTabletLeaguesFighter.RefreshFightLeaguesSlot(boxerController, opponents);
         }
 
+        private void RefreshBoxers()
+        {
+            List<BoxerController> boxerControllers = new List<BoxerController>();
+            foreach (var gymRoom in gymRooms)
+            {
+                if(!gymRoom.assignedBoxer) continue; 
+                boxerControllers.Add(gymRoom.assignedBoxer);
+            }
+
+            if (boxerControllers.Count > 0)
+            {
+                uiTabletLeaguesBoxer.RefreshBoxerLeaguesSlot(boxerControllers.ToArray());
+                uiTabletLeaguesFighter.RefreshFightLeaguesSlot(boxerControllers[0], opponents);
+            }
+        }
+        
         public void OnFlightResult(FightResultData fightResultData)
         {
             uiTabletLeaguesFightLive.SetVisible(true);

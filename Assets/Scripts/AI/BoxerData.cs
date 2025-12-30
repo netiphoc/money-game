@@ -4,6 +4,16 @@ using UnityEngine;
 [System.Serializable]
 public class BoxerData
 {
+    public void InitStats()
+    {
+        hunger = 100;
+        sleep = 100;
+        level = 1;
+        xpToNextLevel = 100;
+        hungerDecayRate = 0.5f;
+        sleepDecayRate = 0.2f;
+    }
+    
     [Header("Identity")]
     public string boxerName;
     public Sprite avatar; // Icon for the Tablet/UI
