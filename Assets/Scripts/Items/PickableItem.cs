@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Systems;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PickableItem : MonoBehaviour, IInteractable
+public class PickableItem : BaseInteractable
 {
     private Rigidbody rb;
     private bool isHeld = false;
@@ -10,18 +11,19 @@ public class PickableItem : MonoBehaviour, IInteractable
     public string itemName = "Box";
     public float throwForce = 500f;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         rb = GetComponent<Rigidbody>();
     }
 
-    public string GetInteractionPrompt()
+    public override string GetInteractionPrompt()
     {
         if (isHeld) return "Press G to Throw";
         return $"Press E to pick up {itemName}";
     }
 
-    public void OnInteract(PlayerInteraction player)
+    public override void OnInteract(PlayerInteraction player)
     {
         // Pick Up Logic
         if (!isHeld)
@@ -37,7 +39,7 @@ public class PickableItem : MonoBehaviour, IInteractable
         }
     }
 
-    public void OnAltInteract(PlayerInteraction player)
+    public override void OnAltInteract(PlayerInteraction player)
     {
         // Throw / Drop Logic
         if (isHeld)

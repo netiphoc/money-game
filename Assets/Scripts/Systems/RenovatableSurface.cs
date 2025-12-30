@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Systems;
+using UnityEngine;
 
-public class RenovatableSurface : MonoBehaviour, IInteractable
+public class RenovatableSurface : BaseInteractable
 {
     public enum SurfaceType { Wall, Floor }
     public enum State { Dirty, Clean }
@@ -21,19 +22,22 @@ public class RenovatableSurface : MonoBehaviour, IInteractable
     private int currentPatternIndex = 0;
     private MeshRenderer meshRenderer;
 
-    private void Awake()
+
+    protected override void Awake()
     {
+        base.Awake();
+        
         meshRenderer = GetComponent<MeshRenderer>();
         UpdateVisuals();
     }
 
-    public string GetInteractionPrompt()
+    public override string GetInteractionPrompt()
     {
         if (currentState == State.Dirty) return "Hold Click to Scrap Surface";
         return "Press E to Change Style";
     }
 
-    public void OnInteract(PlayerInteraction player)
+    public override void OnInteract(PlayerInteraction player)
     {
         // MODE 1: SCRAPING (Requires Holding Left Click)
         if (currentState == State.Dirty)
@@ -83,13 +87,16 @@ public class RenovatableSurface : MonoBehaviour, IInteractable
         meshRenderer.material = availablePatterns[currentPatternIndex];
     }
 
-    public void OnAltInteract(PlayerInteraction player) 
+    public override void OnAltInteract(PlayerInteraction player) 
     {
         // Right click could cycle backwards
     }
 
-    private void Update()
+
+    protected override void Update()
     {
+        base.Update();
+        
         // Reset Scrap Timer if player lets go
         if (currentState == State.Dirty && Time.time - lastInteractTime > 0.1f)
         {

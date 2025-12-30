@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem; 
-using TMPro;
+using UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -18,7 +18,6 @@ public class PlayerInteraction : MonoBehaviour
     [Header("References")]
     public Camera playerCamera;
     public Transform holdPoint;
-    public TextMeshProUGUI promptText;
 
     [Header("State (Read Only)")]
     public GameObject currentHeldObject;
@@ -45,7 +44,7 @@ public class PlayerInteraction : MonoBehaviour
         // This prevents the player from throwing/grabbing while trying to place furniture.
         if (PlacementManager.Instance.IsPlacing) 
         {
-            promptText.gameObject.SetActive(false); // Hide prompt while placing
+            UIManager.Instance.UIHoverKey.SetVisible(false);
             return;
         }
 
@@ -70,13 +69,20 @@ public class PlayerInteraction : MonoBehaviour
         return null;
     }
 
+    private BaseUI _currentUI;
     private void UpdateUI(IInteractable lookTarget)
     {
         // Priority 1: Look Target (e.g., Shelf, Trash, Door)
         if (lookTarget != null)
         {
-            promptText.text = lookTarget.GetInteractionPrompt();
-            promptText.gameObject.SetActive(true);
+            UIManager.Instance.UIHoverKey.SetText(lookTarget.GetInteractionPrompt());
+            UIManager.Instance.UIHoverKey.SetVisible(true);
+
+            if (lookTarget.GetUI())
+            {
+                _currentUI = lookTarget.GetUI();
+                _currentUI.SetVisible(true);
+            }
             return;
         }
 
@@ -86,14 +92,19 @@ public class PlayerInteraction : MonoBehaviour
             IInteractable heldLogic = currentHeldObject.GetComponent<IInteractable>();
             if (heldLogic != null)
             {
-                promptText.text = heldLogic.GetInteractionPrompt();
-                promptText.gameObject.SetActive(true);
+                UIManager.Instance.UIHoverKey.SetText(heldLogic.GetInteractionPrompt());
+                UIManager.Instance.UIHoverKey.SetVisible(true);
                 return;
             }
         }
 
         // Default: Hide
-        promptText.gameObject.SetActive(false);
+        UIManager.Instance.UIHoverKey.SetVisible(false);
+
+        if (_currentUI)
+        {
+            _currentUI.SetVisible(false);
+        }
     }
 
     // ==================================================================================

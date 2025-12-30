@@ -16,7 +16,7 @@ namespace UI.Tablet
         {
             base.Awake();
             InitApp();
-        }
+        }  
 
         private void InitApp()
         {
@@ -36,6 +36,14 @@ namespace UI.Tablet
             {
                 app.SetVisible(app == ui);
             }
+        }
+
+        public void ShowQuickLeagueBoxer(BoxerController boxerController)
+        {
+            if(Visible) return;
+            UIManager.Instance.ShowTablet(true);
+            Show(UITabletLeagues);
+            UITabletLeagues.OnClickedBoxer(boxerController);
         }
     }
 }

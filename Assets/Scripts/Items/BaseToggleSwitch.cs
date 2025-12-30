@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UI;
+using UnityEngine;
 using UnityEngine.Events;
 
 public abstract class BaseToggleSwitch : MonoBehaviour, IInteractable
@@ -20,6 +21,11 @@ public abstract class BaseToggleSwitch : MonoBehaviour, IInteractable
         
         string status = isOn ? "OFF" : "ON";
         return $"Press Left Click to Turn {status} {objectName}";
+    }
+
+    public BaseUI GetUI()
+    {
+        return default;
     }
 
     protected virtual string GetDenyPrompt()

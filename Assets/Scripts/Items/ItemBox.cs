@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Systems;
+using UnityEngine;
 
-public class ItemBox : MonoBehaviour, IInteractable
+public class ItemBox : BaseInteractable
 {
     [Header("Box Data")]
     public ItemDataSO itemData;
@@ -11,13 +12,15 @@ public class ItemBox : MonoBehaviour, IInteractable
     private Collider col;
     private bool isHeld = false;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+        
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
     }
 
-    public string GetInteractionPrompt()
+    public override string GetInteractionPrompt()
     {
         if (isHeld) 
         {
@@ -30,7 +33,7 @@ public class ItemBox : MonoBehaviour, IInteractable
         return $"Click LMB {itemData.itemName} Box";
     }
 
-    public void OnInteract(PlayerInteraction player)
+    public override void OnInteract(PlayerInteraction player)
     {
         // 1. PICK UP LOGIC (If box is on the floor/shelf)
         if (!isHeld)
@@ -61,7 +64,7 @@ public class ItemBox : MonoBehaviour, IInteractable
         }
     }
 
-    public void OnAltInteract(PlayerInteraction player) 
+    public override void OnAltInteract(PlayerInteraction player) 
     { 
         // Right click logic (handled by Shelf usually)
     }

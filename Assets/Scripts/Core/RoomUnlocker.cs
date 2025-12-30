@@ -1,10 +1,11 @@
 ﻿using System;
 using Data;
+using Systems;
 using UnityEngine;
 using TMPro;
 using Utilities;
 
-public class RoomUnlocker : MonoBehaviour, IInteractable
+public class RoomUnlocker : BaseInteractable
 {
     [Header("Settings")] 
     [SerializeField] private RoomDataSO roomDataSo;
@@ -17,15 +18,20 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
     public TMP_Text levelText;
     public GameObject lockIcon;
 
-    private void Start()
+
+    protected override void Start()
     {
+        base.Start();
+        
         UpdateVisuals();
         GameManager.Instance.OnLevelChanged += OnLevelChanged;
         GameManager.Instance.OnMoneyChanged += OnMoneyChanged;
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
+        
         GameManager.Instance.OnLevelChanged -= OnLevelChanged;
         GameManager.Instance.OnMoneyChanged -= OnMoneyChanged;
     }
@@ -40,7 +46,7 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
         UpdateVisuals();
     }
 
-    public string GetInteractionPrompt()
+    public override string GetInteractionPrompt()
     {
         if (gymRoom.IsUnlocked) return "";
 
@@ -53,7 +59,7 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
         return $"Press E to Buy Room ({roomDataSo.unlockCost.ToMoneyFormat()})";
     }
 
-    public void OnInteract(PlayerInteraction player)
+    public override void OnInteract(PlayerInteraction player)
     {
         if (gymRoom.IsUnlocked) return;
 
@@ -67,7 +73,7 @@ public class RoomUnlocker : MonoBehaviour, IInteractable
         }
     }
 
-    public void OnAltInteract(PlayerInteraction player) { }
+    public override void OnAltInteract(PlayerInteraction player) { }
 
     private void Unlock()
     {

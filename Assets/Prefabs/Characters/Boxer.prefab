@@ -43,7 +43,10 @@ GameObject:
   - component: {fileID: 5790971508738998221}
   - component: {fileID: 3384825974347110801}
   - component: {fileID: 9103484075892342616}
-  m_Layer: 0
+  - component: {fileID: 2324836065051188622}
+  - component: {fileID: 7594870258731588456}
+  - component: {fileID: 3344462520250434498}
+  m_Layer: 6
   m_Name: Boxer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,16 +109,22 @@ MonoBehaviour:
     strength: 0
     agility: 0
     stamina: 0
+    totalPower: 0
     unrealizedStrength: 0
     unrealizedAgility: 0
     unrealizedStamina: 0
-    totalPower: 0
+    unrealizedSleep: 0
+    unrealizedHunger: 0
     level: 1
     currentXP: 0
     xpToNextLevel: 100
     hiringCost: 0
     dailySalary: 0
     statMultiplier: 1
+    hunger: 100
+    sleep: 100
+    hungerDecayRate: 0.5
+    sleepDecayRate: 0.2
   currentState: 0
   assignedRoom: {fileID: 0}
   minTrainTime: 5
@@ -123,6 +132,68 @@ MonoBehaviour:
   restTime: 2
   agent: {fileID: 3384825974347110801}
   animator: {fileID: 8577906320043368157}
+--- !u!114 &2324836065051188622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2313048066194407460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb9af80f14840fe8815cc5fa246ba62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AI.BoxerInteract
+--- !u!54 &7594870258731588456
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2313048066194407460}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &3344462520250434498
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2313048066194407460}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.23
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.21, y: 1, z: -0.37}
 --- !u!1001 &2765295865617965900
 PrefabInstance:
   m_ObjectHideFlags: 0

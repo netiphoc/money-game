@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Systems;
+using UnityEngine;
 
-public class TrashObject : MonoBehaviour, IInteractable
+public class TrashObject : BaseInteractable
 {
     [Header("Settings")]
     public float timeToClean = 1.0f;
@@ -9,12 +10,12 @@ public class TrashObject : MonoBehaviour, IInteractable
     private float cleanTimer = 0f;
     private float lastInteractTime;
 
-    public string GetInteractionPrompt()
+    public override string GetInteractionPrompt()
     {
         return $"Hold Click to Clean";
     }
 
-    public void OnInteract(PlayerInteraction player)
+    public override void OnInteract(PlayerInteraction player)
     {
         // This method is called every frame the button is held (via PlayerInteraction)
         lastInteractTime = Time.time;
@@ -30,10 +31,12 @@ public class TrashObject : MonoBehaviour, IInteractable
         }
     }
 
-    public void OnAltInteract(PlayerInteraction player) { }
+    public override void OnAltInteract(PlayerInteraction player) { }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+        
         // Reset Logic: If we haven't been interacted with for 0.1 seconds, reset
         if (Time.time - lastInteractTime > 0.1f)
         {

@@ -2,8 +2,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Systems;
 
-public class StorageShelf : MonoBehaviour, IInteractable
+public class StorageShelf : BaseInteractable
 {
     [Header("Settings")]
     public ItemDataSO[] allowedItems; 
@@ -20,13 +21,16 @@ public class StorageShelf : MonoBehaviour, IInteractable
 
     private float _consumeTime;
 
-    private void Start()
+
+    protected override void Start()
     {
+        base.Start();
         GameManager.Instance.GameTimeManager.OnGameMinuteTick += OnGameMinuteTick;
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         GameManager.Instance.GameTimeManager.OnGameMinuteTick -= OnGameMinuteTick;
     }
 
@@ -40,12 +44,12 @@ public class StorageShelf : MonoBehaviour, IInteractable
         RemoveVisualItem();
     }
 
-    public string GetInteractionPrompt()
+    public override string GetInteractionPrompt()
     {
         return "Hold LMB to Stock / RMB to Retrieve";
     }
 
-    public void OnInteract(PlayerInteraction player)
+    public override void OnInteract(PlayerInteraction player)
     {
         // ... (Existing Stocking Logic - unchanged) ...
         if (Time.time < lastStockTime + stockSpeed) return;
@@ -69,7 +73,7 @@ public class StorageShelf : MonoBehaviour, IInteractable
         }
     }
 
-    public void OnAltInteract(PlayerInteraction player)
+    public override void OnAltInteract(PlayerInteraction player)
     {
         // --- RETRIEVE LOGIC (Right Click) ---
 

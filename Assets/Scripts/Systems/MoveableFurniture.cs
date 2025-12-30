@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Systems;
+using UnityEngine;
 
-public class MoveableFurniture : MonoBehaviour, IInteractable
+public class MoveableFurniture : BaseInteractable
 {
     [Header("Data")]
     public PlaceableDataSO data; 
@@ -10,7 +11,7 @@ public class MoveableFurniture : MonoBehaviour, IInteractable
     private const float HOLD_THRESHOLD = 0.5f; // How long to hold before moving
     private float lastInteractTime; 
 
-    public string GetInteractionPrompt()
+    public override string GetInteractionPrompt()
     {
         /*
         if (holdTimer > 0)
@@ -24,7 +25,7 @@ public class MoveableFurniture : MonoBehaviour, IInteractable
         return "Hold Left Click to Move";
     }
 
-    public void OnInteract(PlayerInteraction player)
+    public override void OnInteract(PlayerInteraction player)
     {
         /*
         // Inside OnInteract, before the threshold check:
@@ -49,9 +50,9 @@ public class MoveableFurniture : MonoBehaviour, IInteractable
         }
     }
 
-    public void OnAltInteract(PlayerInteraction player) { } 
+    public override void OnAltInteract(PlayerInteraction player) { } 
 
-    private void Update()
+    protected override void Update()
     {
         // RESET LOGIC
         // If the player let go of the button (stopped interacting)

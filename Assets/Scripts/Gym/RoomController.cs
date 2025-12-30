@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Systems;
+using UnityEngine;
 using TMPro;
 
-public class RoomController : MonoBehaviour, IInteractable
+public class RoomController : BaseInteractable
 {
     [Header("Settings")]
     public int roomID;
@@ -14,19 +15,20 @@ public class RoomController : MonoBehaviour, IInteractable
     public GameObject[] propsToEnable; // Lights/Doors that turn on when unlocked
     public Collider constructionBarrier; // Invisible wall preventing entry
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         UpdateRoomState();
     }
 
     // Interaction Prompt
-    public string GetInteractionPrompt()
+    public override string GetInteractionPrompt()
     {
         if (!isUnlocked) return $"Press E to Unlock Room {roomID} (${unlockCost})";
         return ""; // No prompt if already unlocked (unless you want a management menu)
     }
 
-    public void OnInteract(PlayerInteraction player)
+    public override void OnInteract(PlayerInteraction player)
     {
         if (!isUnlocked)
         {
@@ -34,7 +36,7 @@ public class RoomController : MonoBehaviour, IInteractable
         }
     }
 
-    public void OnAltInteract(PlayerInteraction player) { }
+    public override void OnAltInteract(PlayerInteraction player) { }
 
     private void UnlockRoom()
     {
