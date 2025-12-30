@@ -86,13 +86,16 @@ public class GymRoom : MonoBehaviour
 
                     for (int i = 0; i < shelf.GetItemCount(); i++)
                     {
-                        // Apply stat
-                        totalStrRate += itemDataSo.strBonus;
-                        totalAgiRate += itemDataSo.agiBonus;
-                        totalStaRate += itemDataSo.staBonus;
-                        totalSleepRate += itemDataSo.sleepBonus;
-                        totalHungerRate += itemDataSo.hungerBonus;
                     }
+                    
+                    if(shelf.GetItemCount() <= 0) continue;
+                    
+                    // Apply stat
+                    totalStrRate += itemDataSo.strBonus;
+                    totalAgiRate += itemDataSo.agiBonus;
+                    totalStaRate += itemDataSo.staBonus;
+                    totalSleepRate += itemDataSo.GetSleepBonus();
+                    totalHungerRate += itemDataSo.GetHungerBonus();
                 }
             }
         }
@@ -139,7 +142,6 @@ public class GymRoom : MonoBehaviour
 
     private void OnStorageShelfUpdated(StorageShelf storageShelf)
     {
-        Debug.Log("OnStorageShelfUpdated");
         RecalculateRates();
     }
 

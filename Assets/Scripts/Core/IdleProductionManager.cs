@@ -25,8 +25,9 @@ public class IdleProductionManager : MonoBehaviour
             // 1. Check if room has a worker
             if (room.assignedBoxer != null)
             {
-                BoxerData stats = room.assignedBoxer.stats;
+                if(room.assignedBoxer.currentState != BoxerController.AIState.TrainingVisual) continue;
                 
+                BoxerData stats = room.assignedBoxer.stats;
                 // 1. Decay Hunger/Sleep
                 stats.TickSurvival();
                 
