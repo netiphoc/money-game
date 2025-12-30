@@ -16,19 +16,15 @@ public class BoxerData
     
     [Header("Identity")]
     public string boxerName;
-    public Sprite avatar; // Icon for the Tablet/UI
+    public Sprite avatar; 
 
     [Header("Resource Battery (The Fuel)")]
-    // These float up continuously based on room production
     public float strength;
     public float agility;
     public float stamina;
-    
-    // The integer sum used to determine if you can win a fight
     public int totalPower; 
     
     [Header("Unrealized Resource Battery (The Fuel)")]
-    // These float up continuously based on room production
     public float unrealizedStrength;
     public float unrealizedAgility;
     public float unrealizedStamina;
@@ -51,18 +47,12 @@ public class BoxerData
     public event Action<float> OnExpChanged;
     public event Action<int> OnLevelChanged;
 
-    // =========================================================
-    // HELPER METHODS
-    // =========================================================
-
-    // Called by IdleProductionManager every tick
     public void UpdateTotal()
     {
         totalPower = Mathf.RoundToInt(strength + agility + stamina);
     }
 
-    // Called by FightManager when winning a fight
-    public void AddXP(float amount)
+    public void AddXp(float amount)
     {
         currentXP += amount;
         OnExpChanged?.Invoke(currentXP);
@@ -83,22 +73,6 @@ public class BoxerData
         Debug.Log($"{boxerName} leveled up to Lvl {level}!");
     }
 
-    // Called by TabletUI to check if button should be clickable
-    public bool CanAffordFightCost(int strCost, int agiCost, int staCost)
-    {
-        return strength >= strCost && agility >= agiCost && stamina >= staCost;
-    }
-
-    // Called by FightManager to "Pay" for the fight
-    public void ConsumeStats(int strCost, int agiCost, int staCost)
-    {
-        strength = Mathf.Max(0, strength - strCost);
-        agility = Mathf.Max(0, agility - agiCost);
-        stamina = Mathf.Max(0, stamina - staCost);
-        
-        UpdateTotal();
-    }
-
     public void ApplyUnrealizeStats()
     {
         strength += unrealizedStrength;
@@ -111,6 +85,7 @@ public class BoxerData
         unrealizedStrength = 0;
         unrealizedAgility = 0;
         unrealizedStamina = 0;
+        
         unrealizedSleep = 0;
         unrealizedHunger = 0;
         

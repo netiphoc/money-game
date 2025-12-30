@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
-using System.Linq;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class BoxerController : MonoBehaviour
@@ -10,7 +9,7 @@ public class BoxerController : MonoBehaviour
 
     [Header("Data")]
     public BoxerData stats;
-    public AIState currentState = AIState.Idle;
+    public AIState currentState = AIState.Sleep;
 
     [Header("Assignment")]
     public GymRoom assignedRoom;
@@ -22,15 +21,13 @@ public class BoxerController : MonoBehaviour
 
     [Header("References")]
     public NavMeshAgent agent;
-    public Animator animator; // CHANGED TO PUBLIC for manual assignment
+    public Animator animator;
 
-    // Internal
-    private TrainingEquipment targetEquipment;
-    private Coroutine currentRoutine;
+    private TrainingEquipment _targetEquipment;
+    private Coroutine _currentRoutine;
 
     private void Awake()
     {
-        // Fallback: If you forgot to assign them, try to find them automatically
         if (agent == null) agent = GetComponent<NavMeshAgent>();
         if (animator == null) animator = GetComponent<Animator>();
     }
@@ -51,8 +48,8 @@ public class BoxerController : MonoBehaviour
 
     public void StartVisualCycle()
     {
-        if (currentRoutine != null) StopCoroutine(currentRoutine);
-        currentRoutine = StartCoroutine(AI_Routine());
+        if (_currentRoutine != null) StopCoroutine(_currentRoutine);
+        _currentRoutine = StartCoroutine(AI_Routine());
     }
 
     private IEnumerator AI_Routine()
@@ -69,11 +66,11 @@ public class BoxerController : MonoBehaviour
 
             // 2. DECIDE
             int randomIndex = Random.Range(0, assignedRoom.equipmentInRoom.Count);
-            targetEquipment = assignedRoom.equipmentInRoom[randomIndex];
+            _targetEquipment = assignedRoom.equipmentInRoom[randomIndex];
 
             // 3. MOVE
             currentState = AIState.MovingToMachine;
-            agent.SetDestination(targetEquipment.interactionPoint.position);
+            agent.SetDestination(_targetEquipment.interactionPoint.position);
             if(animator) animator.SetBool("IsWalking", true);
 
             // Wait until arrived
@@ -93,11 +90,11 @@ public class BoxerController : MonoBehaviour
             if(animator) animator.SetBool("IsWalking", false);
             currentState = AIState.TrainingVisual;
 
-            transform.rotation = targetEquipment.interactionPoint.rotation;
+            transform.rotation = _targetEquipment.interactionPoint.rotation;
 
-            if (animator && !string.IsNullOrEmpty(targetEquipment.animationTrigger))
+            if (animator && !string.IsNullOrEmpty(_targetEquipment.animationTrigger))
             {
-                animator.SetTrigger(targetEquipment.animationTrigger);
+                animator.SetTrigger(_targetEquipment.animationTrigger);
             }
 
             // 5. TRAIN LOOP
@@ -137,11 +134,9 @@ public class BoxerController : MonoBehaviour
         }
     }
     
-    // --- HELPER METHODS ---
-
     private bool IsTargetValid()
     {
-        if (targetEquipment == null) return false;
+        if (_targetEquipment == null) return false;
         return true;
     }
 
@@ -163,13 +158,5 @@ public class BoxerController : MonoBehaviour
     {
         if(animator) animator.SetTrigger("StopTraining"); 
         currentState = AIState.Idle;
-    }
-
-    public void ResetFuel()
-    {
-        stats.strength = 0;
-        stats.agility = 0;
-        stats.stamina = 0;
-        stats.UpdateTotal();
     }
 }

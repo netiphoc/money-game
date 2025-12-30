@@ -2,8 +2,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Data;
+using SaveLoadSystem;
 
-public class GymRoom : MonoBehaviour
+public class GymRoom : MonoBehaviour, ISaveLoadSystem
 {
     [SerializeField] private GymRoomEquipmentDetector gymRoomEquipmentDetector;
 
@@ -36,6 +37,11 @@ public class GymRoom : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        LoadGame();
+    }
+
     private void OnDestroy()
     {
         if (gymRoomEquipmentDetector)
@@ -43,6 +49,8 @@ public class GymRoom : MonoBehaviour
             gymRoomEquipmentDetector.onRoomTriggerEnter.RemoveListener(OnTriggerEnter);
             gymRoomEquipmentDetector.onRoomTriggerExit.RemoveListener(OnTriggerExit);
         }
+        
+        SaveGame();
     }
 
     // --- NEW: CAPACITY CHECK ---
@@ -164,5 +172,49 @@ public class GymRoom : MonoBehaviour
     {
         IsUnlocked = true;
         OnRoomUnlocked?.Invoke(this);
+    }
+
+    public void SaveGame()
+    {
+        // Unlock
+        PlayerPrefs.SetInt($"{name}_IsUnlocked", IsUnlocked ? 1 : 0);
+
+        if (assignedBoxer)
+        {
+            PlayerPrefs.SetString($"{name}_boxerName", assignedBoxer.stats.boxerName);
+            PlayerPrefs.SetFloat($"{name}_strength", assignedBoxer.stats.strength);
+            PlayerPrefs.SetFloat($"{name}_agility", assignedBoxer.stats.agility);
+            PlayerPrefs.SetFloat($"{name}_stamina", assignedBoxer.stats.stamina);
+            PlayerPrefs.SetInt($"{name}_level", assignedBoxer.stats.level);
+            PlayerPrefs.SetFloat($"{name}_currentXP", assignedBoxer.stats.currentXP);
+            PlayerPrefs.SetFloat($"{name}_xpToNextLevel", assignedBoxer.stats.xpToNextLevel);
+        }
+    }
+
+    public void LoadGame()
+    {
+        // Unlock
+        bool isUnlock = PlayerPrefs.GetInt($"{name}_IsUnlocked", 0) == 1;
+        if (isUnlock) UnlockRoom();
+
+        // Boxer
+        if (PlayerPrefs.HasKey($"{name}_boxerName"))
+        {
+            BoxerData boxerData = new BoxerData();
+            boxerData.InitStats();
+            
+            boxerData.boxerName = PlayerPrefs.GetString($"{name}_boxerName");
+            boxerData.strength = PlayerPrefs.GetFloat($"{name}_strength");
+            boxerData.agility = PlayerPrefs.GetFloat($"{name}_agility");
+            boxerData.stamina = PlayerPrefs.GetFloat($"{name}_stamina");
+            boxerData.level = PlayerPrefs.GetInt($"{name}_level");
+            boxerData.currentXP = PlayerPrefs.GetFloat($"{name}_currentXP");
+            boxerData.xpToNextLevel = PlayerPrefs.GetFloat($"{name}_xpToNextLevel");
+            
+            BoxerController boxerController = SaveSystem.Instance.LoadBoxerData(boxerData, SpawnPoint);
+            assignedBoxer = boxerController;
+            boxerController.assignedRoom = this;
+        }
+        
     }
 }

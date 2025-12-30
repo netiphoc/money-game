@@ -50,7 +50,7 @@ public class FightManager : MonoBehaviour
             
             // 2. Level Up the BOXER (Unit Progression)
             // (Assuming BoxerStats has an AddXP method)
-            playerBoxer.stats.AddXP(totalBoxerExp); 
+            playerBoxer.stats.AddXp(totalBoxerExp); 
             
             // 3. Level Up the PLAYER (Gym Progression)
             GameManager.Instance.AddPlayerXP(totalPlayerExp);

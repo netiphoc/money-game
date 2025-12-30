@@ -1,5 +1,4 @@
-﻿using System;
-using Systems;
+﻿using Systems;
 using UI;
 using UI.Gameplay;
 using UnityEngine;

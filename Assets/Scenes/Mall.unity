@@ -601,6 +601,51 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -290009236384453325, guid: 30084204602438b4aa6686a412ffbca2, type: 3}
+--- !u!1 &319446631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 319446632}
+  - component: {fileID: 319446633}
+  m_Layer: 0
+  m_Name: SaveSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &319446632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319446631}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1536680564}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &319446633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319446631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5bbb1460e1413f9c3038bd328e5c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveLoadSystem.SaveSystem
+  boxerControllerPrefab: {fileID: 9103484075892342616, guid: 286a7bd55548cf745acc8b1dc923a11a, type: 3}
 --- !u!1 &355522990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8762286023885395077, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
@@ -3201,6 +3246,7 @@ Transform:
   - {fileID: 674397871}
   - {fileID: 355522992}
   - {fileID: 1176076217}
+  - {fileID: 319446632}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1538862316
@@ -3464,7 +3510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a345bf5d574bd1b176df42d63ff1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTimeManager
-  realTimeDurationMinutes: 15
+  realTimeDurationMinutes: 0.5
   startHour: 10
   endHour: 22
   isRunning: 0
@@ -3926,8 +3972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f777cd4d4ab419cb0d0690fc3a3d994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecruitmentManager
-  boxerPrefab: {fileID: 2313048066194407460, guid: 286a7bd55548cf745acc8b1dc923a11a, type: 3}
-  spawnPoint: {fileID: 1997764442}
 --- !u!1 &2027215255
 GameObject:
   m_ObjectHideFlags: 0

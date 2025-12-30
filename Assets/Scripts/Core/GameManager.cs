@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System;
 using Core;
+using SaveLoadSystem;
 using StarterAssets;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, ISaveLoadSystem
 {
     public static GameManager Instance;
 
@@ -31,6 +32,16 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        LoadGame();
+    }
+
+    private void OnDestroy()
+    {
+        SaveGame();
     }
 
     #region ECONOMY
@@ -86,4 +97,23 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    public void SaveGame()
+    {
+        PlayerPrefs.SetInt($"{name}_currentMoney", currentMoney);
+        PlayerPrefs.SetInt($"{name}_playerLevel", playerLevel);
+        PlayerPrefs.SetFloat($"{name}_playerXP", playerXP);
+        PlayerPrefs.SetFloat($"{name}_xpToNextLevel", xpToNextLevel);
+    }
+
+    public void LoadGame()
+    {
+        currentMoney = PlayerPrefs.GetInt($"{name}_currentMoney", currentMoney);
+        playerLevel = PlayerPrefs.GetInt($"{name}_playerLevel", playerLevel);
+        playerXP = PlayerPrefs.GetFloat($"{name}_playerXP", playerXP);
+        xpToNextLevel = PlayerPrefs.GetFloat($"{name}_xpToNextLevel", xpToNextLevel);
+        OnMoneyChanged?.Invoke(currentMoney);
+        OnExpChanged?.Invoke(playerXP);
+        OnLevelChanged?.Invoke(playerLevel);
+    }
 }
