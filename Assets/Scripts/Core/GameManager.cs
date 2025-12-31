@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
                     break;
             }
             
+            FloatingTextManager.Instance.ShowFixedText($"-${amount:F0}", Color.red, TextSpawnPointType.Money);
             OnMoneyChanged?.Invoke(currentMoney);
             return true;
         }

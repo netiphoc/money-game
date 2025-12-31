@@ -1,5 +1,12 @@
-﻿using UI;
+﻿using System;
+using UI;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
+public enum TextSpawnPointType
+{
+    Exp, Alert, Money
+}
 
 public class FloatingTextManager : MonoBehaviour
 {
@@ -10,6 +17,8 @@ public class FloatingTextManager : MonoBehaviour
     public Canvas parentCanvas;
     [Space]
     public RectTransform fixedSpawnPoint; // Drag an empty UI object here (e.g. Top Center)
+    public RectTransform moneySpawnPoint; // Drag an empty UI object here (e.g. Top Center)
+    public RectTransform expSpawnPoint; // Drag an empty UI object here (e.g. Top Center)
     public float randomSpread = 50f;      // Jitter so texts don't stack perfectly
     [Space]
     public Camera mainCamera;
@@ -30,14 +39,8 @@ public class FloatingTextManager : MonoBehaviour
     }
 
     // --- OPTION A: Show at fixed screen location (Top of Screen) ---
-    public void ShowFixedText(string text, Color color)
+    public void ShowFixedText(string text, Color color, TextSpawnPointType textSpawnPointType = TextSpawnPointType.Alert)
     {
-        if (fixedSpawnPoint == null)
-        {
-            Debug.LogError("Please assign 'Fixed Spawn Point' in Inspector!");
-            return;
-        }
-
         // 1. Create Text
         UIFloatingText newTextObj = _poolingUIText.RequestRecycle(parentCanvas.transform);
         
@@ -51,7 +54,23 @@ public class FloatingTextManager : MonoBehaviour
         );
 
         // Copy position from the spawn point anchor
-        rt.position = fixedSpawnPoint.position + (Vector3)jitter;
+        
+        Transform point;
+        switch (textSpawnPointType)
+        {
+            case TextSpawnPointType.Exp:
+                point = expSpawnPoint;
+                break;
+            case TextSpawnPointType.Money:
+                point = moneySpawnPoint;
+                break;
+            case TextSpawnPointType.Alert:
+            default:
+                point = fixedSpawnPoint;
+                break;
+        }
+        
+        rt.position = point.position + (Vector3)jitter;
 
         // 3. Initialize
         if (newTextObj != null)
