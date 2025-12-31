@@ -229,6 +229,7 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
             PlayerPrefs.SetFloat($"{name}_strength", assignedBoxer.stats.strength);
             PlayerPrefs.SetFloat($"{name}_agility", assignedBoxer.stats.agility);
             PlayerPrefs.SetFloat($"{name}_stamina", assignedBoxer.stats.stamina);
+            PlayerPrefs.SetFloat($"{name}_hunger", assignedBoxer.stats.hunger);
             PlayerPrefs.SetInt($"{name}_level", assignedBoxer.stats.level);
             PlayerPrefs.SetFloat($"{name}_currentXP", assignedBoxer.stats.currentXP);
             PlayerPrefs.SetFloat($"{name}_xpToNextLevel", assignedBoxer.stats.xpToNextLevel);
@@ -323,6 +324,7 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
             boxerData.strength = PlayerPrefs.GetFloat($"{name}_strength");
             boxerData.agility = PlayerPrefs.GetFloat($"{name}_agility");
             boxerData.stamina = PlayerPrefs.GetFloat($"{name}_stamina");
+            boxerData.hunger = PlayerPrefs.GetFloat($"{name}_hunger");
             boxerData.level = PlayerPrefs.GetInt($"{name}_level");
             boxerData.currentXP = PlayerPrefs.GetFloat($"{name}_currentXP");
             boxerData.xpToNextLevel = PlayerPrefs.GetFloat($"{name}_xpToNextLevel");
