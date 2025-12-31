@@ -37,6 +37,16 @@ public class ToggleSwithCutout : BaseToggleSwitch
                (isOn && GameManager.Instance.GameTimeManager.IsEndOfDay());
     }
 
+    protected override string GetTurnOnPrompt()
+    {
+        return "Start the day";
+    }
+
+    protected override string GetTurnOffPrompt()
+    {
+        return "Finish the day";
+    }
+
     protected override string GetDenyPrompt()
     {
         return "You can end the day at 10:00 PM";

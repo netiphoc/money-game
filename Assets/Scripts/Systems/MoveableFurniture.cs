@@ -1,4 +1,5 @@
 ﻿using Systems;
+using UI;
 using UnityEngine;
 
 public class MoveableFurniture : BaseInteractable
@@ -19,6 +20,7 @@ public class MoveableFurniture : BaseInteractable
         });
     }
 
+    private bool _isIndicatorShow;
     public override InteractionPromptData[] GetInteractionPrompts()
     {
         /*
@@ -29,6 +31,15 @@ public class MoveableFurniture : BaseInteractable
             return $"Release to Cancel [{progress}]";
         }
         */
+
+        bool hasProgress = holdTimer > 0;
+        UIManager.Instance.UILoadingCursor.SetVisible(hasProgress && holdTimer < HOLD_THRESHOLD);
+        _isIndicatorShow = UIManager.Instance.UILoadingCursor.Visible;
+        
+        if (hasProgress)
+        {
+            UIManager.Instance.UILoadingCursor.SetProgress(1f - (holdTimer / HOLD_THRESHOLD));
+        }
         
         return GetInteractionPromptByIndex(0);
     }
@@ -54,6 +65,7 @@ public class MoveableFurniture : BaseInteractable
                 
                 // Call the Manager to turn this object into a Ghost
                 PlacementManager.Instance.StartMovingExistingObject(this.gameObject, data);
+                UIManager.Instance.UILoadingCursor.SetVisible(false);
             }
         }
     }
@@ -67,6 +79,11 @@ public class MoveableFurniture : BaseInteractable
         if (Time.time - lastInteractTime > 0.1f)
         {
             holdTimer = 0;
+            if (_isIndicatorShow)
+            {
+                _isIndicatorShow = false;
+                UIManager.Instance.UILoadingCursor.SetVisible(false);
+            }
         }
     }
 }

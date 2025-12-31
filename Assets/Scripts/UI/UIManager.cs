@@ -19,6 +19,7 @@ namespace UI
         public UITablet UITablet { get; private set; }
         [field: SerializeField] public UIBoxerStat UIBoxerStat { get; private set; }
         [field: SerializeField] public UIHoverKey UIHoverKey { get; private set; }
+        [field: SerializeField] public UILoadingCursor UILoadingCursor { get; private set; }
         [field: SerializeField] public UIRecruitBoxer UIRecruitBoxer { get; private set; }
         [field: SerializeField] public UISummary UISummary { get; private set; }
 

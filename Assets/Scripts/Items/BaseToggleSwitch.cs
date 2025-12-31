@@ -20,7 +20,7 @@ public abstract class BaseToggleSwitch : BaseInteractable
             new InteractionPromptData
             {
                 Icon = KeyIcon.MOUSE_LEFT_CLICK,
-                Prompt = "Turn on"
+                Prompt = GetTurnOnPrompt()
             },
         });
         
@@ -29,7 +29,7 @@ public abstract class BaseToggleSwitch : BaseInteractable
             new InteractionPromptData
             {
                 Icon = KeyIcon.MOUSE_LEFT_CLICK,
-                Prompt = "Turn off"
+                Prompt = GetTurnOffPrompt()
             },
         });
         
@@ -61,6 +61,16 @@ public abstract class BaseToggleSwitch : BaseInteractable
     protected virtual string GetDenyPrompt()
     {
         return "Deny";
+    }
+
+    protected virtual string GetTurnOnPrompt()
+    {
+        return "TURN ON";
+    }
+
+    protected virtual string GetTurnOffPrompt()
+    {
+        return "TURN OFF";
     }
     
     public override void OnInteract(PlayerInteraction player)
