@@ -185,7 +185,7 @@ namespace UI.Tablet.Leagues
             
             if (_boxerController.stats.strength < _opponentSo.strength)
             {
-                int strengthNeeded = Mathf.FloorToInt(_opponentSo.strength - _boxerController.stats.strength);
+                int strengthNeeded = Mathf.CeilToInt(_opponentSo.strength - _boxerController.stats.strength);
                 stringBuilder.Append($"STR: {strengthNeeded.ToPowerFormat()}");
             }
             

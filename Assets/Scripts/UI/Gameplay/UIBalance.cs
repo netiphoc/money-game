@@ -59,6 +59,7 @@ namespace UI.Gameplay
             yield return _waitForSeconds;
             
             textBalance.SetText(_sumBalance.ToMoneyFormat());
+            textBalance.DoTextPunch();
             _sumBalance = 0;
         }
     }

@@ -3,6 +3,8 @@ using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using Core;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class BoxerController : MonoBehaviour
@@ -45,6 +47,7 @@ public class BoxerController : MonoBehaviour
     public void AssignToRoom(GymRoom room)
     {
         assignedRoom = room;
+        if(!GameManager.Instance.GameController.IsTheDayStarted) return;
         StartVisualCycle();
     }
 
@@ -125,9 +128,7 @@ public class BoxerController : MonoBehaviour
             // Inside ProduceStats loop, after updating stats:
             if (stats.unrealizedStrength > 0 || stats.unrealizedAgility > 0)
             {
-                // Only spawn text if looking at the room? (Optimization for 16 rooms)
-                // For now, spawn above boxer head
-                FloatingTextManager.Instance.ShowWorldText(transform.position, $"+{stats.unrealizedStrength+stats.unrealizedAgility+stats.unrealizedStamina}", Color.green);
+                DisplayFloatingTextStats();
                 stats.ApplyUnrealizeStats();
             }
             
@@ -135,6 +136,30 @@ public class BoxerController : MonoBehaviour
             currentState = AIState.Idle;
             yield return new WaitForSeconds(restTime);
         }
+    }
+
+    private void DisplayFloatingTextStats()
+    {
+        // Only spawn text if looking at the room? (Optimization for 16 rooms)
+        // For now, spawn above boxer head
+        StringBuilder statsPopupText = new StringBuilder();
+                
+        if (stats.unrealizedStrength > 0)
+        {
+            statsPopupText.Append($"STR: +{stats.unrealizedStrength:F0}");
+        }
+                
+        if (stats.unrealizedAgility > 0)
+        {
+            statsPopupText.Append($"\nAGIL: +{stats.unrealizedAgility:F0}");
+        }
+                
+        if (stats.unrealizedStamina > 0)
+        {
+            statsPopupText.Append($"\nSTA: +{stats.unrealizedStamina:F0}");
+        }
+                
+        FloatingTextManager.Instance.ShowWorldText(transform.position, statsPopupText.ToString(), Color.green);
     }
     
     private bool IsTargetValid()

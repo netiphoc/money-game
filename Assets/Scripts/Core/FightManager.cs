@@ -49,6 +49,7 @@ public class FightManager : MonoBehaviour
         {
             // 1. Give Money
             GameManager.Instance.AddMoney(totalMoney);
+            FloatingTextManager.Instance.ShowFixedText($"+${totalMoney:F0}", Color.green, TextSpawnPointType.Money);
             
             // 2. Level Up the BOXER (Unit Progression)
             // (Assuming BoxerStats has an AddXP method)
