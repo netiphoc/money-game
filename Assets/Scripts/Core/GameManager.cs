@@ -30,7 +30,8 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
     [Header("Global Progression (Gym Level)")]
     public int playerLevel = 1;      // Used for unlocking Rooms
     public float playerXP = 0;
-    public float xpToNextLevel = 1000;
+    public float xpToNextLevel = 50f;
+    public float levelDifficultyMultiplier = 1.15f;
     
     [Header("Summary")]
     public float totalIncome;
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
     
     // Events allow the UI to update automatically when money changes
     public event Action<int> OnMoneyChanged;
-    public event Action<float> OnExpChanged;
+    public event Action<float, float> OnExpChanged;
     public event Action<int> OnLevelChanged;
     public event Action<int> OnDayChanged;
 
@@ -92,23 +93,29 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
     public void AddPlayerXP(float amount)
     {
         playerXP += amount;
-        OnExpChanged?.Invoke(playerXP);
-        if (playerXP >= xpToNextLevel)
+        
+        // Check for level up loop (in case we get massive XP at once)
+        while (playerXP >= xpToNextLevel)
         {
             LevelUp();
         }
+
+        OnExpChanged?.Invoke(playerXP, xpToNextLevel);
     }
 
     private void LevelUp()
     {
-        playerLevel++;
         playerXP -= xpToNextLevel;
-        xpToNextLevel *= 1.2f; // Harder to level up next time
+        playerLevel++;
+
+        // Exponential Curve: 50 -> 57 -> 66 -> 76...
+        xpToNextLevel *= levelDifficultyMultiplier; 
         
         Debug.Log($"GYM LEVEL UP! Now Level {playerLevel}");
         OnLevelChanged?.Invoke(playerLevel);
         
-        // Optional: Play Level Up Sound / Confetti
+        // Notify UI to update the bar with new max
+        OnExpChanged?.Invoke(playerXP, xpToNextLevel);
     }
 
     public void SetAllowPlayerInteraction(bool canInteract)
@@ -136,7 +143,7 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
         playerXP = PlayerPrefs.GetFloat($"{name}_playerXP", playerXP);
         xpToNextLevel = PlayerPrefs.GetFloat($"{name}_xpToNextLevel", xpToNextLevel);
         OnMoneyChanged?.Invoke(currentMoney);
-        OnExpChanged?.Invoke(playerXP);
+        OnExpChanged?.Invoke(playerXP, xpToNextLevel);
         OnLevelChanged?.Invoke(playerLevel);
         OnDayChanged?.Invoke(totalDays);
     }

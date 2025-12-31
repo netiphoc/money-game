@@ -14,7 +14,7 @@ namespace UI.Gameplay
             base.Start();
             GameManager.Instance.OnExpChanged += OnExpChanged;
             GameManager.Instance.OnLevelChanged += OnLevelChanged;
-            OnExpChanged(GameManager.Instance.playerXP);
+            OnExpChanged(GameManager.Instance.playerXP, GameManager.Instance.xpToNextLevel);
             OnLevelChanged(GameManager.Instance.playerLevel);
         }
 
@@ -25,7 +25,7 @@ namespace UI.Gameplay
             GameManager.Instance.OnLevelChanged -= OnLevelChanged;
         }
 
-        private void OnExpChanged(float xp)
+        private void OnExpChanged(float xp, float xpToNextLevel)
         {
             float value = Mathf.Clamp01(xp / GameManager.Instance.xpToNextLevel);
             fillExp.fillAmount = value;

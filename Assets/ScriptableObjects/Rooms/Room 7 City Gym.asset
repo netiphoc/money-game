@@ -15,7 +15,7 @@ MonoBehaviour:
   sectionData: {fileID: 11400000, guid: 5a0d47185cdd40745a93068d3dcafe60, type: 2}
   roomName: City Gym
   requiredGymLevel: 12
-  unlockCost: 350000
+  unlockCost: 550000
   licenses:
   - {fileID: 11400000, guid: 68b582ac30358e7448a191d0bb4616ad, type: 2}
   - {fileID: 11400000, guid: 16ec5fd7b4dccb640b5536ccca1cf730, type: 2}

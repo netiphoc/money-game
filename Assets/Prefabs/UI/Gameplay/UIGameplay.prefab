@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.UIBalance
   textBalance: {fileID: 1018619923118642426}
+  delay: 2
 --- !u!1 &1584254199650832447
 GameObject:
   m_ObjectHideFlags: 0

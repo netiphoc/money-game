@@ -9,7 +9,7 @@ public class BoxerData
         hunger = 100;
         sleep = 100;
         level = 1;
-        xpToNextLevel = 100;
+        xpToNextLevel = 40;
         hungerDecayRate = 0.5f;
         sleepDecayRate = 0.2f;
     }
@@ -42,7 +42,7 @@ public class BoxerData
     [Header("Progression")]
     public int level = 1;          // Gates which Opponents can be fought
     public float currentXP = 0;
-    public float xpToNextLevel = 100;
+    public float xpToNextLevel = 40;
 
     public event Action<float> OnExpChanged;
     public event Action<int> OnLevelChanged;
@@ -68,7 +68,7 @@ public class BoxerData
     {
         currentXP -= xpToNextLevel;
         level++;
-        xpToNextLevel *= 1.5f; // 50% harder each level
+        xpToNextLevel *= 1.15f;
         OnLevelChanged?.Invoke(level);
         Debug.Log($"{boxerName} leveled up to Lvl {level}!");
     }

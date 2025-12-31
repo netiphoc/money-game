@@ -115,16 +115,13 @@ MonoBehaviour:
     unrealizedStamina: 0
     unrealizedSleep: 0
     unrealizedHunger: 0
-    level: 1
-    currentXP: 0
-    xpToNextLevel: 100
-    hiringCost: 0
-    dailySalary: 0
-    statMultiplier: 1
     hunger: 100
     sleep: 100
     hungerDecayRate: 0.5
     sleepDecayRate: 0.2
+    level: 1
+    currentXP: 0
+    xpToNextLevel: 40
   currentState: 0
   assignedRoom: {fileID: 0}
   minTrainTime: 5

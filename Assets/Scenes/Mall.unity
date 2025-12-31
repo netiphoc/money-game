@@ -390,7 +390,8 @@ MonoBehaviour:
   currentMoney: 1000
   playerLevel: 1
   playerXP: 0
-  xpToNextLevel: 1000
+  xpToNextLevel: 50
+  levelDifficultyMultiplier: 1.15
   totalIncome: 0
   totalSupplyCosts: 0
   totalUpgradeCosts: 0
@@ -1278,7 +1279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1004263918
 Transform:
   m_ObjectHideFlags: 0

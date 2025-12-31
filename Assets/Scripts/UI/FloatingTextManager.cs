@@ -1,6 +1,7 @@
 ﻿using System;
 using UI;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public enum TextSpawnPointType
@@ -25,9 +26,15 @@ public class FloatingTextManager : MonoBehaviour
     
     [Header("Floating Text 3D")]
     public FloatingText floatingTextPrefab;
+    
+    [Header("Floating Text Collect")]
+    public UIFloatingTextCollect uiFloatingTextCollectPrefab;
+    public RectTransform moneyIconPointStart; 
+    public RectTransform moneyIconPointEnd; 
 
     private PoolingUI<FloatingText> _poolingWorldText;
     private PoolingUI<UIFloatingText> _poolingUIText;
+    private PoolingUI<UIFloatingTextCollect> _poolingUITextCollect;
 
     private void Awake()
     {
@@ -36,6 +43,19 @@ public class FloatingTextManager : MonoBehaviour
         
         _poolingWorldText = new PoolingUI<FloatingText>(floatingTextPrefab);
         _poolingUIText = new PoolingUI<UIFloatingText>(textPrefab);
+        _poolingUITextCollect = new PoolingUI<UIFloatingTextCollect>(uiFloatingTextCollectPrefab);
+    }
+
+    private void Update()
+    {
+#if UNITY_EDITOR
+        if (Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            int amount = Random.Range(100, 1000);
+            GameManager.Instance.AddMoney(amount);
+            ShowMoneyText(amount);
+        }
+#endif
     }
 
     // --- OPTION A: Show at fixed screen location (Top of Screen) ---
@@ -97,5 +117,41 @@ public class FloatingTextManager : MonoBehaviour
         popup.transform.position = spawnPos;
         popup.transform.rotation = Quaternion.identity;
         popup.Setup(text, color);
+    }
+    
+    public void ShowCollectText(Vector3 position, string text, Color color)
+    {
+        Vector3 spawnPos = position + Vector3.up * 2f;
+        FloatingText popup = _poolingWorldText.RequestRecycle(transform);
+        popup.transform.position = spawnPos;
+        popup.transform.rotation = Quaternion.identity;
+        popup.Setup(text, color);
+    }
+    
+    /// <summary>
+    /// Spawns floating text that flies from a 3D world object to the UI Money counter.
+    /// </summary>
+    public void ShowMoneyText(Vector3 worldPosition, int amount)
+    {
+        // 1. Convert World Position (Player/Loot) to Screen Position
+        Vector2 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
+        UIFloatingTextCollect popup = _poolingUITextCollect.RequestRecycle(transform);
+
+        // 3. Setup
+        Vector2 targetPos = moneyIconPointEnd.position; // The position of your Money Icon
+        popup.Initialize($"${amount:F0}", screenPosition, targetPos);
+    }
+    
+    /// <summary>
+    /// Spawns floating text that flies from a 3D world object to the UI Money counter.
+    /// </summary>
+    public void ShowMoneyText(int amount)
+    {
+        // 1. Convert World Position (Player/Loot) to Screen Position
+        UIFloatingTextCollect popup = _poolingUITextCollect.RequestRecycle(transform);
+
+        // 3. Setup
+        Vector2 targetPos = moneyIconPointEnd.position; // The position of your Money Icon
+        popup.Initialize($"${amount:F0}", moneyIconPointStart.position, targetPos);
     }
 }
