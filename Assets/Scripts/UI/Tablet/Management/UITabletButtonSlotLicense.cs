@@ -12,6 +12,10 @@ namespace UI.Tablet.Management
         [SerializeField] private TMP_Text textLicenseCost;
         [SerializeField] private Image iconLicense;
         [SerializeField] private Button buttonBuy;
+        
+        [Header("Unlock Level")]
+        [SerializeField] private TMP_Text textRequiredLevel;
+        [SerializeField] private Transform lockGroup;
 
         public Action<LicenseSO> OnOwnedLicense;
         
@@ -30,7 +34,12 @@ namespace UI.Tablet.Management
 
         private void OnButtonClickBuyLicense()
         {
-            if(!LicenseManager.Instance.CanBuyLicense(_licenseSo)) return;
+            if (!LicenseManager.Instance.CanBuyLicense(_licenseSo))
+            {
+                FloatingTextManager.Instance.ShowFixedText("Not enough money!", Color.red);
+                return;
+            }
+            
             LicenseManager.Instance.BuyLicense(_licenseSo);
             
             SetOwned();
@@ -42,6 +51,9 @@ namespace UI.Tablet.Management
             _licenseSo = licenseSo;
             //_licenseDataSo.isOwn = false; // Test
             
+            // Level check
+            SetLock(licenseSo.requiredLevel > GameManager.Instance.playerLevel);
+
             SetLicenseName(licenseSo.licenseName);
             SetLicenseIcon(licenseSo.icon);
             SetLicenseCost(licenseSo.cost);
@@ -55,6 +67,7 @@ namespace UI.Tablet.Management
             {
                 buttonBuy.gameObject.SetActive(true);
             }
+            
         }
 
         private void SetLicenseName(string licenseName)
@@ -76,6 +89,16 @@ namespace UI.Tablet.Management
         {
             textLicenseCost.SetText("OWNED");
             buttonBuy.gameObject.SetActive(false);
+        }
+
+        private void SetLock(bool isLock)
+        {
+            lockGroup.gameObject.SetActive(isLock);
+            
+            if (isLock)
+            {
+                textRequiredLevel.SetText($"Required level {_licenseSo.requiredLevel}");
+            }
         }
     }
 }

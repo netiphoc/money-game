@@ -3,12 +3,13 @@ using System.Text;
 using Data;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utilities;
 
 namespace UI.Tablet.Management
 {
-    public class UITabletButtonSlotItem : BaseUIButton
+    public class UITabletButtonSlotItem : BaseUIButton, IPointerEnterHandler, IPointerExitHandler
     {
         private const int MinCount = 1;
         private const int MaxCount = 99;
@@ -19,10 +20,14 @@ namespace UI.Tablet.Management
         [SerializeField] private TMP_Text textTotalCost;
         [SerializeField] private TMP_Text textAddToCartCount;
         [SerializeField] private TMP_Text textItemAmount;
-        [SerializeField] private TMP_Text textItemStats;
         [SerializeField] private Button buttonBuy;
         [SerializeField] private Button buttonAddCount;
         [SerializeField] private Button buttonRemoveCount;
+        
+        [Header("Locked")]
+        [SerializeField] private Transform hoverInfoTransform;
+        [SerializeField] private TMP_Text textRequiredBoxerLevel;
+        [SerializeField] private TMP_Text textItemStats;
         
         [Header("Locked")]
         [SerializeField] private Transform lockTransform;
@@ -48,6 +53,8 @@ namespace UI.Tablet.Management
             buttonBuy.onClick.AddListener(OnButtonClickAddToCart);
             buttonAddCount.onClick.AddListener(OnButtonClickAddItemCount);
             buttonRemoveCount.onClick.AddListener(OnButtonClickRemoveItemCount);
+            
+            hoverInfoTransform.gameObject.SetActive(false);
         }
 
         protected override void OnDisable()
@@ -67,7 +74,8 @@ namespace UI.Tablet.Management
             SetItemIcon(item.icon);
             SetItemAmount(item.stackAmount);
             SetUnitCost(item.cost);
-           
+            SetRequiredBoxerLevel(item.requiredBoxerLevel);
+
             bool isUnlocked = LicenseManager.Instance.IsLicenseUnlocked(item.licenseSo);
             if (isUnlocked)
             {
@@ -199,6 +207,21 @@ namespace UI.Tablet.Management
             if (sleep != 0f) stats.Append($"\nSLEEP {sleepFormat}{sleep:F1}");
             
             textItemStats.SetText(stats.ToString());
+        }
+
+        private void SetRequiredBoxerLevel(int level)
+        {
+            textRequiredBoxerLevel.SetText(level > 1 ? $"Required boxer level {level}" : string.Empty);
+        }
+        
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            hoverInfoTransform.gameObject.SetActive(true);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            hoverInfoTransform.gameObject.SetActive(false);
         }
     }
 }

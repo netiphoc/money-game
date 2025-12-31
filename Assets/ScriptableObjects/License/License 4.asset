@@ -16,7 +16,7 @@ MonoBehaviour:
   licenseName: Professional
   description: 
   cost: 30000
-  requiredBoxerLevel: 12
+  requiredLevel: 12
   unlockedEquipment:
   - {fileID: 11400000, guid: a64121db2fa6e5c45a7edd8e13b37f1f, type: 2}
   - {fileID: 11400000, guid: 93395e4c18273c242bcf171ea82685d4, type: 2}

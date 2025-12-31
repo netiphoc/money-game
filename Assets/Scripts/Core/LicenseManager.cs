@@ -40,6 +40,8 @@ public class LicenseManager : MonoBehaviour, ISaveLoadSystem
 
     public bool CanBuyLicense(LicenseSO license)
     {
+        if (GameManager.Instance.playerLevel < license.requiredLevel) return false;
+        
         // 1. Check if already owned
         if (ownedLicenses.Contains(license)) return false;
 

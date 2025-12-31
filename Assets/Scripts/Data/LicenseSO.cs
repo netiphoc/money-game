@@ -8,7 +8,7 @@ public class LicenseSO : ScriptableObject
     public string licenseName; // e.g., "Amateur League"
     [TextArea] public string description;
     public int cost;
-    public int requiredBoxerLevel; // Can't buy license until Boxer is Lvl 5
+    public int requiredLevel; // Can't buy license until Boxer is Lvl 5
     
     [Header("Unlocks")]
     // The equipment this license allows you to buy

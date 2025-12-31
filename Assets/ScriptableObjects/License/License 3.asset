@@ -16,7 +16,7 @@ MonoBehaviour:
   licenseName: Semi-Pro
   description: 
   cost: 7500
-  requiredBoxerLevel: 7
+  requiredLevel: 7
   unlockedEquipment:
   - {fileID: 11400000, guid: 73b612c7b89c08043ad8bef05d1e118f, type: 2}
   - {fileID: 11400000, guid: b86b82197fdb3754b9260c8827faa26b, type: 2}

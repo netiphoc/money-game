@@ -16,7 +16,7 @@ MonoBehaviour:
   licenseName: World Class
   description: 
   cost: 450000
-  requiredBoxerLevel: 25
+  requiredLevel: 25
   unlockedEquipment:
   - {fileID: 11400000, guid: 6b2963ed4d1ef964ba0e2603c8999264, type: 2}
   - {fileID: 11400000, guid: 17bce356a7676aa4ca0c616ce9927bbd, type: 2}

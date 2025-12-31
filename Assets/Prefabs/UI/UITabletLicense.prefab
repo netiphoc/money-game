@@ -60,6 +60,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8618227399909911212}
     m_Modifications:
+    - target: {fileID: 530654678105563197, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 530654678105563197, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 530654678105563197, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 530654678105563197, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 908603436633099250, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 908603436633099250, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
     - target: {fileID: 4086663676950220775, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
       propertyPath: m_CellSize.x
       value: 245
@@ -152,9 +176,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6222822282765044574, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222822282765044574, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141071684615181732, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141071684615181732, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -17
+      objectReference: {fileID: 0}
     - target: {fileID: 7496948354508358841, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
       propertyPath: m_Name
       value: UI_Tablet_Scroll_View_Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 7533284579109057197, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091673395106233617, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091673395106233617, guid: 0355c14bca306bd438d910ff0bf9369f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

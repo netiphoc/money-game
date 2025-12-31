@@ -16,7 +16,7 @@ MonoBehaviour:
   licenseName: Olympic
   description: 
   cost: 125000
-  requiredBoxerLevel: 18
+  requiredLevel: 18
   unlockedEquipment:
   - {fileID: 11400000, guid: 0ff099df3c2ec3245bf96c16e87d12d4, type: 2}
   - {fileID: 11400000, guid: c126c2a5ff964384684236d6841191e7, type: 2}

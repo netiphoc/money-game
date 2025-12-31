@@ -16,7 +16,7 @@ MonoBehaviour:
   licenseName: Cafeteria License
   description: 
   cost: 2500
-  requiredBoxerLevel: 5
+  requiredLevel: 5
   unlockedEquipment:
   - {fileID: 11400000, guid: f9b702c96389083428e6f5f7a709b5c6, type: 2}
   - {fileID: 11400000, guid: 167f483d9c5bc4847b3cfa65066634ec, type: 2}

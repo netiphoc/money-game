@@ -16,6 +16,6 @@ MonoBehaviour:
   licenseName: Black Market Access
   description: 
   cost: 750000
-  requiredBoxerLevel: 30
+  requiredLevel: 30
   unlockedEquipment:
   - {fileID: 11400000, guid: e511b556deb01a84ba9a1bfcbb4338c3, type: 2}

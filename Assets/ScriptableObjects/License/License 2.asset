@@ -16,7 +16,7 @@ MonoBehaviour:
   licenseName: Amateur
   description: 
   cost: 1500
-  requiredBoxerLevel: 3
+  requiredLevel: 3
   unlockedEquipment:
   - {fileID: 11400000, guid: 14cd545811557c74ba01bf3a1117bbeb, type: 2}
   - {fileID: 11400000, guid: 102821aa7758630448413fbdb72c77a2, type: 2}

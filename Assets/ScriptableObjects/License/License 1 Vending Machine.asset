@@ -16,7 +16,7 @@ MonoBehaviour:
   licenseName: Vending Permit
   description: 
   cost: 50
-  requiredBoxerLevel: 1
+  requiredLevel: 1
   unlockedEquipment:
   - {fileID: 11400000, guid: 583ef79ee6edc744a8c3bbf162f83490, type: 2}
   - {fileID: 11400000, guid: 00f3b2c62fec99546a9122455b1bf411, type: 2}

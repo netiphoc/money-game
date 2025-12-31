@@ -16,7 +16,7 @@ MonoBehaviour:
   licenseName: Backyard
   description: 
   cost: 0
-  requiredBoxerLevel: 1
+  requiredLevel: 1
   unlockedEquipment:
   - {fileID: 11400000, guid: 31f5d64a12204b64b9dff14a8f3b4354, type: 2}
   - {fileID: 11400000, guid: 5c47a341aa0223940ac91e6f14fd961e, type: 2}

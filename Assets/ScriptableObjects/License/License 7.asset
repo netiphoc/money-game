@@ -16,7 +16,7 @@ MonoBehaviour:
   licenseName: Cybernetic
   description: 
   cost: 900000
-  requiredBoxerLevel: 40
+  requiredLevel: 40
   unlockedEquipment:
   - {fileID: 11400000, guid: 78fb1a6238c0e7f4ba154e2bd67fdab0, type: 2}
   - {fileID: 11400000, guid: 7ab1246aace82b848894994a46446bcf, type: 2}
