@@ -23,16 +23,6 @@ public class LicenseManager : MonoBehaviour, ISaveLoadSystem
         }
     }
 
-    private void Start()
-    {
-        LoadGame();
-    }
-
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
-
     public bool IsEquipmentUnlocked(PlaceableDataSO equipment)
     {
         // Check if any owned license contains this equipment

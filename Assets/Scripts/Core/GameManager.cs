@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
     [field: SerializeField] public GymRoom[] GymRooms { get; private set; }
 
     [Header("Time")]
-    public int totalDays;
+    public int totalDays = 1;
     
     [Header("Economy")]
     public int currentMoney = 1000; // Starting cash
@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
     public event Action<int> OnMoneyChanged;
     public event Action<float> OnExpChanged;
     public event Action<int> OnLevelChanged;
+    public event Action<int> OnDayChanged;
 
     private void Awake()
     {
@@ -48,16 +49,6 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
         else Destroy(gameObject);
     }
 
-    private void Start()
-    {
-        LoadGame();
-    }
-
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
-    
     #region ECONOMY
 
     public bool TrySpendMoney(int amount, SpendType spendType)
@@ -87,6 +78,11 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
         currentMoney += amount;
         totalIncome += amount;
         OnMoneyChanged?.Invoke(currentMoney);
+    }
+
+    public void AddDay()
+    {
+        totalDays++;
     }
 
     #endregion
@@ -141,5 +137,6 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
         OnMoneyChanged?.Invoke(currentMoney);
         OnExpChanged?.Invoke(playerXP);
         OnLevelChanged?.Invoke(playerLevel);
+        OnDayChanged?.Invoke(totalDays);
     }
 }

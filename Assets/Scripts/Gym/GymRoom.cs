@@ -37,17 +37,7 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
             gymRoomEquipmentDetector.onRoomTriggerExit.AddListener(OnTriggerExit);
         }
     }
-
-    private void Start()
-    {
-        LoadGame();
-    }
-
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
-
+    
     private void OnDestroy()
     {
         if (gymRoomEquipmentDetector)

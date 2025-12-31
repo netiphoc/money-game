@@ -34,8 +34,8 @@ namespace UI.Gameplay
         private void UpdateSummary()
         {
             textIncome.SetText($"${GameManager.Instance.totalIncome}");
-            textSupplyCosts.SetText($"${GameManager.Instance.totalSupplyCosts}");
-            textUpgradeCosts.SetText($"${GameManager.Instance.totalUpgradeCosts}");
+            textSupplyCosts.SetText($"-${GameManager.Instance.totalSupplyCosts}");
+            textUpgradeCosts.SetText($"-${GameManager.Instance.totalUpgradeCosts}");
             textProfit.SetText($"${GameManager.Instance.totalIncome - GameManager.Instance.totalUpgradeCosts - GameManager.Instance.totalSupplyCosts}");
         }
 

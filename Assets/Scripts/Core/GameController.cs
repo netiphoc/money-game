@@ -1,4 +1,5 @@
-﻿using UI;
+﻿using SaveLoadSystem;
+using UI;
 using Utilities;
 
 namespace Core
@@ -15,8 +16,15 @@ namespace Core
             {
                 room.OnRoomUnlocked += OnRoomUnlocked;
             }
+            
+            SaveSystem.Instance.LoadAll();
         }
 
+        private void OnApplicationQuit()
+        {
+            SaveSystem.Instance.SaveAll();
+        }
+        
         protected override void OnDestroy()
         {
             base.OnDestroy();
@@ -26,6 +34,14 @@ namespace Core
                 room.OnRoomUnlocked -= OnRoomUnlocked;
             }
         }
+        
+        private void OnRoomUnlocked(GymRoom room)
+        {
+            if(!IsTheDayStarted) return;
+            room.assignedBoxer.StartVisualCycle();
+        }
+
+        #region Day Controller
 
         public void StartTheDay()
         {
@@ -41,16 +57,14 @@ namespace Core
             IsTheDayStarted = true;
         }
 
-        private void OnRoomUnlocked(GymRoom room)
-        {
-            if(!IsTheDayStarted) return;
-            room.assignedBoxer.StartVisualCycle();
-        }
-
         public void EndTheDay()
         {
             UIManager.Instance.ShowUI(UIManager.Instance.UISummary);
             UIManager.Instance.LockUIInput = true;
+            GameManager.Instance.AddDay();
+            SaveSystem.Instance.SaveAll();
         }
+
+        #endregion
     }
 }

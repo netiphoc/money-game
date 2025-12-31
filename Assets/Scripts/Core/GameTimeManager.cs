@@ -133,9 +133,7 @@ public class GameTimeManager : BaseMonoBehaviour
         // Ensure the display shows exactly the end time
         UpdateDebugString();
         OnGameMinuteTick?.Invoke(GetFormattedTime());
-        
         OnTimeEnded?.Invoke();
-        Debug.Log("Day Ended.");
     }
 
     private void UpdateDebugString()
