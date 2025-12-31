@@ -22,7 +22,7 @@ namespace UI.Tablet
         [SerializeField] private Transform containerRoom;
         
         [Header("Button")]
-        [SerializeField] private Button buttonCart;
+        public Button buttonCart;
         [SerializeField] private Button buttonHome;
         [SerializeField] private UITabletButtonBalance uiTabletButtonBalance;
         

@@ -31,10 +31,14 @@ public class FloatingTextManager : MonoBehaviour
     public UIFloatingTextCollect uiFloatingTextCollectPrefab;
     public RectTransform moneyIconPointStart; 
     public RectTransform moneyIconPointEnd; 
+    
+    [Header("Floating Icon Collect")]
+    public UIFloatingIconCollect uiFloatingIconCollectPrefab;
 
     private PoolingUI<FloatingText> _poolingWorldText;
     private PoolingUI<UIFloatingText> _poolingUIText;
     private PoolingUI<UIFloatingTextCollect> _poolingUITextCollect;
+    private PoolingUI<UIFloatingIconCollect> _poolingUIIconCollect;
 
     private void Awake()
     {
@@ -44,6 +48,7 @@ public class FloatingTextManager : MonoBehaviour
         _poolingWorldText = new PoolingUI<FloatingText>(floatingTextPrefab);
         _poolingUIText = new PoolingUI<UIFloatingText>(textPrefab);
         _poolingUITextCollect = new PoolingUI<UIFloatingTextCollect>(uiFloatingTextCollectPrefab);
+        _poolingUIIconCollect = new PoolingUI<UIFloatingIconCollect>(uiFloatingIconCollectPrefab);
     }
 
     private void Update()
@@ -118,16 +123,7 @@ public class FloatingTextManager : MonoBehaviour
         popup.transform.rotation = Quaternion.identity;
         popup.Setup(text, color);
     }
-    
-    public void ShowCollectText(Vector3 position, string text, Color color)
-    {
-        Vector3 spawnPos = position + Vector3.up * 2f;
-        FloatingText popup = _poolingWorldText.RequestRecycle(transform);
-        popup.transform.position = spawnPos;
-        popup.transform.rotation = Quaternion.identity;
-        popup.Setup(text, color);
-    }
-    
+
     /// <summary>
     /// Spawns floating text that flies from a 3D world object to the UI Money counter.
     /// </summary>
@@ -143,7 +139,7 @@ public class FloatingTextManager : MonoBehaviour
     }
     
     /// <summary>
-    /// Spawns floating text that flies from a 3D world object to the UI Money counter.
+    /// Spawns floating text that flies from UI object to the UI Money counter.
     /// </summary>
     public void ShowMoneyText(int amount)
     {
@@ -153,5 +149,14 @@ public class FloatingTextManager : MonoBehaviour
         // 3. Setup
         Vector2 targetPos = moneyIconPointEnd.position; // The position of your Money Icon
         popup.Initialize($"${amount:F0}", moneyIconPointStart.position, targetPos);
+    }
+    
+    /// <summary>
+    /// Spawns floating icon that flies from a UI object to the UI Money counter.
+    /// </summary>
+    public void ShowFlyingIcon(Sprite icon, Vector2 from, Vector2 to)
+    {
+        UIFloatingIconCollect popup = _poolingUIIconCollect.RequestRecycle(transform);
+        popup.Initialize(icon, from, to);
     }
 }

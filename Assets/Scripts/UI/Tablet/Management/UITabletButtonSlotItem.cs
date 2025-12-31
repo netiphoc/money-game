@@ -128,6 +128,11 @@ namespace UI.Tablet.Management
 
         private void OnButtonClickAddToCart()
         {
+            FloatingTextManager.Instance.ShowFlyingIcon(
+                _itemDataSO.icon, 
+                iconItem.transform.position, 
+                UIManager.Instance.UITablet.UITabletManager.buttonCart.transform.position);
+
             OnAddItemToCart?.Invoke(new CartItemData(_itemDataSO, _cartCount));
             
             SetCartCount(1);

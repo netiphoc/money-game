@@ -10,8 +10,11 @@ namespace UI.Gameplay
         [SerializeField] private TMP_Text textBalance;
         [SerializeField] private float delay = 2f;
 
+        private Coroutine _sumBalanceCoroutine;
         private WaitForSeconds _waitForSeconds;
+        
         private bool _init;
+        private int _sumBalance;
         
         protected override void Awake()
         {
@@ -32,8 +35,6 @@ namespace UI.Gameplay
             GameManager.Instance.OnMoneyChanged -= OnMoneyChanged;
         }
 
-        private int _sumBalance;
-        private Coroutine _sumBalanceCoroutine;
 
         private void OnMoneyChanged(int balance)
         {
