@@ -19,7 +19,7 @@ public class StatGenerator : MonoBehaviour
     public void BuyItem()
     {
         float price = GetBuyPrice();
-        if (GameManager.Instance.TrySpendMoney(Mathf.FloorToInt(price)))
+        if (GameManager.Instance.TrySpendMoney(Mathf.FloorToInt(price), SpendType.SUPPLY))
         {
             countOwned++;
             // Update UI/Visuals here

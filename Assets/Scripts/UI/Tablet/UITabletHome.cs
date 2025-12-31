@@ -26,12 +26,12 @@ namespace UI.Tablet
 
         private void OnAppClickedManagement()
         {
-            uiTablet.Show(uiTablet.UITabletManager);
+            uiTablet.ShowUI(uiTablet.UITabletManager);
         }
 
         private void OnAppClickedLeagues()
         {
-            uiTablet.Show(uiTablet.UITabletLeagues);
+            uiTablet.ShowUI(uiTablet.UITabletLeagues);
         }
     }
 }

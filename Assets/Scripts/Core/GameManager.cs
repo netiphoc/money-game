@@ -3,10 +3,15 @@ using System;
 using Core;
 using SaveLoadSystem;
 using StarterAssets;
-using Unity.VisualScripting;
+
+public enum SpendType
+{
+    SUPPLY, UPGRADE
+}
 
 public class GameManager : MonoBehaviour, ISaveLoadSystem
 {
+    
     public static GameManager Instance;
 
     [Header("System")]
@@ -16,6 +21,9 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
     [field: SerializeField] public GameController GameController { get; private set; }
     [field: SerializeField] public GymRoom[] GymRooms { get; private set; }
 
+    [Header("Time")]
+    public int totalDays;
+    
     [Header("Economy")]
     public int currentMoney = 1000; // Starting cash
     
@@ -23,6 +31,11 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
     public int playerLevel = 1;      // Used for unlocking Rooms
     public float playerXP = 0;
     public float xpToNextLevel = 1000;
+    
+    [Header("Summary")]
+    public float totalIncome;
+    public float totalSupplyCosts;
+    public float totalUpgradeCosts;
     
     // Events allow the UI to update automatically when money changes
     public event Action<int> OnMoneyChanged;
@@ -47,11 +60,22 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
     
     #region ECONOMY
 
-    public bool TrySpendMoney(int amount)
+    public bool TrySpendMoney(int amount, SpendType spendType)
     {
         if (currentMoney >= amount)
         {
             currentMoney -= amount;
+            
+            switch (spendType)
+            {
+                case SpendType.SUPPLY:
+                    totalSupplyCosts += amount;
+                    break;
+                case SpendType.UPGRADE:
+                    totalUpgradeCosts += amount;
+                    break;
+            }
+            
             OnMoneyChanged?.Invoke(currentMoney);
             return true;
         }
@@ -61,10 +85,9 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
     public void AddMoney(int amount)
     {
         currentMoney += amount;
+        totalIncome += amount;
         OnMoneyChanged?.Invoke(currentMoney);
     }
-
-    
 
     #endregion
     #region LEVEL
@@ -101,6 +124,7 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
 
     public void SaveGame()
     {
+        PlayerPrefs.SetInt($"{name}_totalDays", totalDays);
         PlayerPrefs.SetInt($"{name}_currentMoney", currentMoney);
         PlayerPrefs.SetInt($"{name}_playerLevel", playerLevel);
         PlayerPrefs.SetFloat($"{name}_playerXP", playerXP);
@@ -109,6 +133,7 @@ public class GameManager : MonoBehaviour, ISaveLoadSystem
 
     public void LoadGame()
     {
+        totalDays = PlayerPrefs.GetInt($"{name}_totalDays", totalDays);
         currentMoney = PlayerPrefs.GetInt($"{name}_currentMoney", currentMoney);
         playerLevel = PlayerPrefs.GetInt($"{name}_playerLevel", playerLevel);
         playerXP = PlayerPrefs.GetFloat($"{name}_playerXP", playerXP);

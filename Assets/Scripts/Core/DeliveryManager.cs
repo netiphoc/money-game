@@ -18,7 +18,7 @@ public class DeliveryManager : MonoBehaviour
     public void OrderItem(ItemDataSO itemDataSo)
     {
         // 1. Check Money FIRST
-        if (GameManager.Instance.TrySpendMoney(itemDataSo.cost))
+        if (GameManager.Instance.TrySpendMoney(itemDataSo.cost, SpendType.SUPPLY))
         {
             SpawnDeliveryBox(itemDataSo);
         }

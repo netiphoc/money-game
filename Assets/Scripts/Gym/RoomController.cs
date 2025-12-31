@@ -41,7 +41,7 @@ public class RoomController : BaseInteractable
     private void UnlockRoom()
     {
         // 1. Check Money
-        if (GameManager.Instance.TrySpendMoney(unlockCost))
+        if (GameManager.Instance.TrySpendMoney(unlockCost, SpendType.UPGRADE))
         {
             isUnlocked = true;
             UpdateRoomState();

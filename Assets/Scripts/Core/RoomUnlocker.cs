@@ -60,7 +60,8 @@ public class RoomUnlocker : BaseInteractable
         // Check GLOBAL Player Level
         if (GameManager.Instance.playerLevel < gymRoom.RoomDataSo.requiredGymLevel) return;
         if(UIManager.Instance.UIRecruitBoxer.Visible) return;
-        UIManager.Instance.ShowGymUnlock(gymRoom, true);
+        UIManager.Instance.UIRecruitBoxer.SetRecruitBoxer(gymRoom);
+        UIManager.Instance.ShowUI(UIManager.Instance.UIRecruitBoxer);
     }
 
     public override void OnAltInteract(PlayerInteraction player) { }
@@ -69,7 +70,7 @@ public class RoomUnlocker : BaseInteractable
     {
         doorBarrier.SetActive(false);
         uiRecruitBoxerUnlocker.SetVisible(false);
-        UIManager.Instance.ShowGymUnlock(default, false);
+        UIManager.Instance.CloseUI();
     }
 
     private void UpdateVisuals()

@@ -27,10 +27,10 @@ namespace UI.Tablet
 
         public void ShowHome()
         {
-            Show(UITabletHome);
+            ShowUI(UITabletHome);
         }
         
-        public void Show(BaseUI ui)
+        public void ShowUI(BaseUI ui)
         {
             foreach (var app in _allApp)
             {
@@ -41,8 +41,8 @@ namespace UI.Tablet
         public void ShowQuickLeagueBoxer(BoxerController boxerController)
         {
             if(Visible) return;
-            UIManager.Instance.ShowTablet(true);
-            Show(UITabletLeagues);
+            UIManager.Instance.ShowUI(UIManager.Instance.UITablet);
+            ShowUI(UITabletLeagues);
             UITabletLeagues.OnClickedBoxer(boxerController);
         }
     }

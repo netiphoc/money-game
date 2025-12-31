@@ -1,4 +1,5 @@
-﻿using UI.Gameplay;
+﻿using System.Collections.Generic;
+using UI.Gameplay;
 using UI.RecruitBoxer;
 using UI.Tablet;
 using UnityEngine;
@@ -18,15 +19,28 @@ namespace UI
         [field: SerializeField] public UIBoxerStat UIBoxerStat { get; private set; }
         [field: SerializeField] public UIHoverKey UIHoverKey { get; private set; }
         [field: SerializeField] public UIRecruitBoxer UIRecruitBoxer { get; private set; }
-        
-        private bool _isTabletOpen;
-        private bool _isRecruitOpen;
+        [field: SerializeField] public UISummary UISummary { get; private set; }
 
+        public bool LockUIInput { get; set; }
+        
+        private readonly List<BaseUI> _ui = new List<BaseUI>();
+        
         private void Awake()
         {
             if (Instance == null) Instance = this;
+            InitUI();
         }
 
+        private void InitUI()
+        {
+            _ui.Add(UITablet);
+            _ui.Add(UIBoxerStat);
+            _ui.Add(UIHoverKey);
+            _ui.Add(UIRecruitBoxer);
+            _ui.Add(UIHoverKey);
+            _ui.Add(UISummary);
+        }
+        
         private void OnEnable()
         {
             toggleTabletInput.action.Enable();
@@ -41,48 +55,46 @@ namespace UI
         {
             if (toggleTabletInput.action.WasPerformedThisFrame())
             {
-                if (_isRecruitOpen)
-                {
-                    ShowGymUnlock(default, false);
-                    return;
-                }
-
+                if(LockUIInput) return;
                 ToggleTablet();
             }
         }
         
-        private void ToggleTablet()
+        public void ShowUI(BaseUI ui)
         {
-            ShowTablet(!_isTabletOpen);
+            if(LockUIInput) return;
+            foreach (var app in _ui)
+            {
+                app.SetVisible(app == ui);
+            }
+
+            SetUIInteractMode(true);
         }
 
-        public void ShowTablet(bool isTabletOpen)
+        public void CloseUI()
         {
-            UIBoxerStat.SetVisible(false);
-            UIHoverKey.SetVisible(false);
-            
-            _isTabletOpen = isTabletOpen;
-            UITablet.SetVisible(isTabletOpen);
-
-            SetUIInteractMode(isTabletOpen);
-        }
-
-        public void ShowGymUnlock(GymRoom gymRoom, bool show)
-        {
-            _isRecruitOpen = show;
-            SetUIInteractMode(show);
-
-            if (show)
-            {            
-                UIRecruitBoxer.SetRecruitBoxer(gymRoom);
-                UIRecruitBoxer.SetVisible(true);
-                return;
+            foreach (var app in _ui)
+            {
+                if(!app.Visible) continue;
+                app.SetVisible(false);
             }
             
-            UIRecruitBoxer.SetVisible(false);
+            SetUIInteractMode(false);
         }
 
-        private void SetUIInteractMode(bool uiInteractMode)
+        private void ToggleTablet()
+        {
+            if (UITablet.Visible)
+            {
+                CloseUI();
+            }
+            else
+            {
+                ShowUI(UITablet); 
+            }
+        }
+
+        public static void SetUIInteractMode(bool uiInteractMode)
         {
             GameManager.Instance.SetAllowPlayerInteraction(!uiInteractMode);
             

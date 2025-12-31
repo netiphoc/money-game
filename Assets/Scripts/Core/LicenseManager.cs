@@ -65,7 +65,7 @@ public class LicenseManager : MonoBehaviour, ISaveLoadSystem
     {
         if (CanBuyLicense(license))
         {
-            if (GameManager.Instance.TrySpendMoney(license.cost))
+            if (GameManager.Instance.TrySpendMoney(license.cost, SpendType.UPGRADE))
             {
                 ownedLicenses.Add(license);
                 Debug.Log($"Unlocked: {license.licenseName}");

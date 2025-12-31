@@ -48,7 +48,7 @@ namespace UI.RecruitBoxer
         
         private void OnButtonClickedClose()
         {
-            UIManager.Instance.ShowGymUnlock(default,false);
+            UIManager.Instance.CloseUI();
         }
 
         private void OnClickUnlock(BoxerData boxer)
@@ -57,7 +57,7 @@ namespace UI.RecruitBoxer
                 // 1. Check Player Level
                 GameManager.Instance.playerLevel < _gymRoom.RoomDataSo.requiredGymLevel ||
                 // 2. Check Money
-                !GameManager.Instance.TrySpendMoney(_gymRoom.RoomDataSo.unlockCost))
+                !GameManager.Instance.TrySpendMoney(_gymRoom.RoomDataSo.unlockCost, SpendType.UPGRADE))
             {
                 Debug.Log("No Money");
                 FloatingTextManager.Instance.ShowFixedText("Not enough money!", Color.red);

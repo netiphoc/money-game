@@ -1,4 +1,5 @@
-﻿using Utilities;
+﻿using UI;
+using Utilities;
 
 namespace Core
 {
@@ -48,6 +49,8 @@ namespace Core
 
         public void EndTheDay()
         {
+            UIManager.Instance.ShowUI(UIManager.Instance.UISummary);
+            UIManager.Instance.LockUIInput = true;
         }
     }
 }
