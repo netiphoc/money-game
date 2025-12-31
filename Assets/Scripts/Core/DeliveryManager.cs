@@ -17,16 +17,7 @@ public class DeliveryManager : MonoBehaviour
     // Call this from your UI Button
     public void OrderItem(ItemDataSO itemDataSo)
     {
-        // 1. Check Money FIRST
-        if (GameManager.Instance.TrySpendMoney(itemDataSo.cost, SpendType.SUPPLY))
-        {
-            SpawnDeliveryBox(itemDataSo);
-        }
-        else
-        {
-            Debug.Log("Not enough money!");
-            // Play Error Sound
-        }
+        SpawnDeliveryBox(itemDataSo);
     }
 
     private void SpawnDeliveryBox(ItemDataSO itemDataSo)

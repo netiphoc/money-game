@@ -45,6 +45,12 @@ namespace UI.Tablet.Management
 
         private void OnButtonClickedCheckout()
         {
+            if (!GameManager.Instance.TrySpendMoney(_totalCost, SpendType.SUPPLY))
+            {
+                FloatingTextManager.Instance.ShowFixedText("Not enough money!", Color.red);
+                return;
+            }
+
             foreach (var cart in _cart)
             {
                 if(cart.Value.ItemAmount == 0) continue;
@@ -53,11 +59,7 @@ namespace UI.Tablet.Management
                 {
                     DeliveryManager.Instance.OrderItem(cart.Key);
                 }
-                
-                Debug.Log($"- {cart.Key.itemName} x{cart.Value.ItemAmount} | {cart.Value.CalculateCost().ToMoneyFormat()}");
             }
-            
-            Debug.Log($"CHECK OUT: x{_itemAmount} {_totalCost.ToMoneyFormat()}");
  
             ClearCart();
             SetVisible(false);
