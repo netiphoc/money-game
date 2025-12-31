@@ -18,4 +18,12 @@ MonoBehaviour:
   itemPrefab: {fileID: 2219554425293228247, guid: 21afcb9451dd0594bb4f83a4df2ce0f5, type: 3}
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   licenseSo: {fileID: 11400000, guid: 53f8f497a0ff8c847a0abe8f560de095, type: 2}
+  isConsumable: 0
+  consumeTimeTick: 0
+  strBonus: 0
+  agiBonus: 0
+  staBonus: 0
+  hungerBonus: 0
+  sleepBonus: 0
+  requiredBoxerLevel: 7
   placementData: {fileID: 11400000, guid: cfed4f5da0869304a8b89d377e31e906, type: 2}

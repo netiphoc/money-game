@@ -25,4 +25,5 @@ MonoBehaviour:
   staBonus: 3
   hungerBonus: 2.5
   sleepBonus: -0.2
+  requiredBoxerLevel: 1
   placementData: {fileID: 0}

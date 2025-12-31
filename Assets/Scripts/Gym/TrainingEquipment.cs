@@ -66,6 +66,11 @@ public class TrainingEquipment : MonoBehaviour
         OnStorageShelfUpdated?.Invoke(storageShelf);
     }
 
+    public bool IsConsumable()
+    {
+        return StorageShelfShelves.Length > 0;
+    }
+
     public bool TryGetConsumableShelf(out StorageShelf[] storageShelfShelves)
     {
         List<StorageShelf> shelves = new List<StorageShelf>();

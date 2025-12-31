@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class BoxerController : MonoBehaviour
@@ -57,7 +59,8 @@ public class BoxerController : MonoBehaviour
         while (true)
         {
             // 1. CHECK: Is there ANY equipment?
-            if (assignedRoom == null || assignedRoom.equipmentInRoom.Count == 0)
+            TrainingEquipment[] permitEquipment = assignedRoom.GetPermitEquipments(this, false).ToArray();
+            if (assignedRoom == null || permitEquipment.Length == 0)
             {
                 EnterIdleState();
                 yield return new WaitForSeconds(2f);
@@ -65,8 +68,8 @@ public class BoxerController : MonoBehaviour
             }
 
             // 2. DECIDE
-            int randomIndex = Random.Range(0, assignedRoom.equipmentInRoom.Count);
-            _targetEquipment = assignedRoom.equipmentInRoom[randomIndex];
+            int randomIndex = Random.Range(0, permitEquipment.Length);
+            _targetEquipment = permitEquipment[randomIndex];
 
             // 3. MOVE
             currentState = AIState.MovingToMachine;

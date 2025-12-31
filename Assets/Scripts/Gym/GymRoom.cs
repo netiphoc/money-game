@@ -46,6 +46,16 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
             gymRoomEquipmentDetector.onRoomTriggerExit.RemoveListener(OnTriggerExit);
         }
     }
+    
+    public IEnumerable<TrainingEquipment> GetPermitEquipments(BoxerController boxer, bool includeConsumable = true)
+    {
+        foreach (var trainingEquipment in equipmentInRoom)
+        {
+            if(trainingEquipment.LinkedData.linkedItemData.requiredBoxerLevel > boxer.stats.level) continue;
+            if(!includeConsumable && trainingEquipment.IsConsumable()) continue;
+            yield return trainingEquipment;
+        }
+    }
 
     public bool CanFitMore()
     {
@@ -72,7 +82,7 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
         totalHungerRate = 0;
 
         List<PlaceableDataSO> addedItems = new List<PlaceableDataSO>();
-        foreach (var equip in equipmentInRoom)
+        foreach (var equip in GetPermitEquipments(assignedBoxer))
         {
             bool hasShelf = equip.TryGetConsumableShelf(out StorageShelf[] shelves);
             
@@ -82,10 +92,6 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
                 foreach (var shelf in shelves)
                 {
                     ItemDataSO itemDataSo = shelf.GetItem();
-
-                    for (int i = 0; i < shelf.GetItemCount(); i++)
-                    {
-                    }
                     
                     if(shelf.GetItemCount() <= 0) continue;
                     
@@ -105,7 +111,7 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
                 if(addedItems.Contains(equip.LinkedData)) continue;
                 addedItems.Add(equip.LinkedData);
             }
-            
+
             totalStrRate += equip.strPerSecond;
             totalAgiRate += equip.agiPerSecond;
             totalStaRate += equip.staPerSecond;

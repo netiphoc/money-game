@@ -11,6 +11,8 @@ public class MoveableFurniture : BaseInteractable
     private float holdTimer;
     private const float HOLD_THRESHOLD = 0.5f; // How long to hold before moving
     private float lastInteractTime;
+    
+    private bool _isIndicatorShow;
 
     protected override void InitInteractionPrompts()
     {
@@ -18,20 +20,20 @@ public class MoveableFurniture : BaseInteractable
         {
             InteractionPrompt_MOVE
         });
+        
+        AddInteractionPrompt(new []
+        {
+            new InteractionPromptData
+            {
+                Icon = KeyIcon.ALERT,
+                Prompt = $"Required boxer level {data.linkedItemData.requiredBoxerLevel}"
+            },
+            InteractionPrompt_MOVE
+        });
     }
-
-    private bool _isIndicatorShow;
+    
     public override InteractionPromptData[] GetInteractionPrompts()
     {
-        /*
-        if (holdTimer > 0)
-        {
-            int bars = (int)((holdTimer / HOLD_THRESHOLD) * 10);
-            string progress = new string('|', bars);
-            return $"Release to Cancel [{progress}]";
-        }
-        */
-
         bool hasProgress = holdTimer > 0;
         UIManager.Instance.UILoadingCursor.SetVisible(hasProgress && holdTimer < HOLD_THRESHOLD);
         _isIndicatorShow = UIManager.Instance.UILoadingCursor.Visible;
@@ -41,7 +43,9 @@ public class MoveableFurniture : BaseInteractable
             UIManager.Instance.UILoadingCursor.SetProgress(1f - (holdTimer / HOLD_THRESHOLD));
         }
         
-        return GetInteractionPromptByIndex(0);
+        return data.linkedItemData.requiredBoxerLevel > 1 ? 
+            GetInteractionPromptByIndex(1) : 
+            GetInteractionPromptByIndex(0);
     }
 
     public override void OnInteract(PlayerInteraction player)
