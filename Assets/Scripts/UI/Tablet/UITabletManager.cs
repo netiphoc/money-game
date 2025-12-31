@@ -193,7 +193,6 @@ namespace UI.Tablet
 
         private void OnRoomDataChanged(RoomDataSO roomDataSo)
         {
-            Debug.Log($"OnRoomDataChanged -> {roomDataSo.roomName}");
             UITabletLicense.SetLicenses(roomDataSo.licenses);
 
             List<ItemDataSO> itemDataSo = new List<ItemDataSO>();

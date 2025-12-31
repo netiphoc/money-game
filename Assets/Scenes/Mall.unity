@@ -692,6 +692,7 @@ MonoBehaviour:
   - {fileID: 158939218}
   - {fileID: 554284619}
   boxerControllerPrefab: {fileID: 9103484075892342616, guid: 286a7bd55548cf745acc8b1dc923a11a, type: 3}
+  itemBox: {fileID: 862605124054249854, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
   allItems:
   - {fileID: 11400000, guid: 8164d4e89247152489ca9f541a39554a, type: 2}
   - {fileID: 11400000, guid: d3ff3a933ea2aa14eaa7fcd80f32248f, type: 2}
@@ -1372,6 +1373,7 @@ MonoBehaviour:
   <RoomDataSo>k__BackingField: {fileID: 11400000, guid: 47c98d38c769db94d9d976a528ed51c5, type: 2}
   assignedBoxer: {fileID: 0}
   equipmentInRoom: []
+  itemBoxInRoom: []
   maxCapacity: 10000
   capacityLevel: 1
   totalStrRate: 0

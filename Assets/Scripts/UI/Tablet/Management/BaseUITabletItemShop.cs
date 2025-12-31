@@ -26,7 +26,6 @@ namespace UI.Tablet.Management
         protected void RenderItems()
         {
             if(!isActiveAndEnabled) return;
-            Debug.Log($"RenderProduct: {name}");
             GetPool().ClearPool();
 
             OnRenderItem();

@@ -28,7 +28,6 @@ namespace UI.Tablet.Leagues
 
         public void RefreshFightLeaguesSlot(BoxerController boxerController, OpponentSO[] opponentSo)
         {
-            Debug.Log($"RefreshFightLeaguesSlot: {boxerController.stats.boxerName} Lvl.{boxerController.stats.level}");
             GetPool().ClearPool();
 
             int rank = 1;
