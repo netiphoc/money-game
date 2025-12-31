@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: License 4 Underground Market (Illegal)
   m_EditorClassIdentifier: Assembly-CSharp::LicenseDataSO
   icon: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
-  licenseName: License 4 Underground Market (Illegal)
+  licenseName: Black Market Access
   description: 
-  cost: 50
-  requiredBoxerLevel: 1
+  cost: 750000
+  requiredBoxerLevel: 30
   unlockedEquipment:
   - {fileID: 11400000, guid: e511b556deb01a84ba9a1bfcbb4338c3, type: 2}

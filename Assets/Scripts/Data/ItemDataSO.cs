@@ -18,21 +18,13 @@ public class ItemDataSO : ScriptableObject
     public float strBonus; 
     public float agiBonus;
     public float staBonus;
-    [SerializeField] private float hungerBonus;
-    [SerializeField] private float sleepBonus; 
-    
+    public float hungerBonus;
+    public float sleepBonus;
+
+    [Header("Required")] 
+    public int requiredBoxerLevel; 
+        
     [Header("Deployment")]
     // If this is set, this item can be taken out and placed as furniture!
     public PlaceableDataSO placementData;
-
-    public float GetHungerBonus()
-    {
-        return hungerBonus / consumeTimeTick;
-    }
-    
-    public float GetSleepBonus()
-    {
-        return sleepBonus / consumeTimeTick;
-    }
-    
 }

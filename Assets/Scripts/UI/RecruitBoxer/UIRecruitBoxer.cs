@@ -64,8 +64,6 @@ namespace UI.RecruitBoxer
                 OnButtonClickedClose();
                 return;
             }
-
-            _gymRoom.UnlockRoom();
                 
             // 1. Spawn the Visual NPC
             BoxerController controller = Instantiate(boxerPrefab, _gymRoom.SpawnPoint);
@@ -76,6 +74,8 @@ namespace UI.RecruitBoxer
             // 3. Assign to Room
             _gymRoom.assignedBoxer = controller;
             controller.AssignToRoom(_gymRoom);
+            
+            _gymRoom.UnlockRoom();
         }
     }
 }

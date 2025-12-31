@@ -25,11 +25,18 @@ public class IdleProductionManager : MonoBehaviour
             // 1. Check if room has a worker
             if (room.assignedBoxer != null)
             {
-                if(room.assignedBoxer.currentState != BoxerController.AIState.TrainingVisual) continue;
-                
                 BoxerData stats = room.assignedBoxer.stats;
+                
                 // 1. Decay Hunger/Sleep
                 stats.TickSurvival();
+                
+                float hungerGain = room.totalHungerRate;
+                float sleepGain = room.totalSleepRate;
+                stats.unrealizedHunger += hungerGain;
+                stats.unrealizedSleep += sleepGain;
+                stats.ApplyUnrealizeSurvivalStats();
+                
+                if(room.assignedBoxer.currentState != BoxerController.AIState.TrainingVisual) continue;
                 
                 // 2. Get Survival Penalty (The new logic)
                 float survivalMult = stats.GetEfficiencyMultiplier();
@@ -38,8 +45,6 @@ public class IdleProductionManager : MonoBehaviour
                 float strGain = room.totalStrRate;
                 float agiGain = room.totalAgiRate;
                 float staGain = room.totalStaRate;
-                float sleepGain = room.totalSleepRate;
-                float hungerGain = room.totalHungerRate;
 
                 // 3. Apply Boxer's Personal Multiplier (Pro vs Rookie)
                 float mult = survivalMult;
@@ -47,8 +52,6 @@ public class IdleProductionManager : MonoBehaviour
                 stats.unrealizedStrength += strGain * mult;
                 stats.unrealizedAgility += agiGain * mult;
                 stats.unrealizedStamina += staGain * mult;
-                stats.unrealizedSleep += sleepGain;
-                stats.unrealizedHunger += hungerGain;
             }
         }
     }

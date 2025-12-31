@@ -23,6 +23,6 @@ MonoBehaviour:
   strBonus: 0
   agiBonus: 2
   staBonus: 0
-  hungerBonus: 2
-  sleepBonus: 15
+  hungerBonus: 0
+  sleepBonus: 0.8
   placementData: {fileID: 0}

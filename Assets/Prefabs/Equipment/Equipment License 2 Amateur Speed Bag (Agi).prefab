@@ -226,8 +226,13 @@ MonoBehaviour:
   strPerSecond: 0
   agiPerSecond: 5.5
   staPerSecond: 0
+  hungerPerSecond: -0.1
+  sleepPerSecond: -0.4
+  <StorageShelfShelves>k__BackingField: []
   animationTrigger: Punch
   interactionPoint: {fileID: 5368467270845860648}
+  currentRooms: []
+  LinkedData: {fileID: 0}
 --- !u!54 &-2893847670931544446
 Rigidbody:
   m_ObjectHideFlags: 0

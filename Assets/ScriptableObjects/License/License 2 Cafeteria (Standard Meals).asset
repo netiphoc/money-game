@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: License 2 Cafeteria (Standard Meals)
   m_EditorClassIdentifier: Assembly-CSharp::LicenseDataSO
   icon: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
-  licenseName: License 2 Cafeteria (Standard Meals)
+  licenseName: Cafeteria License
   description: 
-  cost: 50
-  requiredBoxerLevel: 1
+  cost: 2500
+  requiredBoxerLevel: 5
   unlockedEquipment:
   - {fileID: 11400000, guid: f9b702c96389083428e6f5f7a709b5c6, type: 2}
   - {fileID: 11400000, guid: 167f483d9c5bc4847b3cfa65066634ec, type: 2}

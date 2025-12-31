@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Data;
 using TMPro;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace UI.Tablet.Management
         [SerializeField] private TMP_Text textTotalCost;
         [SerializeField] private TMP_Text textAddToCartCount;
         [SerializeField] private TMP_Text textItemAmount;
+        [SerializeField] private TMP_Text textItemStats;
         [SerializeField] private Button buttonBuy;
         [SerializeField] private Button buttonAddCount;
         [SerializeField] private Button buttonRemoveCount;
@@ -61,20 +63,22 @@ namespace UI.Tablet.Management
         {
             _itemDataSO = item;
             
-           SetItemName(item.itemName);
-           SetItemIcon(item.icon);
-           SetItemAmount(item.stackAmount);
-           SetUnitCost(item.cost);
+            SetItemName(item.itemName);
+            SetItemIcon(item.icon);
+            SetItemAmount(item.stackAmount);
+            SetUnitCost(item.cost);
            
-           bool isUnlocked = LicenseManager.Instance.IsLicenseUnlocked(item.licenseSo);
-           if (isUnlocked)
-           {
-               SetOwned();
-           } 
-           else
-           {
-               SetRequiredLicense(item.licenseSo.licenseName);
-           }
+            bool isUnlocked = LicenseManager.Instance.IsLicenseUnlocked(item.licenseSo);
+            if (isUnlocked)
+            {
+                SetOwned();
+            } 
+            else
+            {
+                SetRequiredLicense(item.licenseSo.licenseName);
+            }
+            
+            UpdateItemStats(isUnlocked);
         }
 
         private void SetOwned()
@@ -84,6 +88,7 @@ namespace UI.Tablet.Management
 
         private void SetRequiredLicense(string licenseName)
         {
+            lockTransform.gameObject.SetActive(true);
             textRequiredLicense.SetText($"({licenseName})");   
         }
         
@@ -144,6 +149,56 @@ namespace UI.Tablet.Management
         private void UpdateTotalCost()
         {
             textTotalCost.SetText(GetTotalCost().ToMoneyFormat());
+        }
+
+        private void UpdateItemStats(bool isUnlock)
+        {
+            if (!isUnlock)
+            {
+                textItemStats.gameObject.SetActive(false);
+                return;
+            }
+            
+            textItemStats.gameObject.SetActive(true);
+            
+            float str = 0;
+            float agi = 0;
+            float sta = 0;
+            
+            float hunger = 0;
+            float sleep = 0;
+
+            if (_itemDataSO.itemPrefab.TryGetComponent(out TrainingEquipment trainingEquipment))
+            {
+                str += trainingEquipment.strPerSecond;
+                agi += trainingEquipment.agiPerSecond;
+                sta += trainingEquipment.staPerSecond;
+            }
+            
+            if (_itemDataSO.isConsumable)
+            {
+                hunger += _itemDataSO.hungerBonus;
+                sleep += _itemDataSO.sleepBonus;
+                str += _itemDataSO.strBonus;
+                agi += _itemDataSO.agiBonus;
+                sta += _itemDataSO.staBonus;
+            }
+
+            StringBuilder stats = new StringBuilder();
+            
+            string strFormat = str > 0 ? "+" : string.Empty;
+            string agiFormat = agi > 0 ? "+" : string.Empty;
+            string staFormat = sta > 0 ? "+" : string.Empty;
+            string hungerFormat = hunger > 0 ? "+" : string.Empty;
+            string sleepFormat = sleep > 0 ? "+" : string.Empty;
+            
+            if (str != 0f) stats.Append($"STR {strFormat}{str:F1}");
+            if (agi != 0f) stats.Append($"\nAGI {agiFormat}{agi:F1}");
+            if (sta != 0f) stats.Append($"\nSTA {staFormat}{sta:F1}");
+            if (hunger != 0f) stats.Append($"\nHUNGER {hungerFormat}{hunger:F1}");
+            if (sleep != 0f) stats.Append($"\nSLEEP {sleepFormat}{sleep:F1}");
+            
+            textItemStats.SetText(stats.ToString());
         }
     }
 }

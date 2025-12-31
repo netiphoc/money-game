@@ -8,8 +8,11 @@ public class TrainingEquipment : MonoBehaviour
     public float strPerSecond;
     public float agiPerSecond;
     public float staPerSecond;
-    public float sleepPerSecond;
+    
+    [Header("Idle Survival (Per Second)")]
     public float hungerPerSecond;
+    public float sleepPerSecond;
+    
     [field: SerializeField, Header("Consumable")] public StorageShelf[] StorageShelfShelves { get; private set; }
 
     [Header("Visuals")]

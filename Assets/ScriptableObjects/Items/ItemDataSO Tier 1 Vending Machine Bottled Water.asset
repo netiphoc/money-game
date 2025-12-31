@@ -22,7 +22,7 @@ MonoBehaviour:
   consumeTimeTick: 30
   strBonus: 0
   agiBonus: 0
-  staBonus: 0
-  hungerBonus: 5
-  sleepBonus: 0
+  staBonus: 2
+  hungerBonus: 0
+  sleepBonus: 0.4
   placementData: {fileID: 0}

@@ -93,8 +93,8 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
                     totalStrRate += itemDataSo.strBonus;
                     totalAgiRate += itemDataSo.agiBonus;
                     totalStaRate += itemDataSo.staBonus;
-                    totalSleepRate += itemDataSo.GetSleepBonus();
-                    totalHungerRate += itemDataSo.GetHungerBonus();
+                    totalSleepRate += itemDataSo.sleepBonus;
+                    totalHungerRate += itemDataSo.hungerBonus;
                 }
             }
             

@@ -79,17 +79,20 @@ public class BoxerData
         agility += unrealizedAgility;
         stamina += unrealizedStamina;
         
-        sleep += unrealizedSleep;
-        hunger += unrealizedHunger;
-        
         unrealizedStrength = 0;
         unrealizedAgility = 0;
         unrealizedStamina = 0;
         
+        UpdateTotal();
+    }
+
+    public void ApplyUnrealizeSurvivalStats()
+    {
+        sleep = Mathf.Clamp(sleep + unrealizedSleep, 0f, 100f);
+        hunger = Mathf.Clamp(hunger + unrealizedHunger, 0f, 100f);
+        
         unrealizedSleep = 0;
         unrealizedHunger = 0;
-        
-        UpdateTotal();
     }
 
     #region Food

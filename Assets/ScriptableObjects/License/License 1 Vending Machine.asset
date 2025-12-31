@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: License 1 Vending Machine
   m_EditorClassIdentifier: Assembly-CSharp::LicenseDataSO
   icon: {fileID: 21300000, guid: b0fa70abd2a79904cb00b175dfd8ec7e, type: 3}
-  licenseName: License 1 Vending Machine
+  licenseName: Vending Permit
   description: 
   cost: 50
   requiredBoxerLevel: 1
