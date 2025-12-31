@@ -17,11 +17,13 @@ public class PickableItem : BaseInteractable
         rb = GetComponent<Rigidbody>();
     }
 
+    /*
     public override string GetInteractionPrompt()
     {
         if (isHeld) return "Press G to Throw";
         return $"Press E to pick up {itemName}";
     }
+    */
 
     public override void OnInteract(PlayerInteraction player)
     {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Systems;
+using UI;
 using UnityEngine;
 
 public class ItemBox : BaseInteractable
@@ -24,6 +25,34 @@ public class ItemBox : BaseInteractable
         col = GetComponent<Collider>();
     }
 
+    protected override void InitInteractionPrompts()
+    {
+        AddInteractionPrompt(new []
+        {
+            InteractionPrompt_PLACE,
+            InteractionPrompt_THROW
+        });
+        
+        AddInteractionPrompt(new []
+        {
+            new InteractionPromptData
+            {
+                Icon = KeyIcon.ALERT,
+                RealTimePrompt = GetItemInfoPrompt
+            }
+        });
+        
+        AddInteractionPrompt(new []
+        {
+            InteractionPrompt_PICKUP,
+        });
+    }
+
+    private string GetItemInfoPrompt()
+    {
+        return $"{itemData.itemName} x{currentQuantity}";
+    }
+
     protected override void OnDestroy()
     {
         base.OnDestroy();
@@ -34,17 +63,18 @@ public class ItemBox : BaseInteractable
         }
     }
 
-    public override string GetInteractionPrompt()
+    public override InteractionPromptData[] GetInteractionPrompts()
     {
         if (isHeld) 
         {
             // If it's furniture, tell them clicking will place it
-            if (itemData.placementData != null) return "Click LMB to Place / G to Throw";
+            if (itemData.placementData != null) return GetInteractionPromptByIndex(0);
             
             // If it's regular shelf items (e.g. Water)
-            return "Hold LMB to Stock / G to Throw"; 
-        }
-        return $"Click LMB {itemData.itemName} Box";
+            return GetInteractionPromptByIndex(1);
+        } 
+        
+        return GetInteractionPromptByIndex(2);
     }
 
     public override void OnInteract(PlayerInteraction player)

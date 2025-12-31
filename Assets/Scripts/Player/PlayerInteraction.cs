@@ -75,7 +75,7 @@ public class PlayerInteraction : MonoBehaviour
         // Priority 1: Look Target (e.g., Shelf, Trash, Door)
         if (lookTarget != null)
         {
-            UIManager.Instance.UIHoverKey.SetText(lookTarget.GetInteractionPrompt());
+            UIManager.Instance.UIHoverKey.SetInteractionData(lookTarget.GetInteractionPrompts());
             UIManager.Instance.UIHoverKey.SetVisible(true);
 
             if (lookTarget.GetUI())
@@ -92,7 +92,7 @@ public class PlayerInteraction : MonoBehaviour
             IInteractable heldLogic = currentHeldObject.GetComponent<IInteractable>();
             if (heldLogic != null)
             {
-                UIManager.Instance.UIHoverKey.SetText(heldLogic.GetInteractionPrompt());
+                UIManager.Instance.UIHoverKey.SetInteractionData(heldLogic.GetInteractionPrompts());
                 UIManager.Instance.UIHoverKey.SetVisible(true);
                 return;
             }

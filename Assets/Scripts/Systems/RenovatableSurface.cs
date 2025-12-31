@@ -31,10 +31,11 @@ public class RenovatableSurface : BaseInteractable
         UpdateVisuals();
     }
 
-    public override string GetInteractionPrompt()
+    public override InteractionPromptData[] GetInteractionPrompts()
     {
-        if (currentState == State.Dirty) return "Hold Click to Scrap Surface";
-        return "Press E to Change Style";
+        return GetInteractionPromptByIndex(0);
+        //if (currentState == State.Dirty) return "Hold Click to Scrap Surface";
+        //return "Press E to Change Style";
     }
 
     public override void OnInteract(PlayerInteraction player)

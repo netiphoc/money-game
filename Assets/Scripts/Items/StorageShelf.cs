@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Systems;
+using UI;
 
 public class StorageShelf : BaseInteractable
 {
@@ -20,7 +21,7 @@ public class StorageShelf : BaseInteractable
     public event Action<StorageShelf> OnShelfItemRemove;
 
     private float _consumeTime;
-
+    private bool _isHandEmpty = true;
 
     protected override void Start()
     {
@@ -44,16 +45,29 @@ public class StorageShelf : BaseInteractable
         RemoveVisualItem();
     }
 
-    public override string GetInteractionPrompt()
+    protected override void InitInteractionPrompts()
     {
-        return "Hold LMB to Stock / RMB to Retrieve";
+        AddInteractionPrompt(new []
+        {
+            new InteractionPromptData
+            {
+                Icon = KeyIcon.MOUSE_LEFT_CLICK,
+                Prompt = "(Hold) STOCK"
+            },
+            new InteractionPromptData
+            {
+                Icon = KeyIcon.MOUSE_RIGHT_CLICK,
+                Prompt = "(Hold) RETRIEVE"
+            }
+        });
     }
 
     public override void OnInteract(PlayerInteraction player)
     {
         // ... (Existing Stocking Logic - unchanged) ...
+        _isHandEmpty = player.GetHeldObject() == null;
         if (Time.time < lastStockTime + stockSpeed) return;
-        if (player.GetHeldObject() == null) return;
+        if (_isHandEmpty) return;
 
         ItemBox box = player.GetHeldObject().GetComponent<ItemBox>();
 

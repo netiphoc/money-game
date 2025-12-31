@@ -23,9 +23,21 @@ namespace AI
             _uiBoxerStat = UIManager.Instance.UIBoxerStat;
         }
 
-        public override string GetInteractionPrompt()
+        protected override void InitInteractionPrompts()
         {
-            return _boxerController.stats.boxerName;
+            AddInteractionPrompt(new []
+            {
+                new InteractionPromptData
+                {
+                    Icon = KeyIcon.MOUSE_LEFT_CLICK,
+                    Prompt = "PUSH",
+                },
+                new InteractionPromptData
+                {
+                    Icon = KeyIcon.MOUSE_RIGHT_CLICK,
+                    Prompt = "FIGHT",
+                }
+            });
         }
 
         public override BaseUI GetUI()

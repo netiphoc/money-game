@@ -1,8 +1,9 @@
-﻿using UI;
+﻿using Systems;
+using UI;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class BaseToggleSwitch : MonoBehaviour, IInteractable
+public abstract class BaseToggleSwitch : BaseInteractable
 {
     [Header("Settings")]
     public string objectName = "Breaker";
@@ -12,18 +13,47 @@ public abstract class BaseToggleSwitch : MonoBehaviour, IInteractable
     public UnityEvent OnToggleOn;
     public UnityEvent OnToggleOff;
 
-    public string GetInteractionPrompt()
+    protected override void InitInteractionPrompts()
+    {
+        AddInteractionPrompt(new []
+        {
+            new InteractionPromptData
+            {
+                Icon = KeyIcon.MOUSE_LEFT_CLICK,
+                Prompt = "Turn on"
+            },
+        });
+        
+        AddInteractionPrompt(new []
+        {
+            new InteractionPromptData
+            {
+                Icon = KeyIcon.MOUSE_LEFT_CLICK,
+                Prompt = "Turn off"
+            },
+        });
+        
+        AddInteractionPrompt(new []
+        {
+            new InteractionPromptData
+            {
+                Icon = KeyIcon.ALERT,
+                Prompt = GetDenyPrompt()
+            },
+        });
+    }
+
+    public override InteractionPromptData[] GetInteractionPrompts()
     {
         if (!ToggleCondition())
         {
-            return GetDenyPrompt();
+            return GetInteractionPromptByIndex(2);
         }
-        
-        string status = isOn ? "OFF" : "ON";
-        return $"Press Left Click to Turn {status} {objectName}";
-    }
 
-    public BaseUI GetUI()
+        return isOn ? GetInteractionPromptByIndex(1) : GetInteractionPromptByIndex(0);
+    }
+    
+    public override BaseUI GetUI()
     {
         return default;
     }
@@ -33,7 +63,7 @@ public abstract class BaseToggleSwitch : MonoBehaviour, IInteractable
         return "Deny";
     }
     
-    public void OnInteract(PlayerInteraction player)
+    public override void OnInteract(PlayerInteraction player)
     {
         if(!ToggleCondition()) return;
         
@@ -43,7 +73,7 @@ public abstract class BaseToggleSwitch : MonoBehaviour, IInteractable
         }
     }
 
-    public void OnAltInteract(PlayerInteraction player) { }
+    public override void OnAltInteract(PlayerInteraction player) { }
 
     protected virtual void Toggle()
     {

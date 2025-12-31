@@ -42,17 +42,50 @@ public class RoomUnlocker : BaseInteractable
         UpdateVisuals();
     }
 
-    public override string GetInteractionPrompt()
+    protected override void InitInteractionPrompts()
     {
-        if (gymRoom.IsUnlocked) return "";
+        AddInteractionPrompt(new []
+        {
+            new InteractionPromptData
+            {
+                Icon = KeyIcon.ALERT,
+                Prompt = $"NULL"
+            }
+        });
+        
+        AddInteractionPrompt(new []
+        {
+            new InteractionPromptData
+            {
+                Icon = KeyIcon.ALERT,
+                Prompt = $"Required level {gymRoom.RoomDataSo.requiredGymLevel}"
+            }
+        });
+        
+        AddInteractionPrompt(new []
+        {
+            new InteractionPromptData
+            {
+                Icon = KeyIcon.MOUSE_LEFT_CLICK,
+                Prompt = $"Recruit new boxer ({gymRoom.RoomDataSo.unlockCost.ToMoneyFormat()})"
+            }
+        });
+    }
+
+    public override InteractionPromptData[] GetInteractionPrompts()
+    {
+        if (gymRoom.IsUnlocked)
+        {
+            return GetInteractionPromptByIndex(0);
+        }
 
         // Check GLOBAL Player Level
         if (GameManager.Instance.playerLevel < gymRoom.RoomDataSo.requiredGymLevel)
         {
-            return $"Requires Gym Level {gymRoom.RoomDataSo.requiredGymLevel}";
+            return GetInteractionPromptByIndex(1);
         }
 
-        return $"Press E to Buy Room ({gymRoom.RoomDataSo.unlockCost.ToMoneyFormat()})";
+        return GetInteractionPromptByIndex(2);
     }
 
     public override void OnInteract(PlayerInteraction player)

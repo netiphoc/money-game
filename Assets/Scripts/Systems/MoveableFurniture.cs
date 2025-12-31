@@ -9,9 +9,17 @@ public class MoveableFurniture : BaseInteractable
     // Hold Logic
     private float holdTimer;
     private const float HOLD_THRESHOLD = 0.5f; // How long to hold before moving
-    private float lastInteractTime; 
+    private float lastInteractTime;
 
-    public override string GetInteractionPrompt()
+    protected override void InitInteractionPrompts()
+    {
+        AddInteractionPrompt(new []
+        {
+            InteractionPrompt_MOVE
+        });
+    }
+
+    public override InteractionPromptData[] GetInteractionPrompts()
     {
         /*
         if (holdTimer > 0)
@@ -22,7 +30,7 @@ public class MoveableFurniture : BaseInteractable
         }
         */
         
-        return "Hold Left Click to Move";
+        return GetInteractionPromptByIndex(0);
     }
 
     public override void OnInteract(PlayerInteraction player)

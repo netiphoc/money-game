@@ -1,11 +1,12 @@
 ﻿// This interface defines what any interactive object MUST have
 
+using Systems;
 using UI;
 
 public interface IInteractable
 {
     // The text that appears on UI (e.g., "Press E to Open", "Hold Click to Carry")
-    string GetInteractionPrompt();
+    InteractionPromptData[] GetInteractionPrompts();
     BaseUI GetUI();
 
     // What happens when the player Left Clicks / Presses E

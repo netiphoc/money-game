@@ -1,4 +1,5 @@
 ﻿using Systems;
+using UI;
 using UnityEngine;
 
 public class TrashObject : BaseInteractable
@@ -10,9 +11,16 @@ public class TrashObject : BaseInteractable
     private float cleanTimer = 0f;
     private float lastInteractTime;
 
-    public override string GetInteractionPrompt()
+    protected override void InitInteractionPrompts()
     {
-        return $"Hold Click to Clean";
+        AddInteractionPrompt(new []
+        {
+            new InteractionPromptData
+            {
+                Icon = KeyIcon.MOUSE_LEFT_CLICK,
+                Prompt = "(Hold) Clean"
+            },
+        });
     }
 
     public override void OnInteract(PlayerInteraction player)
