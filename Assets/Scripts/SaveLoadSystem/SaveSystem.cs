@@ -10,6 +10,7 @@ namespace SaveLoadSystem
         
         [Header("Prefabs")]
         [SerializeField] private BoxerController boxerControllerPrefab;
+        [SerializeField] private ItemBox itemBox;
         [SerializeField] private ItemDataSO[] allItems;
         
         public static SaveSystem Instance;
@@ -62,6 +63,11 @@ namespace SaveLoadSystem
             }
 
             return default;
+        }
+
+        public ItemBox GetItemBox()
+        {
+            return Instantiate(itemBox);
         }
     }
 }

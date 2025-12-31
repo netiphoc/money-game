@@ -3,7 +3,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using Data;
 using SaveLoadSystem;
-using UnityEngine.InputSystem;
 
 public class GymRoom : MonoBehaviour, ISaveLoadSystem
 {
@@ -15,6 +14,7 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
     [Header("Room Info")]
     public BoxerController assignedBoxer;
     public List<TrainingEquipment> equipmentInRoom = new List<TrainingEquipment>();
+    public List<ItemBox> itemBoxInRoom = new List<ItemBox>();
 
     [Header("Capacity Limit")]
     public int maxCapacity = 10; // Default limit
@@ -47,27 +47,23 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
         }
     }
 
-    // --- NEW: CAPACITY CHECK ---
     public bool CanFitMore()
     {
         return equipmentInRoom.Count < maxCapacity;
     }
 
-    // --- NEW: UPGRADE FUNCTION ---
     public void UpgradeCapacity()
     {
         capacityLevel++;
         maxCapacity += 5; // Add 5 slots per upgrade
     }
 
-    // Get the cost to upgrade (Exponential cost logic)
     public int GetUpgradeCost()
     {
         return 500 * capacityLevel; // Example: $500, $1000, $1500...
     }
     
-    // Called whenever equipment is placed/removed
-    public void RecalculateRates()
+    private void RecalculateRates()
     {
         totalStrRate = 0;
         totalAgiRate = 0;
@@ -121,7 +117,6 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
         // totalStrRate *= LicenseManager.Instance.GetMultiplier();
     }
     
-// --- NEW PUBLIC REMOVAL METHOD ---
     public void RemoveEquipment(TrainingEquipment equip)
     {
         if (equipmentInRoom.Contains(equip))
@@ -129,6 +124,13 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
             equip.OnStorageShelfUpdated -= OnStorageShelfUpdated;
             equipmentInRoom.Remove(equip);
             RecalculateRates();
+        }
+    }
+    public void RemoveItemBox(ItemBox itemBox)
+    {
+        if (itemBoxInRoom.Contains(itemBox))
+        {
+            itemBoxInRoom.Remove(itemBox);
         }
     }
     
@@ -143,7 +145,12 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
             RecalculateRates(); // Update math immediately
         }
         
-        // ... (Boxer detection remains same)
+        ItemBox itemBox = other.GetComponent<ItemBox>();
+        if (itemBox != null && !itemBoxInRoom.Contains(itemBox))
+        {
+            itemBoxInRoom.Add(itemBox);
+            itemBox.currentRooms.Add(this);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -153,7 +160,15 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
         {
             equip.OnStorageShelfUpdated -= OnStorageShelfUpdated;
             equipmentInRoom.Remove(equip);
+            equip.currentRooms.Remove(this);
             RecalculateRates();
+        }
+        
+        ItemBox itemBox = other.GetComponent<ItemBox>();
+        if (itemBox != null && itemBoxInRoom.Contains(itemBox))
+        {
+            itemBoxInRoom.Remove(itemBox);
+            itemBox.currentRooms.Remove(this);
         }
     }
 
@@ -185,12 +200,29 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
     {
         public TrainingEquipmentData[] data;
     }
+    
+    [Serializable]
+    public class ItemBoxData
+    {
+        public string itemId;
+        public int currentQuantity;
+        public Vector3 position;
+        public Quaternion rotation;
+    }
+    
+    [Serializable]
+    public class ItemBoxGroupData
+    {
+        public ItemBoxData[] data;
+    }
 
     public void SaveGame()
     {
+        #region Gym Stats
         // Unlock
         PlayerPrefs.SetInt($"{name}_IsUnlocked", IsUnlocked ? 1 : 0);
 
+        // Stats
         if (assignedBoxer)
         {
             PlayerPrefs.SetString($"{name}_boxerName", assignedBoxer.stats.boxerName);
@@ -202,7 +234,11 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
             PlayerPrefs.SetFloat($"{name}_xpToNextLevel", assignedBoxer.stats.xpToNextLevel);
         }
         
-        // Equipment
+
+        #endregion
+        
+        #region Equipment Data
+
         List<TrainingEquipmentData> equipmentData = new List<TrainingEquipmentData>();
             
         foreach (var trainingEquipment in equipmentInRoom)
@@ -240,10 +276,39 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
         });
 
         PlayerPrefs.SetString($"{name}_equipmentInRoom", equipmentJson);
+        
+
+        #endregion
+        
+        #region Item Box Data
+
+        List<ItemBoxData> itemBoxData = new List<ItemBoxData>();
+        foreach (var itemBox in itemBoxInRoom)
+        {
+            ItemDataSO itemDataSo = itemBox.itemData;
+            itemBoxData.Add(new ItemBoxData
+            {
+                itemId = itemDataSo.itemName,
+                currentQuantity = itemBox.currentQuantity,
+                position = itemBox.transform.position,
+                rotation = itemBox.transform.rotation,
+            });
+        }
+
+        string itemBoxJson = JsonUtility.ToJson(new ItemBoxGroupData()
+        {
+            data = itemBoxData.ToArray(),
+        });
+
+        PlayerPrefs.SetString($"{name}_itemBoxInRoom", itemBoxJson);
+        
+
+        #endregion
     }
 
     public void LoadGame()
     {
+        #region Gym Data
         // Unlock
         bool isUnlock = PlayerPrefs.GetInt($"{name}_IsUnlocked", 0) == 1;
         if (isUnlock) UnlockRoom();
@@ -266,34 +331,60 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
             assignedBoxer = boxerController;
             boxerController.assignedRoom = this;
         }
-        
-        // Equipment
+
+        #endregion
+
+        #region Equipment Data
+
         if (PlayerPrefs.HasKey($"{name}_equipmentInRoom"))
         {
-          string json = PlayerPrefs.GetString($"{name}_equipmentInRoom");
-          TrainingEquipmentGroupData data = JsonUtility.FromJson<TrainingEquipmentGroupData>(json);
+            string json = PlayerPrefs.GetString($"{name}_equipmentInRoom");
+            TrainingEquipmentGroupData data = JsonUtility.FromJson<TrainingEquipmentGroupData>(json);
 
-          foreach (var trainingEquipment in data.data)
-          {
-              ItemDataSO item = SaveSystem.Instance.GetItemDataFromItemName(trainingEquipment.itemId);
-              if(item == default) continue;
-              GameObject obj = Instantiate(item.itemPrefab, trainingEquipment.position, trainingEquipment.rotation);
+            foreach (var trainingEquipment in data.data)
+            {
+                ItemDataSO item = SaveSystem.Instance.GetItemDataFromItemName(trainingEquipment.itemId);
+                if(item == default) continue;
+                GameObject obj = Instantiate(item.itemPrefab, trainingEquipment.position, trainingEquipment.rotation);
               
-              // Save storage items
-              TrainingEquipment equipment = obj.GetComponent<TrainingEquipment>();
-              if (equipment == null) continue;
-              if(equipment.StorageShelfShelves.Length != trainingEquipment.storageIds.Length) continue;
-              if(equipment.StorageShelfShelves.Length != trainingEquipment.storageAmount.Length) continue;
+                // Save storage items
+                TrainingEquipment equipment = obj.GetComponent<TrainingEquipment>();
+                if (equipment == null) continue;
+                if(equipment.StorageShelfShelves.Length != trainingEquipment.storageIds.Length) continue;
+                if(equipment.StorageShelfShelves.Length != trainingEquipment.storageAmount.Length) continue;
 
-              for (int i = 0; i < equipment.StorageShelfShelves.Length; i++)
-              {
-                  if(trainingEquipment.storageIds.Equals("null")) continue;
-                  ItemDataSO itemDataSo = SaveSystem.Instance.GetItemDataFromItemName(trainingEquipment.storageIds[i]);
-                  if(itemDataSo == default) continue;
-                  StorageShelf storageShelf = equipment.StorageShelfShelves[i];
-                  storageShelf.SetItemStorage(itemDataSo, trainingEquipment.storageAmount[i]);
-              }
-          }
+                for (int i = 0; i < equipment.StorageShelfShelves.Length; i++)
+                {
+                    if(trainingEquipment.storageIds.Equals("null")) continue;
+                    ItemDataSO itemDataSo = SaveSystem.Instance.GetItemDataFromItemName(trainingEquipment.storageIds[i]);
+                    if(itemDataSo == default) continue;
+                    StorageShelf storageShelf = equipment.StorageShelfShelves[i];
+                    storageShelf.SetItemStorage(itemDataSo, trainingEquipment.storageAmount[i]);
+                }
+            }
         }
+
+        #endregion
+
+        #region Item Box Data
+
+        if (PlayerPrefs.HasKey($"{name}_itemBoxInRoom"))
+        {
+            string json = PlayerPrefs.GetString($"{name}_itemBoxInRoom");
+            ItemBoxGroupData data = JsonUtility.FromJson<ItemBoxGroupData>(json);
+
+            foreach (var itemBoxData in data.data)
+            {
+                ItemDataSO item = SaveSystem.Instance.GetItemDataFromItemName(itemBoxData.itemId);
+                if(item == default) continue;
+                ItemBox itemBox = SaveSystem.Instance.GetItemBox();
+                itemBox.transform.position = itemBoxData.position;
+                itemBox.transform.rotation = itemBoxData.rotation;
+                itemBox.itemData = item;
+                itemBox.currentQuantity = itemBoxData.currentQuantity;
+            }
+        }
+
+        #endregion
     }
 }

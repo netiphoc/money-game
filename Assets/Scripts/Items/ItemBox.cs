@@ -1,4 +1,5 @@
-﻿using Systems;
+﻿using System.Collections.Generic;
+using Systems;
 using UnityEngine;
 
 public class ItemBox : BaseInteractable
@@ -12,12 +13,25 @@ public class ItemBox : BaseInteractable
     private Collider col;
     private bool isHeld = false;
 
+    // NEW: Track which room owns this equipment
+    public List<GymRoom> currentRooms = new List<GymRoom>();
+    
     protected override void Awake()
     {
         base.Awake();
         
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        
+        foreach (var t in currentRooms)
+        {
+            t.RemoveItemBox(this);
+        }
     }
 
     public override string GetInteractionPrompt()
