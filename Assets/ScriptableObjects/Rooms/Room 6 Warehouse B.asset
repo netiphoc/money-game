@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Data.RoomDataSO
   sectionData: {fileID: 11400000, guid: 5a0d47185cdd40745a93068d3dcafe60, type: 2}
   roomName: Warehouse B
-  requiredGymLevel: 10
+  requiredGymLevel: 25
   unlockCost: 200000
   licenses:
   - {fileID: 11400000, guid: 68b582ac30358e7448a191d0bb4616ad, type: 2}
