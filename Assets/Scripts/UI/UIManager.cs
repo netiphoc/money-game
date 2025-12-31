@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UI.Gameplay;
 using UI.RecruitBoxer;
 using UI.Tablet;
@@ -29,6 +30,11 @@ namespace UI
         {
             if (Instance == null) Instance = this;
             InitUI();
+        }
+
+        private void Start()
+        {
+            SetUIInteractMode(false);
         }
 
         private void InitUI()
