@@ -7,10 +7,6 @@ namespace UI.Tablet.Leagues
 {
     public class UITabletLeagues : BaseUI
     {
-        [Header("Data")] 
-        [SerializeField] private GymRoom[] gymRooms;
-        [SerializeField] private OpponentSO[] opponents;
-        
         [Header("UI")]
         [SerializeField] private UITablet uiTablet;
         [SerializeField] private UITabletLeaguesBoxer uiTabletLeaguesBoxer;
@@ -42,13 +38,13 @@ namespace UI.Tablet.Leagues
         
         public void OnClickedBoxer(BoxerController boxerController)
         {
-            uiTabletLeaguesFighter.RefreshFightLeaguesSlot(boxerController, opponents);
+            uiTabletLeaguesFighter.RefreshFightLeaguesSlot(boxerController, FightManager.Instance.OpponentSo);
         }
 
         private void RefreshBoxers()
         {
             List<BoxerController> boxerControllers = new List<BoxerController>();
-            foreach (var gymRoom in gymRooms)
+            foreach (var gymRoom in GameManager.Instance.GymRooms)
             {
                 if(!gymRoom.assignedBoxer) continue; 
                 boxerControllers.Add(gymRoom.assignedBoxer);
@@ -57,7 +53,7 @@ namespace UI.Tablet.Leagues
             if (boxerControllers.Count > 0)
             {
                 uiTabletLeaguesBoxer.RefreshBoxerLeaguesSlot(boxerControllers.ToArray());
-                uiTabletLeaguesFighter.RefreshFightLeaguesSlot(boxerControllers[0], opponents);
+                uiTabletLeaguesFighter.RefreshFightLeaguesSlot(boxerControllers[0], FightManager.Instance.OpponentSo);
             }
         }
         

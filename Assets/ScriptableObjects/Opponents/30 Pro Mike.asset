@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 040441f2b34e41559ea2e0dea69a9e70, type: 3}
-  m_Name: 4 Average Joe
+  m_Name: 30 Pro Mike
   m_EditorClassIdentifier: Assembly-CSharp::OpponentSO
-  opponentName: Average Joe
+  opponentName: Pro Mike
   avatar: {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
-  strength: 40
-  agility: 30
-  stamina: 40
-  requiredBoxerLevel: 4
-  moneyReward: 150
-  boxerXPReward: 25
-  playerXPReward: 12
+  strength: 5000
+  agility: 5000
+  stamina: 5000
+  requiredBoxerLevel: 30
+  moneyReward: 120000
+  boxerXPReward: 3000
+  playerXPReward: 1500

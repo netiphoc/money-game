@@ -5,6 +5,8 @@ public class FightManager : MonoBehaviour
 {
     public static FightManager Instance;
 
+    [field: SerializeField] public OpponentSO[] OpponentSo { get; private set; }
+
     // Events to update UI or play sounds
     public event Action<bool, OpponentSO> OnFightComplete; // bool = isWin
 

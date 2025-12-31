@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 040441f2b34e41559ea2e0dea69a9e70, type: 3}
-  m_Name: 3 Barry The Boulder
+  m_Name: 9 Cardio Carl
   m_EditorClassIdentifier: Assembly-CSharp::OpponentSO
-  opponentName: Street Thug
+  opponentName: Cardio Carl
   avatar: {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
-  strength: 60
-  agility: 5
-  stamina: 10
-  requiredBoxerLevel: 3
-  moneyReward: 120
-  boxerXPReward: 20
-  playerXPReward: 10
+  strength: 100
+  agility: 300
+  stamina: 500
+  requiredBoxerLevel: 9
+  moneyReward: 1500
+  boxerXPReward: 150
+  playerXPReward: 75

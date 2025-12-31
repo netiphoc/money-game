@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 040441f2b34e41559ea2e0dea69a9e70, type: 3}
-  m_Name: 7 Furious Fred
+  m_Name: 20 Tank The Crusher
   m_EditorClassIdentifier: Assembly-CSharp::OpponentSO
-  opponentName: Furious Fred
+  opponentName: Tank "The Crusher"
   avatar: {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
-  strength: 80
-  agility: 20
-  stamina: 40
-  requiredBoxerLevel: 7
-  moneyReward: 300
-  boxerXPReward: 50
-  playerXPReward: 20
+  strength: 3000
+  agility: 200
+  stamina: 2500
+  requiredBoxerLevel: 20
+  moneyReward: 20000
+  boxerXPReward: 800
+  playerXPReward: 400
