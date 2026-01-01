@@ -128,10 +128,13 @@ namespace UI.Tablet.Management
 
         private void OnButtonClickAddToCart()
         {
-            FloatingTextManager.Instance.ShowFlyingIcon(
-                _itemDataSO.icon, 
-                iconItem.transform.position, 
-                UIManager.Instance.UITablet.UITabletManager.buttonCart.transform.position);
+            for (int i = 0; i < _cartCount; i++)
+            {
+                FloatingTextManager.Instance.ShowFlyingIcon(
+                    _itemDataSO.icon, 
+                    iconItem.transform.position, 
+                    UIManager.Instance.UITablet.UITabletManager.buttonCart.transform.position);
+            }
 
             OnAddItemToCart?.Invoke(new CartItemData(_itemDataSO, _cartCount));
             
@@ -166,12 +169,13 @@ namespace UI.Tablet.Management
 
         private void UpdateItemStats(bool isUnlock)
         {
+            /*
             if (!isUnlock)
             {
                 textItemStats.gameObject.SetActive(false);
                 return;
             }
-            
+            */
             textItemStats.gameObject.SetActive(true);
             
             float str = 0;

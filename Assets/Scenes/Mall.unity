@@ -2107,6 +2107,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2919491999605051333, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919491999605051333, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919491999605051333, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919491999605051333, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2940995036238252902, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2170,6 +2186,14 @@ PrefabInstance:
     - target: {fileID: 3277715287218001881, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.0000076293945
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303321766524302852, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303321766524302852, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3364206721456719359, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2337,6 +2361,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3868207115817855990, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058614959935239793, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058614959935239793, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4073586377383090544, guid: 5f7ab84489ad3cc49bf3a2f06b972c67, type: 3}
@@ -3838,6 +3870,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 5580737503241134166, guid: e6cb4b8348152a44e87d2453f14ee1bd, type: 3}
+  sellInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Sell Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: df832039-8940-4a39-9d21-14bc2f016a7b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 6716653861043852839, guid: e6cb4b8348152a44e87d2453f14ee1bd, type: 3}
   interactDistance: 5
   interactLayer:
     serializedVersion: 2
@@ -4588,7 +4632,7 @@ PrefabInstance:
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: <RoomDataSo>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 035fd21eb9004ff428ec2a312a79bbf4, type: 2}
+      objectReference: {fileID: 11400000, guid: f046484fba41cee478210ce85898226c, type: 2}
     - target: {fileID: 8352334693745885857, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.9999895
@@ -4785,7 +4829,7 @@ PrefabInstance:
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: <RoomDataSo>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: f046484fba41cee478210ce85898226c, type: 2}
+      objectReference: {fileID: 11400000, guid: 46b7b20cfc65e7143af71e67ea16d9d5, type: 2}
     - target: {fileID: 8352334693745885857, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.9999895
@@ -5223,7 +5267,7 @@ PrefabInstance:
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: <RoomDataSo>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 46b7b20cfc65e7143af71e67ea16d9d5, type: 2}
+      objectReference: {fileID: 11400000, guid: eba0e9125ef103744afc2124f1ff556b, type: 2}
     - target: {fileID: 8352334693745885857, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10

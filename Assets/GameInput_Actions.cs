@@ -145,6 +145,15 @@ public partial class @GameInput_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SellItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""a488b4fc-6b1c-45ba-8e20-bd28a324f34b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -213,6 +222,17 @@ public partial class @GameInput_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""Tablet"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9198f7a5-9bfa-4e65-a2cf-e562135380e5"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SellItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -227,6 +247,7 @@ public partial class @GameInput_Actions: IInputActionCollection2, IDisposable
         m_Player_Throw = m_Player.FindAction("Throw", throwIfNotFound: true);
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
         m_Player_Tablet = m_Player.FindAction("Tablet", throwIfNotFound: true);
+        m_Player_SellItem = m_Player.FindAction("SellItem", throwIfNotFound: true);
     }
 
     ~@GameInput_Actions()
@@ -313,6 +334,7 @@ public partial class @GameInput_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Throw;
     private readonly InputAction m_Player_Rotate;
     private readonly InputAction m_Player_Tablet;
+    private readonly InputAction m_Player_SellItem;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -348,6 +370,10 @@ public partial class @GameInput_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Tablet".
         /// </summary>
         public InputAction @Tablet => m_Wrapper.m_Player_Tablet;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SellItem".
+        /// </summary>
+        public InputAction @SellItem => m_Wrapper.m_Player_SellItem;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -392,6 +418,9 @@ public partial class @GameInput_Actions: IInputActionCollection2, IDisposable
             @Tablet.started += instance.OnTablet;
             @Tablet.performed += instance.OnTablet;
             @Tablet.canceled += instance.OnTablet;
+            @SellItem.started += instance.OnSellItem;
+            @SellItem.performed += instance.OnSellItem;
+            @SellItem.canceled += instance.OnSellItem;
         }
 
         /// <summary>
@@ -421,6 +450,9 @@ public partial class @GameInput_Actions: IInputActionCollection2, IDisposable
             @Tablet.started -= instance.OnTablet;
             @Tablet.performed -= instance.OnTablet;
             @Tablet.canceled -= instance.OnTablet;
+            @SellItem.started -= instance.OnSellItem;
+            @SellItem.performed -= instance.OnSellItem;
+            @SellItem.canceled -= instance.OnSellItem;
         }
 
         /// <summary>
@@ -503,5 +535,12 @@ public partial class @GameInput_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTablet(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SellItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSellItem(InputAction.CallbackContext context);
     }
 }

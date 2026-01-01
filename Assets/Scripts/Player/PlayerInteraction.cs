@@ -10,6 +10,7 @@ public class PlayerInteraction : MonoBehaviour
     public InputActionProperty primaryInput;       // Mouse: Left Click (Used for Stocking/Placing)
     public InputActionProperty secondaryInput;     // Mouse: Right Click (Used for Retrieving/Boxing)
     public InputActionProperty throwInput;         // Key: G
+    public InputActionProperty sellInput;         // Key: X
 
     [Header("Settings")]
     public float interactDistance = 3f;
@@ -28,6 +29,7 @@ public class PlayerInteraction : MonoBehaviour
         primaryInput.action.Enable();
         secondaryInput.action.Enable();
         throwInput.action.Enable();
+        sellInput.action.Enable();
     }
 
     private void OnDisable()
@@ -36,6 +38,7 @@ public class PlayerInteraction : MonoBehaviour
         primaryInput.action.Disable();
         secondaryInput.action.Disable();
         throwInput.action.Disable();
+        sellInput.action.Disable();
     }
 
     private void Update()
@@ -149,6 +152,16 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (lookTarget != null)
             {
+                // 1. Sell Logic (X Key)
+                if (sellInput.action.WasPerformedThisFrame())
+                {
+                    if (lookTarget is ItemBox itemBox)
+                    {
+                        itemBox.Sell(this);
+                    }
+                    return;
+                }
+                
                 // Primary Interaction (Pick Up / Open Door)
                 // We allow both E and Click for convenience, but prevent "Hold" spam unless needed
                 if (interactInput.action.WasPerformedThisFrame() || primaryInput.action.WasPerformedThisFrame())

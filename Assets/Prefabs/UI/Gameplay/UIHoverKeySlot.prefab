@@ -96,7 +96,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c4f6dfa6891b8d3468102d998aaa6606, type: 3}
   - {fileID: 21300000, guid: 7526b91b9007f0042bfdf72cf2d1a90f, type: 3}
   - {fileID: 21300000, guid: 03b0966773c58ca44b47a9194254d6b3, type: 3}
+  - {fileID: 21300000, guid: 90155601af0a71e4faab6245a8f9c2c3, type: 3}
   iconAlert: {fileID: 21300000, guid: 090dce73c1eaf6b49953a297fd22ce7c, type: 3}
+  iconMoney: {fileID: 21300000, guid: 7cf7a0a9787b52c47ac191241fc070d3, type: 3}
 --- !u!1 &8945351485643879349
 GameObject:
   m_ObjectHideFlags: 0

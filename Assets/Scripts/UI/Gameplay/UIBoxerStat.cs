@@ -40,7 +40,8 @@ namespace UI.Gameplay
 
                 if (textNeededExp)
                 {
-                    textNeededExp.SetText($"Needed {_boxerController.stats.xpToNextLevel - _boxerController.stats.currentXP} exp to next level");
+                    float neededXp = _boxerController.stats.xpToNextLevel - _boxerController.stats.currentXP;
+                    textNeededExp.SetText($"Needed {neededXp:F0} exp to level {_boxerController.stats.level + 1}");
                 }
             }
         }

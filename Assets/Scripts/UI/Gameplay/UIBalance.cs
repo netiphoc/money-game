@@ -14,7 +14,6 @@ namespace UI.Gameplay
         private WaitForSeconds _waitForSeconds;
         
         private bool _init;
-        private int _sumBalance;
         
         protected override void Awake()
         {
@@ -35,7 +34,6 @@ namespace UI.Gameplay
             GameManager.Instance.OnMoneyChanged -= OnMoneyChanged;
         }
 
-
         private void OnMoneyChanged(int balance)
         {
             if (!_init)
@@ -45,23 +43,20 @@ namespace UI.Gameplay
                 return;
             }
             
-            _sumBalance += balance;
-
             if (_sumBalanceCoroutine != null)
             {
                 StopCoroutine(_sumBalanceCoroutine);
             }
             
-            _sumBalanceCoroutine = StartCoroutine(UpdateMoneyCoroutine());
+            _sumBalanceCoroutine = StartCoroutine(UpdateMoneyCoroutine(balance));
         }
 
-        private IEnumerator UpdateMoneyCoroutine()
+        private IEnumerator UpdateMoneyCoroutine(int balance)
         {
             yield return _waitForSeconds;
             
-            textBalance.SetText(_sumBalance.ToMoneyFormat());
+            textBalance.SetText(balance.ToMoneyFormat());
             textBalance.DoTextPunch();
-            _sumBalance = 0;
         }
     }
 }

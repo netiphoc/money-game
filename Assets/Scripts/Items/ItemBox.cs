@@ -2,6 +2,7 @@
 using Systems;
 using UI;
 using UnityEngine;
+using Utilities;
 
 public class ItemBox : BaseInteractable
 {
@@ -45,6 +46,11 @@ public class ItemBox : BaseInteractable
         AddInteractionPrompt(new []
         {
             InteractionPrompt_PICKUP,
+            new InteractionPromptData
+            {
+                Icon = KeyIcon.X,
+                RealTimePrompt = GetItemSellInfoPrompt
+            },
         });
     }
 
@@ -53,6 +59,11 @@ public class ItemBox : BaseInteractable
         return $"{itemData.itemName} x{currentQuantity}";
     }
 
+    private string GetItemSellInfoPrompt()
+    {
+        return $"SELL {itemData.itemName} x{currentQuantity} for {GetWorth().ToMoneyFormat()}";
+    }
+    
     protected override void OnDestroy()
     {
         base.OnDestroy();
@@ -124,6 +135,16 @@ public class ItemBox : BaseInteractable
             rb.AddForce(player.playerCamera.transform.forward * 600f);
         }
     }
+    
+    public void Sell(PlayerInteraction player)
+    {
+        Throw(player);
+
+        GameManager.Instance.AddMoney(GetWorth());
+        FloatingTextManager.Instance.ShowMoneyText(transform.position,GetWorth());
+        
+        Destroy(gameObject);
+    }
 
     // --- HELPER FOR PLACEMENT MANAGER ---
     public bool TryTakeItem()
@@ -150,5 +171,10 @@ public class ItemBox : BaseInteractable
             return true;
         }
         return false;
+    }
+
+    public int GetWorth()
+    {
+        return itemData.cost * currentQuantity;
     }
 }
