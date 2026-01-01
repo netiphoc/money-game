@@ -2,6 +2,7 @@
 using System.Text;
 using Data;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
@@ -229,22 +230,25 @@ namespace UI.Tablet.Leagues
         private void OnButtonClickedFight()
         {
             if(!FightManager.Instance.CanBeatOpponent(_boxerController, _opponentSo)) return;
-            bool playerWon = FightManager.Instance.StartFight(_boxerController, _opponentSo);
+            FightData fightData = new FightData(_boxerController.stats, _opponentSo);
+            FightManager.Instance.StartFightData(fightData);
 
             FightResultData fightResultData = new FightResultData
             {
                 BoxerController = _boxerController,
                 Opponent = _opponentSo,
-                Win = playerWon,
+                //Win = playerWon,
             };
             
             UpdateStats();
             UpdateFightButton();
 
+            /*
             if (!playerWon)
             {
                 OnFightResult?.Invoke(fightResultData);
             }
+            */
         }
     }
 }
