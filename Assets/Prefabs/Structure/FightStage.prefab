@@ -128,6 +128,37 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &3619974198356388279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6187886761599959339}
+  m_Layer: 0
+  m_Name: Corner PLAYER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6187886761599959339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3619974198356388279}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.9647465, z: -0, w: -0.26318097}
+  m_LocalPosition: {x: -1.79, y: 0.794, z: 2.51}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7592229748609136713}
+  m_LocalEulerAnglesHint: {x: 0, y: -210.518, z: 0}
 --- !u!1 &3760402549098996813
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +193,8 @@ Transform:
   - {fileID: 1836596423198384070}
   - {fileID: 6327660818106479294}
   - {fileID: 2034918417039424407}
+  - {fileID: 6187886761599959339}
+  - {fileID: 846499099035016567}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7707673483195522989
@@ -179,7 +212,40 @@ MonoBehaviour:
   <FightDataSo>k__BackingField: {fileID: 11400000, guid: 93dc6602a6d5ad244b773e8c186e3f21, type: 2}
   <BoxerFightPlayer>k__BackingField: {fileID: 6975445120933610076}
   <BoxerFightEnemy>k__BackingField: {fileID: 3342085624166362916}
+  startCornerPlayer: {fileID: 6187886761599959339}
+  startCornerEnemy: {fileID: 846499099035016567}
   liveCam: {fileID: 1644353803108927101}
+--- !u!1 &6391625925063792218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 846499099035016567}
+  m_Layer: 0
+  m_Name: Corner ENEMY
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &846499099035016567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6391625925063792218}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.23654342, z: -0, w: 0.9716209}
+  m_LocalPosition: {x: 1.45, y: 0.794, z: -1.67}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7592229748609136713}
+  m_LocalEulerAnglesHint: {x: 0, y: -27.365, z: 0}
 --- !u!1001 &544359526123392371
 PrefabInstance:
   m_ObjectHideFlags: 0

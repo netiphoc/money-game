@@ -4,6 +4,9 @@ namespace AI.BoxerFigth
 {
     public enum BoxerFightAnimationType
     {
+        Corner,
+        Walk,
+        FriendlyPunch,
         Hit,
         Attack,
         Dodge,
@@ -23,6 +26,15 @@ namespace AI.BoxerFigth
             
             switch (boxerFightAnimationType)
             {
+                case BoxerFightAnimationType.Corner:
+                    animator.SetTrigger("Corner");
+                    break;
+                case BoxerFightAnimationType.Walk:
+                    animator.SetTrigger("Walk");
+                    break;
+                case BoxerFightAnimationType.FriendlyPunch:
+                    animator.SetTrigger("FriendlyPunch");
+                    break;
                 case BoxerFightAnimationType.Hit:
                     animator.SetTrigger("Hit");
                     text = "*HIT*";

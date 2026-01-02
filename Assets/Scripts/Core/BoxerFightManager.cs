@@ -19,6 +19,7 @@ namespace Core
             
             fightStageData.BoxerFightPlayer.SetFightData(fightData, true);
             fightStageData.BoxerFightEnemy.SetFightData(fightData, false);
+            fightStageData.ResetCorner();
         }
 
         public bool TryGetStage(FightData fightData, out FightStage fightStage)

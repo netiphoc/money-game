@@ -2,10 +2,14 @@
 using System;
 using System.Collections.Generic;
 using Core;
+using Unity.VisualScripting;
 using Random = UnityEngine.Random;
 
 public enum FightActionType
 {
+    PREPARE,
+    FIGHT_STARTING,
+    FIGHT_STARTED,
     PLAYER_HITS,
     PLAYER_MISS,
     ENEMY_HITS,
@@ -19,6 +23,8 @@ public class FightData
 {
     public const float MinModifier = 0.2f;
     public const float MaxModifier = 1.2f;
+    public const int PrepareDelay = 2;
+    public const int StartDelay = 3;
     
     public readonly BoxerController BoxerController;
     public readonly BoxerData BoxerData;
@@ -26,7 +32,9 @@ public class FightData
     public readonly OpponentSO Enemy;
     public readonly FightDataSO FightDataSO;
     public event Action<FightData, FightActionType> OnAction;
-    
+
+    public FightActionType CurrentFightState { get; private set; }
+    public int DelayTimer  { get; set; }
     public bool IsRoundOver { get; private set; }
     public bool IsRoundTimeOut => RoundTimeLeft <= 0;
     public float RoundTimeMax { get; }
@@ -59,6 +67,10 @@ public class FightData
     
     public FightData(BoxerController boxerController, OpponentSO opponentSo, FightDataSO fightDataSo, float roundDuration = 10f)
     {
+        // Timer
+        DelayTimer = PrepareDelay;
+        CurrentFightState = FightActionType.PREPARE;
+        
         BoxerController = boxerController;
         BoxerData = boxerController.stats;
 
@@ -100,7 +112,38 @@ public class FightData
     {
         return Mathf.Min(damage, MaxDamage);
     }
-    
+
+    public bool IsInPrepareState()
+    {
+        if (--DelayTimer > 0)
+        {
+            if (DelayTimer == PrepareDelay - 1 && CurrentFightState == FightActionType.PREPARE)
+            {
+                OnActionTriggered(FightActionType.PREPARE);
+            }
+            return true;
+        }
+
+        if (DelayTimer == 0)
+        {
+            switch (CurrentFightState)
+            {
+                case FightActionType.PREPARE:
+                    DelayTimer = StartDelay;
+                    CurrentFightState = FightActionType.FIGHT_STARTING;
+                    OnActionTriggered(FightActionType.FIGHT_STARTING);
+                    return true;
+                case FightActionType.FIGHT_STARTING:
+                    CurrentFightState = FightActionType.FIGHT_STARTED;
+                    OnActionTriggered(FightActionType.FIGHT_STARTED);
+                    return true;
+                case FightActionType.FIGHT_STARTED:
+                    break;
+            }
+        }
+        
+        return false;
+    }
     public void OnActionTriggered(FightActionType fightActionType) => OnAction?.Invoke(this, fightActionType);
 
     public void OnFightOver(FightActionType fightActionType)
@@ -251,7 +294,13 @@ public class FightManager : MonoBehaviour
         for (int i = 0; i < _fightData.Count; i++)
         {
             FightData data = _fightData[i];
-            data.RoundTimeLeft--; // Update round timer
+
+            if(data.IsInPrepareState()) continue;
+
+            if (data.CurrentFightState != FightActionType.PREPARE)
+            {
+                data.RoundTimeLeft--; // Update round timer
+            }
 
             if (data.IsPlayerTurn)
             {
@@ -311,13 +360,12 @@ public class FightManager : MonoBehaviour
         {           
             fightData.OnActionTriggered(FightActionType.GAME_RESULT_LOSE);
             fightData.OnFightOver(FightActionType.GAME_RESULT_LOSE);
+            return;
         }
 
         if (fightData.EnemyStrength <= 0 || fightData.EnemyStamina <= 0)
         {
-            fightData.OnActionTriggered(isPlayerOutOfEnergy ?
-                FightActionType.GAME_RESULT_DRAW : FightActionType.GAME_RESULT_WIN);
-            
+            fightData.OnActionTriggered(isPlayerOutOfEnergy ? FightActionType.GAME_RESULT_DRAW : FightActionType.GAME_RESULT_WIN);
             fightData.OnFightOver(FightActionType.GAME_RESULT_WIN);
         }
     }

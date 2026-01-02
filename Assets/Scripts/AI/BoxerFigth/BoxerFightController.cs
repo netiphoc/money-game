@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 namespace AI.BoxerFigth
 {
@@ -7,17 +8,44 @@ namespace AI.BoxerFigth
         [SerializeField] private BoxerFightAnimation boxerFightAnimation;
 
         private bool _isPlayer;
-        
+        private Vector3 _spawnPosition;
+        private Quaternion _spawnRotation;
+
+        private void Awake()
+        {
+            _spawnPosition = transform.position;
+            _spawnRotation = transform.rotation;
+        }
+
         public void SetFightData(FightData fightData, bool isPlayer)
         {
             _isPlayer = isPlayer;
             fightData.OnAction += OnFightActionType;
+            boxerFightAnimation.SetAnimation(BoxerFightAnimationType.Corner);
         }
 
-        private void OnFightActionType(FightData arg1, FightActionType fightActionType)
+        public Vector3 GetSpawnPosition() => _spawnPosition;
+        public Quaternion GetSpawnRotation() => _spawnRotation;
+
+        private void OnFightActionType(FightData fightData, FightActionType fightActionType)
         {
             switch (fightActionType)
             {
+                case FightActionType.PREPARE:
+                    //boxerFightAnimation.SetAnimation(BoxerFightAnimationType.Corner);
+                    break;
+                case FightActionType.FIGHT_STARTING:
+                    boxerFightAnimation.SetAnimation(BoxerFightAnimationType.Walk);
+
+                    transform.DOKill();
+                    transform.DOMove(GetSpawnPosition(), FightData.StartDelay).SetEase(Ease.Linear);
+                    transform.DORotateQuaternion(GetSpawnRotation(), 0.4f);
+                    break;
+                
+                case FightActionType.FIGHT_STARTED:
+                    boxerFightAnimation.SetAnimation(BoxerFightAnimationType.FriendlyPunch);
+                    break;
+                
                 case FightActionType.PLAYER_HITS:
                     boxerFightAnimation.SetAnimation(_isPlayer
                         ? BoxerFightAnimationType.Attack
