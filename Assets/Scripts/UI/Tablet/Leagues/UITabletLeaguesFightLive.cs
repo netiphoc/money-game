@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using Core;
+using Data;
+using TMPro;
 using UI.Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +12,7 @@ namespace UI.Tablet.Leagues
         [SerializeField] private Button buttonClose;
         [SerializeField] private TMP_Text textResult;
         [SerializeField] private UITVFightBar uiTvFightBar;
+        [SerializeField] private RawImage liveRenderTexture;
         
         private FightData _fightData;
 
@@ -55,6 +58,11 @@ namespace UI.Tablet.Leagues
             
             textResult.SetText(string.Empty);
             uiTvFightBar.SetLiveBar(fightData);
+
+            if (BoxerFightManager.Instance.TryGetStage(fightData, out FightStage fightStage))
+            {
+                liveRenderTexture.texture = fightStage.GetLiveCamRenderTexture();
+            }
         }
 
         private void OnFightAction(FightData fightData, FightActionType fightAction)
@@ -96,6 +104,10 @@ namespace UI.Tablet.Leagues
                     {
                         textResult.SetText("PLAYER LOSE THE GAME! (KNOCK OUT)");
                     }
+                    break;
+                
+                case FightActionType.GAME_RESULT_DRAW:
+                    textResult.SetText("DRAW!");
                     break;
             }
         }

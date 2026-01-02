@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Core;
 using Random = UnityEngine.Random;
 
 public enum FightActionType
@@ -11,6 +12,7 @@ public enum FightActionType
     ENEMY_MISS,
     GAME_RESULT_WIN,
     GAME_RESULT_LOSE,
+    GAME_RESULT_DRAW,
 }
 
 public class FightData
@@ -101,15 +103,36 @@ public class FightData
     
     public void OnActionTriggered(FightActionType fightActionType) => OnAction?.Invoke(this, fightActionType);
 
-    public void OnFightOver(bool isWin)
+    public void OnFightOver(FightActionType fightActionType)
     {
         IsRoundOver = true;
-        IsPlayerWin = isWin;
+        IsPlayerWin = fightActionType == FightActionType.GAME_RESULT_WIN;
         OnAction = null;
 
-        int moneyReward = isWin ? Enemy.moneyReward : Mathf.RoundToInt(Enemy.moneyReward * 0.5f);
-        int playerExpReward = isWin ? Enemy.playerXPReward : Mathf.RoundToInt(Enemy.playerXPReward * 0.5f);
-        int boxerExpReward = isWin ? Enemy.boxerXPReward : Mathf.RoundToInt(Enemy.boxerXPReward * 0.5f);
+        int moneyReward = 0;
+        int playerExpReward = 0;
+        int boxerExpReward = 0;
+
+        switch (fightActionType)
+        {
+            case FightActionType.GAME_RESULT_WIN:
+                moneyReward = Enemy.moneyReward;
+                playerExpReward = Enemy.playerXPReward;
+                boxerExpReward = Enemy.boxerXPReward;
+                break;
+            
+            case FightActionType.GAME_RESULT_LOSE: // Reward: 30%
+                moneyReward = Mathf.RoundToInt(Enemy.moneyReward * 0.3f);
+                playerExpReward = Mathf.RoundToInt(Enemy.playerXPReward * 0.3f);
+                boxerExpReward = Mathf.RoundToInt(Enemy.boxerXPReward * 0.3f);
+                break;
+            
+            case FightActionType.GAME_RESULT_DRAW: // Reward: 50%
+                moneyReward = Mathf.RoundToInt(Enemy.moneyReward * 0.5f);
+                playerExpReward = Mathf.RoundToInt(Enemy.playerXPReward * 0.5f);
+                boxerExpReward = Mathf.RoundToInt(Enemy.boxerXPReward * 0.5f);
+                break;
+        }
         
         // 1. Give Money
         GameManager.Instance.AddMoney(moneyReward);
@@ -169,7 +192,7 @@ public class FightManager : MonoBehaviour
 
     private float GetFightDelay()
     {
-        return 1f * Random.Range(0.8f, 1.2f);
+        return Random.Range(1.2f, 1.8f);
     }
 
     private void OnGameMinuteTick(string obj)
@@ -179,10 +202,12 @@ public class FightManager : MonoBehaviour
 
     public bool CanBeatOpponent(BoxerController playerBoxer, OpponentSO opponent)
     {
+        /*
         return playerBoxer.stats.totalPower >= opponent.TotalPower && 
                playerBoxer.stats.strength >= opponent.strength * 0.5f &&
                playerBoxer.stats.agility >= opponent.agility * 0.5f &&
                playerBoxer.stats.stamina >= opponent.stamina * 0.5f;
+        */
         
         return playerBoxer.stats.strength >= opponent.strength &&
                playerBoxer.stats.agility >= opponent.agility &&
@@ -218,6 +243,7 @@ public class FightManager : MonoBehaviour
     public void StartFightData(FightData fightData)
     {
         _fightData.Add(fightData);
+        BoxerFightManager.Instance.OnFightDataReceived(fightData);
     }
 
     private void ProcessFightData()
@@ -245,15 +271,25 @@ public class FightManager : MonoBehaviour
     
     private void ProcessRoundForOpponent(FightData fightData)
     {
+        bool isPlayerOutOfEnergy = fightData.BoxerData.strength <= 0 || fightData.BoxerData.stamina <= 0;
+
+        float hitChancePlayerOutOfEnergy = 1f;
+        
         // 1. Calculate Hit Chance (Agility Contest)
-        float hitChance = fightData.EnemyAgility / (fightData.EnemyAgility + fightData.BoxerData.agility);
-        bool playerHits = Random.value < hitChance;
+        float maxAgilityFactor = 1.5f; // 40% min hit chance
+        float nertPlayerAgility = Mathf.Min(fightData.EnemyAgility * maxAgilityFactor, fightData.BoxerData.agility);
+        float hitChance = isPlayerOutOfEnergy ? hitChancePlayerOutOfEnergy : 
+            fightData.EnemyAgility / (fightData.EnemyAgility + nertPlayerAgility);
+        
+        bool enemyHits = Random.value < hitChance;
 
         // 2. Damage Step
-        if (playerHits)
+        if (enemyHits)
         {
+            float damagePlayerOutOfEnergy = fightData.PlayerMaxHp * 0.2f; // Take about 5 hits to defeat player
             float damage = fightData.EnemyStrength * Random.Range(FightData.MinModifier, FightData.MaxModifier);
-            fightData.PlayerHp -= fightData.GetDamage(damage);
+            
+            fightData.PlayerHp -= isPlayerOutOfEnergy ? damagePlayerOutOfEnergy : fightData.GetDamage(damage);
             
             // FUEL COST: Strength is consumed when you hit
             fightData.EnemyStrength -= fightData.StrCost;
@@ -266,33 +302,45 @@ public class FightManager : MonoBehaviour
             fightData.OnActionTriggered(FightActionType.ENEMY_MISS);
         }
 
+        const float playerOutOfEnergyStaCost = 1f;
         // 3. Passive Drain
-        fightData.EnemyStamina -= fightData.StaCost; 
+        fightData.EnemyStamina -= isPlayerOutOfEnergy ? playerOutOfEnergyStaCost : fightData.StaCost; 
 
         // 4. Check Win/Loss
         if (fightData.PlayerHp <= 0)
         {           
             fightData.OnActionTriggered(FightActionType.GAME_RESULT_LOSE);
-            fightData.OnFightOver(false);
+            fightData.OnFightOver(FightActionType.GAME_RESULT_LOSE);
         }
 
         if (fightData.EnemyStrength <= 0 || fightData.EnemyStamina <= 0)
         {
-            fightData.OnActionTriggered(FightActionType.GAME_RESULT_WIN);
-            fightData.OnFightOver(true);
+            fightData.OnActionTriggered(isPlayerOutOfEnergy ?
+                FightActionType.GAME_RESULT_DRAW : FightActionType.GAME_RESULT_WIN);
+            
+            fightData.OnFightOver(FightActionType.GAME_RESULT_WIN);
         }
     }
     
     private void ProcessRoundForPlayer(FightData fightData)
     {
+        bool isOutOfEnergy = fightData.BoxerData.strength <= 0 || fightData.BoxerData.stamina <= 0;
+        float hitChanceOutOfEnergy = .5f;
+        
         // 1. Calculate Hit Chance (Agility Contest)
-        float hitChance = fightData.BoxerData.agility / (fightData.BoxerData.agility + fightData.EnemyAgility);
+        float hitChance = isOutOfEnergy ? hitChanceOutOfEnergy :
+            fightData.BoxerData.agility / (fightData.BoxerData.agility + fightData.EnemyAgility);
+        
         bool playerHits = Random.value < hitChance;
 
         // 2. Damage Step
         if (playerHits)
         {
-            float damage = fightData.BoxerData.strength * Random.Range(FightData.MinModifier, FightData.MaxModifier);
+            const float outOfEnergyDamage = 1f;
+            float damage = isOutOfEnergy ? 
+                outOfEnergyDamage : 
+                fightData.BoxerData.strength * Random.Range(FightData.MinModifier, FightData.MaxModifier);
+            
             fightData.EnemyHp -= fightData.GetDamage(damage);
             
             // FUEL COST: Strength is consumed when you hit
@@ -307,19 +355,14 @@ public class FightManager : MonoBehaviour
         }
 
         // 3. Passive Drain
-        fightData.BoxerData.stamina -= fightData.StaCost; 
-
+        const float outOfEnergyStaCost = 1f;
+        fightData.BoxerData.stamina -= isOutOfEnergy ? outOfEnergyStaCost : fightData.StaCost; 
+        
         // 4. Check Win/Loss
         if (fightData.EnemyHp <= 0)
         {           
             fightData.OnActionTriggered(FightActionType.GAME_RESULT_WIN);
-            fightData.OnFightOver(true);
-        }
-        
-        if (fightData.BoxerData.strength <= 0 || fightData.BoxerData.stamina <= 0)
-        {
-            fightData.OnActionTriggered(FightActionType.GAME_RESULT_LOSE);
-            fightData.OnFightOver(false);
+            fightData.OnFightOver(FightActionType.GAME_RESULT_WIN);
         }
     }
     

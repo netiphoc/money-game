@@ -271,8 +271,7 @@ namespace UI.Tablet.Leagues
         {
             UpdateStats();
             
-            if (fightActionType == FightActionType.GAME_RESULT_WIN ||
-                fightActionType == FightActionType.GAME_RESULT_LOSE)
+            if (fightData.IsRoundOver)
             {
                 OnFightResult?.Invoke(fightData);
             }
