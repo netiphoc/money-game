@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Systems;
 using UI;
+using Utilities;
 
 public class StorageShelf : BaseInteractable
 {
@@ -22,7 +23,9 @@ public class StorageShelf : BaseInteractable
 
     private float _consumeTime;
     private bool _isHandEmpty = true;
-
+    
+    public List<GameObject> visualItems; // The actual static items on the shelf
+    
     protected override void Start()
     {
         base.Start();
@@ -81,7 +84,7 @@ public class StorageShelf : BaseInteractable
             if (box.TryTakeItem())
             {
                 activeItem = box.itemData;
-                AddVisualItem();
+                AddVisualItem(box.itemData, box.transform.position);
                 lastStockTime = Time.time;
             }
         }
@@ -90,9 +93,10 @@ public class StorageShelf : BaseInteractable
     public void SetItemStorage(ItemDataSO itemDataSo, int amount)
     {
         activeItem = itemDataSo;
+        Debug.Log($"Add amount: {amount}");
         for (int i = 0; i < amount; i++)
         {
-            AddVisualItem();
+            AddVisualItem(itemDataSo, Vector3.zero);
         }
     }
 
@@ -105,7 +109,6 @@ public class StorageShelf : BaseInteractable
         
         if (stockedItems.Count == 0)
         {
-            Debug.Log("stockedItems.Count == 0");
             return; // Nothing to take
         }
 
@@ -114,7 +117,6 @@ public class StorageShelf : BaseInteractable
         // SCENARIO A: Player is holding a Box
         if (heldObject != null)
         {
-            Debug.Log("Player is holding a Box");
             ItemBox box = heldObject.GetComponent<ItemBox>();
 
             // Check if box matches item
@@ -157,14 +159,23 @@ public class StorageShelf : BaseInteractable
     }
 
     // ... (AddVisualItem and RemoveVisualItem methods remain the same) ...
-    private void AddVisualItem()
+    private void AddVisualItem(ItemDataSO itemDataSo, Vector3 from)
     {
         int index = stockedItems.Count;
         Transform spot = spawnPoints[index];
         GameObject newItem = Instantiate(activeItem.itemPrefab, spot.position, spot.rotation);
-        newItem.transform.SetParent(this.transform); 
+        newItem.transform.SetParent(this.transform);
         stockedItems.Add(newItem);
         OnShelfItemAdd?.Invoke(this);
+  
+        if (from != Vector3.zero)
+        {
+            newItem.SetActive(false);
+            itemDataSo.AddStockAnimated(from, spot, () =>
+            {
+                newItem.SetActive(true);
+            });
+        }
     }
 
     private void RemoveVisualItem()
