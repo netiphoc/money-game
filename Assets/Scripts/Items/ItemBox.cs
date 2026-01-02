@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Systems;
 using UI;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class ItemBox : BaseInteractable
 
     // NEW: Track which room owns this equipment
     public List<GymRoom> currentRooms = new List<GymRoom>();
+
+    public event Action<ItemBox> OnItemChanged;
     
     protected override void Awake()
     {
@@ -149,6 +152,7 @@ public class ItemBox : BaseInteractable
     // --- HELPER FOR PLACEMENT MANAGER ---
     public bool TryTakeItem()
     {
+        OnItemChanged?.Invoke(this);
         if (currentQuantity > 0)
         {
             currentQuantity--;
@@ -165,6 +169,7 @@ public class ItemBox : BaseInteractable
 
     public bool TryAddItem()
     {
+        OnItemChanged?.Invoke(this);
         if (currentQuantity < maxCapacity)
         {
             currentQuantity++;
