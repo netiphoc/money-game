@@ -45,7 +45,7 @@ public class StorageShelf : BaseInteractable
         _consumeTime += 1f;
         if(_consumeTime <= activeItem.consumeTimeTick) return;
         _consumeTime = 0f;
-        RemoveVisualItem();
+        RemoveVisualItem(default);
     }
 
     protected override void InitInteractionPrompts()
@@ -93,7 +93,6 @@ public class StorageShelf : BaseInteractable
     public void SetItemStorage(ItemDataSO itemDataSo, int amount)
     {
         activeItem = itemDataSo;
-        Debug.Log($"Add amount: {amount}");
         for (int i = 0; i < amount; i++)
         {
             AddVisualItem(itemDataSo, Vector3.zero);
@@ -124,7 +123,7 @@ public class StorageShelf : BaseInteractable
             {
                 if (box.TryAddItem())
                 {
-                    RemoveVisualItem();
+                    RemoveVisualItem(box.transform);
                     lastStockTime = Time.time;
                 }
             }
@@ -132,7 +131,6 @@ public class StorageShelf : BaseInteractable
         // SCENARIO B: Player hands are EMPTY (Auto-Spawn Box)
         else
         {
-            Debug.Log("Player hands are EMPTY (Auto-Spawn Box)");
             // 1. Spawn a new Box at the player's hand position (temp)
             GameObject newBoxObj = Instantiate(itemBoxPrefab, player.holdPoint.position, Quaternion.identity);
             ItemBox newBox = newBoxObj.GetComponent<ItemBox>();
@@ -153,7 +151,7 @@ public class StorageShelf : BaseInteractable
             newBox.OnInteract(player);
 
             // 4. Remove the item from the shelf
-            RemoveVisualItem();
+            RemoveVisualItem(newBox.transform);
             lastStockTime = Time.time;
         }
     }
@@ -178,13 +176,21 @@ public class StorageShelf : BaseInteractable
         }
     }
 
-    private void RemoveVisualItem()
+    private void RemoveVisualItem(Transform toSpot)
     {
         int lastIndex = stockedItems.Count - 1;
         GameObject itemToRemove = stockedItems[lastIndex];
+        Vector3 removePosition = itemToRemove.transform.position;
         Destroy(itemToRemove);
         stockedItems.RemoveAt(lastIndex);
 
+        #region VISUAL
+        if (toSpot != null)
+        {
+            activeItem.AddStockAnimated(removePosition, toSpot, default);
+        }
+        #endregion
+        
         if (stockedItems.Count == 0)
         {
             activeItem = null;
@@ -192,6 +198,7 @@ public class StorageShelf : BaseInteractable
         }
         
         OnShelfItemRemove?.Invoke(this);
+        
     }
     
     // --- NEW: AI API ---

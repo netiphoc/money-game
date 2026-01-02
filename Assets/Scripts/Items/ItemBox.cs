@@ -152,11 +152,11 @@ public class ItemBox : BaseInteractable
     // --- HELPER FOR PLACEMENT MANAGER ---
     public bool TryTakeItem()
     {
-        OnItemChanged?.Invoke(this);
         if (currentQuantity > 0)
         {
             currentQuantity--;
-            
+            OnItemChanged?.Invoke(this);
+
             // If box is empty, destroy it?
             if (currentQuantity <= 0)
             {
@@ -169,10 +169,10 @@ public class ItemBox : BaseInteractable
 
     public bool TryAddItem()
     {
-        OnItemChanged?.Invoke(this);
         if (currentQuantity < maxCapacity)
         {
             currentQuantity++;
+            OnItemChanged?.Invoke(this);
             return true;
         }
         return false;
