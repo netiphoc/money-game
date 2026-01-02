@@ -68,7 +68,7 @@ public class FightData
     public float PlayerStaCost { get; private set; }
     public float MaxDamage { get; private set; }
     
-    public FightData(BoxerController boxerController, OpponentSO opponentSo, FightDataSO fightDataSo, float roundDuration = 10f)
+    public FightData(BoxerController boxerController, OpponentSO opponentSo, FightDataSO fightDataSo, float roundDuration = 5f)
     {
         // Timer
         DelayTimer = PrepareDelay;
@@ -325,13 +325,14 @@ public class FightManager : MonoBehaviour
     private void ProcessRoundForOpponent(FightData fightData)
     {
         bool isPlayerOutOfEnergy = fightData.BoxerData.strength <= 0 || fightData.BoxerData.stamina <= 0;
+        bool isPlayerOutOfAgility = fightData.BoxerData.agility <= 0;
 
         float hitChancePlayerOutOfEnergy = 1f;
         
         // 1. Calculate Hit Chance (Agility Contest)
         float maxAgilityFactor = 1.5f; // 40% min hit chance
         float nertPlayerAgility = Mathf.Min(fightData.EnemyAgility * maxAgilityFactor, fightData.BoxerData.agility);
-        float hitChance = isPlayerOutOfEnergy ? hitChancePlayerOutOfEnergy : 
+        float hitChance = isPlayerOutOfAgility ? hitChancePlayerOutOfEnergy : 
             fightData.EnemyAgility / (fightData.EnemyAgility + nertPlayerAgility);
         
         bool enemyHits = Random.value < hitChance;
@@ -339,7 +340,7 @@ public class FightManager : MonoBehaviour
         // 2. Damage Step
         if (enemyHits)
         {
-            float damagePlayerOutOfEnergy = fightData.PlayerMaxHp * 0.2f; // Take about 5 hits to defeat player
+            float damagePlayerOutOfEnergy = fightData.PlayerMaxHp * 0.3f; // Take about 3 hits to defeat player
             float damage = fightData.EnemyStrength * Random.Range(FightData.MinModifier, FightData.MaxModifier);
             
             fightData.PlayerHp -= isPlayerOutOfEnergy ? damagePlayerOutOfEnergy : fightData.GetDamage(damage);
