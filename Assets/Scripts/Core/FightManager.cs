@@ -106,9 +106,16 @@ public class FightData
         EnemyAgilCost = opponentSo.agility / roundDuration;
         EnemyStaCost = (opponentSo.stamina / roundDuration) * 0.5f;
         
+        PlayerStrCost = opponentSo.strength / roundDuration;
+        PlayerAgilCost = opponentSo.agility / roundDuration;
+        PlayerStaCost = (opponentSo.stamina / roundDuration) * 0.5f;
+        
+        /*
         PlayerStrCost = BoxerData.strength / roundDuration;
         PlayerAgilCost = BoxerData.agility / roundDuration;
         PlayerStaCost = (BoxerData.stamina / roundDuration) * 0.5f;
+        */
+        
         MaxDamage = (EnemyHp / roundDuration) * MaxModifier;
         
         // Hide
@@ -189,7 +196,7 @@ public class FightData
         FloatingTextManager.Instance.ShowMoneyText(moneyReward);
         BoxerData.AddXp(boxerExpReward); 
         GameManager.Instance.AddPlayerXP(playerExpReward);
-        FloatingTextManager.Instance.ShowFixedText($"Training Camp +{playerExpReward} exp", Color.green, TextSpawnPointType.Exp);
+        FloatingTextManager.Instance.ShowFixedText($"{BoxerData.boxerName} wins the fight! +{playerExpReward} exp", Color.green, TextSpawnPointType.Exp);
         //FloatingTextManager.Instance.ShowWorldText(playerBoxer.transform.position, $"+{totalBoxerExp} exp", Color.green);
         
         BoxerController.LeaveFight();
@@ -399,7 +406,7 @@ public class FightManager : MonoBehaviour
             fightData.EnemyHp -= fightData.GetDamage(damage);
             
             // FUEL COST: Strength is consumed when you hit
-            fightData.BoxerData.strength -= fightData.PlayerStrCost; 
+            fightData.BoxerData.strength -= isOutOfEnergy ? outOfEnergyDamage : fightData.PlayerStrCost; 
             fightData.OnActionTriggered(FightActionType.PLAYER_HITS);
         }
         else
