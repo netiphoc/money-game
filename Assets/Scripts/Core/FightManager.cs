@@ -18,8 +18,9 @@ public class FightData
     public const float MinModifier = 0.2f;
     public const float MaxModifier = 1.2f;
     
-    public readonly BoxerData Player;
     public readonly BoxerController BoxerController;
+    public readonly BoxerData BoxerData;
+
     public readonly OpponentSO Enemy;
     public readonly FightDataSO FightDataSO;
     public event Action<FightData, FightActionType> OnAction;
@@ -57,15 +58,15 @@ public class FightData
     public FightData(BoxerController boxerController, OpponentSO opponentSo, FightDataSO fightDataSo, float roundDuration = 10f)
     {
         BoxerController = boxerController;
-            
+        BoxerData = boxerController.stats;
+
+        Enemy = opponentSo;
+        FightDataSO = fightDataSo;
+        
         // Let enemy start first
         IsPlayerTurn = false;
         RoundTimeMax = roundDuration;
         RoundTimeLeft = RoundTimeMax;
-        
-        Player = boxerController.stats;
-        Enemy = opponentSo;
-        FightDataSO = fightDataSo;
 
         const float hpScale = 10f;
         PlayerHp = boxerController.stats.stamina * hpScale;
@@ -73,9 +74,9 @@ public class FightData
         PlayerMaxHp = PlayerHp;
         EnemyMaxHp = EnemyHp;
 
-        PlayerMaxStr = Player.strength;
-        PlayerMaxAgil = Player.agility;
-        PlayerMaxSta = Player.stamina;
+        PlayerMaxStr = BoxerData.strength;
+        PlayerMaxAgil = BoxerData.agility;
+        PlayerMaxSta = BoxerData.stamina;
             
         EnemyStrength = Enemy.strength;
         EnemyAgility = Enemy.agility;
@@ -113,7 +114,7 @@ public class FightData
         // 1. Give Money
         GameManager.Instance.AddMoney(moneyReward);
         FloatingTextManager.Instance.ShowMoneyText(moneyReward);
-        Player.AddXp(boxerExpReward); 
+        BoxerData.AddXp(boxerExpReward); 
         GameManager.Instance.AddPlayerXP(playerExpReward);
         FloatingTextManager.Instance.ShowFixedText($"Training Camp +{playerExpReward} exp", Color.green, TextSpawnPointType.Exp);
         //FloatingTextManager.Instance.ShowWorldText(playerBoxer.transform.position, $"+{totalBoxerExp} exp", Color.green);
@@ -192,7 +193,7 @@ public class FightManager : MonoBehaviour
     {
         foreach (var fightData in _fightData)
         {
-            if(fightData.Player != boxerController.stats) continue;
+            if(fightData.BoxerData != boxerController.stats) continue;
             data = fightData;
             return true;
         }
@@ -245,7 +246,7 @@ public class FightManager : MonoBehaviour
     private void ProcessRoundForOpponent(FightData fightData)
     {
         // 1. Calculate Hit Chance (Agility Contest)
-        float hitChance = fightData.EnemyAgility / (fightData.EnemyAgility + fightData.Player.agility);
+        float hitChance = fightData.EnemyAgility / (fightData.EnemyAgility + fightData.BoxerData.agility);
         bool playerHits = Random.value < hitChance;
 
         // 2. Damage Step
@@ -285,28 +286,28 @@ public class FightManager : MonoBehaviour
     private void ProcessRoundForPlayer(FightData fightData)
     {
         // 1. Calculate Hit Chance (Agility Contest)
-        float hitChance = fightData.Player.agility / (fightData.Player.agility + fightData.EnemyAgility);
+        float hitChance = fightData.BoxerData.agility / (fightData.BoxerData.agility + fightData.EnemyAgility);
         bool playerHits = Random.value < hitChance;
 
         // 2. Damage Step
         if (playerHits)
         {
-            float damage = fightData.Player.strength * Random.Range(FightData.MinModifier, FightData.MaxModifier);
+            float damage = fightData.BoxerData.strength * Random.Range(FightData.MinModifier, FightData.MaxModifier);
             fightData.EnemyHp -= fightData.GetDamage(damage);
             
             // FUEL COST: Strength is consumed when you hit
-            fightData.Player.strength -= fightData.StrCost; 
+            fightData.BoxerData.strength -= fightData.StrCost; 
             fightData.OnActionTriggered(FightActionType.PLAYER_HITS);
         }
         else
         {
             // FUEL COST: Agility is consumed when you miss/dodge
-            fightData.Player.agility -= fightData.AgilCost;
+            fightData.BoxerData.agility -= fightData.AgilCost;
             fightData.OnActionTriggered(FightActionType.PLAYER_MISS);
         }
 
         // 3. Passive Drain
-        fightData.Player.stamina -= fightData.StaCost; 
+        fightData.BoxerData.stamina -= fightData.StaCost; 
 
         // 4. Check Win/Loss
         if (fightData.EnemyHp <= 0)
@@ -315,7 +316,7 @@ public class FightManager : MonoBehaviour
             fightData.OnFightOver(true);
         }
         
-        if (fightData.Player.strength <= 0 || fightData.Player.stamina <= 0)
+        if (fightData.BoxerData.strength <= 0 || fightData.BoxerData.stamina <= 0)
         {
             fightData.OnActionTriggered(FightActionType.GAME_RESULT_LOSE);
             fightData.OnFightOver(false);

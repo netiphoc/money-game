@@ -29,13 +29,13 @@ namespace UI.Gameplay
             textRoundTime.SetText($"{fightData.RoundTimeLeft}");
 
             // Name
-            textPlayerName.SetText(fightData.Player.boxerName);
+            textPlayerName.SetText(fightData.BoxerData.boxerName);
             textEnemyName.SetText(fightData.Enemy.opponentName);
             
             healthBarPlayer.SetValue(fightData.PlayerHp, fightData.PlayerMaxHp);
-            strBarPlayer.SetValue(fightData.Player.strength, fightData.PlayerMaxStr);
-            agilBarPlayer.SetValue(fightData.Player.agility, fightData.PlayerMaxAgil);
-            staBarPlayer.SetValue(fightData.Player.stamina, fightData.PlayerMaxSta);
+            strBarPlayer.SetValue(fightData.BoxerData.strength, fightData.PlayerMaxStr);
+            agilBarPlayer.SetValue(fightData.BoxerData.agility, fightData.PlayerMaxAgil);
+            staBarPlayer.SetValue(fightData.BoxerData.stamina, fightData.PlayerMaxSta);
             
             healthBarEnemy.SetValue(fightData.EnemyHp, fightData.EnemyMaxHp);
             strBarEnemy.SetValue(fightData.EnemyStrength, fightData.EnemyMaxStr);
