@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FightDataSO
   fightName: Tier 1
   opponents:
-  - {fileID: 11400000, guid: 71384a137aacc3f49b5897cafe1c9fe6, type: 2}
   - {fileID: 11400000, guid: 08c6184d24640ec488007a392a43e875, type: 2}
+  - {fileID: 11400000, guid: 71384a137aacc3f49b5897cafe1c9fe6, type: 2}
   - {fileID: 11400000, guid: aad839ffa79f23d488b171e549e0bcc5, type: 2}
   - {fileID: 11400000, guid: cabf01bee952145499ea5b07c3257803, type: 2}

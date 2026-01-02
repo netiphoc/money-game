@@ -55,6 +55,8 @@ namespace AI.BoxerFigth
                     StartAnimationDelay(() =>
                     {
                         animator.SetTrigger("Win");
+                        int winIndex = Random.Range(0, 6);
+                        animator.SetInteger("WinIndex", winIndex);
                         text = "Yayy!";
                     });
                     break;
