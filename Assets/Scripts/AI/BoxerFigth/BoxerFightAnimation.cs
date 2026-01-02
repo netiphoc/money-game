@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace AI.BoxerFigth
 {
@@ -49,16 +52,25 @@ namespace AI.BoxerFigth
                     text = "*DODGE*";
                     break;
                 case BoxerFightAnimationType.Win:
-                    animator.SetTrigger("Win");
-                    text = "Yayy!";
+                    StartAnimationDelay(() =>
+                    {
+                        animator.SetTrigger("Win");
+                        text = "Yayy!";
+                    });
                     break;
                 case BoxerFightAnimationType.Lose:
-                    animator.SetTrigger("Lose");
-                    text = ":(";
+                    StartAnimationDelay(() =>
+                    {
+                        animator.SetTrigger("Lose");
+                        text = ":(";
+                    });
                     break;
                 case BoxerFightAnimationType.Draw:
-                    animator.SetTrigger("Draw");
-                    text = ":|";
+                    StartAnimationDelay(() =>
+                    {
+                        animator.SetTrigger("Draw");
+                        text = ":|";
+                    });
                     break;
             }
             
@@ -66,6 +78,22 @@ namespace AI.BoxerFigth
             {
                 FloatingTextManager.Instance.ShowWorldText(transform.position, text, color, 0.8f);
             }
+        }
+
+        private Coroutine _animationCoroutine;
+        private void StartAnimationDelay(Action action)
+        {
+            if (_animationCoroutine != null)
+            {
+                StopCoroutine(_animationCoroutine);
+            }
+
+            StartCoroutine(AnimationCoroutine(action));
+        }
+        private IEnumerator AnimationCoroutine(Action action)
+        {
+            yield return new WaitForSeconds(1f);
+            action?.Invoke();
         }
     }
 }
