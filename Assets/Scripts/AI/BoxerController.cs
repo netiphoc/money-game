@@ -45,12 +45,12 @@ public class BoxerController : MonoBehaviour
     public void AssignToRoom(GymRoom room)
     {
         assignedRoom = room;
-        if(!GameManager.Instance.GameController.IsTheDayStarted) return;
         StartVisualCycle();
     }
 
     public void StartVisualCycle()
     {
+        if(!GameManager.Instance.GameController.IsTheDayStarted) return;
         if (_currentRoutine != null) StopCoroutine(_currentRoutine);
         _currentRoutine = StartCoroutine(AI_Routine());
     }
@@ -184,5 +184,16 @@ public class BoxerController : MonoBehaviour
     {
         if(animator) animator.SetTrigger("StopTraining"); 
         currentState = AIState.Idle;
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+        StartVisualCycle();
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
     }
 }

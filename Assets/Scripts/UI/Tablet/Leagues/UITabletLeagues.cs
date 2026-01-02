@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +10,7 @@ namespace UI.Tablet.Leagues
         [SerializeField] private UITablet uiTablet;
         [SerializeField] private UITabletLeaguesBoxer uiTabletLeaguesBoxer;
         [SerializeField] private UITabletLeaguesFighter uiTabletLeaguesFighter;
-        [SerializeField] private UITabletLeaguesFightLive uiTabletLeaguesFightLive;
+        [field: SerializeField] public UITabletLeaguesFightLive UITabletLeaguesFightLive { get; private set; }
 
         [Header("Button")] 
         [SerializeField] private Button fighterTierA;
@@ -80,7 +79,7 @@ namespace UI.Tablet.Leagues
             return _selectedFighterTier ??= FightManager.Instance.FighterDataTierA;
         }
         
-        private void RefreshBoxerOpponents()
+        public void RefreshBoxerOpponents()
         {
             if(_boxer == null) return;
             OnClickedBoxer(_boxer);
@@ -109,10 +108,10 @@ namespace UI.Tablet.Leagues
             }
         }
         
-        public void OnFlightResult(FightResultData fightResultData)
+        public void OnFlightResult(FightData fightData)
         {
-            uiTabletLeaguesFightLive.SetVisible(true);
-            //uiTabletLeaguesFightLive.ShowLiveResult(fightResultData);
+            RefreshBoxerOpponents();
+            RefreshBoxers();
         }
     }
 }

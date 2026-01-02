@@ -334,6 +334,7 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
             boxerData.level = PlayerPrefs.GetInt($"{name}_level");
             boxerData.currentXP = PlayerPrefs.GetFloat($"{name}_currentXP");
             boxerData.xpToNextLevel = PlayerPrefs.GetFloat($"{name}_xpToNextLevel");
+            boxerData.UpdateTotal();
             
             BoxerController boxerController = SaveSystem.Instance.LoadBoxerData(boxerData, SpawnPoint);
             assignedBoxer = boxerController;

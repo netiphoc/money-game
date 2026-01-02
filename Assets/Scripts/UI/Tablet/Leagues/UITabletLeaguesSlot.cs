@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Text;
-using Data;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
@@ -23,12 +21,13 @@ namespace UI.Tablet.Leagues
         [SerializeField] private TMP_Text textPowerLeft;
         [SerializeField] private UITabletButtonFight buttonFight;
 
-        public Action<FightResultData> OnFightResult;
+        public Action<FightData> OnFightResult;
         public int Power { get; private set; }
 
         private BoxerController _boxerController;
         private OpponentSO _opponentSo;
-        
+        private FightData _fightData;
+
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -96,11 +95,25 @@ namespace UI.Tablet.Leagues
             
             buttonFight.Unlock();
             
-            bool canBeat = _opponentSo &&
-                           _boxerController &&
-                           FightManager.Instance.CanBeatOpponent(_boxerController, _opponentSo);
+            if(!_opponentSo || !_boxerController) return;
 
-            buttonFight.SetFightAvailable(canBeat);
+            // Player and Opponent fight in this slot
+            if (FightManager.Instance.IsInFight(_opponentSo, out _))
+            {
+                buttonFight.SetWatchLive();
+            }
+            else
+            {
+                // Need stats
+                if (!FightManager.Instance.CanBeatOpponent(_boxerController, _opponentSo))
+                {
+                    buttonFight.SetNeedMoreStats();
+                    return;
+                }
+                
+                // Player in fight
+                buttonFight.SetFightAvailable(!FightManager.Instance.IsInFight(_boxerController, out _));
+            }
         }
         
         public void SetOpponent(BoxerController boxerController, OpponentSO opponentSo)
@@ -110,7 +123,6 @@ namespace UI.Tablet.Leagues
             _boxerController = boxerController;
             _opponentSo = opponentSo;
 
-            
             int boxerPower = boxerController.stats.totalPower;
             int opponentPower = opponentSo.TotalPower;
             Power = opponentPower;
@@ -229,26 +241,39 @@ namespace UI.Tablet.Leagues
         
         private void OnButtonClickedFight()
         {
-            if(!FightManager.Instance.CanBeatOpponent(_boxerController, _opponentSo)) return;
-            FightData fightData = new FightData(_boxerController.stats, _opponentSo);
-            FightManager.Instance.StartFightData(fightData);
-
-            FightResultData fightResultData = new FightResultData
+            // Check if player and opponent in fight
+            if(FightManager.Instance.IsInFight(_opponentSo, out FightData fightData) &&
+               FightManager.Instance.IsInFight(_boxerController, out _)){
             {
-                BoxerController = _boxerController,
-                Opponent = _opponentSo,
-                //Win = playerWon,
-            };
+                // Watch Live
+                UIManager.Instance.UITablet.UITabletLeagues.UITabletLeaguesFightLive.ShowLiveResult(fightData);
+                return;
+            }}
             
-            UpdateStats();
-            UpdateFightButton();
-
-            /*
-            if (!playerWon)
+            // Check if player in fight
+            if(FightManager.Instance.IsInFight(_boxerController, out _)){
             {
-                OnFightResult?.Invoke(fightResultData);
+                // Player in fight
+                return;
+            }}
+            
+            _fightData = new FightData(_boxerController, _opponentSo);
+            _fightData.OnAction += OnFightAction;
+            FightManager.Instance.StartFightData(_fightData);
+            UIManager.Instance.UITablet.UITabletLeagues.UITabletLeaguesFightLive.ShowLiveResult(_fightData);
+
+            OnFightResult?.Invoke(_fightData);
+        }
+
+        private void OnFightAction(FightData fightData, FightActionType fightActionType)
+        {
+            UpdateStats();
+            
+            if (fightActionType == FightActionType.GAME_RESULT_WIN ||
+                fightActionType == FightActionType.GAME_RESULT_LOSE)
+            {
+                OnFightResult?.Invoke(fightData);
             }
-            */
         }
     }
 }

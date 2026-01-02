@@ -45,6 +45,7 @@ namespace Core
 
         public void StartTheDay()
         {
+            IsTheDayStarted = true;
             GameManager.Instance.GameTimeManager.StartClock();
 
             foreach (var room in GameManager.Instance.GymRooms)
@@ -53,8 +54,6 @@ namespace Core
                 if(!room.IsUnlocked) continue;
                 room.assignedBoxer.StartVisualCycle();
             }
-
-            IsTheDayStarted = true;
         }
 
         public void EndTheDay()
