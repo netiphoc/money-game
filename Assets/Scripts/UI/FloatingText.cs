@@ -6,12 +6,13 @@ public class FloatingText : BaseUI
 {
     [SerializeField] private TMP_Text textMesh;
     public float moveSpeed = 1f;
-    public float fadeTime = 1f;
     
+    private float _fadeTime = 1f;
     private float _alpha = 1f;
 
-    public void Setup(string text, Color color)
+    public void Setup(string text, Color color, float duration)
     {
+        _fadeTime = duration;
         textMesh.text = text;
         textMesh.color = color;
         _alpha = 1f;
@@ -25,7 +26,7 @@ public class FloatingText : BaseUI
         transform.position += Vector3.up * (moveSpeed * Time.deltaTime);
 
         // Fade Out
-        _alpha -= Time.deltaTime / fadeTime;
+        _alpha -= Time.deltaTime / _fadeTime;
         textMesh.color = new Color(textMesh.color.r, textMesh.color.g, textMesh.color.b, _alpha);
 
         if (_alpha <= 0)

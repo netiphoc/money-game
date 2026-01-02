@@ -115,13 +115,13 @@ public class FloatingTextManager : MonoBehaviour
         if (newTextObj != null) newTextObj.Setup(text, color);
     }
     
-    public void ShowWorldText(Vector3 position, string text, Color color)
+    public void ShowWorldText(Vector3 position, string text, Color color, float duration)
     {
         Vector3 spawnPos = position + Vector3.up * 2f;
         FloatingText popup = _poolingWorldText.RequestRecycle(transform);
         popup.transform.position = spawnPos;
         popup.transform.rotation = Quaternion.identity;
-        popup.Setup(text, color);
+        popup.Setup(text, color, duration);
     }
 
     /// <summary>

@@ -192,7 +192,7 @@ public class FightManager : MonoBehaviour
 
     private float GetFightDelay()
     {
-        return Random.Range(1.2f, 1.8f);
+        return Random.Range(0.8f, 1.2f);
     }
 
     private void OnGameMinuteTick(string obj)

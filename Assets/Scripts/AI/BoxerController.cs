@@ -169,7 +169,7 @@ public class BoxerController : MonoBehaviour
             statsPopupText.Append($"\nSTA: +{stats.unrealizedStamina:F0}");
         }
                 
-        FloatingTextManager.Instance.ShowWorldText(transform.position, statsPopupText.ToString(), Color.green);
+        FloatingTextManager.Instance.ShowWorldText(transform.position, statsPopupText.ToString(), Color.green, 3.5f);
     }
     
     private bool IsTargetValid()

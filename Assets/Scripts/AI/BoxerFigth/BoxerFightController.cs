@@ -20,23 +20,23 @@ namespace AI.BoxerFigth
             {
                 case FightActionType.PLAYER_HITS:
                     boxerFightAnimation.SetAnimation(_isPlayer
-                        ? BoxerFightAnimationType.Punch
+                        ? BoxerFightAnimationType.Attack
                         : BoxerFightAnimationType.Hit);
                     break;
                 case FightActionType.PLAYER_MISS:
                     boxerFightAnimation.SetAnimation(_isPlayer
-                        ? BoxerFightAnimationType.Punch
+                        ? BoxerFightAnimationType.Attack
                         : BoxerFightAnimationType.Dodge);
                     break;
                 case FightActionType.ENEMY_HITS:
                     boxerFightAnimation.SetAnimation(_isPlayer
                         ? BoxerFightAnimationType.Hit
-                        : BoxerFightAnimationType.Punch);
+                        : BoxerFightAnimationType.Attack);
                     break;
                 case FightActionType.ENEMY_MISS:
                     boxerFightAnimation.SetAnimation(_isPlayer
                         ? BoxerFightAnimationType.Dodge
-                        : BoxerFightAnimationType.Punch);
+                        : BoxerFightAnimationType.Attack);
                     break;
                 case FightActionType.GAME_RESULT_WIN:
                     boxerFightAnimation.SetAnimation(_isPlayer

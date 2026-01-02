@@ -5,7 +5,7 @@ namespace AI.BoxerFigth
     public enum BoxerFightAnimationType
     {
         Hit,
-        Punch,
+        Attack,
         Dodge,
         Win,
         Lose,
@@ -19,17 +19,18 @@ namespace AI.BoxerFigth
         public void SetAnimation(BoxerFightAnimationType boxerFightAnimationType)
         {
             string text = string.Empty;
-            Color color = Color.green;
+            Color color = Color.white;
             
             switch (boxerFightAnimationType)
             {
                 case BoxerFightAnimationType.Hit:
                     animator.SetTrigger("Hit");
-                    text = "Agrhh!";
+                    text = "*HIT*";
                     break;
-                case BoxerFightAnimationType.Punch:
-                    animator.SetTrigger("Punch");
-                    text = "Take this!";
+                case BoxerFightAnimationType.Attack:
+                    animator.SetTrigger("Attack");
+                    int attackIndex = Random.Range(0, 3);
+                    animator.SetInteger("AttackIndex", attackIndex);
                     break;
                 case BoxerFightAnimationType.Dodge:
                     animator.SetTrigger("Dodge");
@@ -51,7 +52,7 @@ namespace AI.BoxerFigth
             
             if (!string.IsNullOrEmpty(text))
             {
-                FloatingTextManager.Instance.ShowWorldText(transform.position, text, color);
+                FloatingTextManager.Instance.ShowWorldText(transform.position, text, color, 0.8f);
             }
         }
     }
