@@ -21,6 +21,7 @@ public class FightData
     public readonly BoxerData Player;
     public readonly BoxerController BoxerController;
     public readonly OpponentSO Enemy;
+    public readonly FightDataSO FightDataSO;
     public event Action<FightData, FightActionType> OnAction;
     
     public bool IsRoundOver { get; private set; }
@@ -29,8 +30,6 @@ public class FightData
     public float RoundTimeLeft { get; set; }
     public bool IsPlayerWin { get; private set; }
     public bool IsPlayerTurn { get; set; }
-
-    public string FightType { get; private set; }
 
     // Player Stats
     public float PlayerHp { get; set; }
@@ -55,10 +54,9 @@ public class FightData
     public float StaCost { get; private set; }
     public float MaxDamage { get; private set; }
     
-    public FightData(BoxerController boxerController, OpponentSO opponentSo, float roundDuration = 10f)
+    public FightData(BoxerController boxerController, OpponentSO opponentSo, FightDataSO fightDataSo, float roundDuration = 10f)
     {
         BoxerController = boxerController;
-        FightType = "Muay Thai";
             
         // Let enemy start first
         IsPlayerTurn = false;
@@ -67,6 +65,7 @@ public class FightData
         
         Player = boxerController.stats;
         Enemy = opponentSo;
+        FightDataSO = fightDataSo;
 
         const float hpScale = 10f;
         PlayerHp = boxerController.stats.stamina * hpScale;
@@ -91,7 +90,7 @@ public class FightData
         MaxDamage = (EnemyHp / roundDuration) * MaxModifier;
         
         // Hide
-        boxerController.Hide();
+        boxerController.EnterFight();
     }
 
     public float GetDamage(float damage)
@@ -119,7 +118,7 @@ public class FightData
         FloatingTextManager.Instance.ShowFixedText($"Training Camp +{playerExpReward} exp", Color.green, TextSpawnPointType.Exp);
         //FloatingTextManager.Instance.ShowWorldText(playerBoxer.transform.position, $"+{totalBoxerExp} exp", Color.green);
         
-        BoxerController.Show();
+        BoxerController.LeaveFight();
     }
 }
 
@@ -128,14 +127,16 @@ public class FightManager : MonoBehaviour
     public static FightManager Instance;
     
     [Header("Opponents")] 
-    [field: SerializeField] public OpponentSO[] FighterDataTierA { get; private set; }
-    [field: SerializeField] public OpponentSO[] FighterDataTierB { get; private set; }
-    [field: SerializeField] public OpponentSO[] FighterDataTierC { get; private set; }
-    [field: SerializeField] public OpponentSO[] FighterDataTierD { get; private set; }
+    [field: SerializeField] public FightDataSO FighterDataTierA { get; private set; }
+    [field: SerializeField] public FightDataSO FighterDataTierB { get; private set; }
+    [field: SerializeField] public FightDataSO FighterDataTierC { get; private set; }
+    [field: SerializeField] public FightDataSO FighterDataTierD { get; private set; }
 
     // Events to update UI or play sounds
     private readonly List<FightData> _fightData = new List<FightData>();
 
+    private float _fightDelayTime;
+    
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -151,9 +152,28 @@ public class FightManager : MonoBehaviour
         GameManager.Instance.GameTimeManager.OnGameMinuteTick -= OnGameMinuteTick;
     }
 
+    private void Update()
+    {
+        ProcessFightTimer();
+    }
+
+    private void ProcessFightTimer()
+    {
+        _fightDelayTime -= Time.deltaTime;
+        if(_fightDelayTime > 0f) return;
+        _fightDelayTime = GetFightDelay();
+        
+        ProcessFightData();
+    }
+
+    private float GetFightDelay()
+    {
+        return 1f * Random.Range(0.8f, 1.2f);
+    }
+
     private void OnGameMinuteTick(string obj)
     {
-        ProcessFightData();
+        //ProcessFightData();
     }
 
     public bool CanBeatOpponent(BoxerController playerBoxer, OpponentSO opponent)

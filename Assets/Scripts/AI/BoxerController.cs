@@ -7,7 +7,7 @@ using System.Text;
 [RequireComponent(typeof(NavMeshAgent))]
 public class BoxerController : MonoBehaviour
 {
-    public enum AIState { Sleep, Idle, MovingToMachine, TrainingVisual }
+    public enum AIState { Sleep, Idle, MovingToMachine, TrainingVisual, Fight }
 
     [Header("Data")]
     public BoxerData stats;
@@ -28,10 +28,22 @@ public class BoxerController : MonoBehaviour
     private TrainingEquipment _targetEquipment;
     private Coroutine _currentRoutine;
 
+    private Vector3 _spawnPoint;
+    private Quaternion _spawnRotation;
+    
     private void Awake()
     {
         if (agent == null) agent = GetComponent<NavMeshAgent>();
         if (animator == null) animator = GetComponent<Animator>();
+
+        _spawnPoint = transform.position;
+        _spawnRotation = transform.rotation;
+    }
+
+    public void Respawn()
+    {
+        transform.position = _spawnPoint;
+        transform.rotation = _spawnRotation;
     }
 
     private void Start()
@@ -185,15 +197,18 @@ public class BoxerController : MonoBehaviour
         if(animator) animator.SetTrigger("StopTraining"); 
         currentState = AIState.Idle;
     }
-
-    public void Show()
+    
+    public void EnterFight()
     {
-        gameObject.SetActive(true);
-        StartVisualCycle();
+        currentState = AIState.Fight;
+        gameObject.SetActive(false);
     }
 
-    public void Hide()
+    public void LeaveFight()
     {
-        gameObject.SetActive(false);
+        currentState = AIState.Idle;
+        gameObject.SetActive(true);
+        Respawn();
+        StartVisualCycle();
     }
 }

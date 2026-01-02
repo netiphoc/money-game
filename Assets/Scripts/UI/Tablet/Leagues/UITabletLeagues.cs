@@ -21,7 +21,7 @@ namespace UI.Tablet.Leagues
         [Header("Button")]
         [SerializeField] private Button buttonHome;
 
-        private OpponentSO[] _selectedFighterTier;
+        private FightDataSO _selectedFighterTier;
         private BoxerController _boxer;
         
         protected override void OnEnable()
@@ -74,7 +74,7 @@ namespace UI.Tablet.Leagues
             uiTablet.ShowHome();
         }
 
-        private OpponentSO[] GetOpponents()
+        private FightDataSO GetOpponents()
         {
             return _selectedFighterTier ??= FightManager.Instance.FighterDataTierA;
         }

@@ -12,6 +12,12 @@ namespace UI.Gameplay
         public void SetValue(float min, float max)
         {
             fillImage.fillAmount = Mathf.Clamp01(min / max);
+
+            if (min < 0)
+            {
+                min = 0;
+            }
+            
             textValue.SetText($"{min:F0} / {max:F0}");
         }
     }

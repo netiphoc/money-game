@@ -44,18 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfdc0554a31c436581f1b970f73c2d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FightManager
-  <OpponentSo>k__BackingField:
-  - {fileID: 11400000, guid: 11700d036e7f06947ab3e552c9564549, type: 2}
-  - {fileID: 11400000, guid: d0b8743127047924685cced949380b2f, type: 2}
-  - {fileID: 11400000, guid: 1b8e7bcfafc56b24e8651692b8443dd4, type: 2}
-  - {fileID: 11400000, guid: d84a09967ff6ca043b9a91b5b17c0e14, type: 2}
-  - {fileID: 11400000, guid: 1a16d16c8145df54cab135e142dff9cf, type: 2}
-  - {fileID: 11400000, guid: f039fb181609ba944ac41c4ab6883c40, type: 2}
-  - {fileID: 11400000, guid: 2191f1e313c6f154e8057121a7db32fb, type: 2}
-  - {fileID: 11400000, guid: 54f5febb3b5bd334ca928024ed975df0, type: 2}
-  - {fileID: 11400000, guid: 18521256afba9364192f26dd32456a64, type: 2}
-  - {fileID: 11400000, guid: ff0230d018ed1b247bb8454d0293b559, type: 2}
-  - {fileID: 11400000, guid: 08c6184d24640ec488007a392a43e875, type: 2}
-  - {fileID: 11400000, guid: 71384a137aacc3f49b5897cafe1c9fe6, type: 2}
-  - {fileID: 11400000, guid: aad839ffa79f23d488b171e549e0bcc5, type: 2}
-  - {fileID: 11400000, guid: cabf01bee952145499ea5b07c3257803, type: 2}
+  <FighterDataTierA>k__BackingField: {fileID: 11400000, guid: 93dc6602a6d5ad244b773e8c186e3f21, type: 2}
+  <FighterDataTierB>k__BackingField: {fileID: 11400000, guid: f0d12f2d91ea59643853287c074128ff, type: 2}
+  <FighterDataTierC>k__BackingField: {fileID: 11400000, guid: 97641ba071bd097429b16e4e86da759e, type: 2}
+  <FighterDataTierD>k__BackingField: {fileID: 11400000, guid: b3a225db45f50e44596ae99fece73ac8, type: 2}

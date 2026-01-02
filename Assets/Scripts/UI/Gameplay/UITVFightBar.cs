@@ -23,7 +23,7 @@ namespace UI.Gameplay
         
         public void SetLiveBar(FightData fightData)
         {
-            textFightType.SetText(fightData.FightType);
+            textFightType.SetText(fightData.FightDataSO.fightName);
             
             // Time
             textRoundTime.SetText($"{fightData.RoundTimeLeft}");

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e535c3b9d04685a19cd400f86a8d30, type: 3}
+  m_Name: Fight Data Tier 2
+  m_EditorClassIdentifier: Assembly-CSharp::FightDataSO
+  fightName: Tier 2
+  opponents:
+  - {fileID: 11400000, guid: 2191f1e313c6f154e8057121a7db32fb, type: 2}
+  - {fileID: 11400000, guid: 54f5febb3b5bd334ca928024ed975df0, type: 2}
+  - {fileID: 11400000, guid: 18521256afba9364192f26dd32456a64, type: 2}
+  - {fileID: 11400000, guid: ff0230d018ed1b247bb8454d0293b559, type: 2}

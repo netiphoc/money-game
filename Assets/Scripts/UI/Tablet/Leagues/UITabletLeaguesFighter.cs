@@ -26,17 +26,17 @@ namespace UI.Tablet.Leagues
             return GetPool().Request(containerLeagueSlot);
         }
 
-        public void RefreshFightLeaguesSlot(BoxerController boxerController, OpponentSO[] opponentSo)
+        public void RefreshFightLeaguesSlot(BoxerController boxerController, FightDataSO fightDataSo)
         {
             GetPool().ClearPool();
 
             int rank = 1;
             
-            foreach (var opponent in opponentSo)
+            foreach (var opponent in fightDataSo.opponents)
             {
                 UITabletLeaguesSlot slot = GetSlot();
                 slot.SetOpponentRank(rank++);
-                slot.SetOpponent(boxerController, opponent);
+                slot.SetOpponent(boxerController, opponent, fightDataSo);
                 slot.OnFightResult = uiTabletLeagues.OnFlightResult;
                 _fightSlots.Add(slot);
             }

@@ -26,6 +26,7 @@ namespace UI.Tablet.Leagues
 
         private BoxerController _boxerController;
         private OpponentSO _opponentSo;
+        private FightDataSO _fightDataSo;
         private FightData _fightData;
 
         protected override void OnEnable()
@@ -116,12 +117,13 @@ namespace UI.Tablet.Leagues
             }
         }
         
-        public void SetOpponent(BoxerController boxerController, OpponentSO opponentSo)
+        public void SetOpponent(BoxerController boxerController, OpponentSO opponentSo, FightDataSO fightDataSo)
         {
             InitBoxer(boxerController);
             
             _boxerController = boxerController;
             _opponentSo = opponentSo;
+            _fightDataSo = fightDataSo;
 
             int boxerPower = boxerController.stats.totalPower;
             int opponentPower = opponentSo.TotalPower;
@@ -257,7 +259,7 @@ namespace UI.Tablet.Leagues
                 return;
             }}
             
-            _fightData = new FightData(_boxerController, _opponentSo);
+            _fightData = new FightData(_boxerController, _opponentSo, _fightDataSo);
             _fightData.OnAction += OnFightAction;
             FightManager.Instance.StartFightData(_fightData);
             UIManager.Instance.UITablet.UITabletLeagues.UITabletLeaguesFightLive.ShowLiveResult(_fightData);
