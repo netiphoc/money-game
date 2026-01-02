@@ -60,9 +60,12 @@ public class FightData
     public float EnemyMaxSta { get; private set; }
 
     // Fight stats cost
-    public float StrCost { get; private set; }
-    public float AgilCost { get; private set; }
-    public float StaCost { get; private set; }
+    public float EnemyStrCost { get; private set; }
+    public float EnemyAgilCost { get; private set; }
+    public float EnemyStaCost { get; private set; }
+    public float PlayerStrCost { get; private set; }
+    public float PlayerAgilCost { get; private set; }
+    public float PlayerStaCost { get; private set; }
     public float MaxDamage { get; private set; }
     
     public FightData(BoxerController boxerController, OpponentSO opponentSo, FightDataSO fightDataSo, float roundDuration = 10f)
@@ -99,9 +102,13 @@ public class FightData
         EnemyMaxAgil = EnemyAgility;
         EnemyMaxSta = EnemyStamina;
 
-        StrCost = opponentSo.strength / roundDuration;
-        AgilCost = opponentSo.agility / roundDuration;
-        StaCost = (opponentSo.stamina / roundDuration) * 0.5f;
+        EnemyStrCost = opponentSo.strength / roundDuration;
+        EnemyAgilCost = opponentSo.agility / roundDuration;
+        EnemyStaCost = (opponentSo.stamina / roundDuration) * 0.5f;
+        
+        PlayerStrCost = BoxerData.strength / roundDuration;
+        PlayerAgilCost = BoxerData.agility / roundDuration;
+        PlayerStaCost = (BoxerData.stamina / roundDuration) * 0.5f;
         MaxDamage = (EnemyHp / roundDuration) * MaxModifier;
         
         // Hide
@@ -338,19 +345,20 @@ public class FightManager : MonoBehaviour
             fightData.PlayerHp -= isPlayerOutOfEnergy ? damagePlayerOutOfEnergy : fightData.GetDamage(damage);
             
             // FUEL COST: Strength is consumed when you hit
-            fightData.EnemyStrength -= fightData.StrCost;
+            fightData.EnemyStrength -= fightData.EnemyStrCost;
             fightData.OnActionTriggered(FightActionType.ENEMY_HITS);
         }
         else
         {
             // FUEL COST: Agility is consumed when you miss/dodge
-            fightData.EnemyAgility -= fightData.AgilCost;
+            fightData.EnemyAgility -= fightData.EnemyAgilCost;
+            fightData.BoxerData.agility -= fightData.PlayerAgilCost;
             fightData.OnActionTriggered(FightActionType.ENEMY_MISS);
         }
 
         const float playerOutOfEnergyStaCost = 1f;
         // 3. Passive Drain
-        fightData.EnemyStamina -= isPlayerOutOfEnergy ? playerOutOfEnergyStaCost : fightData.StaCost; 
+        fightData.EnemyStamina -= isPlayerOutOfEnergy ? playerOutOfEnergyStaCost : fightData.EnemyStaCost; 
 
         // 4. Check Win/Loss
         if (fightData.PlayerHp <= 0)
@@ -362,8 +370,9 @@ public class FightManager : MonoBehaviour
 
         if (fightData.EnemyStrength <= 0 || fightData.EnemyStamina <= 0)
         {
-            fightData.OnActionTriggered(isPlayerOutOfEnergy ? FightActionType.GAME_RESULT_DRAW : FightActionType.GAME_RESULT_WIN);
-            fightData.OnFightOver(FightActionType.GAME_RESULT_WIN);
+            FightActionType winResult = isPlayerOutOfEnergy ? FightActionType.GAME_RESULT_DRAW : FightActionType.GAME_RESULT_WIN;
+            fightData.OnActionTriggered(winResult);
+            fightData.OnFightOver(winResult);
         }
     }
     
@@ -389,19 +398,20 @@ public class FightManager : MonoBehaviour
             fightData.EnemyHp -= fightData.GetDamage(damage);
             
             // FUEL COST: Strength is consumed when you hit
-            fightData.BoxerData.strength -= fightData.StrCost; 
+            fightData.BoxerData.strength -= fightData.PlayerStrCost; 
             fightData.OnActionTriggered(FightActionType.PLAYER_HITS);
         }
         else
         {
             // FUEL COST: Agility is consumed when you miss/dodge
-            fightData.BoxerData.agility -= fightData.AgilCost;
+            fightData.BoxerData.agility -= fightData.PlayerAgilCost;
+            fightData.EnemyAgility -= fightData.EnemyAgilCost;
             fightData.OnActionTriggered(FightActionType.PLAYER_MISS);
         }
 
         // 3. Passive Drain
         const float outOfEnergyStaCost = 1f;
-        fightData.BoxerData.stamina -= isOutOfEnergy ? outOfEnergyStaCost : fightData.StaCost; 
+        fightData.BoxerData.stamina -= isOutOfEnergy ? outOfEnergyStaCost : fightData.PlayerStaCost; 
         
         // 4. Check Win/Loss
         if (fightData.EnemyHp <= 0)

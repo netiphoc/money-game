@@ -69,43 +69,40 @@ namespace UI.Tablet.Leagues
         {
             uiTvFightBar.SetLiveBar(fightData);
             
+            textResult.SetText(string.Empty);
             switch (fightAction)
             {
                 case FightActionType.PLAYER_HITS:
-                    textResult.SetText("PLAYER PUNCH ENEMY!");
                     break;
                 case FightActionType.PLAYER_MISS:
-                    textResult.SetText("ENEMY CAN DODGE!");
                     break;
                 case FightActionType.ENEMY_HITS:
-                    textResult.SetText("ENEMY PUNCH PLAYER!");
                     break;
                 case FightActionType.ENEMY_MISS:
-                    textResult.SetText("PLAYER DODGE!!!");
                     break;
                 case FightActionType.GAME_RESULT_WIN:
                     if (fightData.IsRoundTimeOut)
                     {
-                        textResult.SetText("PLAYER WIN THE GAME!");
+                        textResult.SetText($"{fightData.BoxerData.boxerName} WINS!");
                     }
                     else
                     {
-                        textResult.SetText("PLAYER WIN THE GAME! (KNOCK OUT)");
+                        textResult.SetText($"{fightData.BoxerData.boxerName} WINS! (KNOCK OUT)");
                     }
                     break;
                 case FightActionType.GAME_RESULT_LOSE:
                     if (fightData.IsRoundTimeOut)
                     {
-                        textResult.SetText("PLAYER LOSE THE GAME!");
+                        textResult.SetText($"{fightData.Enemy.opponentName} WINS!");
                     }
                     else
                     {
-                        textResult.SetText("PLAYER LOSE THE GAME! (KNOCK OUT)");
+                        textResult.SetText($"{fightData.Enemy.opponentName} WINS! (KNOCK OUT)");
                     }
                     break;
                 
                 case FightActionType.GAME_RESULT_DRAW:
-                    textResult.SetText("DRAW!");
+                    textResult.SetText("[ DRAW ]");
                     break;
             }
         }
