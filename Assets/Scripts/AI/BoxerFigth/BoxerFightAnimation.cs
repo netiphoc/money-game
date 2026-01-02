@@ -9,7 +9,7 @@ namespace AI.BoxerFigth
     {
         Corner,
         Walk,
-        FriendlyPunch,
+        GetReady,
         Hit,
         Attack,
         Dodge,
@@ -35,8 +35,8 @@ namespace AI.BoxerFigth
                 case BoxerFightAnimationType.Walk:
                     animator.SetTrigger("Walk");
                     break;
-                case BoxerFightAnimationType.FriendlyPunch:
-                    animator.SetTrigger("FriendlyPunch");
+                case BoxerFightAnimationType.GetReady:
+                    animator.SetTrigger("GetReady");
                     break;
                 case BoxerFightAnimationType.Hit:
                     animator.SetTrigger("Hit");

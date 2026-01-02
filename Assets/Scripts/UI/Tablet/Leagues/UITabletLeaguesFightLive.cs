@@ -69,8 +69,6 @@ namespace UI.Tablet.Leagues
         {
             uiTvFightBar.SetLiveBar(fightData);
             
-            Debug.Log($"LIVE: {fightAction}");
-            
             switch (fightAction)
             {
                 case FightActionType.PLAYER_HITS:

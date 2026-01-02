@@ -80,7 +80,7 @@ public class FightData
         // Let enemy start first
         IsPlayerTurn = false;
         RoundTimeMax = roundDuration;
-        RoundTimeLeft = RoundTimeMax;
+        RoundTimeLeft = 90;
 
         const float hpScale = 10f;
         PlayerHp = boxerController.stats.stamina * hpScale;
@@ -296,11 +296,8 @@ public class FightManager : MonoBehaviour
             FightData data = _fightData[i];
 
             if(data.IsInPrepareState()) continue;
-
-            if (data.CurrentFightState != FightActionType.PREPARE)
-            {
-                data.RoundTimeLeft--; // Update round timer
-            }
+          
+            data.RoundTimeLeft--; // Update round timer
 
             if (data.IsPlayerTurn)
             {

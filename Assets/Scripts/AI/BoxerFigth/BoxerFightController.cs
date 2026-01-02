@@ -43,7 +43,7 @@ namespace AI.BoxerFigth
                     break;
                 
                 case FightActionType.FIGHT_STARTED:
-                    boxerFightAnimation.SetAnimation(BoxerFightAnimationType.FriendlyPunch);
+                    boxerFightAnimation.SetAnimation(BoxerFightAnimationType.GetReady);
                     break;
                 
                 case FightActionType.PLAYER_HITS:

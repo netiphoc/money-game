@@ -887,6 +887,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1512588339}
     m_Modifications:
+    - target: {fileID: 1644353803108927101, guid: 45f4f661f652ba342aada952100e2469, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 5b6f115a8907d9a48905f7339a3f2549, type: 2}
     - target: {fileID: 3760402549098996813, guid: 45f4f661f652ba342aada952100e2469, type: 3}
       propertyPath: m_Name
       value: FightStage 4
@@ -4839,6 +4843,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1512588339}
     m_Modifications:
+    - target: {fileID: 1644353803108927101, guid: 45f4f661f652ba342aada952100e2469, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 820c03ef64f317a4fa5d11d49e8a054a, type: 2}
     - target: {fileID: 3760402549098996813, guid: 45f4f661f652ba342aada952100e2469, type: 3}
       propertyPath: m_Name
       value: FightStage 3
@@ -5299,6 +5307,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1512588339}
     m_Modifications:
+    - target: {fileID: 1644353803108927101, guid: 45f4f661f652ba342aada952100e2469, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 4497f9b221fc1fa4badc059c40f5b0b0, type: 2}
     - target: {fileID: 3760402549098996813, guid: 45f4f661f652ba342aada952100e2469, type: 3}
       propertyPath: m_Name
       value: FightStage 2
