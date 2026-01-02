@@ -391,7 +391,7 @@ MonoBehaviour:
   playerLevel: 1
   playerXP: 0
   xpToNextLevel: 50
-  levelDifficultyMultiplier: 1.15
+  levelDifficultyMultiplier: 1.5
   totalIncome: 0
   totalSupplyCosts: 0
   totalUpgradeCosts: 0
