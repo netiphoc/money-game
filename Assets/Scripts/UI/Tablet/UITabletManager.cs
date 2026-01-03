@@ -144,7 +144,6 @@ namespace UI.Tablet
             }
             
             ShowSection(loadSection);
-            SetActiveTab(UITabletLicense);
             UITabletDecoration.SetDecorations(decorations);
         }
         
@@ -189,6 +188,8 @@ namespace UI.Tablet
             buttonCatalogWorkers.CheckSection(sectionDataSo);   
             buttonCatalogExpand.CheckSection(sectionDataSo);   
             buttonCatalogFight.CheckSection(sectionDataSo);   
+            
+            SetActiveTab(UITabletProduct);
         }
 
         private void OnRoomDataChanged(RoomDataSO roomDataSo)
