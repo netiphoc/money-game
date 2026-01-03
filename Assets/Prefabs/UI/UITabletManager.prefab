@@ -556,6 +556,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 035fd21eb9004ff428ec2a312a79bbf4, type: 2}
   - {fileID: 11400000, guid: b5af7e1d9d89b5145a7255be8a6ce5bc, type: 2}
   - {fileID: 11400000, guid: 83fc9ce725741414498643685ad28684, type: 2}
+  - {fileID: 11400000, guid: d200cc134446dff4ca3e86f5e492b433, type: 2}
   decorations: []
   uiTabletButtonRoomPrefab: {fileID: 5511004799400169087, guid: 464515e1926561d4585e3b87f929d15d, type: 3}
   containerRoom: {fileID: 6137323777127435697}

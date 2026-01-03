@@ -24,8 +24,8 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
     public float totalStrRate;
     public float totalAgiRate;
     public float totalStaRate;
-    public float totalSleepRate;
     public float totalHungerRate;
+    public float totalSleepRate;
     public event Action<GymRoom> OnRoomUnlocked;
     public bool IsUnlocked { get; private set; }
     
