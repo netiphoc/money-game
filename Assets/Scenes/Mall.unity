@@ -281,9 +281,17 @@ PrefabInstance:
       value: TrainingRoom 3
       objectReference: {fileID: 0}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: linkGymRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: gymRoomEquipmentDetector
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: 'linkGymRooms.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1019185863}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: <RoomDataSo>k__BackingField
       value: 
@@ -344,72 +352,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GymRoom
---- !u!1 &193331234
+--- !u!1 &193331234 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5762327937574521456, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+  m_PrefabInstance: {fileID: 6798368004534544346}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 193331236}
-  - component: {fileID: 193331235}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &193331235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 193331234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9d0efc3b59143eb984706f5e3ba15a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  <FirstPersonController>k__BackingField: {fileID: 1176076215}
-  <PlayerInteraction>k__BackingField: {fileID: 1176076211}
-  <GameTimeManager>k__BackingField: {fileID: 1725407892}
-  <GameController>k__BackingField: {fileID: 2027215256}
-  <GymRooms>k__BackingField:
-  - {fileID: 1833959955}
-  - {fileID: 787230199}
-  - {fileID: 192521135}
-  - {fileID: 9221388899250546237}
-  - {fileID: 2049005667}
-  - {fileID: 1943333281}
-  - {fileID: 1128392479}
-  - {fileID: 937424379}
-  totalDays: 1
-  currentMoney: 1000
-  playerLevel: 1
-  playerXP: 0
-  xpToNextLevel: 50
-  levelDifficultyMultiplier: 1.5
-  totalIncome: 0
-  totalSupplyCosts: 0
-  totalUpgradeCosts: 0
---- !u!4 &193331236
+--- !u!4 &193331236 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4399714228561124299, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+  m_PrefabInstance: {fileID: 6798368004534544346}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 193331234}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1536680564}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,9 +1036,17 @@ PrefabInstance:
       value: TrainingRoom 2
       objectReference: {fileID: 0}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: linkGymRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: gymRoomEquipmentDetector
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: 'linkGymRooms.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1019185863}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: <RoomDataSo>k__BackingField
       value: 
@@ -1169,9 +1129,17 @@ PrefabInstance:
       value: TrainingRoom 8
       objectReference: {fileID: 0}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: linkGymRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: gymRoomEquipmentDetector
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: 'linkGymRooms.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1019185863}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: <RoomDataSo>k__BackingField
       value: 
@@ -1454,13 +1422,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GymRoom
-  gymRoomEquipmentDetector: {fileID: 0}
-  <SpawnPoint>k__BackingField: {fileID: 1019185862}
+  linkGymRooms: []
+  <SpawnPoint>k__BackingField: {fileID: 0}
   <RoomDataSo>k__BackingField: {fileID: 11400000, guid: 47c98d38c769db94d9d976a528ed51c5, type: 2}
   assignedBoxer: {fileID: 0}
   equipmentInRoom: []
   itemBoxInRoom: []
-  maxCapacity: 10000
+  maxCapacity: 10
   capacityLevel: 1
   totalStrRate: 0
   totalAgiRate: 0
@@ -4467,9 +4435,17 @@ PrefabInstance:
       value: TrainingRoom 7
       objectReference: {fileID: 0}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: linkGymRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: gymRoomEquipmentDetector
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: 'linkGymRooms.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1019185863}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: <RoomDataSo>k__BackingField
       value: 
@@ -5414,9 +5390,17 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: linkGymRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: gymRoomEquipmentDetector
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: 'linkGymRooms.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1019185863}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: <RoomDataSo>k__BackingField
       value: 
@@ -5666,9 +5650,17 @@ PrefabInstance:
       value: TrainingRoom 6
       objectReference: {fileID: 0}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: linkGymRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: gymRoomEquipmentDetector
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: 'linkGymRooms.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1019185863}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: <RoomDataSo>k__BackingField
       value: 
@@ -5863,9 +5855,17 @@ PrefabInstance:
       value: TrainingRoom 5
       objectReference: {fileID: 0}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: linkGymRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: gymRoomEquipmentDetector
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: 'linkGymRooms.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1019185863}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: <RoomDataSo>k__BackingField
       value: 
@@ -6183,6 +6183,111 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
+--- !u!1001 &6798368004534544346
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1536680564}
+    m_Modifications:
+    - target: {fileID: 4399714228561124299, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399714228561124299, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399714228561124299, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399714228561124299, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399714228561124299, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399714228561124299, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399714228561124299, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399714228561124299, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399714228561124299, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399714228561124299, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5380948421440641275, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: <GameController>k__BackingField
+      value: 
+      objectReference: {fileID: 2027215256}
+    - target: {fileID: 5380948421440641275, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: <GameTimeManager>k__BackingField
+      value: 
+      objectReference: {fileID: 1725407892}
+    - target: {fileID: 5380948421440641275, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: <PlayerInteraction>k__BackingField
+      value: 
+      objectReference: {fileID: 1176076211}
+    - target: {fileID: 5380948421440641275, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: <FirstPersonController>k__BackingField
+      value: 
+      objectReference: {fileID: 1176076215}
+    - target: {fileID: 5380948421440641275, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: '<GymRooms>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1833959955}
+    - target: {fileID: 5380948421440641275, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: '<GymRooms>k__BackingField.Array.data[1]'
+      value: 
+      objectReference: {fileID: 787230199}
+    - target: {fileID: 5380948421440641275, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: '<GymRooms>k__BackingField.Array.data[2]'
+      value: 
+      objectReference: {fileID: 192521135}
+    - target: {fileID: 5380948421440641275, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: '<GymRooms>k__BackingField.Array.data[3]'
+      value: 
+      objectReference: {fileID: 9221388899250546237}
+    - target: {fileID: 5380948421440641275, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: '<GymRooms>k__BackingField.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2049005667}
+    - target: {fileID: 5380948421440641275, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: '<GymRooms>k__BackingField.Array.data[5]'
+      value: 
+      objectReference: {fileID: 1943333281}
+    - target: {fileID: 5380948421440641275, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: '<GymRooms>k__BackingField.Array.data[6]'
+      value: 
+      objectReference: {fileID: 1128392479}
+    - target: {fileID: 5380948421440641275, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: '<GymRooms>k__BackingField.Array.data[7]'
+      value: 
+      objectReference: {fileID: 937424379}
+    - target: {fileID: 5762327937574521456, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b02e79d627c19164fb4364f4ee92a7e0, type: 3}
 --- !u!1001 &7808259942307752091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6374,9 +6479,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: linkGymRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: gymRoomEquipmentDetector
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+      propertyPath: 'linkGymRooms.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1019185863}
     - target: {fileID: 5457808901176701717, guid: cceba1852f2046a458c7f343178e308d, type: 3}
       propertyPath: <RoomDataSo>k__BackingField
       value: 

@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GymRoom
-  gymRoomEquipmentDetector: {fileID: 0}
+  linkGymRooms: []
   <SpawnPoint>k__BackingField: {fileID: 1143592578014113624}
   <RoomDataSo>k__BackingField: {fileID: 0}
   assignedBoxer: {fileID: 0}
@@ -858,7 +858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5711052370896006010, guid: 3a40223e654b15543ac263cac9af6059, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5441937219229753151, guid: 3a40223e654b15543ac263cac9af6059, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

@@ -6,7 +6,7 @@ using SaveLoadSystem;
 
 public class GymRoom : MonoBehaviour, ISaveLoadSystem
 {
-    [SerializeField] private GymRoomEquipmentDetector gymRoomEquipmentDetector;
+    [SerializeField] private GymRoom[] linkGymRooms;
 
     [field: SerializeField] public Transform SpawnPoint { get; private set; } 
     [field: SerializeField] public RoomDataSO RoomDataSo { get; private set; } 
@@ -29,28 +29,18 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
     public event Action<GymRoom> OnRoomUnlocked;
     public bool IsUnlocked { get; private set; }
 
-    private void Awake()
-    {
-        if (gymRoomEquipmentDetector)
-        {
-            gymRoomEquipmentDetector.onRoomTriggerEnter.AddListener(OnTriggerEnter);
-            gymRoomEquipmentDetector.onRoomTriggerExit.AddListener(OnTriggerExit);
-        }
-    }
-    
-    private void OnDestroy()
-    {
-        if (gymRoomEquipmentDetector)
-        {
-            gymRoomEquipmentDetector.onRoomTriggerEnter.RemoveListener(OnTriggerEnter);
-            gymRoomEquipmentDetector.onRoomTriggerExit.RemoveListener(OnTriggerExit);
-        }
-    }
-    
     public IEnumerable<TrainingEquipment> GetPermitEquipments(BoxerController boxer, bool includeConsumable = true)
     {
-        foreach (var trainingEquipment in equipmentInRoom)
+        List<TrainingEquipment> trainingEquipments = new List<TrainingEquipment>();
+        trainingEquipments.AddRange(equipmentInRoom);
+        foreach (var gymRoom in linkGymRooms)
         {
+            trainingEquipments.AddRange(gymRoom.equipmentInRoom);
+        }
+        
+        foreach (var trainingEquipment in trainingEquipments)
+        {
+            if(boxer == null) break; 
             if(trainingEquipment.LinkedData.linkedItemData.requiredBoxerLevel > boxer.stats.level) continue;
             if(!includeConsumable && trainingEquipment.IsConsumable()) continue;
             yield return trainingEquipment;
@@ -75,6 +65,8 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
     
     private void RecalculateRates()
     {
+        if(assignedBoxer == null) return;
+        
         totalStrRate = 0;
         totalAgiRate = 0;
         totalStaRate = 0;
