@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6927feb28b8c4d5fa9bd7d8b90c5700e, type: 3}
-  m_Name: Equipment Service Toilet
+  m_Name: Equipment Service Toilet Paper
   m_EditorClassIdentifier: Assembly-CSharp::PlaceableDataSO
   boxSize: {x: 2, y: 1, z: 1}
-  linkedItemData: {fileID: 11400000, guid: f15191108725cc34a83a3278e501536c, type: 2}
+  linkedItemData: {fileID: 11400000, guid: cd8ea8523f348e54fafa81c599199d0e, type: 2}

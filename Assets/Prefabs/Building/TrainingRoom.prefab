@@ -381,8 +381,9 @@ MonoBehaviour:
   totalStrRate: 0
   totalAgiRate: 0
   totalStaRate: 0
-  totalSleepRate: 0
   totalHungerRate: 0
+  totalSleepRate: 0
+  totalExpRate: 0
 --- !u!1 &7418378003663718995
 GameObject:
   m_ObjectHideFlags: 0
