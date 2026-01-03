@@ -28,17 +28,20 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
     public float totalHungerRate;
     public event Action<GymRoom> OnRoomUnlocked;
     public bool IsUnlocked { get; private set; }
-
+    
+    private readonly List<TrainingEquipment> _trainingEquipments = new List<TrainingEquipment>();
+    
     public IEnumerable<TrainingEquipment> GetPermitEquipments(BoxerController boxer, bool includeConsumable = true)
     {
-        List<TrainingEquipment> trainingEquipments = new List<TrainingEquipment>();
-        trainingEquipments.AddRange(equipmentInRoom);
+        _trainingEquipments.Clear();
+        _trainingEquipments.AddRange(equipmentInRoom);
+        
         foreach (var gymRoom in linkGymRooms)
         {
-            trainingEquipments.AddRange(gymRoom.equipmentInRoom);
+            _trainingEquipments.AddRange(gymRoom.equipmentInRoom);
         }
         
-        foreach (var trainingEquipment in trainingEquipments)
+        foreach (var trainingEquipment in _trainingEquipments)
         {
             if(boxer == null) break; 
             if(trainingEquipment.LinkedData.linkedItemData.requiredBoxerLevel > boxer.stats.level) continue;
