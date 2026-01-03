@@ -5,6 +5,21 @@ using UI;
 using UnityEngine;
 using Utilities;
 
+[Serializable]
+public class ItemBoxData
+{
+    public string itemId;
+    public int currentQuantity;
+    public Vector3 position;
+    public Quaternion rotation;
+}
+    
+[Serializable]
+public class ItemBoxGroupData
+{
+    public ItemBoxData[] data;
+}
+
 public class ItemBox : BaseInteractable
 {
     [Header("Box Data")]

@@ -187,39 +187,6 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
         OnRoomUnlocked?.Invoke(this);
     }
     
-    [Serializable]
-    public class TrainingEquipmentData
-    {
-        public string itemId;
-        public Vector3 position;
-        public Quaternion rotation;
-        
-        // Storage
-        public string[] storageIds;
-        public int[] storageAmount;
-    }
-    
-    [Serializable]
-    public class TrainingEquipmentGroupData
-    {
-        public TrainingEquipmentData[] data;
-    }
-    
-    [Serializable]
-    public class ItemBoxData
-    {
-        public string itemId;
-        public int currentQuantity;
-        public Vector3 position;
-        public Quaternion rotation;
-    }
-    
-    [Serializable]
-    public class ItemBoxGroupData
-    {
-        public ItemBoxData[] data;
-    }
-
     public void SaveGame()
     {
         #region Gym Stats
@@ -247,7 +214,9 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
         List<TrainingEquipmentData> equipmentData = new List<TrainingEquipmentData>();
             
         foreach (var trainingEquipment in equipmentInRoom)
-        {
+        {                
+            if(trainingEquipment.isPreInstalled) continue;
+
             ItemDataSO itemDataSo = trainingEquipment.LinkedData.linkedItemData;
             List<string> storageIds = new List<string>(); 
             List<int> storageAmount = new List<int>();
