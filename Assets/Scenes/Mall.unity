@@ -194,67 +194,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
---- !u!1001 &144586600
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1833959956}
-    m_Modifications:
-    - target: {fileID: 114600057272716378, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -14.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.82
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071066
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.70710707
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1370863033539676578, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972687187673756515, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
-      propertyPath: m_Name
-      value: Equipment License 1 Service Toilet
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
+--- !u!1 &150314965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6405307058002978533, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 192521134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &158939218 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3247469252454323003, guid: cceba1852f2046a458c7f343178e308d, type: 3}
@@ -705,6 +649,14 @@ MonoBehaviour:
   - {fileID: 251020155}
   - {fileID: 158939218}
   - {fileID: 554284619}
+  - {fileID: 336783222}
+  - {fileID: 1668267413}
+  - {fileID: 150314965}
+  - {fileID: 563575409}
+  - {fileID: 1006840148}
+  - {fileID: 611239730}
+  - {fileID: 809357614}
+  - {fileID: 1673478850}
   boxerControllerPrefab: {fileID: 9103484075892342616, guid: 286a7bd55548cf745acc8b1dc923a11a, type: 3}
   itemBox: {fileID: 862605124054249854, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
   allItems:
@@ -742,10 +694,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0c33a694fb98e254e82ab48d1d22f4de, type: 2}
   - {fileID: 11400000, guid: cd8ea8523f348e54fafa81c599199d0e, type: 2}
   - {fileID: 11400000, guid: f15191108725cc34a83a3278e501536c, type: 2}
---- !u!4 &336783227 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1370863033539676578, guid: 596cb42ecd6be0f4f9fcd4d1689e7811, type: 3}
-  m_PrefabInstance: {fileID: 144586600}
+--- !u!1 &336783222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6405307058002978533, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 1833959954}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &355522990 stripped
 GameObject:
@@ -915,6 +867,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FightStage 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3760402549098996813, guid: 45f4f661f652ba342aada952100e2469, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7592229748609136713, guid: 45f4f661f652ba342aada952100e2469, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.81
@@ -1011,6 +967,16 @@ MeshCollider:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3247469252454323003, guid: cceba1852f2046a458c7f343178e308d, type: 3}
   m_PrefabInstance: {fileID: 937424378}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &563575409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6405307058002978533, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 9221388899250546236}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &611239730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6405307058002978533, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 1943333280}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &651879728
 PrefabInstance:
@@ -1175,6 +1141,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GymRoom
+--- !u!1 &809357614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6405307058002978533, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 1128392478}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &831968519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1396117148893266603, guid: 3055aff3f50187843a5554c0678188d5, type: 3}
@@ -1424,6 +1395,11 @@ Transform:
   - {fileID: 1638465762}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1006840148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6405307058002978533, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 2049005666}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1019185857
 GameObject:
   m_ObjectHideFlags: 0
@@ -4896,6 +4872,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FightStage 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3760402549098996813, guid: 45f4f661f652ba342aada952100e2469, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7592229748609136713, guid: 45f4f661f652ba342aada952100e2469, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.81
@@ -5238,6 +5218,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9231f11026140b1a77ef8cd959f6aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IdleProductionManager
+--- !u!1 &1668267413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6405307058002978533, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 787230198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1668577548
 GameObject:
   m_ObjectHideFlags: 0
@@ -5285,6 +5270,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1536680564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1673478850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6405307058002978533, guid: cceba1852f2046a458c7f343178e308d, type: 3}
+  m_PrefabInstance: {fileID: 937424378}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1686878065 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 938169628656540985, guid: 690edd39b7a5e5f43a900d135cbc4622, type: 3}
@@ -5359,6 +5349,10 @@ PrefabInstance:
     - target: {fileID: 3760402549098996813, guid: 45f4f661f652ba342aada952100e2469, type: 3}
       propertyPath: m_Name
       value: FightStage 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760402549098996813, guid: 45f4f661f652ba342aada952100e2469, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7592229748609136713, guid: 45f4f661f652ba342aada952100e2469, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5516,10 +5510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8352334693745885857, guid: cceba1852f2046a458c7f343178e308d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 336783227}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cceba1852f2046a458c7f343178e308d, type: 3}
 --- !u!114 &1833959955 stripped
@@ -5533,11 +5524,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef86178fb8e4e3b89038a7856b81eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GymRoom
---- !u!4 &1833959956 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8352334693745885857, guid: cceba1852f2046a458c7f343178e308d, type: 3}
-  m_PrefabInstance: {fileID: 1833959954}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1838655453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6135,6 +6121,10 @@ PrefabInstance:
     - target: {fileID: 3760402549098996813, guid: 45f4f661f652ba342aada952100e2469, type: 3}
       propertyPath: m_Name
       value: FightStage 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760402549098996813, guid: 45f4f661f652ba342aada952100e2469, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7592229748609136713, guid: 45f4f661f652ba342aada952100e2469, type: 3}
       propertyPath: m_LocalPosition.x
