@@ -24,8 +24,6 @@ public class StorageShelf : BaseInteractable
     private float _consumeTime;
     private bool _isHandEmpty = true;
     
-    public List<GameObject> visualItems; // The actual static items on the shelf
-    
     protected override void Start()
     {
         base.Start();
