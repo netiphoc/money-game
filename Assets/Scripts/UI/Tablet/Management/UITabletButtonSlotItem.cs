@@ -184,6 +184,8 @@ namespace UI.Tablet.Management
             
             float hunger = 0;
             float sleep = 0;
+            
+            float exp = 0;
 
             if (_itemDataSO.itemPrefab.TryGetComponent(out TrainingEquipment trainingEquipment))
             {
@@ -199,6 +201,7 @@ namespace UI.Tablet.Management
                 str += _itemDataSO.strBonus;
                 agi += _itemDataSO.agiBonus;
                 sta += _itemDataSO.staBonus;
+                exp += _itemDataSO.expBonus;
             }
 
             StringBuilder stats = new StringBuilder();
@@ -208,12 +211,14 @@ namespace UI.Tablet.Management
             string staFormat = sta > 0 ? "+" : string.Empty;
             string hungerFormat = hunger > 0 ? "+" : string.Empty;
             string sleepFormat = sleep > 0 ? "+" : string.Empty;
+            string expFormat = exp > 0 ? "+" : string.Empty;
             
             if (str != 0f) stats.Append($"STR {strFormat}{str:F1}");
             if (agi != 0f) stats.Append($"\nAGI {agiFormat}{agi:F1}");
             if (sta != 0f) stats.Append($"\nSTA {staFormat}{sta:F1}");
             if (hunger != 0f) stats.Append($"\nHUNGER {hungerFormat}{hunger:F1}");
             if (sleep != 0f) stats.Append($"\nSLEEP {sleepFormat}{sleep:F1}");
+            if (exp != 0f) stats.Append($"\nEXP {expFormat}{sleep:F1}");
             
             textItemStats.SetText(stats.ToString());
         }

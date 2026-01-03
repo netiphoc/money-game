@@ -26,6 +26,7 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
     public float totalStaRate;
     public float totalHungerRate;
     public float totalSleepRate;
+    public float totalExpRate;
     public event Action<GymRoom> OnRoomUnlocked;
     public bool IsUnlocked { get; private set; }
     
@@ -75,6 +76,7 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
         totalStaRate = 0;
         totalSleepRate = 0;
         totalHungerRate = 0;
+        totalExpRate = 0;
 
         List<PlaceableDataSO> addedItems = new List<PlaceableDataSO>();
         foreach (var equip in GetPermitEquipments(assignedBoxer))
@@ -96,6 +98,7 @@ public class GymRoom : MonoBehaviour, ISaveLoadSystem
                     totalStaRate += itemDataSo.staBonus;
                     totalSleepRate += itemDataSo.sleepBonus;
                     totalHungerRate += itemDataSo.hungerBonus;
+                    totalExpRate += itemDataSo.expBonus;
                 }
             }
             

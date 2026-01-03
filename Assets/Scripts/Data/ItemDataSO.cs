@@ -20,6 +20,7 @@ public class ItemDataSO : ScriptableObject
     public float staBonus;
     public float hungerBonus;
     public float sleepBonus;
+    public float expBonus;
 
     [Header("Required")] 
     public int requiredBoxerLevel; 

@@ -30,6 +30,7 @@ public class BoxerData
     public float unrealizedStamina;
     public float unrealizedSleep;
     public float unrealizedHunger;
+    public float unrealizedExp;
 
     [Header("Survival Stats (0-100)")]
     public float hunger = 100f;
@@ -93,6 +94,16 @@ public class BoxerData
         
         unrealizedSleep = 0;
         unrealizedHunger = 0;
+    }
+    
+    public void ApplyUnrealizeServiceStats()
+    {
+        if(unrealizedExp > 0)
+        {
+            GameManager.Instance.AddPlayerXP(unrealizedExp);
+            FloatingTextManager.Instance.ShowFixedText($"Service +{unrealizedExp} exp", Color.green, TextSpawnPointType.Exp);
+            unrealizedExp = 0;   
+        }
     }
 
     #region Food

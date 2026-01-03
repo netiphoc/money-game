@@ -184,13 +184,17 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.2480288
       objectReference: {fileID: 0}
+    - target: {fileID: 3783666478516525947, guid: 92e813de34452e64aac82482859e9665, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5300754137737274434, guid: 92e813de34452e64aac82482859e9665, type: 3}
       propertyPath: m_Name
       value: Equipment License 1 Service Toilet
       objectReference: {fileID: 0}
     - target: {fileID: 5300754137737274434, guid: 92e813de34452e64aac82482859e9665, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

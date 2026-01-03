@@ -26,16 +26,20 @@ public class IdleProductionManager : MonoBehaviour
             if (room.assignedBoxer != null)
             {
                 if(room.assignedBoxer.currentState == BoxerController.AIState.Fight) continue;
-                
                 BoxerData stats = room.assignedBoxer.stats;
-                
+
+                // Service Bonus
+                stats.ApplyUnrealizeServiceStats();
+
                 // 1. Decay Hunger/Sleep
                 stats.TickSurvival();
                 
                 float hungerGain = room.totalHungerRate;
                 float sleepGain = room.totalSleepRate;
+                float expGain = room.totalExpRate;
                 stats.unrealizedHunger += hungerGain;
                 stats.unrealizedSleep += sleepGain;
+                stats.unrealizedExp += expGain;
                 stats.ApplyUnrealizeSurvivalStats();
                 
                 if(room.assignedBoxer.currentState != BoxerController.AIState.TrainingVisual) continue;
